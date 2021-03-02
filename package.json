@@ -1,0 +1,19 @@
+{
+  "name": "project-astoria",
+  "version": "1.0.0",
+  "description": "An E-Commerce store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardosimmons/project-astoria-front-end.git"
+  },
+  "author": "Leonardo Simmons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonardosimmons/project-astoria-front-end/issues"
+  },
+  "homepage": "https://github.com/leonardosimmons/project-astoria-front-end#readme"
+}
