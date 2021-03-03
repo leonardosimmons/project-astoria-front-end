@@ -15,4 +15,4 @@ export type NavbarMenu = NavbarMenuToken[];
 
 export type NavbarContext = {
   menu: NavbarMenu
-}
+};

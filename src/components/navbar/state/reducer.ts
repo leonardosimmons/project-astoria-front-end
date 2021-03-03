@@ -1,11 +1,11 @@
-import { NavBarActions, SET_NAVBAR_MENU } from "../../../store/action-types";
 import { NavbarContext } from "../../../store/types";
+import { NavBarActions, SET_NAVBAR_MENU } from "./action-types";
 
 const navbarReducerDefaultState: NavbarContext = {
   menu: [],
 };
 
-const navbarReducer =  (state = navbarReducerDefaultState, action: NavBarActions) => 
+const navbarReducer = (state = navbarReducerDefaultState, action: NavBarActions): NavbarContext => 
 {
   switch(action.type)
   {
@@ -19,4 +19,4 @@ const navbarReducer =  (state = navbarReducerDefaultState, action: NavBarActions
   }
 };
 
-export default navbarReducer;
+export { navbarReducer };

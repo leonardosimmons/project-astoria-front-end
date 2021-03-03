@@ -1,5 +1,6 @@
-import { AppActions, SET_NAVBAR_MENU } from "../../../store/action-types";
+import { AppActions } from "../../../store/action-types";
 import { NavbarMenuToken } from "../../../store/types";
+import { SET_NAVBAR_MENU } from "./action-types";
 
 export const setNavbarMenu = (menu: NavbarMenuToken[]): AppActions => 
 (
