@@ -3,7 +3,7 @@ const Index = () =>
   console.log(__dirname);
 
   return (
-    <div>Hello World</div>
+    <div className="text-yellow-700">Hello World</div>
   )
 };
 

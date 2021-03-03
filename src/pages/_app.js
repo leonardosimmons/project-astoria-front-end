@@ -1,7 +1,13 @@
 import '../styles';
+import { Provider } from 'react-redux';
+import { useStore } from '../store';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+export default function App({ Component, pageProps }) {
+  const store = useStore(pageProps.initialReduxState);
 
-export default MyApp
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
+};
