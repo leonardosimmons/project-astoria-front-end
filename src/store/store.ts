@@ -7,7 +7,8 @@ import { AppState, rootReducer } from './reducers';
 
 let store: any;
 
-function initStore(initialState: any) {
+function initStore(initialState: any) 
+{
   return createStore(
     rootReducer,
     initialState,
@@ -15,24 +16,26 @@ function initStore(initialState: any) {
   )
 };
 
-export const initializeStore = (preloadedState: any) => {
-  let _store = store ?? initStore(preloadedState)
+export const initializeStore = (preloadedState: any) => 
+{
+  let _store = store ?? initStore(preloadedState);
 
   if (preloadedState && store) {
     _store = initStore({
       ...store.getState(),
       ...preloadedState,
     })
-    store = undefined
+    store = undefined;
   }
 
-  if (typeof window === 'undefined') return _store
-  if (!store) store = _store
+  if (typeof window === 'undefined') return _store;
+  if (!store) store = _store;
 
-  return _store
+  return _store;
 };
 
-export function useStore(initialState: any) {
-  const store = useMemo(() => initializeStore(initialState), [initialState])
-  return store
+export function useStore(initialState: any) 
+{
+  const store = useMemo(() => initializeStore(initialState), [initialState]);
+  return store;
 };
