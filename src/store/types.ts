@@ -6,7 +6,6 @@ export type DataBank = {
 
 //** --------------------  NAVIGATION BAR  -------------------- **//
 export type NavbarMenuToken = {
-  id: number;
   title: string;
   link?: string;
 };
