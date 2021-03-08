@@ -9,19 +9,19 @@ const Index = () => {
 
   useEffect(() => 
   {
-    const token = {
-      title: 'Test Test Test',
-      content: 'First Test Token'
-    }
+    // const token = {
+    //   title: 'Test Test Test',
+    //   content: 'First Test Token'
+    // }
 
-    const source = axios.CancelToken.source();
-    axios.post(`${ SERVER_URL }/feed/new-post`, token)
-      .then(res => console.log(res))
-      .catch(e => console.log(e));
+    // const source = axios.CancelToken.source();
+    // axios.post(`${ SERVER_URL }/feed/new-post`, token)
+    //   .then(res => console.log(res))
+    //   .catch(e => console.log(e));
 
-    return () => {
-      source.cancel();
-    }
+    // return () => {
+    //   source.cancel();
+    // }
   }, []);
 
   return (
