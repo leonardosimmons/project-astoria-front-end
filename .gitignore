@@ -8,9 +8,15 @@
 
 # production
 /build
+/dist
 
 # next.js build output
 .next
+/out/
+
+
+# vercel
+.vercel
 
 # misc
 .DS_Store
@@ -25,8 +31,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # User
 /public/assets
+/server/test
 /src/buffer
 /src/*.txt
 *.png

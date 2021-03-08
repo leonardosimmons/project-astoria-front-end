@@ -17,9 +17,11 @@ const Index = () => {
     const source = axios.CancelToken.source();
     axios.post(`${ SERVER_URL }/feed/new-post`, token)
       .then(res => console.log(res))
-      .then(() => source.cancel())
       .catch(e => console.log(e));
 
+    return () => {
+      source.cancel();
+    }
   }, []);
 
   return (
