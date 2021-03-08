@@ -5,7 +5,8 @@ function setupCloseOnExit(server: any)
   async function handleClose()
   {
     await server.close()
-      .then(() => {
+      .then(() => 
+      {
         logger.info(`Server closed successfully`);
 
         process.exit();
