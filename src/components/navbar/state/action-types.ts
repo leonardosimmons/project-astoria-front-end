@@ -1,4 +1,4 @@
-import { NavbarMenuToken } from "../../../store/types";
+import { NavbarMenuToken } from "../../../redux-store/types";
 
 //** ---------------------  TYPES  --------------------- **//
 export const SET_NAVBAR_MENU = "SET_NAVBAR_MENU";

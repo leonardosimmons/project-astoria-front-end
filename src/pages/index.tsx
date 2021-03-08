@@ -5,7 +5,6 @@ const SERVER_URL = process.env.NODE_ENV === 'production' ?
   '' : 'http://localhost:4000/'
 
 const Index = () => {
-  console.log(__dirname);
 
   useEffect(() => 
   {

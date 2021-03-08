@@ -1,6 +1,6 @@
 import '../styles';
 import { Provider } from 'react-redux';
-import { useStore } from '../store';
+import { useStore } from '../redux-store';
 import axios from 'axios';
 
 export default function App({ Component, pageProps }) {

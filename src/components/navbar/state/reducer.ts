@@ -1,4 +1,4 @@
-import { NavbarContext } from "../../../store/types";
+import { NavbarContext } from "../../../redux-store/types";
 import { NavBarActions, SET_NAVBAR_MENU } from "./action-types";
 
 const navbarReducerDefaultState: NavbarContext = {
