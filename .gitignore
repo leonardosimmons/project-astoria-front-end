@@ -33,8 +33,8 @@ yarn-error.log*
 
 
 # User
+/server
 /public/assets
-/server/test
 /src/buffer
 /src/*.txt
 *.png
