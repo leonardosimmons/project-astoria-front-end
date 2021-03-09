@@ -1,7 +1,13 @@
-html {
-  font-size: 62.5%;
-}
+//* CONFIGURATION
+@import 'config/base';
+@import 'config/typography';
+@import 'config/variables';
 
-body {
-  font-size: 4rem;
-}
+
+//* UTILITIES
+@import 'util/general';
+
+
+//* PAGES
+@import 'pages/home';
+@import 'pages/under-construction';
