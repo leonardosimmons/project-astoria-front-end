@@ -1,0 +1,77 @@
+
+//* -------------------- GENERAL -------------------- *//
+// disables users ability to select/highlight a particular element
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+//* --------------------- HOVER --------------------- *//
+.hover-scale {
+  &:hover {
+    font-weight: 500;
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(black, .2);
+  }
+}
+
+
+//* --------------------- FOCUS --------------------- *//
+.active-focus {
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 .5rem 1rem rgba(black, .2);
+  }
+}
+
+.input-focus {
+  &:active,
+  &:focus {
+    outline: none;
+    border: 2px solid #6B7280;
+  }
+}
+
+//* -------------------- BUTTON -------------------- *//
+.btn-hoverConfig {
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    background: #6EE7B7;
+    height: 100%;
+    width: 100%;
+    border-radius: .5rem;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .5s;
+  }
+
+  &:hover {
+    font-weight: 500;
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1.5rem 2rem rgba(black, .2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+}
+
+.btn-ActiveFocus {
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 .5rem 1rem rgba(black, .2);
+  }
+}

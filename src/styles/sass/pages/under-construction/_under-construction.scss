@@ -1,0 +1,14 @@
+.under-construction 
+{
+  &__text {
+    font-size: 10rem;
+    color: red;
+  }
+
+  &__container {
+    :nth-child(2) {
+      color: purple;
+      font-size: 5rem;
+    }
+  }
+}
