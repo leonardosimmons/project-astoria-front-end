@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-export interface ButtonProps 
+export interface IProps 
 {
   link: string;
   text: string;
@@ -8,7 +8,7 @@ export interface ButtonProps
   classes?: string;
 }
 
-const Button: React.FunctionComponent<ButtonProps> = ({ parent, link, text, classes }): JSX.Element => {
+const Button: React.FunctionComponent<IProps> = ({ parent, link, text, classes }): JSX.Element => {
   return (
     <Link href={ link }>
       <button className={`${ parent }__button ${ classes }`}>

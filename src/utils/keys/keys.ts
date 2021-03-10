@@ -1,5 +1,5 @@
-enum keys {
-
+export enum element {
+  MAIN_CONTAINER = 'main-container',
 };
 
 export enum page {
@@ -9,5 +9,3 @@ export enum page {
 export enum link {
   HOME = '/',
 }
-
-export default keys;
