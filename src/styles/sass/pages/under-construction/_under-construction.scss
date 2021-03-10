@@ -1,14 +1,83 @@
 .under-construction 
 {
-  &__text {
-    font-size: 10rem;
-    color: red;
+  height: 101vh;
+  max-width: 216rem;
+  margin: 0 auto;
+
+
+  &__container 
+  {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (min-width: 48em)  // 768px
+    {
+      justify-content: flex-end;
+      background-image: url('/images/error/site-construction-huge.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   }
 
-  &__container {
-    :nth-child(2) {
-      color: purple;
-      font-size: 5rem;
+
+  &__content-box
+  {
+    height: 70%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 1rem;
+
+    @media only screen and (min-width: 48em) { width: 50%; margin: 0; }  // 768px
+    @media only screen and (min-width: 60.25em) { width: 45%; }          // 964px
+    @media only screen and (min-width: 71.44em) { margin-right: 3rem; }  // 1143px 
+  }
+
+
+  &__main-heading 
+  {
+    font-size: 2.75rem;
+    font-weight: 600;
+
+    @media only screen and (min-width: 25.93em) { font-size: 3rem; }  // 415px
+    @media only screen and (min-width: 48em) { font-size: 3.25rem; }  // 768px
+    @media only screen and (min-width: 71.44em) { font-size: 6rem; }  // 1143px 
+  }
+
+
+  &__text 
+  {
+    &--2 {
+      margin-top: 1rem;
     }
+
+    &--2,
+    &--3 {
+      font-size: 1.2rem;
+      @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }
+      @media only screen and (min-width: 25.93em) { font-size: 1.55rem; }  // 415px
+      @media only screen and (min-width: 48em) { font-size: 1.35rem; }    // 964px
+      @media only screen and (min-width: 71.44em)  { font-size: 1.55rem; }   // 1143px
+      @media only screen and (min-width: 105.125em) { font-size: 1.85rem; }  // 1682px 
+    }
+  }
+
+  
+  &__button {
+    margin-top: 2rem;
+    padding: .5rem 1rem;
+
+    border-radius: .1rem;
+    background-color: #e8e5e5;
   }
 }

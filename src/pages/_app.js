@@ -1,7 +1,8 @@
 import '../styles';
+import '../styles/sass';
 import { Provider } from 'react-redux';
 import { useStore } from '../redux-store';
-import axios from 'axios';
+
 
 export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);

@@ -31,6 +31,8 @@
   }
 }
 
+
+//* --------------------- INPUT --------------------- *//
 .input-focus {
   &:active,
   &:focus {
@@ -45,7 +47,7 @@
     content: "";
     position: absolute;
     display: inline-block;
-    background: #6EE7B7;
+    background: inherit;
     height: 100%;
     width: 100%;
     border-radius: .5rem;
@@ -67,7 +69,7 @@
   }
 }
 
-.btn-ActiveFocus {
+.btn-activeFocus {
   &:active,
   &:focus {
     outline: none;
