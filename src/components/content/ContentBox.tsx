@@ -6,7 +6,7 @@ interface IProps {
 
 const ContentBox: React.FunctionComponent<IProps> = ({ parent, classes, children}): JSX.Element => {
   return (
-    <div className={`${ parent }__content-box ${ classes }`}>
+    <div className={`${ parent || '' }__content-box ${ classes || '' }`}>
       { children }
     </div>
   );
