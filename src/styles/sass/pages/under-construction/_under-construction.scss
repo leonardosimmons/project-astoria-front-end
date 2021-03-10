@@ -64,9 +64,9 @@
     &--1,
     &--2 {
       font-size: 1.2rem;
-      @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }
-      @media only screen and (min-width: 25.93em) { font-size: 1.55rem; }  // 415px
-      @media only screen and (min-width: 48em) { font-size: 1.35rem; }    // 964px
+      @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
+      @media only screen and (min-width: 25.93em) { font-size: 1.55rem; }    // 415px
+      @media only screen and (min-width: 48em) { font-size: 1.35rem; }       // 964px
       @media only screen and (min-width: 71.44em)  { font-size: 1.55rem; }   // 1143px
       @media only screen and (min-width: 105.125em) { font-size: 1.85rem; }  // 1682px 
     }
