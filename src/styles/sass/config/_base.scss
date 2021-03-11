@@ -15,6 +15,8 @@ a {
   list-style: none;
 }
 
-.main-container {
+#app {
   position: relative;
+  max-width: 216rem;
+  margin: 0 auto;
 }

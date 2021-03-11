@@ -2,8 +2,8 @@
 
 const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
   return (
-    <div>
-
+    <div className={`h-full w-full`}>
+      <p>Test</p>
     </div>
   );
 };

@@ -2,11 +2,13 @@
 @import 'config/base';
 @import 'config/typography';
 @import 'config/variables';
+@import 'config/colors';
 @import 'layout';
 
 
 //* UTILITIES
-@import 'util/general';
+@import 'utils/general';
+@import 'utils/colors';
 
 
 //* PAGES

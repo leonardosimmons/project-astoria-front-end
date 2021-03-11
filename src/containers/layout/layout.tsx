@@ -11,7 +11,7 @@ interface IProps {
   footer?: JSX.Element;
 };
 
-const layout: React.FunctionComponent<IProps> = (
+const Layout: React.FunctionComponent<IProps> = (
   { 
     parent,
     title,
@@ -30,7 +30,7 @@ const layout: React.FunctionComponent<IProps> = (
         <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
       </Head>
-      <div className={`${ classes } h-full`}>
+      <div id="app" className={`${ classes }`}>
         <nav className={`${ parent }__nav`}>
           { mainNav }
           { mobileNav }
@@ -43,4 +43,4 @@ const layout: React.FunctionComponent<IProps> = (
   );
 };
 
-export default layout;
+export default Layout;
