@@ -4,6 +4,7 @@ export enum element {
 
 export enum page {
   UNDER_CONSTRUCTION = 'under-construction',
+  HOME = 'home',
 }
 
 export enum link {

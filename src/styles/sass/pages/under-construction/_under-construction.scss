@@ -1,28 +1,33 @@
 .under-construction 
 {
-  height: 101vh;
   max-width: 216rem;
   margin: 0 auto;
 
+  &__main {
+    height: 101vh;
 
-  &__main-container 
-  {
-    height: 100%;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media only screen and (min-width: 48em)  // 768px
+    &-container 
     {
-      justify-content: flex-end;
-      background-image: url('/images/error/site-construction-huge.jpg');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      background-color: #e8e5e5;
+
+      @media only screen and (min-width: 48em)  // 768px
+      {
+        justify-content: flex-end;
+        background-image: url('/images/error/site-construction-huge.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     }
   }
+
 
 
   &__content-box

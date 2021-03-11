@@ -40,4 +40,5 @@ yarn-error.log*
 *.png
 *.jpg
 *.jpeg
+*.svg
 favicon.ico

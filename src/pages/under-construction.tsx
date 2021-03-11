@@ -1,12 +1,16 @@
 import { page, link } from '../utils/keys';
+import Layout from '../containers/layout';
 import Button from '../components/button';
 import ContentBox from '../components/content';
 import TextContent from '../components/text';
-import MainContainer from '../containers/main';
+import MainContainer from '../components/container';
 
-const ConstructionPage = () => {
+const UnderConstructionPage = (): JSX.Element => {
   return (
-    <div className={ page.UNDER_CONSTRUCTION } >
+    <Layout 
+      parent={ page.UNDER_CONSTRUCTION } 
+      title={'Under Construction...'} 
+    >
       <MainContainer 
         parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox
@@ -17,15 +21,17 @@ const ConstructionPage = () => {
             mainHeading={`This Page Is Under Construction...`}
             textOne={`We are currently working on a host of new features`}
             textTwo={`This page along with many others will be available soon`} />
-          <Button 
-            link={ link.HOME }
-            text="Back Home"
-            parent={ page.UNDER_CONSTRUCTION }
-            classes={`btn-hoverConfig btn-activeFocus`} />
+          <div className={`relative`}>
+            <Button 
+              link={ link.HOME }
+              text="Back Home"
+              parent={ page.UNDER_CONSTRUCTION }
+              classes={`btn-hoverConfig btn-activeFocus`} />
+          </div>
         </ContentBox>
       </MainContainer>
-    </div>
+    </Layout>
   );
 };
 
-export default ConstructionPage;
+export default UnderConstructionPage;

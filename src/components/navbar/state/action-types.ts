@@ -1,12 +1,11 @@
-import { NavbarMenuToken } from "../../../redux-store/types";
+import { NavbarMenuToken } from "../../../utils/types";
 
 //** ---------------------  TYPES  --------------------- **//
 export const SET_NAVBAR_MENU = "SET_NAVBAR_MENU";
 
 
 //** --------------------  ACTIONS  -------------------- **//
-export type SetNavbarMenuAction = 
-{
+export type SetNavbarMenuAction = {
   type: typeof SET_NAVBAR_MENU;
   payload: {
     menu: NavbarMenuToken[];

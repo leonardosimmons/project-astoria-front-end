@@ -5,9 +5,10 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="description" content="Project Astoria main site" />
           <meta charSet="utf-8" />
+          <meta name="description" content="Project Astoria main site" />
           <meta name="robots" content="no index, no follow" />
+          <meta name="AdsBot-Google" content="none" />
         </Head>
         <body>
           <Main />
