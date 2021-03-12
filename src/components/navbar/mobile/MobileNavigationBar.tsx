@@ -1,9 +1,15 @@
 
+import { cpnt } from '../../../utils/keys';
 
-const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
+interface IProps {
+  parent?: string;
+
+}
+
+const MobileNavigationBar: React.FunctionComponent<IProps> = ({ parent, children }): JSX.Element => {
   return (
-    <div className={`h-full w-full`}>
-      <p>Test</p>
+    <div className={`${ parent }__${ cpnt.MOBILE_NAVIGATION } ${ cpnt.MOBILE_NAVIGATION }`}>
+      <p>Mobile Navigation</p>
     </div>
   );
 };

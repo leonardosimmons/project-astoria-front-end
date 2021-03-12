@@ -1,9 +1,66 @@
+//* -------------------------  FONTS --------------------------- *//
+.under-construction 
+{
+  &__main-heading 
+  {
+    font-size: 2.75rem;
+    font-weight: 600;
+
+    @media only screen and (min-width: 25.93em) { font-size: 3.85rem; }  // 415px
+    @media only screen and (min-width: 71.44em) { font-size: 6rem; }  // 1143px 
+  }
+
+  &__text 
+  {
+    &--1,
+    &--2 
+    {
+      font-size: 1.2rem;
+      @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
+      @media only screen and (min-width: 25.93em) { font-size: 1.65rem; }    // 415px
+      @media only screen and (min-width: 48em) { font-size: 1.45rem; }       // 768px
+      @media only screen and (min-width: 63.5em) { font-size: 1.85rem; }       // 1024px
+      @media only screen and (min-width: 71.44em)  { font-size: 1.85rem; }   // 1143px
+      @media only screen and (min-width: 105.125em) { font-size: 2.75rem; }  // 1682px 
+    }
+  }
+
+  &__button 
+  {
+    font-size: 1.2rem;
+    @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
+    @media only screen and (min-width: 25.93em) { font-size: 1.65rem; }    // 415px
+    @media only screen and (min-width: 63.5em) { font-size: 1.95rem; }       // 1024px
+    @media only screen and (min-width: 71.44em)  { font-size: 1.95rem; }   // 1143px
+    @media only screen and (min-width: 105.125em) { font-size: 2.75rem; }  // 1682px 
+  }
+}
+
+//* -------------------------  COLORS -------------------------- *//
+.under-construction
+{
+  &__main 
+  {
+    &-container
+    {
+      background-color: var(--grey-300);
+    }
+  }
+
+  &__button
+  {
+    background-color: var(--grey-300);
+  }
+}
+
+//* ------------------------  STRUCTURE ------------------------ *//
 .under-construction 
 {
   max-width: 216rem;
   margin: 0 auto;
 
-  &__main {
+  &__main 
+  {
     height: 101vh;
 
     &-container 
@@ -14,8 +71,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      
-      background-color: var(--grey-200);
 
       @media only screen and (min-width: 48em)  // 768px
       {
@@ -27,7 +82,6 @@
       }
     }
   }
-
 
 
   &__content-box
@@ -49,40 +103,19 @@
   }
 
 
-  &__main-heading 
-  {
-    font-size: 2.75rem;
-    font-weight: 600;
-
-    @media only screen and (min-width: 25.93em) { font-size: 3rem; }  // 415px
-    @media only screen and (min-width: 48em) { font-size: 3.25rem; }  // 768px
-    @media only screen and (min-width: 71.44em) { font-size: 6rem; }  // 1143px 
-  }
-
-
   &__text 
   {
     &--1 {
       margin-top: 1rem;
     }
-
-    &--1,
-    &--2 {
-      font-size: 1.2rem;
-      @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
-      @media only screen and (min-width: 25.93em) { font-size: 1.55rem; }    // 415px
-      @media only screen and (min-width: 48em) { font-size: 1.35rem; }       // 964px
-      @media only screen and (min-width: 71.44em)  { font-size: 1.55rem; }   // 1143px
-      @media only screen and (min-width: 105.125em) { font-size: 1.85rem; }  // 1682px 
-    }
   }
 
   
-  &__button {
+  &__button 
+  {
     margin-top: 2rem;
     padding: .5rem 1rem;
 
     border-radius: .1rem;
-    background-color: var(--grey-200);
   }
 }

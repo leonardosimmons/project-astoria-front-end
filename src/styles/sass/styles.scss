@@ -11,6 +11,10 @@
 @import 'utils/colors';
 
 
+//* COMPONENTS
+@import '../../components/navbar/main/styles';
+@import '../../components/navbar/mobile/styles';
+
 //* PAGES
 @import 'pages/home';
 @import 'pages/under-construction';

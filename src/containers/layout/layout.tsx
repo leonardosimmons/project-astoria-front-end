@@ -1,6 +1,9 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 
+import MainNavigationBar from '../../components/navbar/main';
+import MobileNavigationBar from '../../components/navbar/mobile';
+
 interface IProps {
   parent: string;
   title: string;
@@ -32,8 +35,8 @@ const Layout: React.FunctionComponent<IProps> = (
       </Head>
       <div id="app" className={`${ classes }`}>
         <nav className={`${ parent }__nav`}>
-          { mainNav }
-          { mobileNav }
+          { mainNav || <MainNavigationBar />}
+          { mobileNav || <MobileNavigationBar /> }
         </nav>
         <header className={`${ parent }__header`}>{ header }</header>
         <main className={`${ parent }__main`}>{ children }</main>
