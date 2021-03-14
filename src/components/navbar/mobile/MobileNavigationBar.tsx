@@ -1,46 +1,46 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+
 import { cpnt } from '../../../utils/keys';
 import MainContainer from '../../container/MainContainer';
+import NavigationMenu from '../components/NavigationMenu';
+import NavigationLogo from '../components/NavigationLogo';
+import NavigationIcon from '../components/NavigationIcon';
 
 
-interface IProps {
-  parent?: string;
-}
-
-
-const MobileNavigationBar: React.FunctionComponent<IProps> = ({ parent, children }): JSX.Element => {
-  const testData = [ 
-    { link: '/under-construction', src: '/icons/png/shopping-bag.png', alt: 'test'},
-    { link: '/under-construction', src: '/icons/png/user.png', alt: 'test'},
-    { link: '/under-construction', src: '/icons/png/search-glass.png', alt: 'test'}
+const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
+  const testIconData = [ 
+    { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test'},
+    { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test'},
+    { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test'}
   ];
 
   return (
-    <div className={`${ parent }__${ cpnt.MOBILE_NAVIGATION } ${ cpnt.MOBILE_NAVIGATION }`}>
-      <MainContainer parent={ cpnt.MOBILE_NAVIGATION }>
-        <div>Menu</div>
-        <div className="logo">
-          <Link href="/">
-            <p>ASTORIA</p>
-          </Link>
-        </div>
-        <div className={`flex`}>
-          {
-            testData.map((data, index) => (
-              <div className={`${ parent }__icon ${ parent }__icon--${ index }`}>
-                <Link href={data.link} key={ index }>
-                  <Image 
-                    src={data.src}
-                    alt={data.alt}
-                    width={ 22 }
-                    height={ 22 }
-                  />
-                </Link>
-              </div>
-            ))
-          } 
+    <div className={ cpnt.MOBILE_NAVIGATION } >
+      <MainContainer parent={ cpnt.MOBILE_NAVIGATION } >
+        <NavigationMenu 
+          parent={ cpnt.MOBILE_NAVIGATION } 
+          title={'Menu'} />
+        <NavigationLogo
+          parent={ cpnt.MOBILE_NAVIGATION }
+          logoText={'ASTORIA'} />
+        <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
+        {
+          testIconData.map((data, index) => (
+            <div className={`
+              ${ cpnt.MOBILE_NAVIGATION }__icon 
+              ${ cpnt.MOBILE_NAVIGATION }__icon--${ index + 1 }`} 
+              key={ index }>
+              <NavigationIcon
+                parent={ cpnt.MOBILE_NAVIGATION } 
+                index={ index }
+                src={ data.src }
+                alt={ data.alt }
+                link={ data.link } 
+                width={ 22.5 }
+                height={ 22.5 }
+              />
+            </div>
+          ))
+        } 
         </div>
       </MainContainer>
     </div>
@@ -48,16 +48,3 @@ const MobileNavigationBar: React.FunctionComponent<IProps> = ({ parent, children
 };
 
 export default MobileNavigationBar;
-
-/* 
-
-<NavbarIcons
-  parent={ cpnt.MOBILE_NAVIGATION }
-  link={'/under-construction'} 
-  src={'/icons/png/shopping-bag.png'}
-  alt={'test icon'}
-  height={ 22.5 }
-  width={ 22.5 }
-  classes={`flex`} />
-
-*/
