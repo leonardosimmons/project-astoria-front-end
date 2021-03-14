@@ -1,5 +1,5 @@
 
-//* -------------------------  FONTS --------------------------- *//
+//* -------------------------  FONTS  --------------------------- *//
 .mobile-navigation 
 {
   &__menu 
@@ -24,22 +24,24 @@
 }
 
 
-//* -------------------------  COLORS -------------------------- *//
+//* -------------------------  COLORS  -------------------------- *//
 .mobile-navigation
 {
   color: var(--white);
-  background-color: var(--black);
+  background-color: rgba(#000000, 0.85);
 }
 
 
-//* ------------------------  STRUCTURE ------------------------ *//
+//* ------------------------  STRUCTURE  ------------------------ *//
 .mobile-navigation 
 {
+  position: fixed;
+  height: 6vh;
+  width: 100%;
   padding: .75rem 1rem;
+  z-index: 110;
 
-  @media only screen and (min-width: 48em) {
-    display: none;
-  }
+  @media only screen and (min-width: 48em) { display: none; }
 
 
   &__main-container 
@@ -48,40 +50,54 @@
     justify-content: space-between;
     align-items: center;
   }
-
-
+  
+  
   &__menu 
   {
     flex: 0 1 35%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     
-    &--button {
-      position: relative;
+    &--background 
+    {
+      z-index: 100;
+    }
+
+    &--checkbox { display: none; }
+
+    &--button 
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &--icon 
+      {
+        position: relative;
   
-      margin-right: 1rem;
-      &,
-      &::before,
-      &::after {
-        display: inline-block;
-        width: 2rem;
-        height: 2px;
-        background-color: var(--white);
+        margin-right: 1rem;
+        &,
+        &::before,
+        &::after {
+          display: inline-block;
+          width: 2rem;
+          height: 2px;
+          background-color: var(--white);
+        }
+    
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          transition: all .35s;
+        }
+    
+        // places the ::before and ::after elements above/below the parent icon
+        &::before { top: -0.65rem; }
+        &::after {top: 0.65rem; }
       }
-  
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        transition: all .35s;
-      }
-  
-      // places the ::before and ::after elements above/below the parent icon
-      &::before { top: -0.6rem; }
-      &::after {top: 0.6rem; }
     }
   }
 
@@ -105,12 +121,29 @@
   }
 
 
-  &__icon {
-   margin: 0 .175rem;
+  &__icon 
+  {
+    margin: 0 .175rem;
+    transition: all .2s;
 
-   @media only screen and (min-width: 20.5em) // 328px
-   {
-     margin: 0 .4rem;
-   }
+   @media only screen and (min-width: 20.5em) { margin: 0 .4rem; } // 328px
+  }
+
+
+  //* --------------------  FUNCTIONALITY  -------------------- *//
+  //&__menu--button:hover &__menu--button--icon::before { top: -.85rem; }
+  //&__menu--button:hover &__menu--button--icon::after { top: .85rem; }
+
+  //&__menu--checkbox:checked ~ &__menu--background { transform: scale(80); }
+  &__menu--checkbox:checked + &__menu--button &__menu--button--icon { background-color: transparent; }
+
+  &__menu--checkbox:checked + &__menu--button &__menu--button--icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__menu--checkbox:checked + &__menu--button &__menu--button--icon::after {
+    top: 0;
+    transform: rotate(-135deg);
   }
 }

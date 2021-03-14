@@ -25,7 +25,7 @@ const NavigationIcon: React.FunctionComponent<Props> = (
 {
   return (
       <Link href={link}>
-        <div className={`${ parent }__svg ${ parent }__svg--${ index + 1 }`}>
+        <div className={`${ parent }__svg ${ parent }__svg--${ index }`}>
           <Image
             src={ src }
             alt={ alt }
