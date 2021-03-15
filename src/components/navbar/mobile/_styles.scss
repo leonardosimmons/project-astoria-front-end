@@ -68,9 +68,9 @@
       top: 4.872rem;
       z-index: 100;
       
-      background-color: orangered;
+      background-color: var(--grey-300);
       transform: translate(-5%, -110%);
-      transition: all .5s;
+      transition: all .155s;
     }
 
     &--checkbox { display: none; }
