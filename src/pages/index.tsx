@@ -1,7 +1,7 @@
 
 import { page } from '../utils/keys';
 import Layout from '../containers/layout';
-import MainContainer from "../components/container";
+import MainContainer from '../components/container';
 
 
 const Index = () => {

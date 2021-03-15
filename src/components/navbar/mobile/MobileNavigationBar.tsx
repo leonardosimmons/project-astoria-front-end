@@ -53,3 +53,4 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
 };
 
 export default MobileNavigationBar;
+ 

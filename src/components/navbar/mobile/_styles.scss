@@ -36,10 +36,10 @@
 .mobile-navigation 
 {
   position: fixed;
-  height: 6vh;
+  height: 4.872rem;
   width: 100%;
   padding: .75rem 1rem;
-  z-index: 110;
+  z-index: 200;
 
   @media only screen and (min-width: 48em) { display: none; }
 
@@ -61,7 +61,16 @@
     
     &--background 
     {
+      height: 100vh;
+      width: 105%;
+
+      position: fixed;
+      top: 4.872rem;
       z-index: 100;
+      
+      background-color: orangered;
+      transform: translate(-5%, -110%);
+      transition: all .5s;
     }
 
     &--checkbox { display: none; }
@@ -134,7 +143,7 @@
   //&__menu--button:hover &__menu--button--icon::before { top: -.85rem; }
   //&__menu--button:hover &__menu--button--icon::after { top: .85rem; }
 
-  //&__menu--checkbox:checked ~ &__menu--background { transform: scale(80); }
+  &__menu--checkbox:checked ~ &__menu--background { transform: translate(-5%, 0); }
   &__menu--checkbox:checked + &__menu--button &__menu--button--icon { background-color: transparent; }
 
   &__menu--checkbox:checked + &__menu--button &__menu--button--icon::before {

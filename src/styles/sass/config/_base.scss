@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  height: 108rem;
 }
 
 *,
@@ -17,6 +18,6 @@ a {
 
 #app {
   position: relative;
-  max-width: 216rem;
+  width: 216rem;
   margin: 0 auto;
 }

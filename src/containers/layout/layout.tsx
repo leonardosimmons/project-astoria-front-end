@@ -36,7 +36,7 @@ const Layout: React.FunctionComponent<IProps> = (
       <div id="app" className={`${ classes }`}>
         <nav className={`${ parent }__nav`}>
           { mainNav || <MainNavigationBar />}
-          { mobileNav || <MobileNavigationBar parent={ parent } /> }
+          { mobileNav || <MobileNavigationBar /> }
         </nav>
         <header className={`${ parent }__header`}>{ header }</header>
         <main className={`${ parent }__main`}>{ children }</main>
