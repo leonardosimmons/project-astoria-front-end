@@ -29,7 +29,7 @@ const Layout: React.FunctionComponent<Props> = (
     children 
   }
 ): JSX.Element => {
-  const showBackdrop = useSelector((state: AppState) => state.backdrop.open);
+  const showBackdrop: boolean = useSelector((state: AppState) => state.backdrop.open);
 
   return (
     <Fragment>
