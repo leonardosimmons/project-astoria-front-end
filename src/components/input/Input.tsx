@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React from 'react';
 
 type Props = {
   parent: string;
@@ -25,7 +25,7 @@ const Input: React.FunctionComponent<Props> = (
 ): JSX.Element => {
   return (
       toggle ? 
-      <Fragment>
+      <React.Fragment>
         <input 
           className={`${ parent }__checkbox`} 
           id={`${ parent }__toggle`} 
@@ -35,9 +35,9 @@ const Input: React.FunctionComponent<Props> = (
         <label className={`${ parent }__checkbox--button`} htmlFor={`${ parent }__toggle`}>
           <span className={`${ parent }__checkbox--button--icon`}>{ label || ''}</span>
         </label> 
-      </Fragment>
+      </React.Fragment>
       : 
-      <Fragment>
+      <React.Fragment>
         {
           labelFront && 
           <label className={`${ parent }__label-front`} htmlFor={`${ parent }__input`}>
@@ -58,7 +58,7 @@ const Input: React.FunctionComponent<Props> = (
             { labelBack }
           </label>
         }
-      </Fragment>
+      </React.Fragment>
   )
 };
 

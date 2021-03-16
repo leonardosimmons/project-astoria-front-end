@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Fragment } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux-store/reducers';
 
@@ -32,7 +32,7 @@ const Layout: React.FunctionComponent<Props> = (
   const showBackdrop: boolean = useSelector((state: AppState) => state.backdrop.open);
 
   return (
-    <Fragment>
+    <React.Fragment>
       <Head>
         <title>{ title }</title>
         <meta name="viewport"
@@ -50,7 +50,7 @@ const Layout: React.FunctionComponent<Props> = (
         <main className={`${ parent }__main`}>{ children }</main>
         <footer className={`${ parent }__footer`}>{ footer }</footer>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

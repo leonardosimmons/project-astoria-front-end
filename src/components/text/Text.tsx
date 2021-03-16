@@ -1,17 +1,17 @@
-import { Fragment } from "react";
+import React from "react";
 
 interface IProps {
   parent?: string;
-  mainHeading?: string | JSX.Element;
-  headingOne?: string | JSX.Element;
-  headingTwo?: string | JSX.Element;
-  subHeadOne?:string | JSX.Element;
-  subHeadTwo?: string | JSX.Element;
-  textOne?: string | JSX.Element;
-  textTwo?: string | JSX.Element;
-  textThree?: string | JSX.Element;
-  textFour?: string | JSX.Element;
-  textFive?: string | JSX.Element;
+  mainHeading?: string | JSX.Element | HTMLElement;
+  headingOne?: string | JSX.Element | HTMLElement;
+  headingTwo?: string | JSX.Element | HTMLElement;
+  subHeadOne?:string | JSX.Element | HTMLElement;
+  subHeadTwo?: string | JSX.Element | HTMLElement;
+  textOne?: string | JSX.Element | HTMLElement;
+  textTwo?: string | JSX.Element | HTMLElement;
+  textThree?: string | JSX.Element | HTMLElement;
+  textFour?: string | JSX.Element | HTMLElement;
+  textFive?: string | JSX.Element | HTMLElement;
   mainHeadingClasses?: string;
   headingOneClasses?: string;
   headingTwoClasses?: string;
@@ -50,7 +50,7 @@ const TextBox: React.FunctionComponent<IProps> = (
   }
 ): JSX.Element => {
   return (
-    <Fragment>
+    <React.Fragment>
       { mainHeading && <h1 className={`${ parent || '' }__main-heading ${ mainHeadingClasses || '' }`}>{ mainHeading }</h1> }
       { headingOne && <h2 className={`${ parent || '' }__heading--1 ${ headingOneClasses || '' }`}>{ headingOne }</h2> }
       { headingTwo && <h2 className={`${ parent || '' }__heading--2 ${ headingTwoClasses || '' }`}>{ headingTwo }</h2> }
@@ -61,7 +61,7 @@ const TextBox: React.FunctionComponent<IProps> = (
       { textThree && <p className={`${ parent || '' }__text--3 ${ textThreeClasses || '' }`}>{ textThree }</p> }
       { textFour && <p className={`${ parent || '' }__text--4 ${ textFourClasses || '' }`}>{ textFour }</p> }
       { textFive && <p className={`${ parent || '' }__text--5 ${ textFiveClasses || '' }`}>{ textFive }</p> }
-    </Fragment>
+    </React.Fragment>
   );                                          
 };
 

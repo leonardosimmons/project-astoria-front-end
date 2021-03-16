@@ -1,10 +1,11 @@
 import React from 'react';
 import { cpnt } from '../../../utils/keys';
 import { useDispatch } from 'react-redux';
+import { AppActions } from '../../../redux-store/action-types';
 import { TOGGLE_BACKDROP } from '../../backdrop/state/action-types';
 
 import MainContainer from '../../container/MainContainer';
-import NavigationMenu from '../components/NavigationMenu';
+import NavigationMenu from '../components/NavigationMenuTab';
 import NavigationLogo from '../components/NavigationLogo';
 import NavigationIcon from '../components/NavigationIcon';
 
@@ -16,9 +17,9 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
     { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test'}
   ];
   
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<React.Dispatch<AppActions>>();
  
-  const toggleBackdrop = React.useCallback(() => dispatch({type: TOGGLE_BACKDROP}), []);
+  const toggleBackdrop = React.useCallback(() => dispatch({ type: TOGGLE_BACKDROP }), []);
 
   return (
     <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >

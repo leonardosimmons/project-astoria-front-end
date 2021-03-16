@@ -1,23 +1,12 @@
-import Input from "../../input";
 
 type Props = {
-  parent: string;
-  title: string;
-  clicked: () => void;
-};
 
-const NavigationMenu: React.FunctionComponent<Props> = ({ parent, title, clicked  }): JSX.Element => {
+}
+
+const NavigationMenu: React.FunctionComponent<Props> = (): JSX.Element => {
   return (
-    <div className={`${ parent }__menu`} >
-      <Input
-        toggle 
-        parent={ parent }
-        clicked={ clicked } />
-      <div className={`${ parent }__menu--background`}>
-        &nbsp;
-        { /* place navbar dropdown menu(modal) here*/ }
-      </div> 
-      <p className={`${ parent }__menu--text`}>{ title }</p>
+    <div className="bg-white w-90/100 h-90/100 m-auto">
+      <p className="text-5xl">Test Test Test</p>
     </div>
   );
 };

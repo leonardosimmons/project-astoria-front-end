@@ -9,7 +9,6 @@
     }
   }
 
-  
   &__logo 
   {
     font-size: 1.8rem;
@@ -29,6 +28,17 @@
 {
   color: var(--white);
   background-color: rgba(#000000, 0.85); // black
+
+  &__menu
+  {
+    &-tab 
+    {
+      &--background 
+      {
+        background:rgba(#dddddd, 0.85); // grey-300
+      }
+    }
+  }
 }
 
 
@@ -43,36 +53,34 @@
 
   @media only screen and (min-width: 48em) { display: none; }
 
-
   &__main-container 
   {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  
+   
   &__menu 
   {
-    flex: 0 1 35%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    
-    &--background 
-    {
-      height: 100vh;
-      width: 105%;
-
-      position: fixed;
-      top: 4.872rem;
-      z-index: 100;
+    &-tab {
+      flex: 0 1 35%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       
-      background:rgba(#dddddd, 0.85); // grey-300
-      transform: translate(-5%, -110%);
-      transition: all .3s;
+      &--background 
+      {
+        height: 100vh;
+        width: 102.5%;
+  
+        position: fixed;
+        top: 4.872rem;
+        z-index: 100;
+        
+        transform: translate(-2.5%, -110%);
+        transition: all .5s;
+      }
     }
-
   }
 
   &__checkbox { 
@@ -113,8 +121,6 @@
     }
   }
 
-
-
   &__logo 
   {
     flex: 1;
@@ -124,7 +130,6 @@
     text-align: center;
   }
 
-  
   &__icons 
   {
     flex: 0 1 35%;
@@ -132,7 +137,6 @@
     justify-content: flex-end;
     align-items: center;
   }
-
 
   &__icon 
   {
@@ -144,10 +148,7 @@
 
 
   //* --------------------  FUNCTIONALITY  -------------------- *//
-  //&__menu--button:hover &__menu--button--icon::before { top: -.85rem; }
-  //&__menu--button:hover &__menu--button--icon::after { top: .85rem; }
-
-  &__checkbox:checked ~ &__menu--background { transform: translate(-5%, 0); }
+  &__checkbox:checked ~ &__menu-tab--background { transform: translate(-2.5%, 0); }
 
 
   &__checkbox:checked + &__checkbox--button &__checkbox--button--icon { background-color: transparent; }
