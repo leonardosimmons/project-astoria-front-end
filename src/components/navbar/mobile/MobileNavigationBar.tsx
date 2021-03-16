@@ -1,5 +1,8 @@
-
+import React from 'react';
 import { cpnt } from '../../../utils/keys';
+import { useDispatch } from 'react-redux';
+import { TOGGLE_BACKDROP } from '../../backdrop/state/action-types';
+
 import MainContainer from '../../container/MainContainer';
 import NavigationMenu from '../components/NavigationMenu';
 import NavigationLogo from '../components/NavigationLogo';
@@ -12,7 +15,10 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test'},
     { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test'}
   ];
-
+  
+  const dispatch = useDispatch();
+ 
+  const toggleBackdrop = React.useCallback(() => dispatch({type: TOGGLE_BACKDROP}), []);
 
   return (
     <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >
@@ -20,7 +26,7 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
         <NavigationMenu 
           parent={ cpnt.MOBILE_NAVIGATION } 
           title={'Menu'} 
-          clicked={ () => console.log('clicked') }/>
+          clicked={ toggleBackdrop }/>
         <NavigationLogo
           parent={ cpnt.MOBILE_NAVIGATION }
           logoText={'ASTORIA'} />

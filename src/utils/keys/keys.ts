@@ -1,6 +1,8 @@
 
 export enum cpnt {
+  BACKDROP = 'backdrop',
   MAIN_NAVIGATION = 'main-navigation',
+  MODAL = 'modal',
   MOBILE_NAVIGATION = 'mobile-navigation',
 };
 
