@@ -3,7 +3,7 @@ import Layout from '../containers/layout';
 import Button from '../components/button';
 import ContentBox from '../components/content';
 import TextContent from '../components/text';
-import MainContainer from '../components/container';
+import Container from '../components/container';
 
 const UnderConstructionPage = (): JSX.Element => {
   return (
@@ -11,8 +11,7 @@ const UnderConstructionPage = (): JSX.Element => {
       parent={ page.UNDER_CONSTRUCTION } 
       title={'Under Construction...'} 
     >
-      <MainContainer 
-        parent={ page.UNDER_CONSTRUCTION } >
+      <Container main parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox
           parent={ page.UNDER_CONSTRUCTION }
           classes={`noselect`} >
@@ -29,7 +28,7 @@ const UnderConstructionPage = (): JSX.Element => {
               classes={`btn-hoverConfig btn-activeFocus`} />
           </div>
         </ContentBox>
-      </MainContainer>
+      </Container>
     </Layout>
   );
 };

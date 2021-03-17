@@ -29,15 +29,18 @@
   color: var(--white);
   background-color: rgba(#000000, 0.85); // black
 
+  &__menu-tab 
+  {
+    &--background 
+    {
+      background:rgba(#dddddd, 0.85); // grey-300
+    }
+  }
+
   &__menu
   {
-    &-tab 
-    {
-      &--background 
-      {
-        background:rgba(#dddddd, 0.85); // grey-300
-      }
-    }
+    color: var(--dark-grey-800);
+    background: var(--white);
   }
 }
 
@@ -46,7 +49,7 @@
 .mobile-navigation 
 {
   position: fixed;
-  height: 4.872rem;
+  height: 5rem;
   width: 100%;
   padding: .75rem 1rem;
   z-index: 200;
@@ -60,28 +63,45 @@
     align-items: center;
   }
    
-  &__menu 
+
+  &__menu-tab 
   {
-    &-tab {
-      flex: 0 1 35%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+    flex: 0 1 35%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    &--background 
+    {
+      height: 100vh;
+      width: 100%;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
       
-      &--background 
-      {
-        height: 100vh;
-        width: 102.5%;
-  
-        position: fixed;
-        top: 4.872rem;
-        z-index: 100;
-        
-        transform: translate(-2.5%, -110%);
-        transition: all .5s;
-      }
+      padding: 1rem;
+
+      transform: translate(0, -110%);
+      transition: all .5s;
     }
   }
+
+  &__menu 
+  {
+    height: 98%;
+    width: 100%;
+
+    margin: auto;
+
+    &--container
+    {
+      height: 50%;
+      width: 100%;
+    }
+  }
+  
 
   &__checkbox { 
     display: none; 
@@ -148,7 +168,7 @@
 
 
   //* --------------------  FUNCTIONALITY  -------------------- *//
-  &__checkbox:checked ~ &__menu-tab--background { transform: translate(-2.5%, 0); }
+  &__checkbox:checked ~ &__menu-tab--background { transform: translate(0, 0); }
 
 
   &__checkbox:checked + &__checkbox--button &__checkbox--button--icon { background-color: transparent; }

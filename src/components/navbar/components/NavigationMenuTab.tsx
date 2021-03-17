@@ -4,10 +4,11 @@ import NavigationMenu from './NavigationMenu';
 type Props = {
   parent: string;
   title: string;
-  clicked: () => void;
+  exit?: () => void;
+  clicked?: () => void;
 };
 
-const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, clicked }): JSX.Element => {
+const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, clicked, exit }): JSX.Element => {
   return (
     <div className={`${ parent }__menu-tab`} >
       <Input
@@ -15,8 +16,9 @@ const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, clic
         parent={ parent }
         clicked={ clicked } />
       <div className={`${ parent }__menu-tab--background`}>
-        &nbsp;
-        <NavigationMenu />
+        <NavigationMenu 
+          parent={ parent }
+          exit={ exit } />
       </div> 
       <p className={`${ parent }__menu-tab--text`}>{ title }</p>
     </div>

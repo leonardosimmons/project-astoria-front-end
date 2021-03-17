@@ -1,7 +1,7 @@
 
 import { page } from '../utils/keys';
 import Layout from '../containers/layout';
-import MainContainer from '../components/container';
+import Container from '../components/container';
 
 
 const Index = () => {
@@ -10,9 +10,9 @@ const Index = () => {
       parent={ page.HOME } 
       title={`Astoria | Home`}
     >
-      <MainContainer parent={ page.HOME }>
+      <Container main parent={ page.HOME }>
         <p className="text-6xl noselect">Home Page</p>
-      </MainContainer>
+      </Container>
     </Layout>
   );
 };

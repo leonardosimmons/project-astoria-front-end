@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { AppActions } from '../../../redux-store/action-types';
 import { TOGGLE_BACKDROP } from '../../backdrop/state/action-types';
 
-import MainContainer from '../../container/MainContainer';
-import NavigationMenu from '../components/NavigationMenuTab';
+import Container from '../../container';
+import NavigationMenuTab from '../components/NavigationMenuTab';
 import NavigationLogo from '../components/NavigationLogo';
 import NavigationIcon from '../components/NavigationIcon';
 
@@ -23,11 +23,10 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
 
   return (
     <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >
-      <MainContainer parent={ cpnt.MOBILE_NAVIGATION } >
-        <NavigationMenu 
+      <Container main parent={ cpnt.MOBILE_NAVIGATION } >
+        <NavigationMenuTab 
           parent={ cpnt.MOBILE_NAVIGATION } 
-          title={'Menu'} 
-          clicked={ toggleBackdrop }/>
+          title={'Menu'} />
         <NavigationLogo
           parent={ cpnt.MOBILE_NAVIGATION }
           logoText={'ASTORIA'} />
@@ -54,7 +53,7 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
           })
         } 
         </div>
-      </MainContainer>
+      </Container>
     </div>
   );
 };

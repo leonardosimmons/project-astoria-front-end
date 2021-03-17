@@ -24,15 +24,15 @@ const NavigationIcon: React.FunctionComponent<Props> = (
 ): JSX.Element => 
 {
   return (
-      <Link href={link}>
-        <div className={`${ parent }__svg ${ parent }__svg--${ index }`}>
-          <Image
-            src={ src }
-            alt={ alt }
-            width={ width }
-            height={ height } />
-        </div>
-      </Link>
+    <Link href={link}>
+      <div className={`${ parent }__svg ${ parent }__svg--${ index }`}>
+        <Image
+          src={ src }
+          alt={ alt }
+          width={ width }
+          height={ height } />
+      </div>
+    </Link>
   )
 }
 

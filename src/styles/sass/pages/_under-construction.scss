@@ -60,27 +60,26 @@
   &__main 
   {
     height: 101vh;
-
-    &-container 
-    {
-      height: 100%;
-      width: 100%;
+  }
   
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  &__main-container 
+  {
+    height: 100%;
+    width: 100%;
 
-      @media only screen and (min-width: 48em)  // 768px
-      {
-        justify-content: flex-end;
-        background-image: url('/images/error/site-construction-huge.jpg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (min-width: 48em)  // 768px
+    {
+      justify-content: flex-end;
+      background-image: url('/images/error/site-construction-huge.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
-
 
   &__content-box
   {
