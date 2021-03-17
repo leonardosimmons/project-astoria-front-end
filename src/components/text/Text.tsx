@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IProps {
+type Props = {
   parent?: string;
   mainHeading?: string | JSX.Element | HTMLElement;
   headingOne?: string | JSX.Element | HTMLElement;
@@ -24,7 +24,7 @@ interface IProps {
   textFiveClasses?: string;
 }
 
-const TextBox: React.FunctionComponent<IProps> = (
+const TextBox: React.FunctionComponent<Props> = (
   { 
     parent,
     mainHeading,

@@ -15,6 +15,10 @@ export type Image = {
   alt: string;
 }
 
+export type Parent = {
+  parent: string;
+}
+
 export type PageLink = {
   link: string;
 }

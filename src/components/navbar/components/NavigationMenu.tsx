@@ -45,7 +45,7 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
           })
         }
         </div>
-        <div className={`${ parent }__menu--account`}></div>
+        <div className={`${ parent }__menu--account h-44 w-full bg-gray-600`}></div>
         <div className={`${ parent }__menu--others`}></div>
       </Container>
     </div>
