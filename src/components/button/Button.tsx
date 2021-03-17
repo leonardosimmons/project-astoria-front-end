@@ -1,18 +1,42 @@
 import Link from "next/link"
 
-export interface IProps 
-{
-  text: string;
+type Props = {
+  text: string | number | JSX.Element | HTMLElement;
   link?: string;
   parent?: string;
   classes?: string;
-}
+  toggle?: boolean;
+  toggleFor?: string;
+  toggleClasses?: string;
+  clicked?: () => void;
+};
 
-const Button: React.FunctionComponent<IProps> = ({ parent, link, text, classes }): JSX.Element => {
+const Button: React.FunctionComponent<Props> = (
+  { 
+    parent, 
+    link, 
+    text, 
+    toggle, 
+    toggleFor,
+    toggleClasses, 
+    clicked,
+    classes 
+  }
+): JSX.Element => {
   return (
+    toggle ? 
+    <div className={`${ parent }--toggle-button ${ classes }`} >
+      <label 
+        htmlFor={`${ toggleFor }__toggle`}
+        className={ toggleClasses } 
+        onClick={ clicked }>
+          { text }
+      </label>
+    </div>
+    :
     <Link href={ link || ''  }>
       <button className={`${ parent || '' }__button ${ classes || '' }`}>
-        { text }
+        { text as string }
       </button>
     </Link>
   );

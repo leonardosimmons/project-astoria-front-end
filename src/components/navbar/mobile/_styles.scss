@@ -4,8 +4,12 @@
 {
   &__menu 
   {
-    &--text {
-      font-size: 1.6rem;
+    &--text { font-size: 1.6rem; }
+    &--tabs { font-size: 2rem; }
+    
+    &--toggle-button label {
+      font-size: 2.5rem;
+      font-weight: bold;
     }
   }
 
@@ -20,6 +24,7 @@
       font-weight: 700;
     }
   }
+
 }
 
 
@@ -31,10 +36,7 @@
 
   &__menu-tab 
   {
-    &--background 
-    {
-      background:rgba(#dddddd, 0.85); // grey-300
-    }
+    &--background { background:rgba(#dddddd, 0.85); } // grey-300
   }
 
   &__menu
@@ -100,8 +102,29 @@
       height: 50%;
       width: 100%;
     }
+
+    &--toggle-button {
+      width: 95%;
+  
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem;
+    }
+
+    &--tabs 
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &--tab {
+        margin: .3rem 0;
+      }
+    }
   }
   
+
 
   &__checkbox { 
     display: none; 
@@ -140,6 +163,7 @@
       }
     }
   }
+
 
   &__logo 
   {

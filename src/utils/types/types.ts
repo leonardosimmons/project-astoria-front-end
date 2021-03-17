@@ -12,7 +12,7 @@ export type BackdropContext = {
 //** --------------------  NAVIGATION BAR  -------------------- **//
 export type NavbarMenuToken = {
   title: string;
-  link?: string;
+  link: string;
 };
 
 export type NavbarMenu = NavbarMenuToken[];

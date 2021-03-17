@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { cpnt } from "../../../utils/keys";
+import { NavbarMenuToken } from "../../../utils/types";
+import ExitButton from "../../button";
 import Container from "../../container";
 
 type Props = {
@@ -22,21 +23,22 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent, exit }): JSX.E
   ]
 
   return (
-    <div className={`${ parent }__menu bg-red-400 w-full h-95/100 m-auto`}>
-      <Container parent={`${ parent }__menu`} classes={``}>
-        <div className={` w-95/100 flex justify-end py-2`} >
-          <label 
-            htmlFor={`${ cpnt.MOBILE_NAVIGATION }__toggle`}
-            className={`text-2xl`} 
-            onClick={ exit }>
-              X
-          </label>
-        </div>
-        <div className={`${ parent }__menu--tabs flex flex-col justify-center items-center text-5xl`}>
+    <div className={`${ parent }__menu`}>
+      <Container parent={`${ parent }__menu`} >
+        <ExitButton 
+          toggle
+          text={`x`}
+          parent={`${ parent }__menu`}
+          toggleFor={ parent }
+          clicked={ exit }
+        />
+        <div className={`${ parent }__menu--tabs`}>
         {
-          testTabsList.map((tabs, index) => ( 
-            <Link href={ tabs.link } key={ index }>
-              <a className={`my-3`}>{ tabs.title }</a>
+          testTabsList.map((tab: NavbarMenuToken, index: number) => ( 
+            <Link href={ tab.link } key={ index }>
+              <a className={`${ parent }__menu--tabs--tab ${ parent }__menu--tabs--tab-${ index + 1 }`}>
+                { tab.title }
+              </a>
             </Link>
           ))
         }
