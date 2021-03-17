@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { NavbarMenuToken } from "../../../utils/types";
+import { NavbarMenuTab } from "../../../utils/types";
+
 import ExitButton from "../../button";
 import Container from "../../container";
 
 type Props = {
   parent: string;
-  exit?: () => void;
 }
 
-const NavigationMenu: React.FunctionComponent<Props> = ({ parent, exit }): JSX.Element => {
+const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element => {
  
   const testTabsList = [ 
     { title: 'what\'s new', link: '/under-construction'},
@@ -30,17 +30,19 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent, exit }): JSX.E
           text={`x`}
           parent={`${ parent }__menu`}
           toggleFor={ parent }
-          clicked={ exit }
         />
         <div className={`${ parent }__menu--tabs`}>
         {
-          testTabsList.map((tab: NavbarMenuToken, index: number) => ( 
-            <Link href={ tab.link } key={ index }>
-              <a className={`${ parent }__menu--tabs--tab ${ parent }__menu--tabs--tab-${ index + 1 }`}>
-                { tab.title }
-              </a>
-            </Link>
-          ))
+          testTabsList.map((tab: NavbarMenuTab, index: number) => {
+            const key = index + 1;
+            return (
+              <Link href={ tab.link } key={ key }>
+                <a className={`${ parent }__menu--tabs--tab ${ parent }__menu--tabs--tab-${ key }`}>
+                  { tab.title }
+                </a>
+              </Link>
+            )
+          })
         }
         </div>
         <div className={`${ parent }__menu--account`}></div>

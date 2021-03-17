@@ -1,8 +1,6 @@
 import React from 'react';
 import { cpnt } from '../../../utils/keys';
-import { useDispatch } from 'react-redux';
-import { AppActions } from '../../../redux-store/action-types';
-import { TOGGLE_BACKDROP } from '../../backdrop/state/action-types';
+import { NavbarIcon } from '../../../utils/types';
 
 import Container from '../../container';
 import NavigationMenuTab from '../components/NavigationMenuTab';
@@ -16,11 +14,7 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test'},
     { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test'}
   ];
-  
-  const dispatch = useDispatch<React.Dispatch<AppActions>>();
  
-  const toggleBackdrop = React.useCallback(() => dispatch({ type: TOGGLE_BACKDROP }), []);
-
   return (
     <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >
       <Container main parent={ cpnt.MOBILE_NAVIGATION } >
@@ -32,7 +26,7 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
           logoText={'ASTORIA'} />
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
-          testIconData.map((data, index) => {
+          testIconData.map((icon: NavbarIcon, index: number) => {
             const key = index + 1;
             return (
               <div className={`
@@ -42,9 +36,9 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
                 <NavigationIcon
                   parent={ cpnt.MOBILE_NAVIGATION } 
                   index={ key }
-                  src={ data.src }
-                  alt={ data.alt }
-                  link={ data.link } 
+                  src={ icon.src }
+                  alt={ icon.alt }
+                  link={ icon.link } 
                   width={ 22.5 }
                   height={ 22.5 }
                 />
