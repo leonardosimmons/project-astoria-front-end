@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { NavbarMenuTab } from "../../../utils/types";
 
-import ExitButton from "../../button";
+import { cpnt } from "../../../utils/keys/keys";
+import Text from "../../text";
 import Container from "../../container";
+import ExitButton from "../../button";
+import CreateAccountButton from "../../button";
+import Carousel from "../../../containers/carousel";
+
+import NavigationMenuCarousel from './NavigationMenuCarousel';
 
 type Props = {
   parent: string;
@@ -20,12 +26,14 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
     { title: 'jewelry & watches', link: '/under-construction'},
     { title: 'beauty', link: '/under-construction'},
     { title: 'gifts', link: '/under-construction'},
-  ]
+  ];
+
+  const testCreateAccountText = ['Save your favorite items', 'Browse a personailized list created just for you', 'View your recent orders, track shipping and manage returns'];
 
   return (
     <div className={`${ parent }__menu`}>
       <Container parent={`${ parent }__menu`} >
-        <ExitButton 
+        <ExitButton
           toggle
           text={`x`}
           parent={`${ parent }__menu`}
@@ -38,15 +46,21 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
             return (
               <Link href={ tab.link } key={ key }>
                 <a className={`${ parent }__menu--tabs--tab ${ parent }__menu--tabs--tab-${ key }`}>
-                  { tab.title }
+                  { tab.title.toUpperCase() }
                 </a>
               </Link>
             )
           })
         }
         </div>
-        <div className={`${ parent }__menu--account h-44 w-full bg-gray-600`}></div>
-        <div className={`${ parent }__menu--others`}></div>
+        <NavigationMenuCarousel 
+          parent={ parent } 
+        />
+        <div className={`${ parent }__menu--sign-in`}>
+          <Link href="/under-construction">
+            <a className={`${ parent }__menu--sign-in--text`}>SIGN IN</a>
+          </Link>
+        </div>
       </Container>
     </div>
   );

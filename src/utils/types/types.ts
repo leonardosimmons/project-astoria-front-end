@@ -9,6 +9,26 @@ export type BackdropContext = {
 }
 
 
+//** -----------------------  CAROUSEL  ------------------------ **//
+export type CarouselContext = {
+  width: number;
+  height: number;
+  translate: number;
+  transition: number;
+  activeIndex: number;
+  slideCount: number;
+  dotCount: number[];
+}
+
+export type CarouselContentContext = {
+  width: string;
+  height: string;
+  transform: string;
+  transition: string;
+  readonly display: string;
+};
+
+
 //** ------------------------  GENERAL  ------------------------ **//
 export type Image = {
   src: string;

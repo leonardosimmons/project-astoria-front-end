@@ -35,7 +35,7 @@ const Button: React.FunctionComponent<Props> = (
     </div>
     :
     <Link href={ link || ''  }>
-      <button className={`${ parent || '' }__button ${ classes || '' }`}>
+      <button className={`${ parent || '' }--button ${ classes || '' }`}>
         { text as string }
       </button>
     </Link>
