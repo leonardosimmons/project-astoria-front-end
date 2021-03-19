@@ -1,13 +1,8 @@
 import Link from "next/link";
 import { NavbarMenuTab } from "../../../utils/types";
 
-import { cpnt } from "../../../utils/keys/keys";
-import Text from "../../text";
 import Container from "../../container";
 import ExitButton from "../../button";
-import CreateAccountButton from "../../button";
-import Carousel from "../../../containers/carousel";
-
 import NavigationMenuCarousel from './NavigationMenuCarousel';
 
 type Props = {

@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { cpnt } from '../../../utils/keys';
-import Carousel from '../../../containers/carousel/Carousel';
+
 import Text from '../../text';
 import Button from '../../button';
+import Carousel from '../../../features/carousel';
 
 type Props = {
   parent: string;
