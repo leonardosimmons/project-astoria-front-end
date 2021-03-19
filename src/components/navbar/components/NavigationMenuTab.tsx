@@ -1,14 +1,15 @@
+import { NavbarMobileMenu } from "../../../utils/types/types";
 import Input from "../../input/Input";
 import NavigationMenu from './NavigationMenu';
 
 type Props = {
   parent: string;
   title: string;
-  exit?: () => void;
+  menu: NavbarMobileMenu;
   clicked?: () => void;
 };
 
-const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, clicked, exit }): JSX.Element => {
+const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, menu, clicked }): JSX.Element => {
   return (
     <div className={`${ parent }__menu-tab`} >
       <Input
@@ -18,7 +19,7 @@ const NavigationMenuTab: React.FunctionComponent<Props> = ({ parent, title, clic
       <div className={`${ parent }__menu-tab--background`}>
         <NavigationMenu 
           parent={ parent }
-          exit={ exit } />
+          menu={ menu } />
       </div> 
       <p className={`${ parent }__menu-tab--text`}>{ title }</p>
     </div>

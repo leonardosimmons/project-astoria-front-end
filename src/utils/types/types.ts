@@ -1,12 +1,12 @@
 //** -------------------------  BANK  ------------------------- **//
 export type DataBank = {
-  navbarMenu: NavbarMenuTab[];
+  navbar: NavbarContext
 };
 
 //** -----------------------  BACKDROP  ----------------------- **//
 export type BackdropContext = {
   open: boolean;
-}
+};
 
 
 //** -----------------------  CAROUSEL  ------------------------ **//
@@ -18,7 +18,7 @@ export type CarouselContext = {
   activeIndex: number;
   slideCount: number;
   dotCount: number[];
-}
+};
 
 export type CarouselContentContext = {
   width: string;
@@ -33,25 +33,34 @@ export type CarouselContentContext = {
 export type Image = {
   src: string;
   alt: string;
-}
+};
 
 export type Parent = {
   parent: string;
-}
+};
 
 export type PageLink = {
   link: string;
-}
-
-//** --------------------  NAVIGATION BAR  -------------------- **//
-export type NavbarMenuTab = {
-  title: string;
-} & PageLink;
-
-export type NavbarMenu = NavbarMenuTab[];
-
-export type NavbarContext = {
-  menu: NavbarMenu
 };
 
+export type NamedLink = {
+  name: string;
+  link: string;
+};
+
+
+//** --------------------  NAVIGATION BAR  -------------------- **//
+export type NavbarMobileMenu = {
+  tabs: NamedLink[];
+  scrollText: string[];
+};
+
+export type NavbarDesktopMenu = {
+  tabs: NamedLink[];
+}
+
 export type NavbarIcon = Image & PageLink;
+
+export type NavbarContext = {
+  menu: NavbarDesktopMenu | NavbarMobileMenu 
+};

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavbarMenuTab } from "../../../utils/types";
+import { NamedLink, NavbarMobileMenu } from "../../../utils/types";
 
 import Container from "../../container";
 import ExitButton from "../../button";
@@ -7,23 +7,10 @@ import NavigationMenuCarousel from './NavigationMenuCarousel';
 
 type Props = {
   parent: string;
-}
+  menu: NavbarMobileMenu
+};
 
-const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element => {
- 
-  const testTabsList = [ 
-    { title: 'what\'s new', link: '/under-construction'},
-    { title: 'handbags', link: '/under-construction'},
-    { title: 'women', link: '/under-construction'},
-    { title: 'men', link: '/under-construction'},
-    { title: 'mx', link: '/under-construction'},
-    { title: 'children', link: '/under-construction'},
-    { title: 'jewelry & watches', link: '/under-construction'},
-    { title: 'beauty', link: '/under-construction'},
-    { title: 'gifts', link: '/under-construction'},
-  ];
-
-  
+const NavigationMenu: React.FunctionComponent<Props> = ({ parent, menu }): JSX.Element => {
   return (
     <div className={`${ parent }__menu`}>
       <Container parent={`${ parent }__menu`} >
@@ -35,12 +22,12 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
         />
         <div className={`${ parent }__menu--tabs`}>
         {
-          testTabsList.map((tab: NavbarMenuTab, index: number) => {
+          menu.tabs.map((tab: NamedLink, index: number) => {
             const key = index + 1;
             return (
               <Link href={ tab.link } key={ key }>
                 <a className={`${ parent }__menu--tabs--tab ${ parent }__menu--tabs--tab-${ key }`}>
-                  { tab.title.toUpperCase() }
+                  { tab.name.toUpperCase() }
                 </a>
               </Link>
             )
@@ -48,7 +35,8 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
         }
         </div>
         <NavigationMenuCarousel 
-          parent={ parent } 
+          parent={ parent }
+          scrollText={ menu.scrollText } 
         />
         <div className={`${ parent }__menu--sign-in`}>
           <Link href="/under-construction">
