@@ -46,9 +46,9 @@ const Layout: React.FunctionComponent<Props> = (
           { mainNav || <MainNavigationBar /> }
           { mobileNav || <MobileNavigationBar /> }
         </nav>
-        <header className={`${ parent }__header`}>{ header }</header>
-        <main className={`${ parent }__main`}>{ children }</main>
-        <footer className={`${ parent }__footer`}>{ footer }</footer>
+        { header && <header className={`${ parent }__header`}>{ header }</header> }
+        { children && <main className={`${ parent }__main`}>{ children }</main> }
+        { footer && <footer className={`${ parent }__footer`}>{ footer }</footer> }
       </div>
     </React.Fragment>
   );
