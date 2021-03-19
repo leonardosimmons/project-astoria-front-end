@@ -39,7 +39,7 @@ const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, ch
         payload: { width: 0 }
       });
     }
-  }, [ context ]);
+  }, [ context.activeIndex ]);
 
   /* -------------------  CONTROLS  ------------------- */  
   const nextSlide = React.useCallback(() =>

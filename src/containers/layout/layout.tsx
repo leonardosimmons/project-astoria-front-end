@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux-store/reducers';
 
-import MainNavigationBar from '../../components/navbar/main';
+import MainNavigationBar from '../../components/navbar/desktop';
 import MobileNavigationBar from '../../components/navbar/mobile';
 import Backdrop from '../../components/backdrop';
 
