@@ -22,17 +22,23 @@ const initialState = {
 const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }):JSX.Element => {
   const [ context, dispatch ] = React.useReducer(carouselReducer, initialState);
 
-
   /* --------------------  WIDTH  -------------------- */ 
   // sets the width of the carousel (based on user screen size)
   React.useEffect(() => 
   {
-    dispatch({ type: SET_WIDTH, payload: { width: window.innerWidth }});
+    dispatch({ 
+      type: SET_WIDTH, 
+      payload: { width: window.innerWidth }
+    });
 
     return () => {
-      dispatch({ type: SET_WIDTH, payload: { width: 0 }});
+      dispatch({ 
+        type: SET_WIDTH, 
+        payload: { width: 0 }
+      });
     }
   }, []); // change from original
+
 
   /* -------------------  CONTROLS  ------------------- */  
   const nextSlide = React.useCallback(() =>
@@ -51,6 +57,7 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
     dispatch({ type: PREV });
   }, [ context.activeIndex ]);
   
+
   /* -------------------  AUTOPLAY  ------------------- */ 
   const autoPlayRef = React.useRef<any>();
 
@@ -84,7 +91,10 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
   /* --------------------  HANDLERS  -------------------- */  
   const handleSlideCount = React.useCallback((count: number): void =>
   {
-    dispatch({ type: SET_SLIDE_COUNT, payload: { count: count }})
+    dispatch({ 
+      type: SET_SLIDE_COUNT, 
+      payload: { count: count }
+    });
   }, [ dispatch ]);
 
   const handleDotCount = React.useCallback((dots: number): void => 
@@ -93,7 +103,10 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
     for(let i=0; i<dots; i++) {
       arr.push(i + 1);
     }
-    dispatch({ type: SET_DOT_COUNT, payload: { count: arr }});
+    dispatch({ 
+      type: SET_DOT_COUNT, 
+      payload: { count: arr }
+    });
   }, [ dispatch ]);
 
 
