@@ -2,7 +2,7 @@ import React from 'react';
 
 import carouselReducer from './reducer';
 import CarouselContent, { Base } from './CarouselContent';
-import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT, CarouselActions } from './redux/action-types';
+import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT } from './state/action-types';
 
 type Props = {
   autoPlay?: number;

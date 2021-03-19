@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { backdropReducer } from '../components/backdrop/state';
 import { navbarReducer } from '../components/navbar/state';
-import { carouselReducer } from '../containers/carousel/redux';
+import { carouselReducer } from '../containers/carousel/state';
 
 export const rootReducer = combineReducers({
   backdrop: backdropReducer,
