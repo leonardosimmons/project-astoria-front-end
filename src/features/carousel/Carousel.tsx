@@ -6,6 +6,7 @@ import CarouselContent, { Base } from './CarouselContent';
 import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT } from './action-types';
 
 type Props = {
+  parent?: string;
   autoPlay?: number;
   slides?: [];
 };
@@ -20,7 +21,7 @@ const initialState: CarouselContext = {
   height: parseInt(Base.height),
 };
 
-const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }):JSX.Element => {
+const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, children }):JSX.Element => {
   const [ context, dispatch ] = React.useReducer(carouselReducer, initialState);
 
   /* --------------------  WIDTH  -------------------- */ 
@@ -38,8 +39,7 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
         payload: { width: 0 }
       });
     }
-  }, []); // change from original
-
+  }, []);
 
   /* -------------------  CONTROLS  ------------------- */  
   const nextSlide = React.useCallback(() =>
@@ -48,7 +48,7 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
       return dispatch({ type: LAST_SLIDE });
 
     dispatch({ type: NEXT });
-  }, [ context.activeIndex, context.slideCount, dispatch ]);
+  }, [ context.activeIndex, context.slideCount ]);
 
   const prevSlide = React.useCallback(() =>
   {
@@ -78,12 +78,13 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
   // controls the autoplay feature
   React.useEffect(() =>
   {
-    const play = () => { return autoPlayRef.current!(); }
+    const play = () => autoPlayRef.current!();
 
     if(autoPlay)
     {
       const interval = setInterval(play, autoPlay! * 1000);
       intervalRef.current = interval;
+      
       return () => {
         clearInterval(intervalRef.current as NodeJS.Timeout);
       }
@@ -98,7 +99,7 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
       type: SET_SLIDE_COUNT, 
       payload: { count: count }
     });
-  }, [ dispatch ]);
+  }, []);
 
   const handleDotCount = React.useCallback((dots: number): void => 
   {
@@ -111,12 +112,12 @@ const Carousel: React.FunctionComponent<Props> = ({ autoPlay, slides, children }
       type: SET_DOT_COUNT, 
       payload: { count: arr }
     });
-  }, [ dispatch ]);
+  }, []);
 
 
   /* ---------------------  RENDER  --------------------- */
   return (
-    <div className={`carousel`}>
+    <div className={`${ parent }__carousel--container carousel`}>
       <CarouselContent
         width={ context.width }
         translate={ context.translate }

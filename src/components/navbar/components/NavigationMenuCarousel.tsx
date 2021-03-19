@@ -16,12 +16,14 @@ const NavigationMenuCarousel: React.FunctionComponent<Props> = ({ parent }): JSX
 
   return (
     <div className={`${ parent }__menu--carousel`}>
-    <Carousel autoPlay={3}>
+    <Carousel 
+      parent={ cpnt.MOBILE_NAVIGATION }
+      autoPlay={3}>
       {
         testCreateAccountText.map((text: string, index: number) => {
           const key = index + 1;
           return (
-            <div className={`${ parent }__menu--carousel--text-box`} key={key}>
+            <div className={`${ parent }__menu--carousel--text-box`} key={ key }>
               <Text
                 key={ key } 
                 parent={`${ cpnt.MOBILE_NAVIGATION }__menu--carousel`}

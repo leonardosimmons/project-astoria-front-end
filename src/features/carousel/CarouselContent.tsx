@@ -37,7 +37,7 @@ const CarouselContent: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   /* -----------------  SLIDE COUNT  ----------------- */ 
-  //! CREATE CUSTOM HOOK useChildrenCount()
+  //! CREATE CUSTOM HOOK useChildCount()
   const getSlideCount = React.useCallback((): void => 
   {
     slideCount(React.Children.count(children));
@@ -64,11 +64,11 @@ const CarouselContent: React.FunctionComponent<Props> = (
 
   React.useEffect(() => 
   {
-    const status = {
+    const status: CarouselContentContext = {
       transform: `translateX(-${ translate }px)`,
       transition: `transform ease-out ${ transition }s`,
       height: `${ height }rem`,
-      width: `${ width * React.Children.count(children) }px`, // mulitplies width by # of slides
+      width: `${ width * React.Children.count(children) }px`,
       display: context.display,
     };
     setContext(status);
