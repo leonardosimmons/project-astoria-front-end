@@ -28,8 +28,7 @@ const NavigationMenu: React.FunctionComponent<Props> = ({ parent }): JSX.Element
     { title: 'gifts', link: '/under-construction'},
   ];
 
-  const testCreateAccountText = ['Save your favorite items', 'Browse a personailized list created just for you', 'View your recent orders, track shipping and manage returns'];
-
+  
   return (
     <div className={`${ parent }__menu`}>
       <Container parent={`${ parent }__menu`} >

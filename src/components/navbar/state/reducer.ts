@@ -1,4 +1,5 @@
-import { NavbarContext } from "../../../utils/types";
+
+import { NavbarContext } from "../../../utils/types/types";
 import { NavBarActions, SET_NAVBAR_MENU } from "./action-types";
 
 const navbarReducerDefaultState: NavbarContext = {

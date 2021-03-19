@@ -10,6 +10,7 @@ type Props = {
 }
 
 const NavigationMenuCarousel: React.FunctionComponent<Props> = ({ parent }): JSX.Element => {
+
   const testCreateAccountText = ['Save your favorite items', 'Browse a personailized list created just for you', 'View your recent orders, track shipping and manage returns'];
 
   return (
@@ -31,9 +32,10 @@ const NavigationMenuCarousel: React.FunctionComponent<Props> = ({ parent }): JSX
       }
     </Carousel>
     <Button
+      parent={`${ parent }__menu--carousel`}
       text={`CREATE MY ASTORIA ACCOUNT`}
       link={'/under-construction'}
-      parent={`${ parent }__menu--carousel`}/>
+    />
   </div>
   )
 };
