@@ -37,7 +37,6 @@ const CarouselContent: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   /* -----------------  SLIDE COUNT  ----------------- */ 
-  //! CREATE CUSTOM HOOK useChildCount()
   const getSlideCount = React.useCallback((): void => 
   {
     slideCount(React.Children.count(children));

@@ -1,5 +1,5 @@
 
-import { AppActions } from '../../../redux-store/action-types';
+import { AppActions } from '../../redux-store/action-types';
 import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT } from './action-types';
 
 export const next = ():AppActions => ({ type: NEXT });
