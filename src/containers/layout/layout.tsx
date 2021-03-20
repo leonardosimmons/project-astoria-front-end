@@ -11,17 +11,17 @@ type Props = {
   parent: string;
   title: string;
   classes?: string;
-  mainNav?: JSX.Element;
-  mobileNav?: JSX.Element;
-  header?: JSX.Element;
-  footer?: JSX.Element;
+  desktopNav?: JSX.Element | HTMLElement;
+  mobileNav?: JSX.Element | HTMLElement;
+  header?: JSX.Element | HTMLElement;
+  footer?: JSX.Element | HTMLElement;
 };
 
 const Layout: React.FunctionComponent<Props> = (
   { 
     parent,
     title,
-    mainNav, 
+    desktopNav, 
     mobileNav, 
     header,
     footer,
@@ -43,7 +43,7 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="app" className={`${ classes }`}>
         { showBackdrop && <Backdrop /> }
         <nav className={`${ parent }__nav`}>
-          { mainNav || <DesktopNavBar parent={ parent }/> }
+          { desktopNav || <DesktopNavBar /> }
           { mobileNav || <MobileNavbar /> }
         </nav>
         { header && <header className={`${ parent }__header`}>{ header }</header> }

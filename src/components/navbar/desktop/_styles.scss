@@ -1,15 +1,33 @@
 //* -------------------------  FONTS  --------------------------- *//
 .desktop-navigation
 {
+  &__information
+  {
+    font-size: 1.25rem;
+  }
 
-};
+  &__menu-tabs
+  {
+    &--logo
+    {
+      font-size: 3.75rem;
+      font-weight: 600;
+    }
+  }
+
+  &__profile
+  {
+    font-size: 1.25rem;
+  }
+}
 
 
 //* -------------------------  COLORS  -------------------------- *//
 .desktop-navigation
 {
-
-};
+  color: var(--white);
+  background-color: rgba(#000000, 0.85); // black
+}
 
 
 //* ------------------------  STRUCTURE  ------------------------ *//
@@ -18,4 +36,58 @@
   display: none;
   
   @media only screen and (min-width: 64.0625em) { display: block; } // 1025px
+
+  &__main-container
+  {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 0 auto;
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  &__information 
+  {
+    flex: 0 1 30%;
+
+    display: flex;
+    
+    &--container
+    {
+
+    }
+  }
+
+  &__menu-tabs
+  {
+    flex: 1;
+    &--container
+    {
+
+    }
+
+    &--logo
+    {
+
+    }
+
+    &--tabs
+    {
+
+    }
+  }
+
+  &__profile
+  {
+    flex: 0 1 30%;
+    &--container
+    {
+
+    }
+  }
 };

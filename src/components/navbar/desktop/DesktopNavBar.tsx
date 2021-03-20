@@ -6,9 +6,9 @@ import Container from '../../container';
 const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
   return (
     <div className={`${ cpnt.DESKTOP_NAVIGATION } noselect`}>
-      <Container main parent={ cpnt.DESKTOP_NAVIGATION } classes={`flex`}>
+      <Container main parent={ cpnt.DESKTOP_NAVIGATION }>
         <div className={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
-          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__information`} classes={`flex`}>
+          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
             {/* .map() <span/> */}
             {/* nav icon */}
             <span className={'mx-2'}>{`United States`}</span>
@@ -21,7 +21,7 @@ const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
           <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs`}>
             <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs--logo`}>
               {/* take <span/> as child */}
-              <span>ASTORIA</span>
+              <span className={``}>ASTORIA</span>
             </div>
             <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs--tabs`}>
               {/* menu tabs go here */}
