@@ -14,7 +14,7 @@ const Backdrop: React.FunctionComponent<Props> = ({ zIndex, clicked }): JSX.Elem
         style={{ zIndex: zIndex }} 
         onClick={ clicked } 
       />,
-      ( document.getElementById('backdrop-root') as HTMLElement )
+      document.getElementById('backdrop-root') as HTMLElement
     )
   );
 };

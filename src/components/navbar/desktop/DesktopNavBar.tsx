@@ -7,7 +7,7 @@ type Props = {
 
 const MainNavigationBar: React.FunctionComponent<Props> = ({ parent, children }): JSX.Element => {
   return (
-    <div className={`${ parent }__${ cpnt.MAIN_NAVIGATION } ${ cpnt.MAIN_NAVIGATION }`}>
+    <div className={`${ parent }__${ cpnt.DESKTOP_NAVIGATION } ${ cpnt.DESKTOP_NAVIGATION }`}>
       <p>Main Navigation</p>
     </div>
   );
