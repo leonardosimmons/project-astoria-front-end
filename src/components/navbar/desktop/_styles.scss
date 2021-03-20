@@ -1,7 +1,5 @@
 .main-navigation {
   display: none;
   
-  @media only screen and (min-width: 48em) {
-    display: block;
-  }
+  @media only screen and (min-width: 64em) { display: block; } // 1025px
 }
