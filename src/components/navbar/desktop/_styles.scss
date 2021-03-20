@@ -1,5 +1,21 @@
-.main-navigation {
+//* -------------------------  FONTS  --------------------------- *//
+.desktop-navigation
+{
+
+};
+
+
+//* -------------------------  COLORS  -------------------------- *//
+.desktop-navigation
+{
+
+};
+
+
+//* ------------------------  STRUCTURE  ------------------------ *//
+.desktop-navigation 
+{
   display: none;
   
-  @media only screen and (min-width: 64em) { display: block; } // 1025px
-}
+  @media only screen and (min-width: 64.0625em) { display: block; } // 1025px
+};

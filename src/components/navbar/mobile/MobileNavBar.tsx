@@ -8,7 +8,7 @@ import Logo from '../components/Logo';
 import Icon from '../components/Icon';
 
 
-const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
+const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
   const testIconData = [ 
     { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test'},
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test'},
@@ -72,5 +72,5 @@ const MobileNavigationBar: React.FunctionComponent = (): JSX.Element => {
   );
 };
 
-export default MobileNavigationBar;
+export default MobileNavBar;
  

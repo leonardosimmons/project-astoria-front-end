@@ -1,16 +1,44 @@
 
 import { cpnt } from '../../../utils/keys';
+import Container from '../../container';
 
-type Props = {
-  parent?: string;
-}
 
-const MainNavigationBar: React.FunctionComponent<Props> = ({ parent, children }): JSX.Element => {
+const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
   return (
-    <div className={`${ parent }__${ cpnt.DESKTOP_NAVIGATION } ${ cpnt.DESKTOP_NAVIGATION }`}>
-      <p>Main Navigation</p>
+    <div className={`${ cpnt.DESKTOP_NAVIGATION } noselect`}>
+      <Container main parent={ cpnt.DESKTOP_NAVIGATION } classes={`flex`}>
+        <div className={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
+          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__information`} classes={`flex`}>
+            {/* .map() <span/> */}
+            {/* nav icon */}
+            <span className={'mx-2'}>{`United States`}</span>
+            <span className={'mx-2'}>{`English`}</span>
+            {/* telephone icon */}
+            <span className={'mx-2'}>{`+1.877.546.9043`}</span>
+          </Container>
+        </div>
+        <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs`}>
+          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs`}>
+            <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs--logo`}>
+              {/* take <span/> as child */}
+              <span>ASTORIA</span>
+            </div>
+            <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu-tabs--tabs`}>
+              {/* menu tabs go here */}
+            </div>
+          </Container>
+        </div>
+        <div className={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>
+          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>
+            <span className={'mx-2'}>{`Sign In`}</span>
+            {/* nav icon */}
+            {/* telephone icon */}
+            <span className={'mx-2'}>{`Blog`}</span>
+          </Container>
+        </div>
+      </Container>
     </div>
   );
 };
 
-export default MainNavigationBar;
+export default DesktopNavBar;

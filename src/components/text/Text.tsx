@@ -12,6 +12,11 @@ type Props = {
   textThree?: string | JSX.Element | HTMLElement;
   textFour?: string | JSX.Element | HTMLElement;
   textFive?: string | JSX.Element | HTMLElement;
+  spanOne?: string | JSX.Element | HTMLElement;
+  spanTwo?: string | JSX.Element | HTMLElement;
+  spanThree?: string | JSX.Element | HTMLElement;
+  spanFour?: string | JSX.Element | HTMLElement;
+  spanFive?: string | JSX.Element | HTMLElement;
   mainHeadingClasses?: string;
   headingOneClasses?: string;
   headingTwoClasses?: string;
@@ -22,6 +27,11 @@ type Props = {
   textThreeClasses?: string;
   textFourClasses?: string;
   textFiveClasses?: string;
+  spanOneClasses?: string;
+  spanTwoClasses?: string;
+  spanThreeClasses?: string;
+  spanFourClasses?: string;
+  spanFiveClasses?: string;
 }
 
 const TextBox: React.FunctionComponent<Props> = (
@@ -37,6 +47,11 @@ const TextBox: React.FunctionComponent<Props> = (
     textThree, 
     textFour, 
     textFive,
+    spanOne, 
+    spanTwo, 
+    spanThree, 
+    spanFour, 
+    spanFive,
     mainHeadingClasses,
     headingOneClasses,
     headingTwoClasses,
@@ -46,7 +61,12 @@ const TextBox: React.FunctionComponent<Props> = (
     textTwoClasses,
     textThreeClasses,
     textFourClasses,
-    textFiveClasses
+    textFiveClasses,
+    spanOneClasses,
+    spanTwoClasses,
+    spanThreeClasses,
+    spanFourClasses,
+    spanFiveClasses
   }
 ): JSX.Element => {
   return (
@@ -61,6 +81,11 @@ const TextBox: React.FunctionComponent<Props> = (
       { textThree && <p className={`${ parent || '' }--text-3 ${ textThreeClasses || '' }`}>{ textThree }</p> }
       { textFour && <p className={`${ parent || '' }--text-4 ${ textFourClasses || '' }`}>{ textFour }</p> }
       { textFive && <p className={`${ parent || '' }--text-5 ${ textFiveClasses || '' }`}>{ textFive }</p> }
+      { spanOne && <p className={`${ parent || '' }--span-1 ${ spanOneClasses || '' }`}>{ spanOne }</p> }
+      { spanTwo && <p className={`${ parent || '' }--span-2 ${ spanTwoClasses || '' }`}>{ spanTwo }</p> }
+      { spanThree && <p className={`${ parent || '' }--span-3 ${ spanThreeClasses || '' }`}>{ spanThree }</p> }
+      { spanFour && <p className={`${ parent || '' }--span-4 ${ spanFourClasses || '' }`}>{ spanFour }</p> }
+      { spanFive && <p className={`${ parent || '' }--span-5 ${ spanFiveClasses || '' }`}>{ spanFive }</p> }
     </React.Fragment>
   );                                          
 };

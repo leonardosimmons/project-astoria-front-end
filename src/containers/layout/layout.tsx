@@ -3,8 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux-store/reducers';
 
-import MainNavigationBar from '../../components/navbar/desktop';
-import MobileNavigationBar from '../../components/navbar/mobile';
+import DesktopNavBar from '../../components/navbar/desktop';
+import MobileNavbar from '../../components/navbar/mobile';
 import Backdrop from '../../components/backdrop';
 
 type Props = {
@@ -43,8 +43,8 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="app" className={`${ classes }`}>
         { showBackdrop && <Backdrop /> }
         <nav className={`${ parent }__nav`}>
-          { mainNav || <MainNavigationBar /> }
-          { mobileNav || <MobileNavigationBar /> }
+          { mainNav || <DesktopNavBar parent={ parent }/> }
+          { mobileNav || <MobileNavbar /> }
         </nav>
         { header && <header className={`${ parent }__header`}>{ header }</header> }
         { children && <main className={`${ parent }__main`}>{ children }</main> }
