@@ -25,7 +25,7 @@
     }
   }
 
-  &__button 
+  &--button 
   {
     font-size: 1.65rem;
     @media only screen and (min-width: 63.5em) { font-size: 1.95rem; }       // 1024px
@@ -81,7 +81,7 @@
     }
   }
 
-  &__content-box
+  &__content--box
   {
     height: 70%;
     width: 100%;

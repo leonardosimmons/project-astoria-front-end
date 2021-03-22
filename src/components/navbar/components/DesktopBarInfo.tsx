@@ -1,21 +1,29 @@
 
 
-import { cpnt } from "../../../utils/keys/keys";
-import Container from "../../container/Container";
+import { cpnt } from '../../../utils/keys/keys';
+import Container from '../../container/Container';
+import Icon from '../../icon';
 
 type Props = {
-
+  parent: string;
+  index?: number;
 };
 
-const DesktopBarInfo: React.FunctionComponent<Props> = (): JSX.Element => {
+const DesktopBarInfo: React.FunctionComponent<Props> = ({parent, index}): JSX.Element => {
   return (
-    <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
+    <Container parent={`${ parent }__info`}>
       {/* .map() <span/> */}
       {/* nav icon */}
-      <span className={'mx-2'}>{`United States`}</span>
-      <span className={'mx-2'}>{`English`}</span>
+      <span className={`${ parent }__info--span ${ parent }__info--span-${ index } mx-2`}>
+        {`United States`}
+      </span>
+      <span className={`${ parent }__info--span ${ parent }__info--span-${ index } mx-2`}>
+        {`English`}
+      </span>
       {/* telephone icon */}
-      <span className={'mx-2'}>{`+1.877.546.9043`}</span>
+      <span className={`${ parent }__info--span ${ parent }__info--span-${ index } mx-2`}>
+        {`+1.877.546.9043`}
+      </span>
     </Container>
   );
 };

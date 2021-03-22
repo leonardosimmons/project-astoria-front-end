@@ -1,7 +1,7 @@
 import { page, link } from '../utils/keys';
 import Layout from '../containers/layout';
 import Button from '../components/button';
-import ContentBox from '../components/content';
+import ContentBox from '../components/box';
 import TextContent from '../components/text';
 import Container from '../components/container';
 
@@ -13,7 +13,7 @@ const UnderConstructionPage = (): JSX.Element => {
     >
       <Container main parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox
-          parent={ page.UNDER_CONSTRUCTION }
+          parent={`${ page.UNDER_CONSTRUCTION }__content`}
           classes={`noselect`} >
           <TextContent
             parent={ page.UNDER_CONSTRUCTION }
