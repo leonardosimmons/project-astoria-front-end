@@ -1,18 +1,18 @@
 import React from 'react';
 import { cpnt } from '../../../utils/keys';
-import { NamedLink, NavbarIcon, NavbarMobileMenu } from '../../../utils/types';
+import { Icon, Image, NamedLink, NavbarMobileMenu } from '../../../utils/types';
 
 import Container from '../../container';
 import NavigationMenuTab from '../components/MobileMenuTab';
-import Logo from '../components/Logo';
-import Icon from '../components/Icon';
+import Logo from '../../../components/logo';
+import NavIcon from '../../../components/icon';
 
 
 const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
-  const testIconData = [ 
-    { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test'},
-    { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test'},
-    { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test'}
+  const testIconData: Partial<Icon>[] = [ 
+    { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
+    { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test', width: 22.5, height: 22.5  },
+    { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test', width: 22.5, height: 22.5 }
   ];
 
   const testTabsList: NamedLink[] = [ 
@@ -41,28 +41,24 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
           parent={ cpnt.MOBILE_NAVIGATION } 
           title={'Menu'}
           menu={ menu } />
-        <Logo
-          parent={ cpnt.MOBILE_NAVIGATION }
-          logoText={'ASTORIA'} />
+        <Logo 
+          parent={ cpnt.MOBILE_NAVIGATION } 
+          text={'ASTORIA'} />     
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
-          testIconData.map((icon: NavbarIcon, index: number) => {
+          testIconData.map((icon: Partial<Image>, index: number) => {
             const key = index + 1;
             return (
-              <div className={`
-                ${ cpnt.MOBILE_NAVIGATION }__icon 
-                ${ cpnt.MOBILE_NAVIGATION }__icon--${ key }`} 
-                key={ key }>
-                <Icon
-                  parent={ cpnt.MOBILE_NAVIGATION } 
-                  index={ key }
-                  src={ icon.src }
-                  alt={ icon.alt }
-                  link={ icon.link } 
-                  width={ 22.5 }
-                  height={ 22.5 }
-                />
-              </div>
+              <NavIcon 
+                key={ index }
+                index={ key }
+                parent={`${ cpnt.MOBILE_NAVIGATION }__icons`} 
+                link={ icon.link }
+                src={ icon.src as string }
+                alt={ icon.alt as string }
+                width={ icon.width as number }
+                height={ icon.height as number } 
+              />
             )
           })
         } 
@@ -73,4 +69,3 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
 };
 
 export default MobileNavBar;
- 

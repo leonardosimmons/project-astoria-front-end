@@ -41,7 +41,7 @@
     }
   }
 
-  &__logo 
+  &--logo 
   {
     font-size: 1.8rem;
     font-weight: 700;
@@ -270,7 +270,7 @@
   }
 
 
-  &__logo 
+  &--logo 
   {
     flex: 1;
     display: flex;
@@ -285,14 +285,17 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
 
-  &__icon 
-  {
-    margin: 0 .175rem;
-    transition: all .2s;
-
-   @media only screen and (min-width: 20.5em) { margin: 0 .4rem; } // 328px
+    &--icon 
+    {
+      &--box
+      {
+        margin: 0 .175rem;
+        transition: all .2s;
+    
+       @media only screen and (min-width: 20.5em) { margin: 0 .8rem; } // 328px
+      }
+    }
   }
 
 

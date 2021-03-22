@@ -1,18 +1,16 @@
 import React from 'react';
-import Image from 'next/image';
-import Container from '../container';
+import Link from 'next/link';
+import ContentBox from '../box';
+import IconImage from 'next/image';
 
-type Props = {
+import { Image } from '../../utils/types';
+
+
+type Props = Image & {
   parent: string;
-  src: string;
-  width: string;
-  height: string;
-  alt?: string;
   left?: boolean;
   right?: boolean;
-  quality?: number;
   index?: string | number;
-  layout?: 'intrinsic' | 'responsive';
 };
 
 const Icon: React.FunctionComponent<Props> = (
@@ -24,7 +22,12 @@ const Icon: React.FunctionComponent<Props> = (
     left, 
     right, 
     index,
+    classes,
+    link,
+    loader,
     alt = 'icon',
+    loading = 'lazy',
+    priority = false,
     quality = 100,
     layout = 'intrinsic',
     children 
@@ -32,47 +35,64 @@ const Icon: React.FunctionComponent<Props> = (
 ): JSX.Element => {
   return (
     // change to content-box
-    <Container parent={`${ parent }--icon`}>
+    <ContentBox parent={`${ parent }--icon`} index={ index as number } key={ index }>
     {
     left && 
-    <React.Fragment>
-      <Image 
-        className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
-        layout={ layout }
-        quality={ quality }
-        src={ src } 
-        alt={ alt } 
-        width={ width } 
-        height={ height } />
-      { children }
-    </React.Fragment>
+    <Link href={ link as string }>
+      <div>
+        <IconImage 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
+          layout={ layout }
+          quality={ quality }
+          src={ src } 
+          alt={ alt } 
+          width={ width as number } 
+          height={ height as number }
+          priority={ priority }
+          loading={ loading }
+          loader={ loader } />
+        { children }
+      </div>
+    </Link>
     }
     {
     !left && !right &&
-    <Image 
-      className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
-      layout={ layout }
-      quality={ quality }
-      src={ src } 
-      alt={ alt } 
-      width={ width } 
-      height={ height }/>
+    <Link href={ link as string }>
+      <div>
+        <IconImage 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
+          layout={ layout }
+          quality={ quality }
+          src={ src } 
+          alt={ alt } 
+          width={ width as number } 
+          height={ height as number }
+          priority={ priority }
+          loading={ loading }
+          loader={ loader } />
+      </div>
+    </Link>
     }
     {
     right && 
-    <React.Fragment>
-      { children }
-      <Image 
-        className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
-        layout={ layout }
-        quality={ quality }
-        src={ src } 
-        alt={ alt } 
-        width={ width } 
-        height={ height } />
-    </React.Fragment>
+    <Link href={ link as string }>
+      <div>
+        { children }
+        <IconImage 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
+          layout={ layout }
+          quality={ quality }
+          src={ src } 
+          alt={ alt } 
+          width={ width as number } 
+          height={ height as number }
+          priority={ priority }
+          loading={ loading }
+          loader={ loader } />
+      </div>
+    </Link>
     }
-    </Container>
+    </ContentBox>
   );
 };
 

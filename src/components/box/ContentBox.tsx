@@ -1,12 +1,17 @@
 
-interface IProps {
+type Props = {
   parent?: string;
   classes?: string;
+  index?: number;
 }
 
-const ContentBox: React.FunctionComponent<IProps> = ({ parent, classes, children}): JSX.Element => {
+const ContentBox: React.FunctionComponent<Props> = ({ parent, classes, index, children}): JSX.Element => {
   return (
-    <div className={`${ parent || '' }--box ${ classes || '' }`}>
+    <div className={`
+      ${ classes || '' }
+      ${ parent || '' }--box 
+      ${ index ? `${ parent }--box-${ index }` : ''} 
+    `}>
       { children }
     </div>
   );
