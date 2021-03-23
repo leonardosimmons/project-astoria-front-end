@@ -7,10 +7,16 @@ export enum cpnt {
 };
 
 export enum page {
-  UNDER_CONSTRUCTION = 'under-construction',
   HOME = 'home',
+  UNDER_CONSTRUCTION = 'under-construction',
 };
 
 export enum link {
+  GIFTS = '/gifts',
+  HANDBAGS = '/handbags',
   HOME = '/',
+  MEN = '/men',
+  MX = '/mx',
+  WOMEN = '/women',
+  UNDER_CONSTRUCTION = '/under-construction',
 };

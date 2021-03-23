@@ -1,5 +1,5 @@
 
-import { cpnt } from '../../../utils/keys';
+import { cpnt, link } from '../../../utils/keys';
 import { NavbarMenuTab } from '../../../utils/types';
 import Container from '../../container';
 
@@ -34,11 +34,11 @@ const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
           <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`}>
             <Logo 
               parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
-              text={'ASTORIA'} />
+              text={'ASTORIA'}
+              link={ link.HOME } />
             <MenuTab 
-              parent={ cpnt.DESKTOP_NAVIGATION } 
-              tabs={ testTabsList }
-              classes={'filter-white'} />
+              parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
+              tabs={ testTabsList } />
           </Container>
         </div>
         <div className={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>

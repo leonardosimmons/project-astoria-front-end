@@ -47,7 +47,7 @@ export type Direction = {
   left?: boolean;
 };
 
-export type Icon = Image & Direction & BaseOptions;
+export type Icon = Image & Direction & PageLink;
 
 export type Image = {
   src: string;
@@ -72,10 +72,6 @@ export type Logo = Omit<Image, "src"|"alt"|"width"|"height"> & {
 
 export type PageLink = {
   link: string;
-};
-
-export type Parent = {
-  parent: string;
 };
 
 export type NamedLink = {

@@ -8,7 +8,7 @@ const NavigationLogo: React.FunctionComponent<Props> = ({ parent, text }): JSX.E
   return (
     <div className={`${ parent }__logo-box`} >
       <Link href="/">
-        <p className={`${ parent }__logo`}>{ text }</p>
+        <h2 className={`${ parent }__logo`}>{ text }</h2>
       </Link>
     </div>
   );

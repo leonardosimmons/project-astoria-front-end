@@ -1,5 +1,5 @@
 import React from 'react';
-import { cpnt } from '../../../utils/keys';
+import { cpnt, link } from '../../../utils/keys';
 import { Icon, Image, NamedLink, NavbarMobileMenu } from '../../../utils/types';
 
 import Container from '../../container';
@@ -43,7 +43,8 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
           menu={ menu } />
         <Logo 
           parent={ cpnt.MOBILE_NAVIGATION } 
-          text={'ASTORIA'} />     
+          text={'ASTORIA'}
+          link={ link.HOME } />     
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
           testIconData.map((icon: Partial<Icon>, index: number) => {
@@ -53,7 +54,7 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
                 key={ index }
                 index={ key }
                 parent={`${ cpnt.MOBILE_NAVIGATION }__icons`} 
-                link={ icon.link }
+                link={ icon.link as string }
                 src={ icon.src as string }
                 alt={ icon.alt as string }
                 width={ icon.width as number }

@@ -6,7 +6,7 @@ import IconImage from 'next/image';
 import { Icon, BaseOptions } from '../../utils/types';
 
 
-type Props = Icon & BaseOptions;
+type Props = Icon & BaseOptions & { column?: boolean };
 
 const BaseIcon: React.FunctionComponent<Props> = (
   { 
@@ -18,6 +18,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     right, 
     index,
     classes,
+    column,
     link,
     loader,
     priority = false,
@@ -33,7 +34,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     {
     left && 
     <Link href={ link as string }>
-      <div>
+      <div className={`${ column ? ' flex flex-col' : ''}`}>
         <IconImage 
           className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
           layout={ layout }
@@ -70,7 +71,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     {
     right && 
     <Link href={ link as string }>
-      <div>
+      <div className={`${ column ? 'flex flex-col' : ''}`}>
         { children }
         <IconImage 
           className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
