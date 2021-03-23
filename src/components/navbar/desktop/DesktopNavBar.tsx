@@ -1,19 +1,20 @@
 
-import Link from 'next/link';
 import { cpnt } from '../../../utils/keys';
-import { NamedLink } from '../../../utils/types';
+import { NavbarMenuTab } from '../../../utils/types';
 import Container from '../../container';
-import Logo from '../../logo/Logo';
+
+import Logo from '../../logo';
+import MenuTab from '../components/DesktopMenuTab';
 
 
 const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
-  const testTabsList: NamedLink[] = [ 
-    { name: 'what\'s new', link: '/under-construction'},
-    { name: 'men', link: '/under-construction'},
-    { name: 'women', link: '/under-construction'},
-    { name: 'mx', link: '/under-construction'},
-    { name: 'handbags', link: '/under-construction'},
-    { name: 'gifts', link: '/under-construction'},
+  const testTabsList: NavbarMenuTab[] = [ 
+    { name: 'what\'s new', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+    { name: 'men', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+    { name: 'women', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+    { name: 'mx', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+    { name: 'handbags', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+    { name: 'gifts', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
   ];
 
   return (
@@ -34,23 +35,10 @@ const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
             <Logo 
               parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
               text={'ASTORIA'} />
-            <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu--tabs`}>
-              {
-                testTabsList.map((tab: NamedLink, index: number) => {
-                  const key = index + 1;
-                  return (
-                    <Link href={ tab.link } key={ key }>
-                      <a className={`
-                        ${ cpnt.DESKTOP_NAVIGATION }__menu--tabs--tab 
-                        ${ cpnt.DESKTOP_NAVIGATION }__menu--tabs--tab-${ key }`}
-                      >
-                        { tab.name.toUpperCase() }
-                      </a>
-                    </Link>
-                  )
-                })
-              }
-            </div>
+            <MenuTab 
+              parent={ cpnt.DESKTOP_NAVIGATION } 
+              tabs={ testTabsList }
+              classes={'filter-white'} />
           </Container>
         </div>
         <div className={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>
@@ -67,3 +55,36 @@ const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
 };
 
 export default DesktopNavBar;
+
+
+/*
+
+<div className={`${ cpnt.DESKTOP_NAVIGATION }__menu--tabs`}>
+  {
+    testTabsList.map((tab, index: number) => {
+      const key = index + 1;
+      return (
+        <Icon
+          right
+          key={ key }
+          index={ key }
+          classes={'filter-white'}
+          src={ tab.src }
+          alt={ tab.alt }
+          width={ tab.width }
+          height={ tab.height }
+          link={ tab.link }
+          parent={`${ cpnt.DESKTOP_NAVIGATION }__menu--tabs`}
+          >
+          <a className={`
+            ${ cpnt.DESKTOP_NAVIGATION }__menu--tabs--tab 
+            ${ cpnt.DESKTOP_NAVIGATION }__menu--tabs--tab-${ key }`}
+          >
+            { tab.name.toUpperCase() }
+          </a>
+        </Icon>
+      )
+    })
+  }
+</div>
+*/

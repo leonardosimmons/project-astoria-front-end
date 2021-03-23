@@ -1,13 +1,13 @@
 
 
 import { cpnt } from '../../../utils/keys/keys';
+import { BaseOptions } from '../../../utils/types';
 import Container from '../../container/Container';
 import Icon from '../../icon';
 
-type Props = {
+type Props = Omit<BaseOptions, 'parent'> & {
   parent: string;
-  index?: number;
-};
+}
 
 const DesktopBarInfo: React.FunctionComponent<Props> = ({parent, index}): JSX.Element => {
   return (

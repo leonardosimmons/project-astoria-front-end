@@ -46,7 +46,7 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
           text={'ASTORIA'} />     
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
-          testIconData.map((icon: Partial<Image>, index: number) => {
+          testIconData.map((icon: Partial<Icon>, index: number) => {
             const key = index + 1;
             return (
               <NavIcon 

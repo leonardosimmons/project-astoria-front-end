@@ -1,9 +1,6 @@
+import { BaseOptions } from '../../utils/types';
 
-type Props = {
-  parent?: string;
-  classes?: string;
-  index?: number;
-}
+type Props = BaseOptions;
 
 const ContentBox: React.FunctionComponent<Props> = ({ parent, classes, index, children}): JSX.Element => {
   return (

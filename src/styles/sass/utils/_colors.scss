@@ -192,3 +192,5 @@
 .white { color: var(--white); }
 .pure-white { color: var(--pure-white); }
 
+.filter-white { filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%); }
+

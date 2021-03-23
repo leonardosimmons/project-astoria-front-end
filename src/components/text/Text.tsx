@@ -1,38 +1,9 @@
-import React from "react";
+import React from 'react';
+import { Text } from '../../utils/types';
 
 type Props = {
   parent?: string;
-  mainHeading?: string | JSX.Element | HTMLElement;
-  headingOne?: string | JSX.Element | HTMLElement;
-  headingTwo?: string | JSX.Element | HTMLElement;
-  subHeadOne?:string | JSX.Element | HTMLElement;
-  subHeadTwo?: string | JSX.Element | HTMLElement;
-  textOne?: string | JSX.Element | HTMLElement;
-  textTwo?: string | JSX.Element | HTMLElement;
-  textThree?: string | JSX.Element | HTMLElement;
-  textFour?: string | JSX.Element | HTMLElement;
-  textFive?: string | JSX.Element | HTMLElement;
-  spanOne?: string | JSX.Element | HTMLElement;
-  spanTwo?: string | JSX.Element | HTMLElement;
-  spanThree?: string | JSX.Element | HTMLElement;
-  spanFour?: string | JSX.Element | HTMLElement;
-  spanFive?: string | JSX.Element | HTMLElement;
-  mainHeadingClasses?: string;
-  headingOneClasses?: string;
-  headingTwoClasses?: string;
-  subHeadOneClasses?: string;
-  subHeadTwoClasses?: string;
-  textOneClasses?: string;
-  textTwoClasses?: string;
-  textThreeClasses?: string;
-  textFourClasses?: string;
-  textFiveClasses?: string;
-  spanOneClasses?: string;
-  spanTwoClasses?: string;
-  spanThreeClasses?: string;
-  spanFourClasses?: string;
-  spanFiveClasses?: string;
-}
+} & Text
 
 const TextBox: React.FunctionComponent<Props> = (
   { 

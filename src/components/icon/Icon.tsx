@@ -3,17 +3,12 @@ import Link from 'next/link';
 import ContentBox from '../box';
 import IconImage from 'next/image';
 
-import { Image } from '../../utils/types';
+import { Icon, BaseOptions } from '../../utils/types';
 
 
-type Props = Image & {
-  parent: string;
-  left?: boolean;
-  right?: boolean;
-  index?: string | number;
-};
+type Props = Icon & BaseOptions;
 
-const Icon: React.FunctionComponent<Props> = (
+const BaseIcon: React.FunctionComponent<Props> = (
   { 
     parent, 
     src, 
@@ -25,16 +20,15 @@ const Icon: React.FunctionComponent<Props> = (
     classes,
     link,
     loader,
+    priority = false,
     alt = 'icon',
     loading = 'lazy',
-    priority = false,
     quality = 100,
     layout = 'intrinsic',
     children 
   }
 ): JSX.Element => {
   return (
-    // change to content-box
     <ContentBox parent={`${ parent }--icon`} index={ index as number } key={ index }>
     {
     left && 
@@ -60,7 +54,7 @@ const Icon: React.FunctionComponent<Props> = (
     <Link href={ link as string }>
       <div>
         <IconImage 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -79,7 +73,7 @@ const Icon: React.FunctionComponent<Props> = (
       <div>
         { children }
         <IconImage 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`}`} 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -96,4 +90,4 @@ const Icon: React.FunctionComponent<Props> = (
   );
 };
 
-export default Icon;
+export default BaseIcon;

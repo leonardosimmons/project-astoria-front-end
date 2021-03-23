@@ -2,18 +2,12 @@
 import Link from 'next/link';
 import LogoImage from 'next/image';
 
-import { Image, Parent, Text } from '../../utils/types';
+import { BaseOptions, Logo } from '../../utils/types';
 
 
-type Props = Omit<Image, "src"|"alt"|"width"|"height"> & {
-  src?: string;
-  alt?: string;
-  width?: string;
-  height?: string;
-  index?: number;
-} & Parent & Text;
+type Props = Logo & BaseOptions;
 
-const Logo: React.FunctionComponent<Props> = (
+const BaseLogo: React.FunctionComponent<Props> = (
   { 
     parent, 
     text, 
@@ -59,4 +53,4 @@ const Logo: React.FunctionComponent<Props> = (
   );
 };
 
-export default Logo;
+export default BaseLogo;

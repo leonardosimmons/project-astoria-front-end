@@ -1,15 +1,13 @@
-import Link from "next/link"
+import Link from 'next/link'
+import { BaseOptions } from '../../utils/types';
 
 type Props = {
   text: string | number | JSX.Element | HTMLElement;
-  link?: string;
-  parent?: string;
-  classes?: string;
   toggle?: boolean;
   toggleFor?: string;
   toggleClasses?: string;
   clicked?: () => void;
-};
+} & BaseOptions;
 
 const Button: React.FunctionComponent<Props> = (
   { 

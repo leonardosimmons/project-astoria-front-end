@@ -1,9 +1,8 @@
+import { BaseOptions } from '../../utils/types';
 
 type Props = {
-  parent?: string;
-  classes?: string;
   main?: boolean;
-}
+} & BaseOptions
 
 const Container: React.FunctionComponent<Props> = ({ parent, classes, main, children }) => {
   return (
