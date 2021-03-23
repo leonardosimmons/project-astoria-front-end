@@ -19,18 +19,17 @@
       @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
       @media only screen and (min-width: 25.93em) { font-size: 1.65rem; }    // 415px
       @media only screen and (min-width: 48em) { font-size: 1.45rem; }       // 768px
-      @media only screen and (min-width: 63.5em) { font-size: 1.85rem; }       // 1024px
+      @media only screen and (min-width: 63.5em) { font-size: 1.65rem; }     // 1024px
       @media only screen and (min-width: 71.44em)  { font-size: 1.85rem; }   // 1143px
-      @media only screen and (min-width: 105.125em) { font-size: 2.35rem; }  // 1682px 
+      @media only screen and (min-width: 105.125em) { font-size: 2.25rem; }  // 1682px 
     }
   }
 
   &--button 
   {
     font-size: 1.65rem;
-    @media only screen and (min-width: 63.5em) { font-size: 1.95rem; }       // 1024px
-    @media only screen and (min-width: 71.44em)  { font-size: 1.95rem; }   // 1143px
-    @media only screen and (min-width: 105.125em) { font-size: 2.35rem; }  // 1682px 
+    @media only screen and (min-width: 63.5em) { font-size: 1.8rem; }       // 1024px
+    @media only screen and (min-width: 105.125em) { font-size: 2rem; }  // 1682px 
   }
 }
 

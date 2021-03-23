@@ -6,12 +6,17 @@
     font-size: 1.25rem;
   }
 
-  &__menu-tabs
+  &__menu
   {
     &--logo
     {
-      font-size: 3.75rem;
+      font-size: 3.5rem;
       font-weight: 600;
+    }
+
+    &--tabs
+    {
+      font-size: 1.2rem;
     }
   }
 
@@ -26,14 +31,21 @@
 .desktop-navigation
 {
   color: var(--white);
-  background-color: rgba(#000000, 0.85); // black
+  background-color: rgba(#000000, 0.80); // black
 }
 
 
 //* ------------------------  STRUCTURE  ------------------------ *//
 .desktop-navigation 
-{
+{  
+  width: 100%;
+
   display: none;
+  position: fixed;
+
+  padding: .25rem 1rem;
+  z-index: 200;
+
   
   @media only screen and (min-width: 64.0625em) { display: block; } // 1025px
 
@@ -44,16 +56,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+
 
     margin: 0 auto;
-    padding: 1.5rem;
-    padding-bottom: 1rem;
+    padding: .75rem 1rem;
   }
 
   &__information 
   {
-    flex: 0 1 30%;
+    flex: 0 1 28%;
 
     display: flex;
     
@@ -63,12 +74,15 @@
     }
   }
 
-  &__menu-tabs
+  &__menu
   {
     flex: 1;
     &--container
     {
-
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     &--logo
@@ -78,16 +92,39 @@
 
     &--tabs
     {
+      display: none;
 
+      transition: all .5s;
+
+      &:hover {
+        display: block;
+      }
+
+      &--tab
+      {
+        margin: 0 0.75rem;
+
+        &:hover,
+        &:focus {
+          transform: translateY(-2px);
+        }
+      }
     }
   }
 
   &__profile
   {
-    flex: 0 1 30%;
+    flex: 0 1 28%;
+
     &--container
     {
-
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
+  }
+
+  &__menu--logo-box:hover + &__menu--tabs {
+    display: block;
   }
 };

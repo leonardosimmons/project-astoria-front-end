@@ -60,11 +60,11 @@
 .mobile-navigation
 {
   color: var(--white);
-  background-color: rgba(#000000, 0.85); // black
+  background-color: rgba(#000000, 0.80); // black
 
   &__menu-tab 
   {
-    &--background { background:rgba(#dddddd, 0.85); } // grey-300
+    &--background { background:rgba(#dddddd, 0.80); } // grey-300
   }
 
   &__menu

@@ -37,7 +37,7 @@ const Logo: React.FunctionComponent<Props> = (
       <Link href={ link as string }>
         {
           text ?
-          <a className={`${ parent }--logo ${ classes }`}>{ text }</a>
+          <a className={`${ parent }--logo ${ classes || '' }`}>{ text }</a>
           :
           src ?
           <LogoImage
