@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import ContentBox from '../box';
-import IconImage from 'next/image';
+import Image from 'next/image';
 
 import { Icon, BaseOptions } from '../../utils/types';
 
@@ -35,7 +35,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     left && 
     <Link href={ link as string }>
       <div className={`${ column ? ' flex flex-col' : 'flex'}`}>
-        <IconImage 
+        <Image 
           className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
@@ -54,7 +54,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     !left && !right &&
     <Link href={ link as string }>
       <div>
-        <IconImage 
+        <Image 
           className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
@@ -73,7 +73,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     <Link href={ link as string }>
       <div className={`${ column ? 'flex flex-col' : 'flex'}`}>
         { children }
-        <IconImage 
+        <Image 
           className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }

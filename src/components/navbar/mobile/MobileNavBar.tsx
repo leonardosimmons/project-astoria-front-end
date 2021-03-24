@@ -1,15 +1,15 @@
 import React from 'react';
 import { cpnt, link } from '../../../utils/keys';
-import { Icon, Image, NamedLink, NavbarMobileMenu } from '../../../utils/types';
+import { NamedLink, NavbarMenuTab, NavbarMobileMenu } from '../../../utils/types';
 
 import Container from '../../container';
-import NavigationMenuTab from '../components/MobileMenuTab';
+import MenuTab from '../components/MobileMenuTab';
 import Logo from '../../../components/logo';
-import NavIcon from '../../../components/icon';
+import Icon from '../../../components/icon';
 
 
 const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
-  const testIconData: Partial<Icon>[] = [ 
+  const testIconData: Partial<NavbarMenuTab>[] = [ 
     { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test', width: 22.5, height: 22.5  },
     { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test', width: 22.5, height: 22.5 }
@@ -37,7 +37,7 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
   return (
     <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >
       <Container main parent={ cpnt.MOBILE_NAVIGATION } >
-        <NavigationMenuTab 
+        <MenuTab 
           parent={ cpnt.MOBILE_NAVIGATION } 
           title={'Menu'}
           menu={ menu } />
@@ -47,10 +47,10 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
           link={ link.HOME } />     
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
-          testIconData.map((icon: Partial<Icon>, index: number) => {
+          testIconData.map((icon: Partial<NavbarMenuTab>, index: number) => {
             const key = index + 1;
             return (
-              <NavIcon 
+              <Icon 
                 key={ index }
                 index={ key }
                 parent={`${ cpnt.MOBILE_NAVIGATION }__icons`} 

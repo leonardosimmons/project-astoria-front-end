@@ -31,10 +31,13 @@
 .desktop-navigation
 {
   color: var(--white);
-  background-color: rgba(#000000, 0.20); // black
+  background-image: linear-gradient(
+    to bottom,
+    rgba(#000000, 0.45),
+    rgba(#000000, 0.01));
 
   &:hover {
-    background-color: rgba(#000000, 0.90);
+    background-color: rgba(#000000, 0.9);
   }
 
   &__information
@@ -103,7 +106,7 @@
 
   &__information 
   {
-    flex: 0 1 28%;
+    flex: 0 1 25%;
     display: flex;
 
     &--tabs
@@ -112,9 +115,19 @@
 
       &--tab
       {
-        margin: 0 .6rem;
+        margin: 0 .1rem;
+
+        @media only screen and (min-width: 83.75em) { margin: 0 .35rem;}  // 1340px
+        @media only screen and (min-width: 89.375em) { margin: 0 .65rem } // 1430px
       }
-    
+
+      &--icon
+      {
+        &-2
+        {
+          display: none;
+        }
+      }
     }
   }
 
@@ -162,7 +175,7 @@
 
   &__profile
   {
-    flex: 0 1 28%;
+    flex: 0 1 25%;
    
     &--tabs
     {
