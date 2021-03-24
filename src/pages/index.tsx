@@ -7,7 +7,7 @@ import Container from '../components/container';
 
 
 const Index = () => {
-  useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVIGATION, -1, 'nav-not-at-top');
+  useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVIGATION, -1, 'nav-not-at-top'); // controls navbar fade onScroll
 
   return (
     <Layout 
