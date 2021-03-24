@@ -20,3 +20,9 @@ export enum link {
   WOMEN = '/women',
   UNDER_CONSTRUCTION = '/under-construction',
 };
+
+
+export enum css {
+  DESKTOP_NAVIGATION = '.desktop-navigation',
+  TOP_PAGE_PIXEL_ANCHOR = '#top-of-site-pixel-anchor'
+};

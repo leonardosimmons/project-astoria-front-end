@@ -50,6 +50,7 @@ const Layout: React.FunctionComponent<Props> = (
         { header && <header className={`${ parent }__header`}>{ header }</header> }
         { children && <main className={`${ parent }__main`}>{ children }</main> }
         { footer && <footer className={`${ parent }__footer`}>{ footer }</footer> }
+        <div id="top-of-site-pixel-anchor"></div>
       </div>
     </React.Fragment>
   );

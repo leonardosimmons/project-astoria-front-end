@@ -11,7 +11,6 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-
 .none {
   display: none;
 }
@@ -25,6 +24,14 @@
   }
 }
 
+//* ---------------------- ID's --------------------- *//
+#top-of-site-pixel-anchor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: 2px;
+  left: 0;
+}
 
 //* --------------------- FOCUS --------------------- *//
 .active-focus {
