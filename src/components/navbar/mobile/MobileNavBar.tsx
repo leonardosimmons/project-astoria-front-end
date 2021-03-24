@@ -1,6 +1,6 @@
 import React from 'react';
 import { cpnt, link } from '../../../utils/keys';
-import { NamedLink, NavbarMenuTab, NavbarMobileMenu } from '../../../utils/types';
+import { Icon as _Icon, NamedLink, NavbarMenuTab, NavbarMobileMenu } from '../../../utils/types';
 
 import Container from '../../container';
 import MenuTab from '../components/MobileMenuTab';
@@ -9,7 +9,7 @@ import Icon from '../../../components/icon';
 
 
 const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
-  const testIconData: Partial<NavbarMenuTab>[] = [ 
+  const testIconData: _Icon[] = [ 
     { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test', width: 22.5, height: 22.5  },
     { link: '/under-construction', src: '/icons/svg/small/search-glass.svg', alt: 'test', width: 22.5, height: 22.5 }
@@ -47,7 +47,7 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
           link={ link.HOME } />     
         <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
         {
-          testIconData.map((icon: Partial<NavbarMenuTab>, index: number) => {
+          testIconData.map((icon: _Icon, index: number) => {
             const key = index + 1;
             return (
               <Icon 

@@ -39,6 +39,7 @@ export type BaseOptions = {
   classes?: string;
   column?: boolean;
   uppercase?: boolean;
+  type?: string;
   index?: string | number;
 };  
 
@@ -47,6 +48,18 @@ export type Direction = {
   down?: boolean;
   right?: boolean;
   left?: boolean;
+};
+
+export type HttpRequest = {
+  url: string;
+  type: 'GET' | 'POST' | 'DELETE' | 'PUT';
+  post?: any;
+  query?: string;
+};
+
+export type HttpResponse = {
+  type?: string;
+  value?: any;
 };
 
 export type Icon = Image & Direction & PageLink;
@@ -74,6 +87,7 @@ export type Logo = Omit<Image, "src"|"alt"|"width"|"height"> & {
 
 export type PageLink = {
   link: string;
+  text?: string;
 };
 
 export type NamedLink = {
@@ -120,6 +134,41 @@ export type Text = {
 
 
 //** --------------------  NAVIGATION BAR  -------------------- **//
+export type NavbarData = {
+  desktop: {
+    info: NavbarMenuTabToken[];
+    menu: {
+      logo: PageLink;
+      tabs: NavbarMenuTabToken[];
+    },
+    profile: NavbarMenuTab[];
+  };
+  mobile: {
+    icons: Icon[];
+    menu: {
+      tabs: NamedLink[];
+      scrollText: string[];
+    }
+  };
+};
+
+export type NavbarDesktopData = {
+  info: NavbarMenuTabToken[];
+    menu: {
+      logo: PageLink;
+      tabs: NavbarMenuTabToken[];
+    },
+    profile: NavbarMenuTab[];
+};
+
+export type NavbarMobileData = {
+  icons: Icon[];
+  menu: {
+    tabs: NamedLink[];
+    scrollText: string[];
+  }
+};
+
 export type NavbarMobileMenu = {
   tabs: NamedLink[];
   scrollText: string[];
@@ -135,6 +184,9 @@ export type NavbarContext = {
   menu: NavbarDesktopMenu | NavbarMobileMenu 
 };
 
+export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse;
+
 export type NavbarMenuTab = {
   name: string;
 } & Icon;
+
