@@ -1,20 +1,31 @@
-import { BaseOptions, NavbarMenuTab } from '../../../utils/types';
-import MenuTab from '../../icon';
+import { BaseOptions, Direction, NavbarMenuTab } from '../../../utils/types';
+import Icon from '../../icon';
 
 type Props = {
   tabs: NavbarMenuTab[];
-} & BaseOptions;
+} & BaseOptions & Direction;
 
-const DesktopMenuTab: React.FunctionComponent<Props> = ({ parent, classes, tabs }): JSX.Element => {
+const DesktopMenuTab: React.FunctionComponent<Props> = (
+  { 
+    parent, 
+    classes, 
+    tabs, 
+    uppercase, 
+    column,
+    right,
+    left, 
+  }
+): JSX.Element => {
   return (
     <div className={`${ parent }--tabs`}>
     {
       tabs.map((tab: NavbarMenuTab, index: number) => {
         const key = index + 1;
         return (
-          <MenuTab
-            right
-            column
+          <Icon
+            left={ left ? true : false }
+            right={ right ? true : false }
+            column={ column ? true : false }
             key={ key }
             index={ key }
             classes={ classes }
@@ -29,9 +40,9 @@ const DesktopMenuTab: React.FunctionComponent<Props> = ({ parent, classes, tabs 
               ${ parent }--tabs--tab 
               ${ parent }--tabs--tab-${ key }`}
             >
-              { tab.name!.toUpperCase() }
+              { uppercase ? tab.name!.toUpperCase() : tab.name }
             </a>
-          </MenuTab>
+          </Icon>
         )
       })
     }

@@ -6,7 +6,7 @@ import IconImage from 'next/image';
 import { Icon, BaseOptions } from '../../utils/types';
 
 
-type Props = Icon & BaseOptions & { column?: boolean };
+type Props = Icon & BaseOptions;
 
 const BaseIcon: React.FunctionComponent<Props> = (
   { 
@@ -34,9 +34,9 @@ const BaseIcon: React.FunctionComponent<Props> = (
     {
     left && 
     <Link href={ link as string }>
-      <div className={`${ column ? ' flex flex-col' : ''}`}>
+      <div className={`${ column ? ' flex flex-col' : 'flex'}`}>
         <IconImage 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -55,7 +55,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     <Link href={ link as string }>
       <div>
         <IconImage 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -71,10 +71,10 @@ const BaseIcon: React.FunctionComponent<Props> = (
     {
     right && 
     <Link href={ link as string }>
-      <div className={`${ column ? 'flex flex-col' : ''}`}>
+      <div className={`${ column ? 'flex flex-col' : 'flex'}`}>
         { children }
         <IconImage 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes }`} 
+          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 

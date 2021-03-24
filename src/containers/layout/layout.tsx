@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { AppState } from '../../redux-store/reducers';
+import { useSelector } from 'react-redux';
+import { page } from '../../utils/keys';
 
 import DesktopNavBar from '../../components/navbar/desktop';
 import MobileNavbar from '../../components/navbar/mobile';
@@ -42,7 +43,7 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="modal-root" />
       <div id="app" className={`${ classes }`}>
         { showBackdrop && <Backdrop /> }
-        <nav className={`${ parent }__nav`}>
+        <nav className={`${ parent }__nav ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
           { desktopNav || <DesktopNavBar /> }
           { mobileNav || <MobileNavbar /> }
         </nav>

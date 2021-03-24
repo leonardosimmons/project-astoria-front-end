@@ -37,6 +37,8 @@ export type BaseOptions = {
   link?: string;
   parent?: string;
   classes?: string;
+  column?: boolean;
+  uppercase?: boolean;
   index?: string | number;
 };  
 
@@ -80,6 +82,9 @@ export type NamedLink = {
 };
 
 export type Text = {
+  name?: string;
+  title?: string;
+  text?: string;
   mainHeading?: string | JSX.Element | HTMLElement;
   headingOne?: string | JSX.Element | HTMLElement;
   headingTwo?: string | JSX.Element | HTMLElement;
@@ -100,6 +105,7 @@ export type Text = {
   headingTwoClasses?: string;
   subHeadOneClasses?: string;
   subHeadTwoClasses?: string;
+  textClasses?: string;
   textOneClasses?: string;
   textTwoClasses?: string;
   textThreeClasses?: string;
