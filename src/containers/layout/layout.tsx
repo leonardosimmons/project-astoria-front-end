@@ -42,7 +42,8 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="backdrop-root" />
       <div id="modal-root" />
       <div id="app" className={`${ classes }`}>
-        { showBackdrop && <Backdrop /> }
+        {/** CHANGE back to showbackdrop*/}
+        { showBackdrop && <p className={`text-5xl`}>IT WORKED</p> }
         <nav className={`${ parent }__nav ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
           { desktopNav || <DesktopNavBar /> }
           { mobileNav || <MobileNavbar /> }

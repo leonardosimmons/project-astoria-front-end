@@ -1,3 +1,4 @@
+import React from 'react';
 import { page, link } from '../utils/keys';
 import Layout from '../containers/layout';
 import Button from '../components/button';
@@ -5,11 +6,16 @@ import ContentBox from '../components/box';
 import TextContent from '../components/text';
 import Container from '../components/container';
 
+import style from '../styles/css/pages/UnderConstruct.module.css';
+
 const UnderConstructionPage = (): JSX.Element => {
+
+  console.log(style['under-construction'])
+
   return (
     <Layout 
       parent={ page.UNDER_CONSTRUCTION } 
-      title={'Under Construction...'} 
+      title={'Under Construction...'}
     >
       <Container main parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox

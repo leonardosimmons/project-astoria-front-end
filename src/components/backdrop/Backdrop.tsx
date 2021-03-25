@@ -1,4 +1,5 @@
 
+import styles from './Backdrop.module.css';
 import ReactDOM from 'react-dom';
 
 type Props = {
@@ -10,7 +11,7 @@ const Backdrop: React.FunctionComponent<Props> = ({ zIndex, clicked }): JSX.Elem
   return (
     ReactDOM.createPortal(
       <div 
-        className={`backdrop`} 
+        className={ styles.backdrop } 
         style={{ zIndex: zIndex }} 
         onClick={ clicked } 
       />,

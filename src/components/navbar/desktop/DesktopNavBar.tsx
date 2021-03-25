@@ -1,13 +1,17 @@
 
 import useSWR from 'swr';
+import { Dispatch } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppActions } from '../../../redux-store/action-types';
 import { NavbarDesktopData } from '../../../utils/types';
-import { GetStaticProps } from 'next';
-import { cpnt, link } from '../../../utils/keys';
+import { toggleBackdrop } from '../../backdrop/state/actions';
+import { cpnt } from '../../../utils/keys';
 
 import Logo from '../../logo';
 import Container from '../../container';
 import MenuTab from '../components/DesktopMenuTab';
 import axios from 'axios';
+
 
 async function fetcher(url: string): Promise<NavbarDesktopData>
 {
@@ -24,7 +28,9 @@ async function fetcher(url: string): Promise<NavbarDesktopData>
 const url = 'http://localhost:3000/api/navbar/desktop';
 
 
-const DesktopNavBar: React.FunctionComponent = (props): JSX.Element => {
+const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
+  const dispatch: Dispatch<AppActions> = useDispatch();
+
   const { data, error } = useSWR(url, fetcher);
 
   if (error) return <div>Failed to load</div>;
@@ -43,7 +49,7 @@ const DesktopNavBar: React.FunctionComponent = (props): JSX.Element => {
               tabs={ info } />
           </Container>
         </div>
-        <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu`}>
+        <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu`} onClick={ () => { dispatch(toggleBackdrop()) }} >
           <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`}>
             <Logo 
               parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
@@ -71,21 +77,3 @@ const DesktopNavBar: React.FunctionComponent = (props): JSX.Element => {
 };
 
 export default DesktopNavBar;
-
-
-export const getStaticProps: GetStaticProps = async() => 
-{
-  // const url: string = process.env.NAVBAR_DESKTOP_API as string;
-  // const res = await axios.get(url);
-  // const { info, menu, profile } = res.data as NavbarDesktopData;
-  const test = 'testing one two and three'
-
-  return {
-    props: {
-      initialReduxState: {
-
-      },
-      test: test
-    }
-  };
-};

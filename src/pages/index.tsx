@@ -1,14 +1,15 @@
 
-
 import { css, page } from '../utils/keys';
 import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
+import { initializeStore } from '../redux-store/store';
 
 
-const Index = () => {
+const Index: React.FunctionComponent = () => {
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVIGATION, -1, 'nav-not-at-top'); // controls navbar fade onScroll
+
 
   return (
     <Layout 

@@ -11,9 +11,15 @@ export const useScrollPosition = (anchor: string, selector: string, locationY: n
       let observer = new IntersectionObserver(entries => {
         if(entries[0].boundingClientRect.y < locationY)
         {
-          document.querySelector(selector)!.classList.add(classes);
+          if(document)
+          {
+            document.querySelector(selector)!.classList.add(classes);
+          }
         } else {
-            document.querySelector(selector)!.classList.remove(classes);
+            if(document)
+            {
+              document.querySelector(selector)!.classList.remove(classes);
+            }
         }
       });
     
