@@ -6,7 +6,6 @@ type Props = {
   toggle?: boolean;
   toggleFor?: string;
   toggleClasses?: string;
-  clicked?: () => void;
 } & BaseOptions;
 
 const Button: React.FunctionComponent<Props> = (
@@ -16,24 +15,25 @@ const Button: React.FunctionComponent<Props> = (
     text, 
     toggle, 
     toggleFor,
+    styles,
     toggleClasses, 
     clicked,
-    classes 
+    classes, 
   }
 ): JSX.Element => {
   return (
     toggle ? 
-    <div className={`${ parent }--toggle-button ${ classes }`} >
+    <div className={`${ styles && styles.toggleBox } ${ parent }--toggle-button ${ classes }`} >
       <label 
         htmlFor={`${ toggleFor }__toggle`}
-        className={ toggleClasses } 
+        className={`${ styles && styles.toggleLabel }  ${ toggleClasses}`} 
         onClick={ clicked }>
           { text }
       </label>
     </div>
     :
     <Link href={ link || ''  }>
-      <button className={`${ parent || '' }--button ${ classes || '' }`}>
+      <button className={`${ styles && styles.btn } ${ parent || '' }--button ${ classes || '' }`}>
         { text as string }
       </button>
     </Link>

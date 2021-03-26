@@ -21,6 +21,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     column,
     link,
     loader,
+    styles,
     priority = false,
     alt = 'icon',
     loading = 'lazy',
@@ -30,13 +31,13 @@ const BaseIcon: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   return (
-    <ContentBox parent={`${ parent }--icon`} index={ index as number } key={ index }>
+    <ContentBox styles={ styles && styles } parent={`${ parent }--icon`} index={ index as number } key={ index }>
     {
     left && 
     <Link href={ link as string }>
       <div className={`${ column ? ' flex flex-col' : 'flex'}`}>
         <Image 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
+          className={`${ styles && styles.icon } ${ index ? styles && `${ styles.icon }0${ index }` : '' } ${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -55,7 +56,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
     <Link href={ link as string }>
       <div>
         <Image 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
+          className={`${ styles && styles.icon } ${ index ? styles && `${ styles.icon }0${ index }` : '' } ${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 
@@ -74,7 +75,7 @@ const BaseIcon: React.FunctionComponent<Props> = (
       <div className={`${ column ? 'flex flex-col' : 'flex'}`}>
         { children }
         <Image 
-          className={`${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
+          className={`${ styles && styles.icon } ${ index ? styles && `${ styles.icon }0${ index }` : '' } ${ parent }--icon ${ index && `${ parent }--icon-${ index }`} ${ classes || '' }`} 
           layout={ layout }
           quality={ quality }
           src={ src } 

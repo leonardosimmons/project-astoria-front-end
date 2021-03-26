@@ -34,13 +34,17 @@ export type CarouselContentContext = {
 
 //** ------------------------  GENERAL  ------------------------ **/
 export type BaseOptions = {
-  link?: string;
-  parent?: string;
   classes?: string;
   column?: boolean;
-  uppercase?: boolean;
-  type?: string;
   index?: string | number;
+  link?: string;
+  parent?: string;
+  styles?: any;
+  type?: string;
+  uppercase?: boolean;
+  value?: any;
+  changed?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  clicked?: () => void;
 };  
 
 export type Direction = {

@@ -2,11 +2,12 @@ import { BaseOptions } from '../../utils/types';
 
 type Props = {
   main?: boolean;
-} & BaseOptions
+} & BaseOptions;
 
-const Container: React.FunctionComponent<Props> = ({ parent, classes, main, children }) => {
+const Container: React.FunctionComponent<Props> = ({ parent, styles, classes, main, children }) => {
   return (
     <div className={`
+      ${ main ? styles && styles.mainContainer : styles && styles.container }
       ${ main ? parent + '__main-container' : parent + '--container' }
       ${ classes || '' }`
       }

@@ -1,3 +1,5 @@
+
+import styles from '../styles/sass/pages/UnderConstruction.module.scss';
 import React from 'react';
 import { page, link } from '../utils/keys';
 import Layout from '../containers/layout';
@@ -6,11 +8,8 @@ import ContentBox from '../components/box';
 import TextContent from '../components/text';
 import Container from '../components/container';
 
-import style from '../styles/css/pages/UnderConstruct.module.css';
 
 const UnderConstructionPage = (): JSX.Element => {
-
-  console.log(style['under-construction'])
 
   return (
     <Layout 

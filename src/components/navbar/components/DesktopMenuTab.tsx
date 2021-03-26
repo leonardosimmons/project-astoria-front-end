@@ -7,7 +7,8 @@ type Props = {
 
 const DesktopMenuTab: React.FunctionComponent<Props> = (
   { 
-    parent, 
+    parent,
+    styles,
     classes, 
     tabs, 
     uppercase, 
@@ -17,7 +18,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   return (
-    <div className={`${ parent }--tabs`}>
+    <div className={`${ styles && styles.boxStyles } ${ parent }--tabs`}>
     {
       tabs.map((tab: NavbarMenuTab, index: number) => {
         const key = index + 1;
@@ -28,6 +29,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
             column={ column ? true : false }
             key={ key }
             index={ key }
+            styles={ styles }
             classes={ classes }
             link={ tab.link }
             src={ tab.src as string }
@@ -37,6 +39,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
             parent={`${ parent }--tabs`}
             >
             <a className={`
+              ${ styles && styles.textStyles }
               ${ parent }--tabs--tab 
               ${ parent }--tabs--tab-${ key }`}
             >

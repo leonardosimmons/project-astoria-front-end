@@ -1,15 +1,12 @@
 import React from 'react';
+import { BaseOptions } from '../../utils/types';
 
 type Props = {
-  parent: string;
-  value?: string;
   toggle?: boolean;
   label?: string | JSX.Element | HTMLElement;
   labelFront?: string | JSX.Element | HTMLElement;
   labelBack?: string | JSX.Element | HTMLElement;
-  changed?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  clicked?: () => void;
-};
+} & BaseOptions;
 
 const Input: React.FunctionComponent<Props> = (
   { 
@@ -19,7 +16,8 @@ const Input: React.FunctionComponent<Props> = (
     label,
     labelFront,
     labelBack,
-    changed, 
+    changed,
+    styles,
     clicked
   }
 ): JSX.Element => {
@@ -27,25 +25,25 @@ const Input: React.FunctionComponent<Props> = (
       toggle ? 
       <React.Fragment>
         <input 
-          className={`${ parent }__checkbox`} 
+          className={`${ styles && styles.checkbox } ${ parent }__checkbox`} 
           id={`${ parent }__toggle`} 
           type="checkbox"
           value={ value } 
           onChange={ clicked } />
-        <label className={`${ parent }__checkbox--button`} htmlFor={`${ parent }__toggle`}>
-          <span className={`${ parent }__checkbox--button--icon`}>{ label || ''}</span>
+        <label className={`${ styles && styles.checkboxBtn } ${ parent }__checkbox--button`} htmlFor={`${ parent }__toggle`}>
+          <span className={`${ styles && styles.checkboxBtnIcon } ${ parent }__checkbox--button--icon`}>{ label || ''}</span>
         </label> 
       </React.Fragment>
       : 
       <React.Fragment>
         {
           labelFront && 
-          <label className={`${ parent }__label-front`} htmlFor={`${ parent }__input`}>
+          <label className={`${ styles && styles.labelFront } ${ parent }__label-front`} htmlFor={`${ parent }__input`}>
             { labelFront }
           </label>
         }
         <input 
-          className={`${ parent }__input`} 
+          className={`${ styles && styles.input } ${ parent }__input`} 
           id={`${ parent }__input`} 
           type="text" 
           autoComplete="off"
@@ -54,7 +52,7 @@ const Input: React.FunctionComponent<Props> = (
           onChange={ changed }/>
         {
           labelBack && 
-          <label className={`${ parent }__label-back`} htmlFor={`${ parent }__input`}>
+          <label className={`${ styles && styles.labelBack } ${ parent }__label-back`} htmlFor={`${ parent }__input`}>
             { labelBack }
           </label>
         }

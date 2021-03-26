@@ -1,5 +1,5 @@
-import '../styles';
-import '../styles/sass';
+//import '../styles';
+//import '../styles/sass';
 import { Provider } from 'react-redux';
 import { useStore } from '../redux-store/store';
 import type { AppProps } from 'next/app';
