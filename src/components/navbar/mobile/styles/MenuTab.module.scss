@@ -1,0 +1,87 @@
+.tab // menu tab
+{
+  flex: 0 1 35%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.background
+{
+  height: 100vh;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  
+  padding: 1rem;
+
+  transform: translate(0, -110%);
+  transition: all .5s;
+
+  background:rgba(#dddddd, 0.80); // grey-300
+}
+
+.tabText
+{
+  font-size: 2rem;
+}
+
+.checkbox
+{
+  display: none; 
+}
+
+.checkboxBtn
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkboxBtnIcon
+{
+  position: relative;
+  
+  margin-right: 1rem;
+  &,
+  &::before,
+  &::after {
+    display: inline-block;
+    width: 2rem;
+    height: 2px;
+    background-color: var(--white);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all .35s;
+  }
+
+  &::before { top: -0.65rem; }
+  &::after {top: 0.65rem; }
+}
+
+//* --------------------  FUNCTIONALITY  -------------------- *//
+.checkbox:checked ~ .background
+{ 
+  transform: translate(0, 0); 
+}
+
+.checkbox:checked + .checkboxBtn .checkboxBtnIcon {
+  background-color: transparent;
+}
+
+.checkbox:checked + .checkboxBtn .checkboxBtnIcon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.checkbox:checked + .checkboxBtn .checkboxBtnIcon::after {
+  top: 0;
+  transform: rotate(-135deg);
+}

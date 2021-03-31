@@ -1,0 +1,85 @@
+.wrapper
+{
+  height: 98%;
+  width: 100%;
+
+  margin: auto;
+
+  color: var(--dark-grey-800);
+  background: var(--white);
+}
+
+.container
+{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.toggleBox
+{
+  width: 95%;
+  
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+.toggleLabel
+{
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.tabs
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: -3rem;
+  margin-bottom: 1rem;
+
+  font-size: 2rem; 
+  font-weight: 600;
+
+  
+  @media only screen and (min-width: 48em) { font-size: 2.2rem; }       // 768px
+}
+
+.tab
+{
+  margin: .3rem 0;
+  
+  &,
+  &:visited { 
+    color: var(--dark-grey-900); 
+ }
+}
+
+.signIn
+{
+  height: flex 1;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  color: var(--dark-grey-900);
+}
+
+.signInText
+{
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  &,
+  &:visited {
+    color: var(--black);
+  }
+}

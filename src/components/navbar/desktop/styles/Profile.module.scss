@@ -1,0 +1,33 @@
+.wrapper
+{
+  flex: 0 1 27.7%;
+
+  font-size: 1.25rem;
+}
+
+.tabs
+{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin: 0 1rem;
+
+  cursor: pointer;
+}
+
+.tabText
+{
+  margin: 0 .65rem;
+}
+
+.contentBox
+{
+  display: flex;
+  margin: 0 .55rem;
+}
+
+.icon
+{
+  filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%);
+}

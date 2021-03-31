@@ -1,0 +1,24 @@
+//* CONFIGURATION
+@import 'config/base';
+@import 'config/typography';
+@import 'config/variables';
+@import 'config/colors';
+@import 'layout';
+
+
+//* UTILITIES
+@import 'utils/general';
+@import 'utils/colors';
+
+
+//* COMPONENTS
+@import '../../components/backdrop/styles';
+@import '../../components/navbar/desktop/styles';
+@import '../../components/navbar/mobile/styles';
+
+//* FEATURES
+@import '../../features/carousel/styles';
+
+//* PAGES
+@import 'pages/home';
+@import 'pages/under-construction';

@@ -1,0 +1,42 @@
+.wrapper
+{
+  height: 10rem;
+  max-width: 216rem;
+  width: 100%;
+
+  display: none;
+  position: fixed;
+
+  padding: .25rem 1rem;
+  z-index: 200;
+
+  transition: all .3s;
+
+  color: var(--white);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(#000000, 0.45),
+    rgba(#000000, 0.01));
+
+  &:hover {
+    background-color: var(--black);
+  }
+  
+  @media only screen and (min-width: 64em) { 
+    display: block; 
+  } // 1025px
+}
+
+.mainContainer
+{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  margin: 0 auto;
+  padding: .75rem 1rem;
+}

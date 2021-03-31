@@ -1,0 +1,89 @@
+.wrapper
+{
+  flex: 1;
+
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.container
+{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: 1rem;
+}
+
+
+.logo 
+{
+  font-size: 3.5rem;
+  font-weight: 400;
+
+  color: var(--white);
+}
+
+.tabs
+{
+  display: flex;
+  transition: all .5s;
+
+  font-size: 1.2rem;
+
+  &:hover {
+    display: flex;
+  }
+}
+
+.tabText
+{
+  margin: 0 0.75rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+  }
+}
+
+.icon
+{
+  opacity: 0;
+
+  filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%);
+  
+  &:hover {
+    opacity: 100;
+  }
+}
+
+.contentBox
+{
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.logoBox:hover + .tabs 
+{
+  display: flex;
+}
+
+.tabText:hover + div .icon
+{
+  opacity: 100;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
