@@ -1,15 +1,16 @@
 
 import useSWR from 'swr';
-import { Dispatch } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppActions } from '../../../redux-store/action-types';
-import { NavbarDesktopData } from '../../../utils/types';
-import { toggleBackdrop } from '../../backdrop/state/actions';
-import { cpnt } from '../../../utils/keys';
+import { BaseOptions, NavbarDesktopData } from '../../../utils/types';
+import { cpnt, css } from '../../../utils/keys';
+
+import navbarStyles from './styles/Navbar.module.scss';
+import infoStyles from './styles/Information.module.scss';
+import menuStyles from './styles/Menu.module.scss';
+import profileStyles from './styles/Profile.module.scss';
 
 import Logo from '../../logo';
 import Container from '../../container';
-import MenuTab from '../components/DesktopMenuTab';
+import MenuTab from './components/DesktopMenuTab';
 import axios from 'axios';
 
 
@@ -29,8 +30,6 @@ const url = 'http://localhost:3000/api/navbar/desktop';
 
 
 const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
-  const dispatch: Dispatch<AppActions> = useDispatch();
-
   const { data, error } = useSWR(url, fetcher);
 
   if (error) return <div>Failed to load</div>;
@@ -39,35 +38,36 @@ const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
   const { info, menu, profile } = data as NavbarDesktopData;
 
   return (
-    <div className={`${ cpnt.DESKTOP_NAVIGATION } noselect`}>
-      <Container main parent={ cpnt.DESKTOP_NAVIGATION }>
-        <div className={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
-          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__information`}>
+    <div id="desktop-navbar" className={`${ navbarStyles.wrapper } noselect`}>
+      <Container main styles={ navbarStyles }>
+        <div className={`${ infoStyles.wrapper }`}>
+          <Container styles={ infoStyles }>
             <MenuTab 
               left
-              parent={`${ cpnt.DESKTOP_NAVIGATION }__information`}
+              styles={ infoStyles }
               tabs={ info } />
           </Container>
         </div>
-        <div className={`${ cpnt.DESKTOP_NAVIGATION }__menu`} onClick={ () => { dispatch(toggleBackdrop()) }} >
-          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`}>
+        <div className={ menuStyles.wrapper }>
+          <Container styles={ menuStyles }>
             <Logo 
-              parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
+              classes={'logoFont'}
+              styles={ menuStyles } 
               text={ menu.logo.text }
               link={ menu.logo.link } />
             <MenuTab
               right
               column 
               uppercase
-              parent={`${ cpnt.DESKTOP_NAVIGATION }__menu`} 
+              styles={ menuStyles } 
               tabs={ menu.tabs } />
           </Container>
         </div>
-        <div className={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>
-          <Container parent={`${ cpnt.DESKTOP_NAVIGATION }__profile`}>
+        <div className={ profileStyles.wrapper }>
+          <Container styles={ profileStyles }>
             <MenuTab
               left 
-              parent={`${ cpnt.DESKTOP_NAVIGATION }__profile`}
+              styles={ profileStyles }
               tabs={ profile }/>
           </Container>
         </div>

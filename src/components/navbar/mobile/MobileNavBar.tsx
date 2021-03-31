@@ -1,9 +1,14 @@
 import React from 'react';
 import { cpnt, link } from '../../../utils/keys';
-import { Icon as _Icon, NamedLink, NavbarMenuTab, NavbarMobileMenu } from '../../../utils/types';
+import { Icon as _Icon, NamedLink, NavbarMobileMenu } from '../../../utils/types';
+
+import mainStyles from './styles/Navbar.module.scss';
+import tabStyles from './styles/MenuTab.module.scss';
+import menuStyles from './styles/Menu.module.scss';
+import carouselStyles from './styles/Carousel.module.scss';
 
 import Container from '../../container';
-import MenuTab from '../components/MobileMenuTab';
+import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
 
@@ -33,19 +38,21 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
     tabs: testTabsList,
     scrollText: testCreateAccountText
   };
- 
+
   return (
-    <div className={`${ cpnt.MOBILE_NAVIGATION  } noselect`} >
-      <Container main parent={ cpnt.MOBILE_NAVIGATION } >
+    <div className={`${ mainStyles.wrapper } noselect`} >
+      <Container main styles={ mainStyles } >
         <MenuTab 
-          parent={ cpnt.MOBILE_NAVIGATION } 
+          tabStyle={ tabStyles }
+          menuStyle={ menuStyles }
+          carouselStyle={ carouselStyles } 
           title={'Menu'}
           menu={ menu } />
         <Logo 
-          parent={ cpnt.MOBILE_NAVIGATION } 
+          styles={ mainStyles } 
           text={'ASTORIA'}
           link={ link.HOME } />     
-        <div className={`${ cpnt.MOBILE_NAVIGATION }__icons`} >
+        <div className={ mainStyles.icons }>
         {
           testIconData.map((icon: _Icon, index: number) => {
             const key = index + 1;
@@ -53,7 +60,7 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
               <Icon 
                 key={ index }
                 index={ key }
-                parent={`${ cpnt.MOBILE_NAVIGATION }__icons`} 
+                styles={ mainStyles }
                 link={ icon.link as string }
                 src={ icon.src as string }
                 alt={ icon.alt as string }

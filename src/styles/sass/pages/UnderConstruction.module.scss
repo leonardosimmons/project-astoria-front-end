@@ -1,6 +1,94 @@
-.layout 
+
+.page
 {
   max-width: 216rem;
   margin: 0 auto;
 }
 
+.nav
+{
+  display: none;
+}
+
+.main 
+{
+  height: 101vh;
+}
+
+.mainContainer
+{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--grey-300);
+
+  @media only screen and (min-width: 48em)
+  {
+    justify-content: flex-end;
+    background-image: url('/images/error/site-construction-huge.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.contentBox
+{
+  height: 70%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin: 1rem;
+
+  @media only screen and (min-width: 48em) { width: 50%; margin: 0; }  // 768px
+  @media only screen and (min-width: 60.25em) { width: 45%; }          // 964px
+  @media only screen and (min-width: 64em) { width: 45%; margin-right: 3rem; } // 1024px
+}
+
+.mainHeading
+{
+  font-size: 2.75rem;   
+  font-weight: 600;
+
+  @media only screen and (min-width: 25.93em) { font-size: 3.85rem; }  // 415px
+  @media only screen and (min-width: 71.44em) { font-size: 6rem; }  // 1143px 
+}
+
+.textOne 
+{
+  margin-top: 1rem;
+}
+
+.textOne.textTwo
+{
+  font-size: 1.2rem;
+  @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
+  @media only screen and (min-width: 25.93em) { font-size: 1.65rem; }    // 415px
+  @media only screen and (min-width: 48em) { font-size: 1.45rem; }       // 768px
+  @media only screen and (min-width: 63.5em) { font-size: 1.65rem; }     // 1024px
+  @media only screen and (min-width: 71.44em)  { font-size: 1.85rem; }   // 1143px
+  @media only screen and (min-width: 105.125em) { font-size: 2.25rem; }  // 1682px 
+}
+
+.btn
+{
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+
+  border-radius: .1rem;
+
+  background-color: var(--grey-600);
+
+  font-size: 1.65rem;
+  @media only screen and (min-width: 63.5em) { font-size: 1.8rem; background-color: var(--grey-300); }  // 1024px
+  @media only screen and (min-width: 105.125em) { font-size: 2rem; }  // 1682px 
+}

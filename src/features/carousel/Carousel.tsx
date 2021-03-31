@@ -9,6 +9,7 @@ type Props = {
   parent?: string;
   autoPlay?: number;
   slides?: [];
+  styles?: any;
 };
 
 const initialState: CarouselContext = {
@@ -21,7 +22,7 @@ const initialState: CarouselContext = {
   height: parseInt(Base.height),
 };
 
-const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, children }):JSX.Element => {
+const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, styles, children }):JSX.Element => {
   const [ context, dispatch ] = React.useReducer(carouselReducer, initialState);
 
   /* --------------------  WIDTH  -------------------- */ 
@@ -117,7 +118,7 @@ const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, ch
 
   /* ---------------------  RENDER  --------------------- */
   return (
-    <div className={`${ parent }__carousel--container carousel`}>
+    <div className={`${ styles && styles.container } ${ parent }__carousel--container carousel`}>
       <CarouselContent
         width={ context.width }
         translate={ context.translate }

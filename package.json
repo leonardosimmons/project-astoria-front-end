@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/leonardosimmons/project-astoria-front-end#readme",
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "loglevel": "^1.7.1",

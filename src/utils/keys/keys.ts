@@ -6,6 +6,7 @@ export enum cpnt {
   MOBILE_NAVIGATION = 'mobile-navigation',
 };
 
+
 export enum page {
   HOME = 'home',
   UNDER_CONSTRUCTION = 'under-construction',
@@ -24,5 +25,6 @@ export enum link {
 
 export enum css {
   DESKTOP_NAVIGATION = '.desktop-navigation',
+  DESKTOP_NAVBAR = '#desktop-navbar',
   TOP_PAGE_PIXEL_ANCHOR = '#top-of-site-pixel-anchor'
 };
