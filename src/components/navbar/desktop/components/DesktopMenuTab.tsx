@@ -17,7 +17,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   return (
-    <div className={ styles && styles.tabs }>
+    <div className={ styles && styles.tabs || '' }>
     {
       tabs.map((tab: NavbarMenuTab, index: number) => {
         const key = index + 1;

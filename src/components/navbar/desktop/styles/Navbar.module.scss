@@ -1,16 +1,15 @@
 .wrapper
 {
-  height: 10rem;
   max-width: 216rem;
   width: 100%;
 
   display: none;
   position: fixed;
 
-  padding: .25rem 1rem;
+  padding: 0 1rem;
   z-index: 200;
 
-  transition: all .3s;
+  transition: all .5s;
 
   color: var(--white);
   background-image: linear-gradient(

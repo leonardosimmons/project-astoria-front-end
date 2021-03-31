@@ -36,11 +36,13 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element 
         </div>
         <div className={ menuStyles.wrapper || '' }>
           <Container styles={ menuStyles }>
-            <Logo 
-              classes={'logoFont'}
-              styles={ menuStyles } 
-              text={ config?.menu.logo.text as string }
-              link={ config?.menu.logo.link as string } />
+            <div id="desktop-logo">
+              <Logo 
+                classes={'logoFont'}
+                styles={ menuStyles } 
+                text={ config?.menu.logo.text as string }
+                link={ config?.menu.logo.link as string } />
+            </div>
             <MenuTab
               right
               column 

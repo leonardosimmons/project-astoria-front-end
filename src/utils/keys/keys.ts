@@ -26,5 +26,6 @@ export enum link {
 export enum css {
   DESKTOP_NAVIGATION = '.desktop-navigation',
   DESKTOP_NAVBAR = '#desktop-navbar',
+  DESKTOP_LOGO = '#desktop-logo',
   TOP_PAGE_PIXEL_ANCHOR = '#top-of-site-pixel-anchor'
 };

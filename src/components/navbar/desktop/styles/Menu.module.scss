@@ -16,10 +16,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  margin-top: 1rem;
 }
 
+.logoBox {
+  transition: all .3s;
+}
 
 .logo 
 {
@@ -67,7 +68,7 @@
 .contentBox
 {
   position: relative;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .logoBox:hover + .tabs 
