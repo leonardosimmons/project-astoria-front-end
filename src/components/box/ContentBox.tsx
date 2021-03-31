@@ -5,11 +5,7 @@ type Props = BaseOptions;
 const ContentBox: React.FunctionComponent<Props> = ({ parent, classes, index, styles, children}): JSX.Element => {
   return (
     <div className={`
-      ${ styles && styles.contentBox }
-      ${ index ? styles && `${ styles.contentBox }0${ index }` : '' }
-      ${ classes || '' }
-      ${ parent || '' }--box 
-      ${ index ? `${ parent }--box-${ index }` : ''} 
+      ${ styles && styles.contentBox } ${ classes || '' } ${ parent ? parent + '--box' : '' } ${ parent ? index ? `${ parent }--box-${ index }` : '' : ''} 
     `}>
       { children }
     </div>

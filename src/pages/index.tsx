@@ -12,8 +12,6 @@ import Container from '../components/container';
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade onScroll
 
-console.log(data)
-
   return (
     <Layout 
       parent={ page.HOME } 

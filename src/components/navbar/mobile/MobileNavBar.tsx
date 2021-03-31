@@ -21,7 +21,7 @@ type Props = {
 
 const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div className={`${ mainStyles.wrapper || '' } noselect`} >
+    <div id="mobile-navbar" className={`${ mainStyles.wrapper || '' } noselect`} >
       <Container main styles={ mainStyles } >
         <MenuTab 
           tabStyle={ tabStyles }

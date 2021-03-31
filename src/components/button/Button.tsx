@@ -23,7 +23,7 @@ const Button: React.FunctionComponent<Props> = (
 ): JSX.Element => {
   return (
     toggle ? 
-    <div className={`${ styles && styles.toggleBox } ${ parent }--toggle-button ${ classes }`} >
+    <div className={`${ styles && styles.toggleBox } ${ parent ? parent + '--toggle-button' : ''} ${ classes }`} >
       <label 
         htmlFor={`${ toggleFor }__toggle`}
         className={`${ styles && styles.toggleLabel }  ${ toggleClasses}`} 
@@ -33,7 +33,7 @@ const Button: React.FunctionComponent<Props> = (
     </div>
     :
     <Link href={ link || ''  }>
-      <button className={`${ styles && styles.btn } ${ parent || '' }--button ${ classes || '' }`}>
+      <button className={`${ styles && styles.btn } ${ parent ? parent + '--button' : ''} ${ classes || '' }`}>
         { text as string }
       </button>
     </Link>

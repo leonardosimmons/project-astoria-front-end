@@ -28,15 +28,15 @@ const BaseLogo: React.FunctionComponent<Props> = (
   }
 ): JSX.Element => {
   return (
-    <div className={`${ styles && styles.logoBox } ${ index ? styles && `${ styles.logoBox }0${ index }` : ''} ${ parent }--logo-box`} >
+    <div className={`${ styles && styles.logoBox || '' } ${ parent ? parent + '--logo-box' : ''}`} >
       <Link href={ link as string }>
         {
           text ?
-          <a className={`${ styles && styles.logo } ${ index ? styles && `${ styles.logo }0${ index }` : ''} ${ parent }--logo ${ classes || '' }`}>{ text }</a>
+          <a className={`${ styles && styles.logo } ${ parent ? parent + '--logo' : ''} ${ classes || '' }`}>{ text }</a>
           :
           src ?
           <LogoImage
-            className={`${ styles && styles.logo } ${ index ? styles && `${ styles.logo }0${ index }` : ''} ${ parent }--logo ${ index && `${ parent }--logo-${ index }`} ${ classes }`} 
+            className={`${ styles && styles.logo } ${ parent ? parent + '--logo' : ''} ${ index && `${ parent ? parent + '--logo-' + index : '' }`} ${ classes }`} 
             layout={ layout }
             quality={ quality }
             src={ src as string } 

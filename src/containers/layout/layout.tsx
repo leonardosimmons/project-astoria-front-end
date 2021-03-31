@@ -43,13 +43,13 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="backdrop-root" />
       <div id="modal-root" />
       <div id="app" className={`${ styles.page || '' } ${ classes }`}>
-        <nav className={`${ styles.nav || '' } ${ parent }__nav ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
+        <nav className={`${ styles.nav || '' } ${ parent ? parent + '__nav' : ''} ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
           { desktopNav || <DesktopNavBar config={ desktopData } /> }
           { mobileNav || <MobileNavbar config={ mobileData }/> }
         </nav>
-        { header && <header className={`${ styles.header || '' } ${ parent }__header`}>{ header }</header> }
-        { children && <main className={`${ styles.main || '' } ${ parent }__main`}>{ children }</main> }
-        { footer && <footer className={`${ styles.footer || '' } ${ parent }__footer`}>{ footer }</footer> }
+        { header && <header className={`${ styles.header || '' } ${ parent ? parent + '__header' : ''}`}>{ header }</header> }
+        { children && <main className={`${ styles.main || '' } ${ parent ? parent + '__main' : ''}`}>{ children }</main> }
+        { footer && <footer className={`${ styles.footer || '' } ${ parent ? parent + '__footer' : ''}`}>{ footer }</footer> }
         <div id="top-of-site-pixel-anchor" />
       </div>
     </React.Fragment>
