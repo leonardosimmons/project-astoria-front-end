@@ -49,8 +49,8 @@ export default UnderConstructionPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get('http://localhost:3000/api/navbar/desktop', { headers: { 'Content-Type': 'application/json' } }),
-    axios.get('http://localhost:3000/api/navbar/mobile', { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
   .then(axios.spread((desktop, mobile) => { 
     if(desktop.status === 200 && mobile.status === 200)
