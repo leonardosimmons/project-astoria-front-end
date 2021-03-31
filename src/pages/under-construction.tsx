@@ -1,5 +1,6 @@
 
 import React from 'react';
+import axios from 'axios';
 import { page, link } from '../utils/keys';
 
 import Layout from '../containers/layout';
@@ -10,22 +11,14 @@ import Container from '../components/container';
 import style from '../styles/sass/pages/UnderConstruction.module.scss';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-export const getStaticProps: GetStaticProps  = async () => {
-  const styles = style;
-
-  return {
-    props: { styles }
-  }
-};
-
-function UnderConstructionPage({ styles }: InferGetStaticPropsType<typeof getStaticProps>) {
+function UnderConstructionPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout
       styles={ style } 
       parent={ page.UNDER_CONSTRUCTION } 
       title={'Under Construction...'}
-      desktopData={ null }
-      mobileData={ null }
+      desktopData={ data.desktop }
+      mobileData={ data.mobile }
     >
       <Container main styles={ style } parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox
@@ -53,3 +46,31 @@ function UnderConstructionPage({ styles }: InferGetStaticPropsType<typeof getSta
 };
 
 export default UnderConstructionPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await axios.all([
+    axios.get('http://localhost:3000/api/navbar/desktop', { headers: { 'Content-Type': 'application/json' } }),
+    axios.get('http://localhost:3000/api/navbar/mobile', { headers: { 'Content-Type': 'application/json' } }),
+  ])
+  .then(axios.spread((desktop, mobile) => { 
+    if(desktop.status === 200 && mobile.status === 200)
+    {
+      const dataToken = {
+        desktop: desktop.data,
+        mobile: mobile.data
+      };
+
+      return dataToken;
+    }
+  }))
+  .catch(err => { throw new Error(`Error: ${ err.message }`) });
+
+  return {
+    props: {
+      data: {
+        desktop: data?.desktop,
+        mobile: data?.mobile
+      }
+    }
+  };
+};

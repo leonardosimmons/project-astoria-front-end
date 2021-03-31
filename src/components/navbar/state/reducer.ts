@@ -1,9 +1,11 @@
 
-import { NavbarContext } from "../../../utils/types/types";
+import { NavbarContext } from "../../../utils/types";
 import { NavBarActions, SET_NAVBAR_MENU } from "./action-types";
 
 const navbarReducerDefaultState: NavbarContext = {
-  menu: [],
+  menu: {
+    tabs: [],
+  },
 };
 
 const navbarReducer = (state = navbarReducerDefaultState, action: NavBarActions): NavbarContext => 
@@ -13,7 +15,9 @@ const navbarReducer = (state = navbarReducerDefaultState, action: NavBarActions)
     case SET_NAVBAR_MENU:
       return {
         ...state,
-        menu: action.payload.menu
+        menu: {
+          tabs: action.payload.menu
+        }
       };
     default:
       return state;

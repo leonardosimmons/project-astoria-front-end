@@ -12,6 +12,8 @@ import Container from '../components/container';
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade onScroll
 
+console.log(data)
+
   return (
     <Layout 
       parent={ page.HOME } 
@@ -32,8 +34,8 @@ export default Index;
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get('http://localhost:3000/api/navbar/desktop', { headers: { 'Content-Type': 'application/json' } }),
-    axios.get('http://localhost:3000/api/navbar/mobile', { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
   .then(axios.spread((desktop, mobile) => { 
     if(desktop.status === 200 && mobile.status === 200)
