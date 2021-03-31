@@ -4,7 +4,7 @@ import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
 import { css, page } from '../utils/keys';
 import axios from 'axios';
 
-import styles from '../styles/sass/pages/Index.module.scss';
+import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -22,6 +22,9 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       styles={ styles }
       desktopData={ data.desktop }
       mobileData={ data.mobile }
+      header={
+        <div><h1 className={` text-9xl`}>Test Header</h1></div>
+      }
     >
       <Container main parent={ page.HOME }>
         <p className="text-3xl noselect">Home Page</p>

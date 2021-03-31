@@ -8,7 +8,7 @@ import Button from '../components/button';
 import ContentBox from '../components/box';
 import TextContent from '../components/text';
 import Container from '../components/container';
-import style from '../styles/sass/pages/UnderConstruction.module.scss';
+import style from '../styles/sass/pages/underConstruction/UnderConstruction.module.scss';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 function UnderConstructionPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) {

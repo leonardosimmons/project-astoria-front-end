@@ -41,5 +41,6 @@ yarn-error.log*
 *.jpg
 *.jpeg
 *.svg
+*.mp4
 favicon.ico
 temp.tsx

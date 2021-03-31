@@ -14,8 +14,8 @@
   color: var(--white);
   background-image: linear-gradient(
     to bottom,
-    rgba(#000000, 0.45),
-    rgba(#000000, 0.01));
+    rgba(#000000, 0.35),
+    rgba(#000000, 0));
 
   &:hover {
     background-color: var(--black);
