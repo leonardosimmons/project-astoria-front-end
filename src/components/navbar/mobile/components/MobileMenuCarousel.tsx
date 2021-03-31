@@ -1,11 +1,11 @@
 
 import React from 'react';
-import { cpnt } from '../../../../utils/keys/keys';
+import { cpnt } from '../../../../utils/keys';
 
-import Text from '../../../text/Text';
-import Button from '../../../button/Button';
-import Carousel from '../../../../features/carousel/Carousel';
-import { BaseOptions } from '../../../../utils/types/types';
+import Text from '../../../text';
+import Button from '../../../button';
+import Carousel from '../../../../features/carousel';
+import { BaseOptions } from '../../../../utils/types';
 
 type Props = {
   parent: string;

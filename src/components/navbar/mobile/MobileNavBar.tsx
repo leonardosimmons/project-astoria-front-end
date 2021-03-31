@@ -1,5 +1,5 @@
 import React from 'react';
-import { cpnt, link } from '../../../utils/keys';
+import { link } from '../../../utils/keys';
 import { Icon as _Icon, NamedLink, NavbarMobileMenu } from '../../../utils/types';
 
 import mainStyles from './styles/Navbar.module.scss';
@@ -12,8 +12,14 @@ import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
 
+type Props = {
+  config: {
+    icons: _Icon[];
+    menu: NavbarMobileMenu;
+  }
+}
 
-const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
+const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   const testIconData: _Icon[] = [ 
     { link: '/under-construction', src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
     { link: '/under-construction', src: '/icons/svg/small/profile.svg', alt: 'test', width: 22.5, height: 22.5  },
@@ -38,6 +44,8 @@ const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
     tabs: testTabsList,
     scrollText: testCreateAccountText
   };
+
+  console.log(config)
 
   return (
     <div className={`${ mainStyles.wrapper } noselect`} >

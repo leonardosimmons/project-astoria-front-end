@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import { AppState } from '../../redux-store/reducers';
-import { useSelector } from 'react-redux';
 import { page } from '../../utils/keys/keys';
 
 import DesktopNavBar from '../../components/navbar/desktop/DesktopNavBar';
@@ -12,6 +10,8 @@ type Props = {
   title: string;
   styles: any;
   classes?: string;
+  desktopData: any;
+  mobileData: any;
   desktopNav?: JSX.Element | HTMLElement;
   mobileNav?: JSX.Element | HTMLElement;
   header?: JSX.Element | HTMLElement;
@@ -22,8 +22,10 @@ const Layout: React.FunctionComponent<Props> = (
   { 
     parent,
     title,
-    desktopNav, 
+    desktopNav,
+    desktopData, 
     mobileNav, 
+    mobileData,
     header,
     footer,
     styles,
@@ -31,7 +33,6 @@ const Layout: React.FunctionComponent<Props> = (
     children 
   }
 ): JSX.Element => {
-
   return (
     <React.Fragment>
       <Head>
@@ -43,8 +44,8 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="modal-root" />
       <div id="app" className={`${ styles.page || '' } ${ classes }`}>
         <nav className={`${ styles.nav || '' } ${ parent }__nav ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
-          { desktopNav || <DesktopNavBar /> }
-          { mobileNav || <MobileNavbar /> }
+          { desktopNav || <DesktopNavBar config={ desktopData } /> }
+          { mobileNav || <MobileNavbar config={ mobileData }/> }
         </nav>
         { header && <header className={`${ styles.header || '' } ${ parent }__header`}>{ header }</header> }
         { children && <main className={`${ styles.main || '' } ${ parent }__main`}>{ children }</main> }

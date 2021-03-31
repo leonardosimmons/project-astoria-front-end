@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { BaseOptions, NamedLink, NavbarMobileMenu } from "../../../../utils/types/types";
+import Link from 'next/link';
+import { BaseOptions, NamedLink, NavbarMobileMenu } from '../../../../utils/types';
 
-import Container from "../../../container/Container";
-import ExitButton from "../../../button/Button";
+import Container from '../../../container';
+import ExitButton from '../../../button';
 import MenuCarousel from './MobileMenuCarousel';
 
 type Props = {

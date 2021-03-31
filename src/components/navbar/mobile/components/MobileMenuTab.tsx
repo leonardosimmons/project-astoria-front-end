@@ -1,5 +1,5 @@
-import { BaseOptions, NavbarMobileMenu } from "../../../../utils/types/types";
-import Input from "../../../input/Input";
+import { BaseOptions, NavbarMobileMenu } from '../../../../utils/types';
+import Input from '../../../input';
 import NavigationMenu from './MobileMenu';
 
 type Props = {

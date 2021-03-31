@@ -1,7 +1,7 @@
 
 import useSWR from 'swr';
-import { BaseOptions, NavbarDesktopData } from '../../../utils/types';
-import { cpnt, css } from '../../../utils/keys';
+import axios from 'axios';
+import { NavbarDesktopData, NavbarMenuTab, NavbarMenuTabToken, PageLink } from '../../../utils/types';
 
 import navbarStyles from './styles/Navbar.module.scss';
 import infoStyles from './styles/Information.module.scss';
@@ -11,8 +11,18 @@ import profileStyles from './styles/Profile.module.scss';
 import Logo from '../../logo';
 import Container from '../../container';
 import MenuTab from './components/DesktopMenuTab';
-import axios from 'axios';
 
+
+type Props = {
+  config: {
+    info: NavbarMenuTabToken[];
+    menu: {
+      logo: PageLink;
+      tabs: NavbarMenuTabToken[];
+    };
+    profile:  NavbarMenuTab[];
+  };
+};
 
 async function fetcher(url: string): Promise<NavbarDesktopData>
 {
@@ -29,13 +39,17 @@ async function fetcher(url: string): Promise<NavbarDesktopData>
 const url = 'http://localhost:3000/api/navbar/desktop';
 
 
-const DesktopNavBar: React.FunctionComponent = (): JSX.Element => {
+const DesktopNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+
+  console.log(config)
+
   const { data, error } = useSWR(url, fetcher);
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
   const { info, menu, profile } = data as NavbarDesktopData;
+
 
   return (
     <div id="desktop-navbar" className={`${ navbarStyles.wrapper } noselect`}>

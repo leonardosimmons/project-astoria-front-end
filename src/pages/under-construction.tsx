@@ -24,6 +24,8 @@ function UnderConstructionPage({ styles }: InferGetStaticPropsType<typeof getSta
       styles={ style } 
       parent={ page.UNDER_CONSTRUCTION } 
       title={'Under Construction...'}
+      desktopData={ null }
+      mobileData={ null }
     >
       <Container main styles={ style } parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox

@@ -1,5 +1,5 @@
-import { BaseOptions, Direction, NavbarMenuTab } from '../../../../utils/types/types';
-import Icon from '../../../icon/Icon';
+import { BaseOptions, Direction, NavbarMenuTab } from '../../../../utils/types';
+import Icon from '../../../icon';
 
 type Props = {
   tabs: NavbarMenuTab[];
@@ -7,7 +7,6 @@ type Props = {
 
 const DesktopMenuTab: React.FunctionComponent<Props> = (
   { 
-    parent,
     styles,
     classes, 
     tabs, 
