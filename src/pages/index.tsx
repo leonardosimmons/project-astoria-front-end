@@ -1,8 +1,9 @@
 
-import axios from 'axios';
-import { css, page } from '../utils/keys';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
+import { css, page } from '../utils/keys';
+import axios from 'axios';
+
 import styles from '../styles/sass/pages/Index.module.scss';
 
 import Layout from '../containers/layout';
@@ -23,7 +24,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       mobileData={ data.mobile }
     >
       <Container main parent={ page.HOME }>
-        <p className="text-6xl noselect">Home Page</p>
+        <p className="text-3xl noselect">Home Page</p>
       </Container>
     </Layout>
   );
