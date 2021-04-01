@@ -8,6 +8,7 @@ import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
+import IndexHeader from '../containers/header/index';
 
 
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -23,7 +24,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       desktopData={ data.desktop }
       mobileData={ data.mobile }
       header={
-        <div><h1 className={` text-9xl`}>Test Header</h1></div>
+        <IndexHeader />
       }
     >
       <Container main parent={ page.HOME }>

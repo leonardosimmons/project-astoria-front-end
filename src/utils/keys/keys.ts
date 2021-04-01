@@ -2,6 +2,7 @@
 export enum cpnt {
   BACKDROP = 'backdrop',
   DESKTOP_NAVIGATION = 'desktop-navigation',
+  INDEX_HEADER = 'index-header',
   MODAL = 'modal',
   MOBILE_NAVIGATION = 'mobile-navigation',
 };
