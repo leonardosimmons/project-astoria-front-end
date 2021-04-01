@@ -1,17 +1,26 @@
 
 export enum cpnt {
+  ARROW = 'arrow',
+  ARROWS = 'arrows',
   BACKDROP = 'backdrop',
   DESKTOP_NAVIGATION = 'desktop-navigation',
+  DOT = 'dot',
+  DOTS = 'dots',
   INDEX_HEADER = 'index-header',
   MODAL = 'modal',
   MOBILE_NAVIGATION = 'mobile-navigation',
 };
 
+export enum key {
+  RIGHT = 'right',
+  LEFT = 'left'
+};
 
 export enum page {
   HOME = 'home',
   UNDER_CONSTRUCTION = 'under-construction',
 };
+
 
 export enum link {
   GIFTS = '/gifts',

@@ -12,10 +12,12 @@ const Video: React.FunctionComponent<Props> = ({ src }): JSX.Element => {
       style={{
         height: '100%',
         width: '100%',
+        maxWidth: '216rem',
         position: 'absolute',
         top: 0,
         left: 0,
         objectFit: 'cover',
+        overflow: "hidden"
       }}
     >
       <source src={ src } />

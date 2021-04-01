@@ -13,7 +13,6 @@ type Props = {
 
 export enum Base 
 {
-  height = '20',
   display = 'flex'
 };
 
@@ -21,7 +20,7 @@ const initialContentContext: CarouselContentContext = {
   transform: '',
   transition: '',
   width: '',
-  height: Base.height,
+  height: '0',
   display: Base.display
 }
 
@@ -32,7 +31,7 @@ const CarouselContent: React.FunctionComponent<Props> = (
     transition,
     slideCount,
     dotCount,
-    height = Base.height,
+    height,
     children
   }
 ): JSX.Element => {
@@ -66,7 +65,7 @@ const CarouselContent: React.FunctionComponent<Props> = (
     const status: CarouselContentContext = {
       transform: `translateX(-${ translate }px)`,
       transition: `transform ease-out ${ transition }s`,
-      height: `${ height }rem`,
+      height: `${ height ? height + 'rem' : '100%'}`,
       width: `${ width * React.Children.count(children) }px`,
       display: context.display,
     };

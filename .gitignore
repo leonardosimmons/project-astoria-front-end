@@ -39,6 +39,7 @@ yarn-error.log*
 /src/*.txt
 *.png
 *.jpg
+*.JPG
 *.jpeg
 *.svg
 *.mp4

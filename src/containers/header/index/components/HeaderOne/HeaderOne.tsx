@@ -24,7 +24,8 @@ const HeaderOne: React.FunctionComponent<Props> = (): JSX.Element => {
             styles={ styles } 
             mainHeading={'EPILOGUE'}/>
           <Button
-            styles={ styles } 
+            styles={ styles }
+            classes={`btn-hoverConfig btn-activeFocus relative`} 
             text={'SHOP NOW'}
             link={'/under-construction'}/>
         </ContentBox>

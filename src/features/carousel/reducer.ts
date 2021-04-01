@@ -1,6 +1,6 @@
 
 import { CarouselContext } from '../../utils/types/types';
-import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT, CarouselActions } from './action-types';
+import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT, CarouselActions, RESET_POSITION } from './action-types';
 
 export default function carouselReducer(state: CarouselContext, action: CarouselActions): CarouselContext
 {
@@ -32,7 +32,13 @@ export default function carouselReducer(state: CarouselContext, action: Carousel
         ...state,
         activeIndex: 0,
         translate: 0
-      }
+      };
+    case RESET_POSITION:
+      return {
+        ...state,
+        translate: 0,
+        activeIndex: 0
+      };
     case SET_WIDTH:
       const width = action.payload.width;
       return {

@@ -24,7 +24,8 @@ const HeaderTwo: React.FunctionComponent<Props> = (): JSX.Element => {
             styles={ styles } 
             mainHeading={'SPRING 2021'}/>
           <Button
-            styles={ styles } 
+            styles={ styles }
+            classes={`btn-hoverConfig btn-activeFocus relative`}  
             text={'WHAT\'S NEW'}
             link={'/under-construction'}/>
         </ContentBox>

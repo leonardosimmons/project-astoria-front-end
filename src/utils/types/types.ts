@@ -1,5 +1,16 @@
 import { ImageLoader } from "next/image";
 
+//** ------------------------  ARROW  ------------------------- **//
+export type Arrow = {
+  container: {
+    right: string;
+    left: string;
+  };
+  arrow: {
+    transform: string;
+  };
+};
+
 //** -------------------------  BANK  ------------------------- **//
 export type DataBank = {
   navbar: NavbarContext
@@ -29,6 +40,13 @@ export type CarouselContentContext = {
   transform: string;
   transition: string;
   readonly display: string;
+};
+
+
+//** --------------------------  DOT  -------------------------- **/
+export type Dot = {
+  active: boolean;
+  index: number;
 };
 
 

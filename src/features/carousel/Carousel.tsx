@@ -1,15 +1,20 @@
 import React from 'react';
-
-import carouselReducer from './reducer';
-import { CarouselContext } from '../../utils/types';
-import CarouselContent, { Base } from './CarouselContent';
+import { key } from '../../utils/keys';
 import { NEXT, PREV, FIRST_SLIDE, LAST_SLIDE, SET_WIDTH, SET_SLIDE_COUNT, SET_DOT_COUNT } from './action-types';
+import { CarouselContext } from '../../utils/types';
+import carouselReducer from './reducer';
+
+import CarouselContent, { Base } from './CarouselContent';
+import Arrow from './components/arrows';
+import CarouselDots from './components/dots/Dots';
 
 type Props = {
-  parent?: string;
   autoPlay?: number;
   slides?: [];
   styles?: any;
+  height?: number;
+  arrows?: boolean;
+  dots?: boolean;
 };
 
 const initialState: CarouselContext = {
@@ -19,20 +24,40 @@ const initialState: CarouselContext = {
   slideCount: 0,
   dotCount: [],
   width: 0,
-  height: parseInt(Base.height),
+  height: 0,
 };
 
-const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, styles, children }):JSX.Element => {
+const Carousel: React.FunctionComponent<Props> = (
+  { 
+    autoPlay, 
+    slides, 
+    styles,
+    height,
+    arrows,
+    dots, 
+    children 
+  }
+):JSX.Element => {
   const [ context, dispatch ] = React.useReducer(carouselReducer, initialState);
 
   /* --------------------  WIDTH  -------------------- */ 
   // sets the width of the carousel (based on user screen size)
   React.useEffect(() => 
   {
+    const getWidth = () => {
+      const current = window.innerWidth;
+
+      if (window.innerWidth > 2160) 
+        return 2160;
+
+      return current;  
+    };
+
     dispatch({ 
       type: SET_WIDTH, 
-      payload: { width: window.innerWidth }
+      payload: { width: getWidth() }
     });
+
 
     return () => {
       dispatch({ 
@@ -118,8 +143,9 @@ const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, st
 
   /* ---------------------  RENDER  --------------------- */
   return (
-    <div className={`${ styles && styles.container } ${ parent }__carousel--container carousel`}>
+    <div className={`${ styles && styles.container || '' } carousel overflow-hidden noselect`}>
       <CarouselContent
+        height={ height }
         width={ context.width }
         translate={ context.translate }
         transition={ context.transition }
@@ -128,9 +154,22 @@ const Carousel: React.FunctionComponent<Props> = ({ parent, autoPlay, slides, st
       >
         { children }
       </CarouselContent>
-      {/* 
-        ADD arrows/dots HERE 
-      */}
+      <React.Fragment>
+        {
+          arrows &&
+          <>
+            <Arrow direction={ key.LEFT } index={ context.activeIndex } clicked={ prevSlide }/>
+            <Arrow direction={ key.RIGHT } index={ context.activeIndex } clicked={ nextSlide }/>
+          </>
+        }
+        {
+          dots &&
+          <CarouselDots 
+            slides={ context.dotCount }
+            activeIndex={ context.activeIndex }
+          />
+        }
+      </React.Fragment>
     </div>
   );
 };

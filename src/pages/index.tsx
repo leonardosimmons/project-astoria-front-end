@@ -9,6 +9,9 @@ import styles from '../styles/sass/pages/index/Index.module.scss';
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import IndexHeader from '../containers/header/index';
+import Carousel from '../features/carousel';
+import HeaderOne from '../containers/header/index/components/HeaderOne';
+import HeaderTwo from '../containers/header/index/components/HeaderTwo';
 
 
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -24,7 +27,13 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       desktopData={ data.desktop }
       mobileData={ data.mobile }
       header={
-        <IndexHeader />
+        <Carousel
+          arrows
+          dots
+          autoPlay={ 12.5 }>
+          <HeaderOne />
+          <HeaderTwo />
+        </Carousel>
       }
     >
       <Container main parent={ page.HOME }>

@@ -3,6 +3,7 @@ export const NEXT = 'next_carousel_slide';
 export const PREV = 'prev_carousel_slide';
 export const FIRST_SLIDE = 'first_carousel_slide';
 export const LAST_SLIDE = 'last_carousel_slide';
+export const RESET_POSITION = 'reset_position';
 export const SET_WIDTH = 'set_carousel_width';
 export const SET_SLIDE_COUNT = 'set_carousel_slides';
 export const SET_DOT_COUNT = 'set_carousel_dots';
@@ -26,6 +27,10 @@ export type LastCarouselSlideAction = {
   type: typeof LAST_SLIDE;
 };
 
+export type ResetCarouselPosition = {
+  type: typeof RESET_POSITION;
+};
+
 export type SetCarouselWidthAction = {
   type: typeof SET_WIDTH;
   payload: {
@@ -47,4 +52,4 @@ export type SetCarouselDotCountAction = {
   };
 };
 
-export type CarouselActions = NextCarouselSlideAction | PrevCarouselSlideAction | FirstCarouselSlideAction | LastCarouselSlideAction | SetCarouselWidthAction | SetCarouselSlideCountAction | SetCarouselDotCountAction;
+export type CarouselActions = NextCarouselSlideAction | PrevCarouselSlideAction | FirstCarouselSlideAction | LastCarouselSlideAction | ResetCarouselPosition | SetCarouselWidthAction | SetCarouselSlideCountAction | SetCarouselDotCountAction;
