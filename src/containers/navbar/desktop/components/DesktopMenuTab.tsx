@@ -1,5 +1,5 @@
 import { BaseOptions, Direction, NavbarMenuTab } from '../../../../utils/types';
-import Icon from '../../../icon';
+import Icon from '../../../../components/icon';
 
 type Props = {
   tabs: NavbarMenuTab[];

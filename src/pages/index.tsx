@@ -1,9 +1,9 @@
 
+import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
 import { css, page } from '../utils/keys';
-import axios from 'axios';
-
+ 
 import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
@@ -59,6 +59,8 @@ export const getStaticProps: GetStaticProps = async () => {
         desktop: data?.desktop,
         mobile: data?.mobile
       }
-    }
+    },
+    revalidate: 60
   };
 };
+ 

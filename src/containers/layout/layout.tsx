@@ -2,8 +2,8 @@ import Head from 'next/head';
 import React from 'react';
 import { page } from '../../utils/keys/keys';
 
-import DesktopNavBar from '../../components/navbar/desktop/DesktopNavBar';
-import MobileNavbar from '../../components/navbar/mobile/MobileNavBar';
+import DesktopNavBar from '../navbar/desktop';
+import MobileNavbar from '../navbar/mobile';
 
 type Props = {
   parent: string;

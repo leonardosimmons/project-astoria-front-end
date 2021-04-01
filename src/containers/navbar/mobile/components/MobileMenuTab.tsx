@@ -1,5 +1,5 @@
 import { BaseOptions, NavbarMobileMenu } from '../../../../utils/types';
-import Input from '../../../input';
+import Input from '../../../../components/input';
 import NavigationMenu from './MobileMenu';
 
 type Props = {

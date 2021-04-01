@@ -7,7 +7,7 @@ import tabStyles from './styles/MenuTab.module.scss';
 import menuStyles from './styles/Menu.module.scss';
 import carouselStyles from './styles/Carousel.module.scss';
 
-import Container from '../../container';
+import Container from '../../../components/container';
 import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';

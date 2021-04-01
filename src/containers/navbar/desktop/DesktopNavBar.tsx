@@ -6,8 +6,8 @@ import infoStyles from './styles/Information.module.scss';
 import menuStyles from './styles/Menu.module.scss';
 import profileStyles from './styles/Profile.module.scss';
 
-import Logo from '../../logo';
-import Container from '../../container';
+import Logo from '../../../components/logo';
+import Container from '../../../components/container';
 import MenuTab from './components/DesktopMenuTab';
 
 

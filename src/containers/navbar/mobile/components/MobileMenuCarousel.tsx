@@ -2,8 +2,8 @@
 import React from 'react';
 import { cpnt } from '../../../../utils/keys';
 
-import Text from '../../../text';
-import Button from '../../../button';
+import Text from '../../../../components/text';
+import Button from '../../../../components/button';
 import Carousel from '../../../../features/carousel';
 import { BaseOptions } from '../../../../utils/types';
 

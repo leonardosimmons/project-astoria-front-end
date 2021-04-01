@@ -1,5 +1,5 @@
 
-import Container from '../../../container';
+import Container from '../../../../components/container';
 
 type Props = {
   styles: {
