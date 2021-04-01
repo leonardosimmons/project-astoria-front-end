@@ -143,7 +143,7 @@ const Carousel: React.FunctionComponent<Props> = (
 
   /* ---------------------  RENDER  --------------------- */
   return (
-    <div className={`${ styles && styles.container || '' } carousel overflow-hidden noselect`}>
+    <div className={`${ styles && styles.container || '' } carousel overflow-hidden noselect relative`}>
       <CarouselContent
         height={ height }
         width={ context.width }

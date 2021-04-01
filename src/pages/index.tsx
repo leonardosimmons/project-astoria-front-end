@@ -8,10 +8,10 @@ import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import IndexHeader from '../containers/header/index';
 import Carousel from '../features/carousel';
 import HeaderOne from '../containers/header/index/components/HeaderOne';
 import HeaderTwo from '../containers/header/index/components/HeaderTwo';
+import LoadSpinner from '../components/loader/spinner/LoadSpinner';
 
 
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -36,8 +36,9 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
         </Carousel>
       }
     >
-      <Container main parent={ page.HOME }>
+      <Container main parent={ page.HOME } classes={'relative'}>
         <p className="text-3xl noselect">Home Page</p>
+        <p> oranges</p>
       </Container>
     </Layout>
   );
