@@ -1,0 +1,36 @@
+.arrow {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  border-radius: 50%;
+  transition: transform ease-in 0.1s;
+  cursor: pointer;
+
+  color: var(--white);
+  background-color: transparent;
+
+  &:hover {
+    transform: translateY(-2);
+  }
+
+  & span {
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.left {
+  transform: rotate(180deg);
+}
+
+.right,
+.left {
+  font-size: 4.75rem;
+
+  z-index: 2;
+}
