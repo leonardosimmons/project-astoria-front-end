@@ -9,7 +9,7 @@ type Props = {
 
 const IndexHeader: React.FunctionComponent<Props> = (): JSX.Element => {
   return (
-    <Carousel autoPlay={ 6 }>
+    <Carousel autoPlay={ 10 }>
       <HeaderOne />
       <HeaderTwo />
     </Carousel>

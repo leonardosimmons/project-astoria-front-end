@@ -18,7 +18,7 @@ const HeaderTwo: React.FunctionComponent<Props> = (): JSX.Element => {
   return (
     <div id="index-main-header-one" className={ styles.wrapper }>
       <Container main styles={ styles }>
-          <Video src={'/videos/general/GolfModels01.mp4'} />
+        <Video src={'/videos/general/GolfModels01.mp4'} />
         <ContentBox styles={ styles }>
           <Text
             styles={ styles } 
