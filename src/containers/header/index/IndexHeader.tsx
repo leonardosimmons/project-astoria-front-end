@@ -2,6 +2,7 @@
 import Carousel from '../../../features/carousel';
 import HeaderOne from './components/HeaderOne';
 import HeaderTwo from './components/HeaderTwo';
+import HeaderThree from './components/HeaderThree';
 
 type Props = {
   autoplayLength?: number;
@@ -14,10 +15,11 @@ const IndexHeader: React.FunctionComponent<Props> = ({ arrows = true , dots = tr
     <Carousel
     arrows={ arrows }
     dots={ dots }
-    autoPlay={ autoplayLength }
+    //autoPlay={ autoplayLength }
   >
     <HeaderOne />
     <HeaderTwo />
+    <HeaderThree />
   </Carousel>
   );
 };
