@@ -70,13 +70,14 @@
   width: 13rem;
   padding: .75rem 1rem;
 
-  border: 1px solid var(--black);
+  border: .5px solid var(--black);
   background-color: var(--dark-grey-300);
 
   font-size: 1.4rem;
 
   @media only screen and (min-width: 64em) { 
-    width: 15rem;
+    width: 17rem;
     padding: 1rem 2rem; 
+    font-size: 1.6rem;
   }
 }
