@@ -1,4 +1,5 @@
 
+import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
@@ -8,11 +9,8 @@ import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import Carousel from '../features/carousel';
-import HeaderOne from '../containers/header/index/components/HeaderOne';
-import HeaderTwo from '../containers/header/index/components/HeaderTwo';
+import IndexHeader from '../containers/header/index';
 import Intro from '../components/intro/Intro';
-import React from 'react';
 
 
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -23,13 +21,13 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   /* -------------------  INTRO BOX  -------------------- */
   const [ introView, setIntroView ] = React.useState<boolean>(true);
-  const firstLoadRef = React.useRef<boolean>(false);
+  const firstLoadRef = React.useRef<boolean>(false); //! add to redux [ initLoad ]
 
   React.useEffect(() => {
     setTimeout(() => {
       firstLoadRef.current = true; 
       setIntroView(false); 
-    }, 4000);
+    }, 3000);
   }, []);
 
 
@@ -44,17 +42,8 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       mobileData={ data.mobile }
       header={
         <React.Fragment>
-          {
-            introView && !firstLoadRef.current &&
-            <Intro />
-          }
-          <Carousel
-            arrows
-            dots
-            autoPlay={ 12.5 }>
-            <HeaderOne />
-            <HeaderTwo />
-          </Carousel>
+          { introView && !firstLoadRef.current  && <Intro /> }
+          <IndexHeader autoplayLength={ 10 } />
         </React.Fragment>
       }
     >
@@ -68,6 +57,8 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
 
 export default Index;
 
+
+/* -----------------  STATIC GENERATION  ----------------- */
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -93,7 +84,6 @@ export const getStaticProps: GetStaticProps = async () => {
         mobile: data?.mobile
       }
     },
-    revalidate: 60
+    revalidate: 86400 // once a day
   };
 };
- 

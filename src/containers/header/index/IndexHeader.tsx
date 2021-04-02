@@ -1,18 +1,24 @@
 
-import Carousel from '../../../features/carousel/Carousel';
-import HeaderOne from './components/HeaderOne/HeaderOne';
+import Carousel from '../../../features/carousel';
+import HeaderOne from './components/HeaderOne';
 import HeaderTwo from './components/HeaderTwo';
 
 type Props = {
-
+  autoplayLength?: number;
+  arrows?: boolean;
+  dots?: boolean;
 };
 
-const IndexHeader: React.FunctionComponent<Props> = (): JSX.Element => {
+const IndexHeader: React.FunctionComponent<Props> = ({ arrows = true , dots = true, autoplayLength = 12.5 }): JSX.Element => {
   return (
-    <Carousel arrows autoPlay={ 12.5 } >
-      <HeaderOne />
-      <HeaderTwo />
-    </Carousel>
+    <Carousel
+    arrows={ arrows }
+    dots={ dots }
+    //autoPlay={ autoplayLength }
+  >
+    <HeaderOne />
+    <HeaderTwo />
+  </Carousel>
   );
 };
 

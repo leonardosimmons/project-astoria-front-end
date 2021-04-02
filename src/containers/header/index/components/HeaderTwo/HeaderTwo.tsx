@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import styles from './styles/Header.module.scss';
+import styles from './Header.module.scss';
 
 import Video from '../../../../../components/video';
 import Text from '../../../../../components/text/Text';

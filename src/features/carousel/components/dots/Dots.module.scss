@@ -1,11 +1,13 @@
 .dots {
   position: absolute;
-  bottom: 25px;
+  bottom: 10px;
   height: 5rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 64em) { bottom: 25px; }
 
   & * {
     padding: 10px;

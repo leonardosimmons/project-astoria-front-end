@@ -26,11 +26,19 @@
 
 .left {
   transform: rotate(180deg);
+  margin-right: 3.75rem;
+}
+
+.right {
+  margin-left: 3.75rem;
 }
 
 .right,
 .left {
-  font-size: 4.75rem;
+  font-size: 3.5rem;
+
+  @media only screen and (min-width: 48em) { font-size: 4.25rem; }
+  @media only screen and (min-width: 64em) { font-size: 4.75rem; margin: 0; }
 
   z-index: 2;
 }

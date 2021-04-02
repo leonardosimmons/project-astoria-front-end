@@ -18,8 +18,8 @@ const Intro: React.FunctionComponent = (): JSX.Element => (
         priority
         className={ modalStyles.logo } 
         src={'/images/MainHeadLogo.JPG'}
-        width={ 900} 
-        height={ 900 }
+        width={ 2160 } 
+        height={ 2160 }
         quality={ 100 } 
       />
       <LoadSpinner />
