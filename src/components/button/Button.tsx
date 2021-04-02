@@ -33,7 +33,9 @@ const Button: React.FunctionComponent<Props> = (
     </div>
     :
     <Link href={ link || ''  }>
-      <button className={`${ styles && styles.btn } ${ parent ? parent + '--button' : ''} ${ classes || '' }`}>
+      <button 
+        className={`${ styles && styles.btn } ${ parent ? parent + '--button' : ''} ${ classes || '' }`}
+        onClick={ clicked }>
         { text as string }
       </button>
     </Link>

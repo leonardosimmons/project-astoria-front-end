@@ -1,28 +1,34 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Backdrop from '../backdrop';
-import bgStyle from '../backdrop/Backdrop.module.scss';
-import Modal from '../modal';
+
+import styles from './Intro.module.scss';
+
+import Button from '../button';
 import Container from '../container';
-
-import modalStyles from './Intro.module.scss';
 import ContentBox from '../box/ContentBox';
-import LoadSpinner from '../loader/spinner/LoadSpinner';
 
 
-const Intro: React.FunctionComponent = (): JSX.Element => (
-  <Container main styles={ modalStyles }>
-    <ContentBox styles={ modalStyles }>
+type Props = {
+  btnClickHandler: () => void;
+};
+
+const Intro: React.FunctionComponent<Props> = ({ btnClickHandler }): JSX.Element => (
+  <Container main styles={ styles }>
+    <ContentBox styles={ styles }>
       <Image
         priority
-        className={ modalStyles.logo } 
+        className={ styles.logo } 
         src={'/images/MainHeadLogo.JPG'}
         width={ 2160 } 
         height={ 2160 }
         quality={ 100 } 
       />
-      <LoadSpinner />
+      <Button
+        styles={ styles }
+        classes={'btn-activeFocus relative'} 
+        text={'ENTER'}
+        clicked={ btnClickHandler }/>
     </ContentBox>
   </Container>
 );

@@ -20,17 +20,17 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
 
 
   /* -------------------  INTRO BOX  -------------------- */
-  const [ introView, setIntroView ] = React.useState<boolean>(true);
+  const [ introModal, setIntroModal ] = React.useState<boolean>(true);
   const firstLoadRef = React.useRef<boolean>(false); //! add to redux [ initLoad ]
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      firstLoadRef.current = true; 
-      setIntroView(false); 
-    }, 3000);
+
+  /* --------------------  HANDLERS  --------------------- */
+  const introBtnClickHandler = React.useCallback((): void => {
+    firstLoadRef.current = true;
+    setIntroModal(false);
   }, []);
 
-
+  
   /* ---------------------  RENDER  --------------------- */
   return (
     <Layout 
@@ -42,7 +42,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       mobileData={ data.mobile }
       header={
         <React.Fragment>
-          { introView && !firstLoadRef.current  && <Intro /> }
+          { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
           <IndexHeader autoplayLength={ 10 } />
         </React.Fragment>
       }
