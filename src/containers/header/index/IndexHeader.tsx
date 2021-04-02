@@ -15,7 +15,7 @@ const IndexHeader: React.FunctionComponent<Props> = ({ arrows = true , dots = tr
     <Carousel
     arrows={ arrows }
     dots={ dots }
-    //autoPlay={ autoplayLength }
+    autoPlay={ autoplayLength }
   >
     <HeaderOne />
     <HeaderTwo />

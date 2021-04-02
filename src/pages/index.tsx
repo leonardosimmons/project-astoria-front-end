@@ -43,7 +43,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       header={
         <React.Fragment>
           { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
-          <IndexHeader autoplayLength={ 10 } />
+          <IndexHeader autoplayLength={ 3 } />
         </React.Fragment>
       }
     >

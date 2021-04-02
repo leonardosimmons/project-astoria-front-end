@@ -70,6 +70,8 @@ const Carousel: React.FunctionComponent<Props> = (
   /* -------------------  CONTROLS  ------------------- */  
   const nextSlide = React.useCallback(() =>
   {
+    clearInterval(intervalRef.current as NodeJS.Timeout);
+
     if(context.activeIndex === context.slideCount - 1)
       return dispatch({ type: LAST_SLIDE });
 
@@ -78,6 +80,8 @@ const Carousel: React.FunctionComponent<Props> = (
 
   const prevSlide = React.useCallback(() =>
   {
+    clearInterval(intervalRef.current as NodeJS.Timeout);
+
     if(context.activeIndex === 0)
       return dispatch({ type: FIRST_SLIDE });
 
@@ -86,25 +90,25 @@ const Carousel: React.FunctionComponent<Props> = (
   
 
   /* -------------------  AUTOPLAY  ------------------- */ 
-  const autoPlayRef = React.useRef<() => void>();
+  const nextSlideRef = React.useRef<() => void>();
   const intervalRef = React.useRef<NodeJS.Timeout>();
 
   // updates the current ref when slide changes
-  const updateAutoPlayRef = React.useCallback(() =>
+  const updateNextSlideRef = React.useCallback(() =>
   {
-    autoPlayRef.current = nextSlide;
+    nextSlideRef.current = nextSlide;
   }, [ nextSlide ]);
 
   // auto calls update function when slide changes
   React.useEffect(() =>
   {
-    updateAutoPlayRef();
-  }, [ updateAutoPlayRef ]);
+    updateNextSlideRef();
+  }, [ updateNextSlideRef ]);
 
   // controls the autoplay feature
   React.useEffect(() =>
   {
-    const play = () => autoPlayRef.current!();
+    const play = () => nextSlideRef.current!();
 
     if(autoPlay)
     {
@@ -115,7 +119,7 @@ const Carousel: React.FunctionComponent<Props> = (
         clearInterval(intervalRef.current as NodeJS.Timeout);
       }
     }
-  }, [ autoPlay ]);
+  }, [ autoPlay, nextSlide, prevSlide ]);
 
   
   /* --------------------  HANDLERS  -------------------- */  
