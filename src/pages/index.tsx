@@ -11,13 +11,29 @@ import Container from '../components/container';
 import Carousel from '../features/carousel';
 import HeaderOne from '../containers/header/index/components/HeaderOne';
 import HeaderTwo from '../containers/header/index/components/HeaderTwo';
-import LoadSpinner from '../components/loader/spinner/LoadSpinner';
+import Intro from '../components/intro/Intro';
+import React from 'react';
 
 
 function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+  /* -----------------  SCROLL POSITION  ----------------- */
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
 
+
+  /* -------------------  INTRO BOX  -------------------- */
+  const [ introView, setIntroView ] = React.useState<boolean>(true);
+  const firstLoadRef = React.useRef<boolean>(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      firstLoadRef.current = true; 
+      setIntroView(false); 
+    }, 4000);
+  }, []);
+
+
+  /* ---------------------  RENDER  --------------------- */
   return (
     <Layout 
       parent={ page.HOME } 
@@ -27,13 +43,19 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       desktopData={ data.desktop }
       mobileData={ data.mobile }
       header={
-        <Carousel
-          arrows
-          dots
-          autoPlay={ 12.5 }>
-          <HeaderOne />
-          <HeaderTwo />
-        </Carousel>
+        <React.Fragment>
+          {
+            introView && !firstLoadRef.current &&
+            <Intro />
+          }
+          <Carousel
+            arrows
+            dots
+            autoPlay={ 12.5 }>
+            <HeaderOne />
+            <HeaderTwo />
+          </Carousel>
+        </React.Fragment>
       }
     >
       <Container main parent={ page.HOME } classes={'relative'}>
