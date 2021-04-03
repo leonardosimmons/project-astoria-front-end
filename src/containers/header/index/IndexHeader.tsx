@@ -10,7 +10,7 @@ type Props = {
   dots?: boolean;
 };
 
-const IndexHeader: React.FunctionComponent<Props> = ({ arrows = true , dots = true, autoplayLength = 12.5 }): JSX.Element => {
+const IndexHeader: React.FunctionComponent<Props> = ({ arrows = true , dots = true, autoplayLength = 11.5 }): JSX.Element => {
   return (
     <Carousel
       arrows={ arrows }
