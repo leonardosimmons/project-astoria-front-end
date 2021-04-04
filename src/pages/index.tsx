@@ -48,8 +48,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       }
     >
       <Container main parent={ page.HOME } classes={'relative'}>
-        <p className="text-3xl noselect">Home Page</p>
-        <p> oranges</p>
+
       </Container>
     </Layout>
   );

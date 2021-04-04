@@ -12,7 +12,7 @@ type Props = {
 const CarouselDot: React.FunctionComponent<Dot> = ({ active, index }): JSX.Element => {
   return (
     <span style={{
-      background: `${ active ? index === 1 ? 'var(--primary-700)' : 'var(--grey-700)'  : 'white' }`
+      background: `${ active ? index === 1 ? 'var(--primary-700)' : 'var(--grey-900)'  : 'var(--white)' }`
       }} 
     />
   );

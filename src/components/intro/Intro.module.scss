@@ -24,6 +24,10 @@
   align-items: center;
 
   margin: auto;
+
+  @media only screen and (min-width: 96em) {
+    margin-top: -30rem;
+  }
 }
 
 .logo {

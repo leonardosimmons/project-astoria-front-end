@@ -11,7 +11,7 @@ export default function desktopData(_: NextApiRequest, res: NextApiResponse<Navb
       info: 
       [
         {  name: 'United States', link: link.UNDER_CONSTRUCTION, src: '/icons/svg/small/location.svg', alt: 'location', width: 10, height: 10 },
-        {  name: 'English', link: link.UNDER_CONSTRUCTION, src: '/icon', alt: '', width: 10, height: 10 },
+        {  name: 'English', link: link.UNDER_CONSTRUCTION, src: '/icons/svg/empty.svg', alt: '', width: 10, height: 10 },
         {  name: '+1.877.546.9043', link: link.UNDER_CONSTRUCTION, src: '/icons/svg/small/phone.svg', alt: 'location', width: 10, height: 10 },
       ],
       menu: 
