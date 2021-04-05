@@ -23,8 +23,8 @@ const SectionOne: React.FunctionComponent<Props> = (): JSX.Element => {
           <Image 
             src={'/images/products/handbags/Handbag01.jpg'}
             alt={'handbag'}
-            width={ 850 }
-            height={ 850 }
+            width={ 750 }
+            height={ 750 }
           />
           <TextBox
             headingTwo={'EPILOGUE'} 
