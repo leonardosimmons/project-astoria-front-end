@@ -1,5 +1,6 @@
 import { ImageLoader } from "next/image";
 
+
 //** ------------------------  ARROW  ------------------------- **//
 export type Arrow = {
   container: {
@@ -65,6 +66,11 @@ export type BaseOptions = {
   clicked?: () => void;
 };  
 
+export type Button = {
+  text: string;
+  link: string;
+};
+
 export type Direction = {
   up?: boolean;
   down?: boolean;
@@ -112,6 +118,15 @@ export type PageLink = {
   text?: string;
 };
 
+export type ProductTag = {
+  img: Image;
+  txt: {
+    heading: string;
+    body: string;
+  };
+  btn: Button;
+};
+
 export type NamedLink = {
   name: string;
   link: string;
@@ -152,6 +167,34 @@ export type Text = {
   spanThreeClasses?: string;
   spanFourClasses?: string;
   spanFiveClasses?: string;
+};
+
+
+//** --------------------  INDEX PAGE  -------------------- **//
+export type IndexSectionOneData = {
+  img: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  txt: {
+    heading: string;
+    subHeading: string;
+  };
+  btn: {
+    text: string;
+    link: string;
+  },
+  tag: ProductTag;
+};
+
+export type IndexSectionData = {
+  one: IndexSectionOneData;
+};
+
+export type IndexPageData = {
+  section: IndexSectionData;
 };
 
 

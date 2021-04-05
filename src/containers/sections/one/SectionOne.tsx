@@ -1,42 +1,45 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { IndexSectionOneData } from '../../../utils/types';
+
 import styles from './SectionOne.module.scss';
 
 import Container from '../../../components/container';
 import ContentBox from '../../../components/box';
 import TextBox from '../../../components/text';
 import Button from '../../../components/button';
-import Tag from '../../../components/tag';
+import Tag from '../../../components/tag/ProductTag';
 
 
 type Props = {
-  
+  config: IndexSectionOneData;
 };
 
-const SectionOne: React.FunctionComponent<Props> = (): JSX.Element => {
+
+const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   /* --------------------  RENDER  -------------------- */ 
   return (
     <div className={`${ styles.wrapper} noselect`}>
       <Container main styles={ styles }>
         <ContentBox styles={ styles }>
           <Image 
-            src={'/images/products/handbags/Handbag01.jpg'}
-            alt={'handbag'}
-            width={ 750 }
-            height={ 750 }
+            src={ config.img.src }
+            alt={ config.img.alt }
+            width={ config.img.width }
+            height={ config.img.height }
           />
           <TextBox
-            headingTwo={'EPILOGUE'} 
-            subHeadOne={'Astoria OR 1958 Mediam Tote'}
+            headingTwo={ config.txt.heading.toUpperCase() } 
+            subHeadOne={ config.txt.subHeading }
             styles={ styles }/>
           <Button 
-            text={'SHOP TOTES'}
-            link={'/under-construction'}
+            text={ config.btn.text.toUpperCase() }
+            link={ config.btn.link }
             classes={'relative btn-hoverConfig btn-activeFocus'}
             styles={ styles }/>
         </ContentBox>
-        <Tag />
+        <Tag config={ config.tag } />
       </Container>
     </div>
   )

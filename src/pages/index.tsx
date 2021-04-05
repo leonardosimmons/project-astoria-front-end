@@ -14,7 +14,7 @@ import Intro from '../components/intro/Intro';
 import SectionOne from '../containers/sections/one/SectionOne';
 
 
-function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
   /* -----------------  SCROLL POSITION  ----------------- */
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
@@ -31,7 +31,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
     setIntroModal(false);
   }, []);
 
-  
+
   /* ---------------------  RENDER  --------------------- */
   return (
     <Layout 
@@ -39,8 +39,8 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       title={`Astoria | Home`}
       classes={`relative`}
       styles={ styles }
-      desktopData={ data.desktop }
-      mobileData={ data.mobile }
+      desktopData={ config.desktop }
+      mobileData={ config.mobile }
       header={
         <React.Fragment>
           { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
@@ -49,7 +49,7 @@ function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
       }
     >
       <Container main parent={ page.HOME } classes={'relative'}>
-        <SectionOne />
+        <SectionOne config={ config.data.section.one }/>
       </Container>
     </Layout>
   );
@@ -63,13 +63,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
-  .then(axios.spread((desktop, mobile) => { 
-    if(desktop.status === 200 && mobile.status === 200)
+  .then(axios.spread((desktop, mobile, data) => { 
+    if(desktop.status === 200 && mobile.status === 200 && data.status === 200)
     {
       const dataToken = {
         desktop: desktop.data,
-        mobile: mobile.data
+        mobile: mobile.data,
+        data: data.data
       };
 
       return dataToken;
@@ -79,9 +81,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data: {
+      config: {
         desktop: data?.desktop,
-        mobile: data?.mobile
+        mobile: data?.mobile,
+        data: data?.data
       }
     },
     revalidate: 86400 // once a day
