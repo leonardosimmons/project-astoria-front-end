@@ -14,7 +14,7 @@ import Intro from '../components/intro/Intro';
 import SectionOne from '../containers/sections/one/SectionOne';
 
 
-function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
   /* -----------------  SCROLL POSITION  ----------------- */
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
@@ -39,8 +39,8 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
       title={`Astoria | Home`}
       classes={`relative`}
       styles={ styles }
-      desktopData={ config.desktop }
-      mobileData={ config.mobile }
+      desktop={ navConfig.desktop }
+      mobile={ navConfig.mobile }
       header={
         <React.Fragment>
           { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
@@ -49,7 +49,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
       }
     >
       <Container main parent={ page.HOME } classes={'relative'}>
-        <SectionOne config={ config.data.section.one }/>
+        <SectionOne config={ data.section.one }/>
       </Container>
     </Layout>
   );
@@ -81,11 +81,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: {
+      navConfig: {
         desktop: data?.desktop,
         mobile: data?.mobile,
         data: data?.data
-      }
+      },
+      data: data?.data
     },
     revalidate: 86400 // once a day
   };

@@ -20,28 +20,27 @@ type Props = {
 const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   /* --------------------  RENDER  -------------------- */ 
   return (
-    <div className={`${ styles.wrapper} noselect`}>
+    <section className={`${ styles.wrapper} noselect`}>
       <Container main styles={ styles }>
         <ContentBox styles={ styles }>
           <Image 
             src={ config.img.src }
             alt={ config.img.alt }
             width={ config.img.width }
-            height={ config.img.height }
-          />
+            height={ config.img.height } />
           <TextBox
             headingTwo={ config.txt.heading.toUpperCase() } 
             subHeadOne={ config.txt.subHeading }
-            styles={ styles }/>
+            styles={ styles } />
           <Button 
             text={ config.btn.text.toUpperCase() }
             link={ config.btn.link }
             classes={'relative btn-hoverConfig btn-activeFocus'}
-            styles={ styles }/>
+            styles={ styles } />
         </ContentBox>
         <Tag config={ config.tag } />
       </Container>
-    </div>
+    </section>
   )
 };
 
