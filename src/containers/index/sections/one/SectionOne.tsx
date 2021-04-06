@@ -1,15 +1,15 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { IndexSectionOneData } from '../../../utils/types';
+import { IndexSectionOneData } from '../../../../utils/types';
 
 import styles from './SectionOne.module.scss';
 
-import Container from '../../../components/container';
-import ContentBox from '../../../components/box';
-import TextBox from '../../../components/text';
-import Button from '../../../components/button';
-import Tag from '../../../components/tag/ProductTag';
+import Container from '../../../../components/container';
+import ContentBox from '../../../../components/box';
+import TextBox from '../../../../components/text';
+import Button from '../../../../components/button';
+import Tag from '../../../../components/tag/ProductTag';
 
 
 type Props = {

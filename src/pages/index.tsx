@@ -9,9 +9,9 @@ import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import IndexHeader from '../containers/header/index';
 import Intro from '../components/intro/Intro';
-import SectionOne from '../containers/sections/one/SectionOne';
+import IndexHeader from '../containers/index/header';
+import SectionOne from '../containers/index/sections/one';
 
 
 function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
