@@ -56,8 +56,8 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
           img: {
             src: '/images/products/women/footwear/Sandal01.jpg',
             alt: 'women\'s sandal',
-            width: 750,
-            height: 750, 
+            width: 675,
+            height: 675, 
           },
           text: {
             heading: 'epilogue',

@@ -8,12 +8,13 @@ import { css, page } from '../utils/keys';
 import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
-import Container from '../components/container';
 import Intro from '../components/intro';
+import Container from '../components/container';
 import IndexHeader from '../containers/index/header';
 import SectionOne from '../containers/index/sections/one';
 import SectionTwo from '../containers/index/sections/two';
 import SectionThree from '../containers/index/sections/three';
+import SectionFour from '../containers/index/sections/four';
 
 
 function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -53,9 +54,10 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
     {
       !introModal && 
       <Container main parent={ page.HOME } classes={'relative'}>
-        <SectionOne config={ data.section.one } />
+        <SectionOne config={ data.section.one }/>
         <SectionTwo config={ data.section.two }/>
         <SectionThree config={ data.section.three }/>
+        <SectionFour />
       </Container>
     }
     </Layout>
@@ -84,7 +86,9 @@ export const getStaticProps: GetStaticProps = async () => {
       return dataToken;
     }
   }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`) });
+  .catch(err => { 
+    throw new Error(`Error: ${ err.message }`) 
+  });
 
   return {
     props: {

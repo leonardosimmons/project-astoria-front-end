@@ -2,6 +2,10 @@
   width: 100%;
   
   background-color: var(--grey-lighter);
+
+  @media only screen and (min-width: 64em) {
+    height: 90rem;
+  }
 }
 
 .mainContainer {
