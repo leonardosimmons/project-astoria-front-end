@@ -78,6 +78,24 @@ export type Direction = {
   left?: boolean;
 };
 
+export type FeaturedProduct = {
+  img: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  txt: {
+    heading: string;
+    subHeading: string;
+  };
+  btn: {
+    text: string;
+    link: string;
+  },
+  tag: ProductTag;
+};
+
 export type HttpRequest = {
   url: string;
   type: 'GET' | 'POST' | 'DELETE' | 'PUT';
@@ -171,26 +189,10 @@ export type Text = {
 
 
 //** --------------------  INDEX PAGE  -------------------- **//
-export type IndexSectionOneData = {
-  img: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-  };
-  txt: {
-    heading: string;
-    subHeading: string;
-  };
-  btn: {
-    text: string;
-    link: string;
-  },
-  tag: ProductTag;
-};
 
 export type IndexSectionData = {
-  one: IndexSectionOneData;
+  one: FeaturedProduct;
+  three: FeaturedProduct;
 };
 
 export type IndexPageData = {

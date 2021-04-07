@@ -1,7 +1,6 @@
 
-import React from 'react';
 import Image from 'next/image';
-import { IndexSectionOneData } from '../../../../utils/types';
+import { FeaturedProduct } from '../../../../utils/types';
 
 import styles from './SectionOne.module.scss';
 
@@ -13,7 +12,7 @@ import Tag from '../../../../components/tag/ProductTag';
 
 
 type Props = {
-  config: IndexSectionOneData;
+  config: FeaturedProduct;
 };
 
 
