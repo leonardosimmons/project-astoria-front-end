@@ -1,24 +1,26 @@
 
 import React from 'react';
 import axios from 'axios';
-import { page, link } from '../utils/keys';
+import { page } from '../utils/keys';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+
+import style from '../styles/sass/pages/underConstruction/UnderConstruction.module.scss';
 
 import Layout from '../containers/layout';
 import Button from '../components/button';
 import ContentBox from '../components/box';
 import TextContent from '../components/text';
 import Container from '../components/container';
-import style from '../styles/sass/pages/underConstruction/UnderConstruction.module.scss';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-function UnderConstructionPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+
+function UnderConstructionPage({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout
       styles={ style } 
       parent={ page.UNDER_CONSTRUCTION } 
       title={'Under Construction...'}
-      desktopData={ data.desktop }
-      mobileData={ data.mobile }
+      desktop={ navConfig.desktop }
+      mobile={ navConfig.mobile }
     >
       <Container main styles={ style } parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox
@@ -28,14 +30,14 @@ function UnderConstructionPage({ data }: InferGetStaticPropsType<typeof getStati
           <TextContent
             styles={ style }
             parent={ page.UNDER_CONSTRUCTION }
-            mainHeading={`This Page Is Under Construction...`}
-            textOne={`We are currently working on a host of new features`}
-            textTwo={`This page along with many others will be available soon`} />
+            mainHeading={ data.text.heading }
+            textOne={ data.text.lineOne }
+            textTwo={ data.text.lineTwo } />
           <div className={`relative`}>
             <Button 
               styles={ style }
-              link={ link.HOME }
-              text="Back Home"
+              link={ data.btn.link }
+              text={ data.btn.text }
               parent={ page.UNDER_CONSTRUCTION }
               classes={`btn-hoverConfig btn-activeFocus`} />
           </div>
@@ -51,13 +53,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.UNDER_CONSTRUCTION_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile) => { 
+  .then(axios.spread((desktop, mobile, staticData) => { 
     if(desktop.status === 200 && mobile.status === 200)
     {
       const dataToken = {
         desktop: desktop.data,
-        mobile: mobile.data
+        mobile: mobile.data,
+        data: staticData.data
       };
 
       return dataToken;
@@ -67,10 +71,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data: {
+      navConfig: {
         desktop: data?.desktop,
-        mobile: data?.mobile
-      }
-    }
+        mobile: data?.mobile,
+        data: data?.data
+      },
+      data: data?.data
+    },
+    revalidate: 86400 // once a day
   };
 };

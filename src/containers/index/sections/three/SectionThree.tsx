@@ -1,5 +1,6 @@
 
 import Image from 'next/image';
+import { FeaturedProduct } from '../../../../utils/types';
 
 import styles from './SectionThree.module.scss';
 
@@ -10,64 +11,31 @@ import Button from '../../../../components/button';
 import Tag from '../../../../components/tag/ProductTag';
 
 type Props = {
-
+  config: FeaturedProduct;
 };
 
-const SectionThree: React.FunctionComponent<Props> = ({}): JSX.Element => {
-
-  const testTagData = {
-    img: {
-      src: '/images/products/women/footwear/Sandal01.jpg',
-      alt: 'women\'s sandal',
-      width: 750,
-      height: 750, 
-    },
-    txt: {
-      heading: 'epilogue',
-      subHeading: 'Women\'s leather platform espadrille'
-    },
-    btn: {
-      text: 'Shop Women\'s Shoes',
-      link: '/under-construction',
-    },
-    tag: {
-      img: {
-        src: '/images/products/women/footwear/Sandal-decal01.jpg',
-        alt: 'handbag',
-        width: 100,
-        height: 100
-      },
-      txt: {
-        heading: 'Espadrilles',
-        body: 'Brought to life in black leather for the Epilogue collection is the espadrille sandal with a cord wedge-shaped heel.',
-      },
-      btn: {
-        text: 'SHOP SHOES',
-        link: '/under-construction'
-      }
-    }
-  };
+const SectionThree: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
 
   return (
     <section className={`${ styles.wrapper} noselect`}>
       <Container main styles={ styles }>
         <ContentBox styles={ styles }>
           <Image 
-            src={'/images/products/women/footwear/Sandal01.jpg'}
-            alt={'woman\'s sandal'}
-            width={ 750 }
-            height={ 750 } />
+            src={ config.img.src }
+            alt={ config.img.alt }
+            width={ config.img.width }
+            height={ config.img.height } />
           <TextBox
-            headingTwo={'EPILOGUE'} 
-            subHeadOne={'Women\'s leather platform espadrille'}
+            headingTwo={ config.text.heading.toUpperCase() } 
+            subHeadOne={ config.text.subHeading }
             styles={ styles } />
           <Button 
-            text={'Shop Women\'s Shoes'}
-            link={'/under-construction'}
+            text={ config.btn.text.toUpperCase() }
+            link={ config.btn.link }
             classes={'relative btn-hoverConfig btn-activeFocus'}
             styles={ styles } />
         </ContentBox>
-        <Tag config={ testTagData.tag }/>
+        <Tag config={ config.tag }/>
       </Container>
     </section>
   );

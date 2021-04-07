@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next';
 import { IndexPageData } from '../../../utils/types/types';
 
 
@@ -16,9 +16,9 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
             width: 750,
             height: 750, 
           },
-          txt: {
+          text: {
             heading: 'epilogue',
-            subHeading: 'Astoria OR 1958 Mediam Tote'
+            subHeading: 'Astoria OR 1958 mediam tote'
           },
           btn: {
             text: 'shop totes',
@@ -41,6 +41,16 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
             }
           }
         },
+        two: {
+          text: {
+            headingOne: 'Men\'s Collection',
+            subHeadOne: 'Epilogue'
+          },
+          btn: {
+            text: 'SHOP MEN\'S FASHION',
+            link: '/under-construction'
+          }
+        },
         three:
         {
           img: {
@@ -49,7 +59,7 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
             width: 750,
             height: 750, 
           },
-          txt: {
+          text: {
             heading: 'epilogue',
             subHeading: 'Women\'s leather platform espadrille'
           },

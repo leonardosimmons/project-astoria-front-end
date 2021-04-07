@@ -50,11 +50,14 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
         </React.Fragment>
       }
     >
+    {
+      !introModal && 
       <Container main parent={ page.HOME } classes={'relative'}>
         <SectionOne config={ data.section.one } />
-        <SectionTwo />
-        <SectionThree />
+        <SectionTwo config={ data.section.two }/>
+        <SectionThree config={ data.section.three }/>
       </Container>
+    }
     </Layout>
   );
 };

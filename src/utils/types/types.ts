@@ -85,7 +85,7 @@ export type FeaturedProduct = {
     width: number;
     height: number;
   };
-  txt: {
+  text: {
     heading: string;
     subHeading: string;
   };
@@ -94,6 +94,11 @@ export type FeaturedProduct = {
     link: string;
   },
   tag: ProductTag;
+};
+
+export type Heading = {
+  text: Text,
+  btn: Button
 };
 
 export type HttpRequest = {
@@ -192,6 +197,7 @@ export type Text = {
 
 export type IndexSectionData = {
   one: FeaturedProduct;
+  two: Heading;
   three: FeaturedProduct;
 };
 

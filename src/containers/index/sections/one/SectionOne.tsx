@@ -28,8 +28,8 @@ const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
             width={ config.img.width }
             height={ config.img.height } />
           <TextBox
-            headingTwo={ config.txt.heading.toUpperCase() } 
-            subHeadOne={ config.txt.subHeading }
+            headingTwo={ config.text.heading.toUpperCase() } 
+            subHeadOne={ config.text.subHeading }
             styles={ styles } />
           <Button 
             text={ config.btn.text.toUpperCase() }
