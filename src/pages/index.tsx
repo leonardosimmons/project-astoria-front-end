@@ -15,7 +15,7 @@ import SectionOne from '../containers/index/sections/one';
 import SectionTwo from '../containers/index/sections/two';
 import SectionThree from '../containers/index/sections/three';
 import SectionFour from '../containers/index/sections/four';
-
+import AppointmentSection from '../containers/index/sections/Appointment';
 
 function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
   /* -----------------  SCROLL POSITION  ----------------- */
@@ -58,6 +58,7 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
         <SectionTwo config={ data.section.two }/>
         <SectionThree config={ data.section.three }/>
         <SectionFour />
+        <AppointmentSection />
       </Container>
     }
     </Layout>
