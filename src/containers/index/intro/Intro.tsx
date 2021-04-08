@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 import styles from './Intro.module.scss';
 
-import Button from '../button';
-import Container from '../container';
-import ContentBox from '../box/ContentBox';
+import Button from '../../../components/button';
+import Container from '../../../components/container';
+import ContentBox from '../../../components/box/ContentBox';
 
 
 type Props = {

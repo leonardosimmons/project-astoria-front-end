@@ -9,8 +9,8 @@ import { css, page } from '../utils/keys';
 import styles from '../styles/sass/pages/index/Index.module.scss';
 
 import Layout from '../containers/layout';
-import Intro from '../components/intro';
 import Container from '../components/container';
+import IntroModal from '../containers/index/intro';
 import IndexHeader from '../containers/index/header';
 import SectionOne from '../containers/index/sections/one';
 import SectionTwo from '../containers/index/sections/two';
@@ -47,7 +47,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
       mobile={ config.nav.mobile }
       header={
         <React.Fragment>
-          { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
+          { introModal && <IntroModal btnClickHandler={ introBtnClickHandler }/> }
           <IndexHeader classes={ introModal ? 'none' : '' }/>
         </React.Fragment>
       }
