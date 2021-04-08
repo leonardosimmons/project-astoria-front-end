@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
+import { IndexPageData } from '../utils/types';
 import { css, page } from '../utils/keys';
  
 import styles from '../styles/sass/pages/index/Index.module.scss';
@@ -17,7 +18,7 @@ import SectionThree from '../containers/index/sections/three';
 import SectionFour from '../containers/index/sections/four';
 import AppointmentSection from '../containers/index/sections/Appointment';
 
-function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
   /* -----------------  SCROLL POSITION  ----------------- */
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
@@ -42,8 +43,8 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
       title={`Astoria | Home`}
       classes={`relative`}
       styles={ styles }
-      desktop={ navConfig.desktop }
-      mobile={ navConfig.mobile }
+      desktop={ config.nav.desktop }
+      mobile={ config.nav.mobile }
       header={
         <React.Fragment>
           { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
@@ -54,11 +55,11 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
     {
       !introModal && 
       <Container main parent={ page.HOME } classes={'relative'}>
-        <SectionOne config={ data.section.one }/>
-        <SectionTwo config={ data.section.two }/>
-        <SectionThree config={ data.section.three }/>
-        <SectionFour config={ data.section.four }/>
-        <AppointmentSection config={ data.section.appt } />
+        <SectionOne config={ config.section.one }/>
+        <SectionTwo config={ config.section.two }/>
+        <SectionThree config={ config.section.three }/>
+        <SectionFour config={ config.section.four }/>
+        <AppointmentSection config={ config.section.appt } />
       </Container>
     }
     </Layout>
@@ -78,10 +79,12 @@ export const getStaticProps: GetStaticProps = async () => {
   .then(axios.spread((desktop, mobile, data) => { 
     if(desktop.status === 200 && mobile.status === 200 && data.status === 200)
     {
-      const dataToken = {
-        desktop: desktop.data,
-        mobile: mobile.data,
-        data: data.data
+      const dataToken: IndexPageData = {
+          nav: {
+            desktop: desktop.data,
+            mobile: mobile.data,
+          },
+          section: data.data
       };
 
       return dataToken;
@@ -93,12 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      navConfig: {
-        desktop: data?.desktop,
-        mobile: data?.mobile,
-        data: data?.data
-      },
-      data: data?.data
+      config: data
     },
     revalidate: 86400 // once a day
   };

@@ -219,36 +219,20 @@ export type IndexSectionData = {
 };
 
 export type IndexPageData = {
+  nav: NavbarData;
   section: IndexSectionData;
 };
 
 
 //** --------------------  NAVIGATION BAR  -------------------- **//
-export type NavbarData = {
-  desktop: {
-    info: NavbarMenuTabToken[];
-    menu: {
-      logo: PageLink;
-      tabs: NavbarMenuTabToken[];
-    },
-    profile: NavbarMenuTab[];
-  };
-  mobile: {
-    icons: Icon[];
-    menu: {
-      tabs: NamedLink[];
-      scrollText: string[];
-    }
-  };
-};
 
 export type NavbarDesktopData = {
   info: NavbarMenuTabToken[];
-    menu: {
-      logo: PageLink;
-      tabs: NavbarMenuTabToken[];
-    },
-    profile: NavbarMenuTab[];
+  menu: {
+    logo: PageLink;
+    tabs: NavbarMenuTabToken[];
+  },
+  profile: NavbarMenuTab[];
 };
 
 export type NavbarMobileData = {
@@ -257,6 +241,11 @@ export type NavbarMobileData = {
     tabs: NamedLink[];
     scrollText: string[];
   }
+};
+
+export type NavbarData = {
+  desktop: NavbarDesktopData;
+  mobile: NavbarMobileData;
 };
 
 export type NavbarMobileMenu = {
