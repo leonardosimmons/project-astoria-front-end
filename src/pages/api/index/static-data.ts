@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { link } from '../../../utils/keys/keys';
 import { IndexPageData } from '../../../utils/types/types';
 
 
@@ -82,6 +83,21 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
               text: 'SHOP SHOES',
               link: '/under-construction'
             }
+          }
+        },
+        appt: {
+          text: {
+            heading: 'book an appointment',
+            lineOne: 'your private experience waits with',
+            lineTwo: 'an indoor shopping appointment'
+          },
+          btnOne: {
+            text: 'book your private appointment',
+            link: '/under-construction'
+          },
+          btnTwo: {
+            text: 'discover our exclusive services',
+            link: '/under-construction'
           }
         }
       }

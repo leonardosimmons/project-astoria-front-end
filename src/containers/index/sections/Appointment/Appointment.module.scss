@@ -76,13 +76,13 @@
     h2 {
       font-size: 8.5rem;
     }
+  }
+  @media only screen and (min-width: 90em) { // 1536px
+    width: 1062px;
 
     p {
       font-size: 2rem;
     }
-  }
-  @media only screen and (min-width: 90em) { // 1536px
-    width: 1062px;
   }
 }
 

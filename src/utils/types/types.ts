@@ -97,8 +97,9 @@ export type FeaturedProduct = {
 };
 
 export type Heading = {
-  text: Text,
-  btn: Button
+  text: Text;
+  btn: Button;
+  img?: Image;
 };
 
 export type HttpRequest = {
@@ -199,6 +200,15 @@ export type IndexSectionData = {
   one: FeaturedProduct;
   two: Heading;
   three: FeaturedProduct;
+  appt: {
+    text: {
+      heading: string;
+      lineOne: string;
+      lineTwo: string;
+    };
+    btnOne: Button;
+    btnTwo: Button;
+  };
 };
 
 export type IndexPageData = {
@@ -262,4 +272,3 @@ export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse;
 export type NavbarMenuTab = {
   name: string;
 } & Icon;
-

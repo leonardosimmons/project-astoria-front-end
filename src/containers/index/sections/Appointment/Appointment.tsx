@@ -1,33 +1,46 @@
 
+import { Button as ButtonType } from '../../../../utils/types';
+
 import styles from './Appointment.module.scss';
+
 import ContentBox from '../../../../components/box/ContentBox';
-import Button from '../../../../components/button/Button';
-import Container from '../../../../components/container/Container';
-import TextBox from '../../../../components/text/Text';
+import Button from '../../../../components/button';
+import Container from '../../../../components/container';
+import TextBox from '../../../../components/text';
+
 
 type Props = {
-
+  config: {
+    text: {
+      heading: string;
+      lineOne: string;
+      lineTwo: string;
+    }
+    btnOne: ButtonType;
+    btnTwo: ButtonType;
+  }
 };
 
 
-const Appointment: React.FunctionComponent<Props> = ({}): JSX.Element => {
+const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+  console.log(config);
   return (
     <div className={ styles.wrapper }>
       <ContentBox styles={ styles }>
         <TextBox 
-          textOne={'YOUR PRIVATE EXPERIENCE AWAITS WITH'}
-          textTwo={'AN INSTORE SHOPPING APPOINTMENT'}/>
+          textOne={ config.text.lineOne.toUpperCase() }
+          textTwo={ config.text.lineTwo.toUpperCase() }/>
         <TextBox 
-          headingOne={'BOOK AN APPOINTMENT'}/>
+          headingOne={ config.text.heading.toUpperCase() }/>
         <Container styles={ styles }>
           <Button 
-            text={'BOOK YOUR PRIVATE APPOINTMENT'}
-            link={'/under-construction'} 
+            text={ config.btnOne.text.toUpperCase() }
+            link={ config.btnOne.link } 
             styles={ styles }/>
           <div className={ styles.btnSpacer }></div>
           <Button 
-            text={'DISCOVER OUR EXCLUSIVE SERVICES'}
-            link={'/under-construction'}  
+            text={ config.btnTwo.text.toUpperCase()}
+            link={ config.btnTwo.link }  
             styles={ styles }
             classes={'relative'}/>
         </Container>

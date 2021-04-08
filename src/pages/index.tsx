@@ -58,7 +58,7 @@ function Index({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProp
         <SectionTwo config={ data.section.two }/>
         <SectionThree config={ data.section.three }/>
         <SectionFour />
-        <AppointmentSection />
+        <AppointmentSection config={ data.section.appt } />
       </Container>
     }
     </Layout>
