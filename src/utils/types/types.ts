@@ -200,6 +200,13 @@ export type IndexSectionData = {
   one: FeaturedProduct;
   two: Heading;
   three: FeaturedProduct;
+  four: {
+    text: {
+      heading: string;
+      lineOne: string;
+    },
+    btn: Button; 
+  }
   appt: {
     text: {
       heading: string;

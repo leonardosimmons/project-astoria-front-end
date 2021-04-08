@@ -85,6 +85,16 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
             }
           }
         },
+        four: {
+          text: {
+            heading: 'The Epilogue Campaign',
+            lineOne: 'Shot during a twelve hour live stream from the backstage, the Epilogue campaign.'
+          },
+          btn: {
+            text: 'discover more',
+            link: '/under-construction'
+          }
+        },
         appt: {
           text: {
             heading: 'book an appointment',

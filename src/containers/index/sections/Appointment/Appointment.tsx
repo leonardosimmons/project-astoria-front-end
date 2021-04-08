@@ -23,7 +23,6 @@ type Props = {
 
 
 const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
-  console.log(config);
   return (
     <div className={ styles.wrapper }>
       <ContentBox styles={ styles }>

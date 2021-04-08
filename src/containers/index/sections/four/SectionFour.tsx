@@ -1,24 +1,32 @@
 
-import ContentBox from '../../../../components/box/ContentBox';
-import Button from '../../../../components/button/Button';
-import TextBox from '../../../../components/text/Text';
 import styles from './SectionFour.module.scss';
 
+import ContentBox from '../../../../components/box/ContentBox';
+import Button from '../../../../components/button';
+import TextBox from '../../../../components/text';
+import { Button as ButtonType } from '../../../../utils/types';
+
 type Props = {
-  
+  config: {
+    text: {
+      heading: string;
+      lineOne: string;
+    },
+    btn: ButtonType
+  }
 };
 
-const SectionFour: React.FunctionComponent<Props> = ({}): JSX.Element => {
+const SectionFour: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
     <div className={ styles.wrapper }>
       <ContentBox styles={ styles }>
         <TextBox 
-          subHeadOne={'The Epilogue Campaign'}
-          textOne={'Shot during a twelve hour live stream from the backstage, the Epilogue campaign.'} 
+          subHeadOne={ config.text.heading }
+          textOne={ config.text.lineOne } 
           styles={ styles }/>
         <Button 
-          link={'/under-construction'}
-          text={'DISCOVER MORE'}
+          link={ config.btn.link }
+          text={ config.btn.text.toUpperCase() }
           styles={ styles }
           classes={'btn-activeFocus'}/>
       </ContentBox>
