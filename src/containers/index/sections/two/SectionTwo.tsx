@@ -5,7 +5,7 @@ import styles from './SectionTwo.module.scss';
 
 import ContentBox from '../../../../components/box';
 import Container from '../../../../components/container';
-import Tag from '../../../../components/tag/ProductTag';
+import Tag from '../../../../components/product/tag';
 import TextBox from '../../../../components/text';
 import Button from '../../../../components/button';
 

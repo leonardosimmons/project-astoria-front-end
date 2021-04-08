@@ -8,7 +8,7 @@ import Container from '../../../../components/container';
 import ContentBox from '../../../../components/box';
 import TextBox from '../../../../components/text';
 import Button from '../../../../components/button';
-import Tag from '../../../../components/tag/ProductTag';
+import Tag from '../../../../components/product/tag';
 
 
 type Props = {
