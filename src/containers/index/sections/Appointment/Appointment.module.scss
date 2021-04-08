@@ -8,6 +8,8 @@
   align-items: center;
   text-align: center;
 
+  border-top: 5px solid var(--white);
+
   background-image: url('/images/other/BrickWall01.jpg');
   background-position: center;
   background-size: cover;
@@ -16,20 +18,21 @@
 
 
 .contentBox {
-  height: 50%;
-  width: 85%;
+  height: 55%;
+  width: 90%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   color: var(--white);
-  background-color: rgba(var(--dark-grey-500), 0.5);
+  background-color: rgba(#000000, 0.25);
 
   h2 {
     margin-top: 1rem;
-    font-size: 2.15rem;
+    font-size: 2rem;
     font-weight: 900;
   }
 
@@ -38,9 +41,18 @@
     font-weight: 900;
   }
 
+  @media only screen and (min-width: 20em) {
+    h2 {
+      font-size: 3.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
   @media only screen and (min-width: 23em) {
     h2 {
-      font-size: 5rem;
+      font-size: 4.5rem;
     }
 
     p {
@@ -48,11 +60,15 @@
     }
   }
   @media only screen and (min-width: 48em) {
+    height: 75%;
+    width: 70%;
+    
     h2 {
       font-size: 7.5rem;
     }
 
     p {
+      margin-top: 2rem;
       font-size: 1.8rem;
     }
   }
@@ -64,6 +80,9 @@
     p {
       font-size: 2rem;
     }
+  }
+  @media only screen and (min-width: 90em) { // 1536px
+    width: 1062px;
   }
 }
 
