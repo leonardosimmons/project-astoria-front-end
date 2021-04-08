@@ -43,9 +43,11 @@
 
 .btn {
   padding: .5rem 1rem;
+  transition: all .5s;
 
   &:hover {
     color: var(--grey-500);
+    transform: translateY(-0.1rem);
   }
 
   @media only screen and (min-width: 64em) { 

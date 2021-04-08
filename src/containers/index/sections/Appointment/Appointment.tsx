@@ -28,7 +28,8 @@ const Appointment: React.FunctionComponent<Props> = ({}): JSX.Element => {
           <Button 
             text={'DISCOVER OUR EXCLUSIVE SERVICES'}
             link={'/under-construction'}  
-            styles={ styles }/>
+            styles={ styles }
+            classes={'relative'}/>
         </Container>
       </ContentBox>
     </div>
