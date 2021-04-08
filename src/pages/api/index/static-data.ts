@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { link } from '../../../utils/keys/keys';
-import { IndexSectionData, IndexPageData } from '../../../utils/types/types';
+import { IndexSectionData } from '../../../utils/types/types';
 
 
 export default function sectionData(_: NextApiRequest, res: NextApiResponse<IndexSectionData>) 

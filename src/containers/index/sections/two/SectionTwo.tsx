@@ -31,7 +31,7 @@ const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
           styles={ styles }
           text={ config.btn.text }
           link={ config.btn.link }
-          classes={'btn-hoverConfig btn-activeFocus'}/>
+          classes={'relative btn-hoverConfig btn-activeFocus'}/>
       </ContentBox>
     </div>
   );

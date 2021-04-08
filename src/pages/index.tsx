@@ -48,20 +48,17 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
       header={
         <React.Fragment>
           { introModal && <Intro btnClickHandler={ introBtnClickHandler }/> }
-          { !introModal && <IndexHeader /> }
+          <IndexHeader classes={ introModal ? 'none' : '' }/>
         </React.Fragment>
       }
     >
-    {
-      !introModal && 
-      <Container main parent={ page.HOME } classes={'relative'}>
+      <Container main parent={ page.HOME } classes={`relative ${ introModal ? 'none' : '' }`}>
         <SectionOne config={ config.section.one }/>
         <SectionTwo config={ config.section.two }/>
         <SectionThree config={ config.section.three }/>
         <SectionFour config={ config.section.four }/>
         <AppointmentSection config={ config.section.appt } />
       </Container>
-    }
     </Layout>
   );
 };
@@ -96,7 +93,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data
+      config: data as IndexPageData
     },
     revalidate: 86400 // once a day
   };

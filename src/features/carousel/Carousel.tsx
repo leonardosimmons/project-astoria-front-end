@@ -12,6 +12,7 @@ type Props = {
   autoPlay?: number;
   slides?: [];
   styles?: any;
+  classes?: string;
   height?: number;
   arrows?: boolean;
   dots?: boolean;
@@ -32,6 +33,7 @@ const Carousel: React.FunctionComponent<Props> = (
     autoPlay, 
     slides, 
     styles,
+    classes,
     height,
     arrows,
     dots, 
@@ -147,7 +149,10 @@ const Carousel: React.FunctionComponent<Props> = (
 
   /* ---------------------  RENDER  --------------------- */
   return (
-    <div className={`${ styles && styles.container || '' } carousel overflow-hidden noselect relative`}>
+    <div className={`
+      ${ styles && styles.container || '' }
+      ${ classes ? classes : '' } 
+      carousel overflow-hidden noselect relative`}>
       <CarouselContent
         height={ height }
         width={ context.width }
