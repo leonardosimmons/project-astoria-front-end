@@ -96,10 +96,19 @@ export type FeaturedProduct = {
   tag: ProductTag;
 };
 
+
 export type Heading = {
   text: Text;
   btn: Button;
   img?: Image;
+  textAbove?: string;
+  textBelow?: string;
+};
+
+export type Header = {
+  heading: Heading;
+  video?: string;
+  bgImage?: string;
 };
 
 export type HttpRequest = {

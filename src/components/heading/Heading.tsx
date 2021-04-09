@@ -9,7 +9,6 @@ import Button from '../button/Button';
 
 
 type Props = {
-  id: string;
   btnText: string;
   btnLink: string;
   styles: any;
@@ -19,12 +18,12 @@ type Props = {
   textAbove?: string | JSX.Element | HTMLElement;
   textBelow?: string | JSX.Element | HTMLElement;
   videoURL?: string;
+  btnClasses?: string;
 };
 
 
 const Heading: React.FunctionComponent<Props> = (
   { 
-    id,
     btnText,
     btnLink,
     main,
@@ -33,59 +32,54 @@ const Heading: React.FunctionComponent<Props> = (
     textAbove,
     textBelow, 
     styles, 
-    videoURL,
+    btnClasses,
     children 
   }
 ): JSX.Element => {
   return (
-    <div id={ id } className={ styles.wrapper }>
-      <Container main styles={ styles }>
-        { videoURL && <Video src={ videoURL as string } /> }
-          <ContentBox styles={ styles }>
-            { children ||
-              <React.Fragment>
-                {
-                  textAbove &&
-                  <TextBox 
-                    styles={ styles }
-                    headingOne={ textAbove }
-                  />
-                }
-                {
-                    main ?
-                    <TextBox
-                      styles={ styles } 
-                      mainHeading={ heading }
-                    />
-                    :
-                    sub ?
-                    <TextBox
-                      styles={ styles } 
-                      subHeadOne={ heading }
-                    />
-                    :
-                    <TextBox
-                      styles={ styles } 
-                      headingOne={ heading }
-                    />
-                }
-                {
-                  textBelow &&
-                  <TextBox 
-                    styles={ styles }
-                    textOne={ textBelow }
-                  />
-                }
-              </React.Fragment>
-            }
-            <Button
+    <ContentBox styles={ styles }>
+      { children ||
+        <React.Fragment>
+          {
+            textAbove &&
+            <TextBox 
               styles={ styles }
-              text={ btnText }
-              link={ btnLink }
-              classes={`relative btn-hoverConfig btn-activeFocus`}/>
-          </ContentBox>
-      </Container>
-    </div>
+              textOne={ textAbove }
+            />
+          }
+          {
+            main ?
+            <TextBox
+              styles={ styles } 
+              mainHeading={ heading }
+            />
+            :
+            sub ?
+            <TextBox
+              styles={ styles } 
+              subHeadOne={ heading }
+            />
+            :
+            <TextBox
+              styles={ styles } 
+              headingOne={ heading }
+            />
+          }
+          {
+            textBelow &&
+            <TextBox 
+              styles={ styles }
+              textTwo={ textBelow }
+            />
+          }
+        </React.Fragment>
+      }
+      <Button
+        styles={ styles }
+        text={ btnText }
+        link={ btnLink }
+        classes={`relative ${ btnClasses ? btnClasses : 'btn-hoverConfig btn-activeFocus'}`}/>
+    </ContentBox>
   );
 };
 

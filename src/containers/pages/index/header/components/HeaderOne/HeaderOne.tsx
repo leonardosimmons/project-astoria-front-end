@@ -1,6 +1,8 @@
 
 import styles from './Header.module.scss';
 import Heading from '../../../../../../components/heading';
+import Container from '../../../../../../components/container';
+import Video from '../../../../../../components/video';
 
 
 type Props = {
@@ -10,15 +12,18 @@ type Props = {
 const HeaderOne: React.FunctionComponent<Props> = (): JSX.Element => {
 
   return (
-    <Heading
-      main 
-      id={'index-main-header-one'}
-      heading={'EPILOGUE'}
-      btnText={'SHOP NOW'}
-      btnLink={'/under-construction'}
-      videoURL={'/videos/women/WomenWithGun01.mp4'}
-      styles={ styles }
-    />
+    <div id={'index-main-header-one'} className={ styles.wrapper }>
+      <Container main styles={ styles }>
+        <Video src={'/videos/women/WomenWithGun01.mp4'} />
+        <Heading
+          main
+          heading={'EPILOGUE'}
+          btnText={'SHOP NOW'}
+          btnLink={'/under-construction'}
+          styles={ styles }
+        />
+      </Container>
+    </div>
   )
 };
 

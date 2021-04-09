@@ -3,6 +3,8 @@ import React from 'react';
 
 import styles from './Header.module.scss';
 import Heading from '../../../../../../components/heading';
+import Container from '../../../../../../components/container';
+import Video from '../../../../../../components/video';
 
 
 type Props = {
@@ -12,15 +14,18 @@ type Props = {
 const HeaderTwo: React.FunctionComponent<Props> = (): JSX.Element => {
 
   return (
-    <Heading
-      main 
-      id={'index-main-header-two'}
-      heading={'SPRING 2021'}
-      btnText={'WHAT\'S NEW'}
-      btnLink={'/under-construction'}
-      videoURL={'/videos/general/GolfModels01.mp4'}
-      styles={ styles }
-    />
+    <div id={'idnex-main-header-two'} className={ styles.wrapper }>
+      <Container main styles={ styles }>
+        <Video src={'/videos/general/GolfModels01.mp4'}/>
+        <Heading
+          main 
+          heading={'SPRING 2021'}
+          btnText={'WHAT\'S NEW'}
+          btnLink={'/under-construction'}
+          styles={ styles }
+        />
+      </Container>      
+    </div>
   )
 };
 
