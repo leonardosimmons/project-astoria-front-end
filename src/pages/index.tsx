@@ -2,11 +2,11 @@
 import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
 import { IndexPageData } from '../utils/types';
-import { css, page } from '../utils/keys';
- 
+import { page } from '../utils/keys';
+
 import styles from '../styles/sass/pages/Index.module.scss';
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -19,9 +19,8 @@ import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  /* -----------------  SCROLL POSITION  ----------------- */
-  useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
-  useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
+  /* --------------  USER SCROLL POSITION  -------------- */
+  useNavScrollConfig();
 
 
   /* -------------------  INTRO BOX  -------------------- */

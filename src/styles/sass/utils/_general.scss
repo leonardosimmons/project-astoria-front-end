@@ -15,6 +15,14 @@
   display: none;
 }
 
+.navNotAtTop {
+  background-color: var(--black);
+}
+
+.hide {
+  display: none;
+}
+
 //* --------------------- HOVER --------------------- *//
 .hover-scale {
   &:hover {

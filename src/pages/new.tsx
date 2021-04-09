@@ -6,12 +6,16 @@ import { WhatsNewPageData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../styles/sass/pages/WhatsNew.module.scss';
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
 
 
 function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  /* -----------------  USER SCROLL POSITION  ----------------- */
+  useNavScrollConfig();
+
   return (
     <Layout
       parent={ page.WHATS_NEW }
