@@ -14,6 +14,11 @@ import Container from '../components/container';
 
 
 function UnderConstructionPage({ navConfig, data }: InferGetStaticPropsType<typeof getStaticProps>) {
+
+  const prevPage = React.useCallback(() => {
+    window.history.back();
+  }, []);
+
   return (
     <Layout
       styles={ style } 
@@ -36,9 +41,9 @@ function UnderConstructionPage({ navConfig, data }: InferGetStaticPropsType<type
           <div className={`relative`}>
             <Button 
               styles={ style }
-              link={ data.btn.link }
               text={ data.btn.text }
               parent={ page.UNDER_CONSTRUCTION }
+              clicked={ prevPage }
               classes={`btn-hoverConfig btn-activeFocus`} />
           </div>
         </ContentBox>
