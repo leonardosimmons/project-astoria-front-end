@@ -28,9 +28,11 @@ const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
       <ContentBox styles={ styles }>
         <TextBox 
           textOne={ config.text.lineOne.toUpperCase() }
-          textTwo={ config.text.lineTwo.toUpperCase() }/>
+          textTwo={ config.text.lineTwo.toUpperCase() }
+          styles={ styles }/>
         <TextBox 
-          headingOne={ config.text.heading.toUpperCase() }/>
+          headingOne={ config.text.heading.toUpperCase() }
+          styles={ styles }/>
         <Container styles={ styles }>
           <Button 
             text={ config.btnOne.text.toUpperCase() }

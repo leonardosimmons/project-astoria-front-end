@@ -30,59 +30,67 @@
   color: var(--white);
   background-color: rgba(#000000, 0.275);
 
-  h2 {
-    margin-top: 1rem;
-    font-size: 2rem;
-    font-weight: 900;
-  }
-
-  p {
-    font-size: 1.1rem;
-    font-weight: 900;
-  }
-
-  @media only screen and (min-width: 20em) {
-    h2 {
-      font-size: 3.5rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-    }
-  }
-  @media only screen and (min-width: 23em) {
-    h2 {
-      font-size: 4.5rem;
-    }
-
-    p {
-      font-size: 1.4rem;
-    }
-  }
   @media only screen and (min-width: 48em) {
     height: 75%;
     width: 70%;
-    
-    h2 {
-      font-size: 7.5rem;
-    }
-
-    p {
-      margin-top: 2rem;
-      font-size: 1.8rem;
-    }
-  }
-  @media only screen and (min-width: 64em) {
-    h2 {
-      font-size: 8.5rem;
-    }
   }
   @media only screen and (min-width: 90em) { // 1536px
     width: 1062px;
+  }  
+}
 
-    p {
-      font-size: 2rem;
-    }
+.headingOne {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.textOne,
+.textTwo {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+@media only screen and (min-width: 20em) {
+  .headingOne {
+    font-size: 3.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (min-width: 23em) {
+  .headingOne {
+    font-size: 4.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .headingOne {
+    font-size: 7.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 64em) {
+  .headingOne {
+    font-size: 8.5rem;
+  }
+}
+@media only screen and (min-width: 90em) { // 1536px
+  .textOne,
+  .textTwo {
+    font-size: 2rem;
   }
 }
 
