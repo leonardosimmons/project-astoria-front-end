@@ -16,7 +16,7 @@ type Props = {
 
 const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div className={ styles.wrapper }>
+    <section className={`${ styles.wrapper } noselect`}>
       <Container styles={ styles }>
      
       </Container>
@@ -33,7 +33,7 @@ const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
           link={ config.btn.link }
           classes={'relative btn-hoverConfig btn-activeFocus'}/>
       </ContentBox>
-    </div>
+    </section>
   );
 };
 

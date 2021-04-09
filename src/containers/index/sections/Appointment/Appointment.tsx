@@ -24,7 +24,7 @@ type Props = {
 
 const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div className={ styles.wrapper }>
+    <section className={`${ styles.wrapper } noselect`}>
       <ContentBox styles={ styles }>
         <TextBox 
           textOne={ config.text.lineOne.toUpperCase() }
@@ -44,7 +44,7 @@ const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
             classes={'relative'}/>
         </Container>
       </ContentBox>
-    </div>
+    </section>
   );
 };
 

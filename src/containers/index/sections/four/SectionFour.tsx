@@ -18,7 +18,7 @@ type Props = {
 
 const SectionFour: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div className={ styles.wrapper }>
+    <section className={`${ styles.wrapper } noselect`}>
       <ContentBox styles={ styles }>
         <TextBox 
           subHeadOne={ config.text.heading }
@@ -30,7 +30,7 @@ const SectionFour: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
           styles={ styles }
           classes={'btn-activeFocus'}/>
       </ContentBox>
-    </div>
+    </section>
   );
 };
 
