@@ -23,7 +23,10 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
       desktop={ config.nav.desktop }
       mobile={ config.nav.mobile }
       classes={'relative'}
-      styles={ styles }>
+      styles={ styles }
+      header={
+        <h1>Test Header</h1>
+      }>
       <Container main parent={ page.WHATS_NEW } classes={'relative'}>
         { <h1>Apples and Oranges</h1> }
       </Container>

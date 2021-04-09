@@ -13,7 +13,7 @@ export default function underConstructionData(_: NextApiRequest, res: NextApiRes
         lineTwo: 'This page along with many others will be available soon',
       },
       btn: {
-        text: 'Back Home',
+        text: 'Back',
         link: '/'
       }
     }
