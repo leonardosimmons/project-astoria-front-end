@@ -18,7 +18,7 @@ import SectionThree from '../containers/index/sections/three';
 import SectionFour from '../containers/index/sections/four';
 import AppointmentSection from '../containers/index/sections/Appointment';
 
-function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* -----------------  SCROLL POSITION  ----------------- */
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_NAVBAR, -1, styles.navNotAtTop ); // controls navbar fade on scroll
   useScrollPosition(css.TOP_PAGE_PIXEL_ANCHOR, css.DESKTOP_LOGO, -1, styles.hide); // hides nav logo on scroll
