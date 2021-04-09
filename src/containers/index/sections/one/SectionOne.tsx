@@ -4,6 +4,7 @@ import { FeaturedProduct } from '../../../../utils/types';
 
 import styles from './SectionOne.module.scss';
 
+import Section from '../../../../components/section';
 import Container from '../../../../components/container';
 import ContentBox from '../../../../components/box';
 import TextBox from '../../../../components/text';
@@ -19,7 +20,7 @@ type Props = {
 const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   /* --------------------  RENDER  -------------------- */ 
   return (
-    <section className={`${ styles.wrapper} noselect`}>
+    <Section styles={ styles }>
       <Container main styles={ styles }>
         <ContentBox styles={ styles }>
           <Image 
@@ -39,7 +40,7 @@ const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
         </ContentBox>
         <Tag config={ config.tag } />
       </Container>
-    </section>
+    </Section>
   )
 };
 

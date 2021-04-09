@@ -3,6 +3,7 @@ import { Button as ButtonType } from '../../../../utils/types';
 
 import styles from './Appointment.module.scss';
 
+import Section from '../../../../components/section';
 import ContentBox from '../../../../components/box/ContentBox';
 import Button from '../../../../components/button';
 import Container from '../../../../components/container';
@@ -24,7 +25,7 @@ type Props = {
 
 const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <section className={`${ styles.wrapper } noselect`}>
+    <Section styles={ styles }>
       <ContentBox styles={ styles }>
         <TextBox 
           textOne={ config.text.lineOne.toUpperCase() }
@@ -46,7 +47,7 @@ const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
             classes={'relative'}/>
         </Container>
       </ContentBox>
-    </section>
+    </Section>
   );
 };
 

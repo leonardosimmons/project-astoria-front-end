@@ -3,6 +3,7 @@ import { Heading } from '../../../../utils/types';
 
 import styles from './SectionTwo.module.scss';
 
+import Section from '../../../../components/section';
 import ContentBox from '../../../../components/box';
 import Container from '../../../../components/container';
 import Tag from '../../../../components/product/tag';
@@ -16,7 +17,7 @@ type Props = {
 
 const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <section className={`${ styles.wrapper } noselect`}>
+    <Section styles={ styles }>
       <Container styles={ styles }>
      
       </Container>
@@ -33,7 +34,7 @@ const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
           link={ config.btn.link }
           classes={'relative btn-hoverConfig btn-activeFocus'}/>
       </ContentBox>
-    </section>
+    </Section>
   );
 };
 
