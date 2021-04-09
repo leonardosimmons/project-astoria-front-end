@@ -268,3 +268,9 @@ export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse;
 export type NavbarMenuTab = {
   name: string;
 } & Icon;
+
+//** -----------------  WHATS NEW PAGE  ----------------- **//
+
+export type WhatsNewPageData = {
+  nav: NavbarData;
+}

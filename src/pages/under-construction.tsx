@@ -4,7 +4,7 @@ import axios from 'axios';
 import { page } from '../utils/keys';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import style from '../styles/sass/pages/underConstruction/UnderConstruction.module.scss';
+import style from '../styles/sass/pages/UnderConstruction.module.scss';
 
 import Layout from '../containers/layout';
 import Button from '../components/button';

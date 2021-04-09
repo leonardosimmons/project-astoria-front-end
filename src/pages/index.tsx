@@ -6,7 +6,7 @@ import { useScrollPosition } from '../helpers/hooks/useScrollPosition';
 import { IndexPageData } from '../utils/types';
 import { css, page } from '../utils/keys';
  
-import styles from '../styles/sass/pages/index/Index.module.scss';
+import styles from '../styles/sass/pages/Index.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }))
   .catch(err => { 
-    throw new Error(`Error: ${ err.message }`) 
+    throw new Error(`Error: ${ err.message }`); 
   });
 
   return {
