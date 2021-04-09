@@ -1,0 +1,144 @@
+.wrapper {
+  height: 70rem;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-top: 5px solid var(--white);
+
+  background-image: url('/images/other/BrickWall01.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.contentBox {
+  height: 55%;
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: var(--white);
+  background-color: rgba(#000000, 0.275);
+
+  @media only screen and (min-width: 48em) {
+    height: 75%;
+    width: 70%;
+  }
+  @media only screen and (min-width: 90em) { // 1536px
+    width: 1062px;
+  }  
+}
+
+.headingOne {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.textOne,
+.textTwo {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+@media only screen and (min-width: 20em) {
+  .headingOne {
+    font-size: 3.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (min-width: 23em) {
+  .headingOne {
+    font-size: 4.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .headingOne {
+    font-size: 7.5rem;
+  }
+
+  .textOne,
+  .textTwo {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 64em) {
+  .headingOne {
+    font-size: 8.5rem;
+  }
+}
+@media only screen and (min-width: 90em) { // 1536px
+  .textOne,
+  .textTwo {
+    font-size: 2rem;
+  }
+}
+
+
+.container {
+  flex: 0 1 35%;
+  width: 60%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (min-width: 40em) {
+    flex-direction: row;
+  }
+}
+
+.btn {
+  padding: .5rem 1rem;
+  transition: all .5s;
+
+  font-size: 1.4rem;
+  background-color: var(--dark-grey-500);
+
+  &:hover {
+    color: var(--grey-500);
+    transform: translateY(-0.2rem);
+  }
+
+  &:nth-child(1) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media only screen and (min-width: 40em) {
+    
+    &:nth-child(1) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  @media only screen and (min-width: 64em) { 
+    padding: 1rem 2rem; 
+
+  }
+}
+
+.btnSpacer {
+  flex: 0 1 50%;
+}
