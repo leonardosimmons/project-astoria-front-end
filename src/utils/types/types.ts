@@ -97,16 +97,14 @@ export type FeaturedProduct = {
 };
 
 
-export type Heading = {
-  text: Text;
+export type Heading = Text & {
   btn: Button;
-  img?: Image;
   textAbove?: string;
   textBelow?: string;
 };
 
-export type Header = {
-  heading: Heading;
+export type Header = Heading & {
+  id?: string;
   video?: string;
   bgImage?: string;
 };
@@ -169,6 +167,7 @@ export type Text = {
   name?: string;
   title?: string;
   text?: string;
+  heading?: string;
   mainHeading?: string | JSX.Element | HTMLElement;
   headingOne?: string | JSX.Element | HTMLElement;
   headingTwo?: string | JSX.Element | HTMLElement;
@@ -207,7 +206,16 @@ export type Text = {
 
 export type IndexSectionData = {
   one: FeaturedProduct;
-  two: Heading;
+  two: {
+    text: {
+      headingOne: string;
+      subHeadOne: string;
+    },
+    btn: {
+      text: string;
+      link: string;
+    }
+  };
   three: FeaturedProduct;
   four: {
     text: {
@@ -215,7 +223,7 @@ export type IndexSectionData = {
       lineOne: string;
     },
     btn: Button; 
-  }
+  };
   appt: {
     text: {
       heading: string;
@@ -227,9 +235,12 @@ export type IndexSectionData = {
   };
 };
 
+export type IndexHeaderData = Header[];
+
 export type IndexPageData = {
   nav: NavbarData;
   section: IndexSectionData;
+  header: IndexHeaderData;
 };
 
 

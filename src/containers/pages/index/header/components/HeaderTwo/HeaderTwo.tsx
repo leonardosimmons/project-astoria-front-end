@@ -1,27 +1,25 @@
 
-import React from 'react';
-
 import styles from './Header.module.scss';
 import Heading from '../../../../../../components/heading';
 import Container from '../../../../../../components/container';
 import Video from '../../../../../../components/video';
+import { Header } from '../../../../../../utils/types';
 
 
 type Props = {
-
+  config: Header;
 };
 
-const HeaderTwo: React.FunctionComponent<Props> = (): JSX.Element => {
-
+const HeaderTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div id={'idnex-main-header-two'} className={ styles.wrapper }>
+    <div id={ config.id } className={ styles.wrapper }>
       <Container main styles={ styles }>
-        <Video src={'/videos/general/GolfModels01.mp4'}/>
+        <Video src={ config.video as string }/>
         <Heading
           main 
-          heading={'SPRING 2021'}
-          btnText={'WHAT\'S NEW'}
-          btnLink={'/under-construction'}
+          heading={ config.heading?.toUpperCase() }
+          btnText={ config.btn.text.toUpperCase() }
+          btnLink={ config.btn.link }
           styles={ styles }
         />
       </Container>      

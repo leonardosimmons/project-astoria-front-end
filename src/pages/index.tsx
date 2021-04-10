@@ -47,7 +47,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       header={
         <React.Fragment>
           { introModal && <IntroModal btnClickHandler={ introBtnClickHandler }/> }
-          <IndexHeader classes={ introModal ? 'none' : '' }/>
+          <IndexHeader headerConfig={ config.header } classes={ introModal ? 'none' : '' }/>
         </React.Fragment>
       }
     >
@@ -70,16 +70,18 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
-  .then(axios.spread((desktop, mobile, data) => { 
-    if(desktop.status === 200 && mobile.status === 200 && data.status === 200)
+  .then(axios.spread((desktop, mobile, header, data) => { 
+    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)
     {
       const dataToken: IndexPageData = {
           nav: {
             desktop: desktop.data,
             mobile: mobile.data,
           },
+          header: header.data,
           section: data.data
       };
 

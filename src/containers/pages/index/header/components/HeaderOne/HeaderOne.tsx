@@ -3,23 +3,23 @@ import styles from './Header.module.scss';
 import Heading from '../../../../../../components/heading';
 import Container from '../../../../../../components/container';
 import Video from '../../../../../../components/video';
+import { Header } from '../../../../../../utils/types';
 
 
 type Props = {
-
+  config: Header;
 };
 
-const HeaderOne: React.FunctionComponent<Props> = (): JSX.Element => {
-
+const HeaderOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div id={'index-main-header-one'} className={ styles.wrapper }>
+    <div id={ config.id } className={ styles.wrapper }>
       <Container main styles={ styles }>
-        <Video src={'/videos/women/WomenWithGun01.mp4'} />
+        <Video src={ config.video as string }/>
         <Heading
           main
-          heading={'EPILOGUE'}
-          btnText={'SHOP NOW'}
-          btnLink={'/under-construction'}
+          heading={ config.heading?.toUpperCase() }
+          btnText={ config.btn.text.toUpperCase() }
+          btnLink={ config.btn.link }
           styles={ styles }
         />
       </Container>
@@ -28,19 +28,3 @@ const HeaderOne: React.FunctionComponent<Props> = (): JSX.Element => {
 };
 
 export default HeaderOne;
-
-/**
-   <Container main styles={ styles }>
-    <Video src={'/videos/women/WomenWithGun01.mp4'} />
-    <ContentBox styles={ styles }>
-      <Text
-        styles={ styles } 
-        mainHeading={'EPILOGUE'}/>
-      <Button
-        styles={ styles }
-        classes={`btn-hoverConfig btn-activeFocus relative`} 
-        text={'SHOP NOW'}
-        link={'/under-construction'}/>
-    </ContentBox>
-  </Container>
- */
