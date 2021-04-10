@@ -69,7 +69,7 @@
   margin-top: 1rem;
 }
 
-.textOne.textTwo
+.textOne, .textTwo
 {
   font-size: 1.2rem;
   @media only screen and (min-width: 20.625em) {font-size: 1.35rem; }    // 330px
