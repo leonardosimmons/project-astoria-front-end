@@ -1,9 +1,7 @@
 
 import React from 'react';
 
-import Container from '../container/Container';
 import ContentBox from '../box/ContentBox';
-import Video from '../video/Video';
 import TextBox from '../text/Text';
 import Button from '../button/Button';
 
@@ -22,7 +20,7 @@ type Props = {
 };
 
 
-const Heading: React.FunctionComponent<Props> = (
+const BaseHeading: React.FunctionComponent<Props> = (
   { 
     btnText,
     btnLink,
@@ -83,4 +81,4 @@ const Heading: React.FunctionComponent<Props> = (
   );
 };
 
-export default Heading;
+export default BaseHeading;

@@ -96,6 +96,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       config: data as IndexPageData
     },
-    revalidate: 86400 // once a day
+    revalidate: 60 // 86400 === once a day
   };
 };
