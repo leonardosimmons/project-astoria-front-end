@@ -1,3 +1,4 @@
+
 import { ImageLoader } from "next/image";
 
 
@@ -11,6 +12,7 @@ export type Arrow = {
     transform: string;
   };
 };
+
 
 //** -------------------------  BANK  ------------------------- **//
 export type DataBank = {
@@ -95,7 +97,6 @@ export type FeaturedProduct = {
   },
   tag: ProductTag;
 };
-
 
 export type Heading = Text & {
   btn: Button;
@@ -274,8 +275,9 @@ export type NavbarMenuTab = {
   name: string;
 } & Icon;
 
+
 //** -----------------  WHATS NEW PAGE  ----------------- **//
 
 export type WhatsNewPageData = {
   nav: NavbarData;
-}
+};
