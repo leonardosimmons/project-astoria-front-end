@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heading } from '../../../../../utils/types';
+import { Button, Heading } from '../../../../../utils/types';
 
 import styles from './SectionTwo.module.scss';
 
@@ -21,8 +21,8 @@ const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
       <HeadingBox
         heading={
           <React.Fragment>
-            <span>{ config.text.subHeadOne }</span>
-            <span>{ config.text.headingOne }</span>
+            <span>{ config.subHeadOne }</span>
+            <span>{ config.headingOne }</span>
           </React.Fragment>
         }
         btnText={ config.btn.text }

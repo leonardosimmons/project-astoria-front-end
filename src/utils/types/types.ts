@@ -206,24 +206,9 @@ export type Text = {
 
 export type IndexSectionData = {
   one: FeaturedProduct;
-  two: {
-    text: {
-      headingOne: string;
-      subHeadOne: string;
-    },
-    btn: {
-      text: string;
-      link: string;
-    }
-  };
+  two: Header;
   three: FeaturedProduct;
-  four: {
-    text: {
-      heading: string;
-      lineOne: string;
-    },
-    btn: Button; 
-  };
+  four: Header;
   appt: {
     text: {
       heading: string;

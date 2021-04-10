@@ -16,7 +16,6 @@ type Props = {
 };
 
 const SectionThree: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
-
   return (
     <Section styles={ styles }>
       <Container main styles={ styles }>

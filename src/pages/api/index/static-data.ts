@@ -41,10 +41,8 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
         }
       },
       two: {
-        text: {
           headingOne: 'Men\'s Collection',
-          subHeadOne: 'Epilogue'
-        },
+          subHeadOne: 'Epilogue',
         btn: {
           text: 'SHOP MEN\'S FASHION',
           link: '/under-construction'
@@ -84,10 +82,8 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
         }
       },
       four: {
-        text: {
-          heading: 'The Epilogue Campaign',
-          lineOne: 'Shot during a twelve hour live stream from the backstage, the Epilogue campaign.'
-        },
+        heading: 'The Epilogue Campaign',
+        textOne: 'Shot during a twelve hour live stream from the backstage, the Epilogue campaign.',
         btn: {
           text: 'discover more',
           link: '/under-construction'

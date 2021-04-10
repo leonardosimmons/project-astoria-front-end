@@ -18,7 +18,6 @@ type Props = {
 
 
 const SectionOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
-  /* --------------------  RENDER  -------------------- */ 
   return (
     <Section styles={ styles }>
       <Container main styles={ styles }>
