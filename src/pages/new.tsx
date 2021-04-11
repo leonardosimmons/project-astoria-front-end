@@ -12,6 +12,7 @@ import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import HeaderBox from '../components/header';
+import WhatsNewSection from '../containers/pages/new/sections/whats-new';
 
 
 function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -41,7 +42,7 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
         />
       }>
       <Container main parent={ page.WHATS_NEW } classes={'relative'}>
-        { <h1>Apples and Oranges</h1> }
+        <WhatsNewSection />
       </Container>
     </Layout>
   );

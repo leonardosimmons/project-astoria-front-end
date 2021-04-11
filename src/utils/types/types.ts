@@ -55,15 +55,20 @@ export type Dot = {
 
 //** ------------------------  GENERAL  ------------------------ **/
 export type BaseOptions = {
+  bgImage?: string;
   classes?: string;
   column?: boolean;
+  id?: string | number;
   index?: string | number;
   link?: string;
+  main?: boolean;
   parent?: string;
+  sub?: string;
   styles?: any;
   type?: string;
   uppercase?: boolean;
   value?: any;
+  video?: string;
   changed?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clicked?: () => void;
 };  

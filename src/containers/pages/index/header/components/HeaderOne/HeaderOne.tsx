@@ -17,9 +17,8 @@ const HeaderOne: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
         <Video src={ config.video as string }/>
         <Heading
           main
-          heading={ config.heading?.toUpperCase() }
-          btnText={ config.btn.text.toUpperCase() }
-          btnLink={ config.btn.link }
+          heading={ config.heading }
+          btn={ config.btn }
           styles={ styles }
         />
       </Container>

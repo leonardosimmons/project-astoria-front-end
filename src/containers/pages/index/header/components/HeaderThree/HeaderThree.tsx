@@ -18,12 +18,11 @@ const HeaderThree: React.FunctionComponent<Props> = ({ config }):JSX.Element => 
           main
           heading={
             <React.Fragment>
-              <span>{ config.textAbove?.toUpperCase() }</span>
-              <span>{ config.heading?.toUpperCase() }</span>
+              <span>{ config.textAbove }</span>
+              <span>{ config.heading }</span>
             </React.Fragment>
           }
-          btnText={ config.btn.text.toUpperCase() }
-          btnLink={ config.btn.link }
+          btn={ config.btn }
           styles={ styles }
         />
       </Container>      

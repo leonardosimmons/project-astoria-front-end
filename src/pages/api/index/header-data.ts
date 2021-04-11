@@ -22,7 +22,7 @@ export default function headerData(_: NextApiRequest, res: NextApiResponse<Index
         heading: 'SPRING 2021',
         btn: {
           text: 'WHAT\'S NEW',
-          link: '/under-construction'
+          link: '/new'
         },
         video: '/videos/general/GolfModels01.mp4'
       },
