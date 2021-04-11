@@ -27,6 +27,8 @@
   align-items: center;
   text-align: center;
 
+  letter-spacing: 2px;
+
   color: var(--white);
   background-color: rgba(#000000, 0.275);
 
@@ -110,11 +112,13 @@
 }
 
 .btn {
-  padding: .5rem 1rem;
+  padding: 1rem 2rem;
   transition: all .5s;
 
   font-size: 1.4rem;
   background-color: var(--dark-grey-700);
+
+  letter-spacing: 1px;
 
   &:hover {
     background-color: var(--dark-grey-500);

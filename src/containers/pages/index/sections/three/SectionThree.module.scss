@@ -29,6 +29,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  letter-spacing: 2px;
 }
 
 .headingTwo {
@@ -67,13 +69,15 @@
 
 .btn {
   margin-bottom: 5rem;
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
+
+  letter-spacing: 2px;
 
   color: var(--white);
   background-color: var(--dark-grey-300);
 
   z-index: 2;
   @media only screen and (min-width: 64em) { 
-    padding: 1.5rem 4.5rem; 
+    padding: 1.5rem 3rem; 
   }
 }

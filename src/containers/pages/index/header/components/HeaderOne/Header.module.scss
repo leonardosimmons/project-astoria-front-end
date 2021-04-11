@@ -29,16 +29,23 @@
 
 .mainHeading {
   font-size: 5.45rem;
+  letter-spacing: 2px;
 
-  @media only screen and (min-width: 64em) { font-size: 6.6rem; }
+  @media only screen and (min-width: 64em) { 
+    font-size: 6.6rem;
+    letter-spacing: 4px; 
+  }
 }
 
 .btn {
+  width: 13rem;
   padding: .5rem 1rem;
 
   background-color: var(--dark-grey-300);
 
-  @media only screen and (min-width: 64em) { padding: 1rem 2rem; }
+  @media only screen and (min-width: 64em) {
+    padding: 1rem 2rem; 
+  }
 }
 
 .mainHeading, 
