@@ -1,14 +1,9 @@
 .wrapper
 {
-  flex: 0 1 27.5%;
+  flex: 0 1 28.5%;
   display: flex;
 
   font-size: 1.25rem;
-}
-
-.container
-{
-
 }
 
 .tabs 
@@ -18,7 +13,8 @@
 
 .tabText
 {
-  margin: 0 .1rem;
+  margin: 0 1rem;
+  letter-spacing: 1px;
 
   @media only screen and (min-width: 83.75em) { margin: 0 .35rem;}  // 1340px
   @media only screen and (min-width: 89.375em) { margin: 0 .65rem } // 1430px
@@ -27,9 +23,4 @@
 .icon
 {
   filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%);
-}
-
-.contentBox
-{
-
 }
