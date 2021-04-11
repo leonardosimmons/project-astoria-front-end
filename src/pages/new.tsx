@@ -11,8 +11,8 @@ import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import HeaderBox from '../components/header';
 import WhatsNewSection from '../containers/pages/new/sections/whats-new';
+import MainHeader from '../containers/pages/new/header';
 
 
 function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -35,11 +35,9 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
       classes={'relative'}
       styles={ styles }
       header={
-        <HeaderBox
-          type={'main'} 
+        <MainHeader
           config={ tempHeaderData }
-          styles={ headerStyles }
-        />
+          styles={ headerStyles }/>
       }>
       <Container main parent={ page.WHATS_NEW } classes={'relative'}>
         <WhatsNewSection />

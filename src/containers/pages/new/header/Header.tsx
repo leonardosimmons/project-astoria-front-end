@@ -11,7 +11,8 @@ type Props = {
 
 const MainHeader: React.FunctionComponent<Props> = ({ config, styles }): JSX.Element => {
   return (
-    <HeaderBox 
+    <HeaderBox
+      type={'main'} 
       config={ config }
       styles={ styles }
     />
