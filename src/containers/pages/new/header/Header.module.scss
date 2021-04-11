@@ -76,11 +76,19 @@
   @media only screen and (min-width: 48em) {
     & span:nth-child(1) {
       font-size: 6.6rem;
+
+      &::after {
+        width: 17.5rem;
+      }
     }
   }
   @media only screen and (min-width: 64em) {
     & span:nth-child(1) {
       font-size: 7.7rem;
+
+      &::after {
+        width: 20rem;
+      }
     }
   }
 }

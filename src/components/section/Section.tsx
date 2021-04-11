@@ -1,11 +1,12 @@
 
 type Props = {
   styles: any;
+  id?: string;
 }
 
-const Section: React.FunctionComponent<Props> = ({ styles, children }): JSX.Element => {
+const Section: React.FunctionComponent<Props> = ({ id, styles, children }): JSX.Element => {
   return (
-    <section className={`${ styles.wrapper } noselect`}>
+    <section id={ id && id } className={`${ styles.wrapper } noselect`}>
       { children }
     </section>
   );
