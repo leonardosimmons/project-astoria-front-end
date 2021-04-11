@@ -85,8 +85,9 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
         heading: 'The Epilogue Campaign',
         textOne: 'Shot during a twelve hour live stream from the backstage, the Epilogue campaign.',
         btn: {
-          text: 'discover more',
-          link: '/under-construction'
+          text: 'DISCOVER MORE',
+          link: '/under-construction',
+          classes: 'btn-activeFocus'
         }
       },
       appt: {

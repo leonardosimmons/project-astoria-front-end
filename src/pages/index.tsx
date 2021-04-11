@@ -5,7 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { IndexPageData } from '../utils/types';
 import { page } from '../utils/keys';
 
-import styles from '../styles/sass/pages/Index.module.scss';
+import styles from '../containers/pages/index/Index.module.scss';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';

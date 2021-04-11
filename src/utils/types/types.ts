@@ -71,6 +71,7 @@ export type BaseOptions = {
 export type Button = {
   text: string;
   link: string;
+  classes?: string;
 };
 
 export type Direction = {
@@ -99,7 +100,7 @@ export type FeaturedProduct = {
 };
 
 export type Heading = Text & {
-  btn: Button;
+  btn?: Button;
   textAbove?: string;
   textBelow?: string;
 };
@@ -168,7 +169,7 @@ export type Text = {
   name?: string;
   title?: string;
   text?: string;
-  heading?: string;
+  heading?: string | JSX.Element | HTMLElement;
   mainHeading?: string | JSX.Element | HTMLElement;
   headingOne?: string | JSX.Element | HTMLElement;
   headingTwo?: string | JSX.Element | HTMLElement;

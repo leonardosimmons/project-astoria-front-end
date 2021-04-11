@@ -4,33 +4,25 @@ import React from 'react';
 import ContentBox from '../box/ContentBox';
 import TextBox from '../text/Text';
 import Button from '../button/Button';
+import { Heading } from '../../utils/types/types';
 
 
-type Props = {
-  btnText: string;
-  btnLink: string;
-  styles: any;
+type Props = Heading & {
+  styles?: any;
   main?: boolean;
   sub?: boolean;
-  heading?: string | JSX.Element | HTMLElement;
-  textAbove?: string | JSX.Element | HTMLElement;
-  textBelow?: string | JSX.Element | HTMLElement;
-  videoURL?: string;
-  btnClasses?: string;
 };
 
 
 const BaseHeading: React.FunctionComponent<Props> = (
   { 
-    btnText,
-    btnLink,
+    btn,
     main,
     sub,
     heading,
     textAbove,
     textBelow, 
-    styles, 
-    btnClasses,
+    styles,
     children 
   }
 ): JSX.Element => {
@@ -72,11 +64,15 @@ const BaseHeading: React.FunctionComponent<Props> = (
           }
         </React.Fragment>
       }
-      <Button
-        styles={ styles }
-        text={ btnText }
-        link={ btnLink }
-        classes={`relative ${ btnClasses ? btnClasses : 'btn-hoverConfig btn-activeFocus'}`}/>
+      {
+        btn?.text &&
+        <Button
+          styles={ styles }
+          text={ btn.text }
+          link={ btn.link }
+          classes={`relative ${ btn.classes ? btn.classes : 'btn-hoverConfig btn-activeFocus'}`}
+        />
+      }
     </ContentBox>
   );
 };

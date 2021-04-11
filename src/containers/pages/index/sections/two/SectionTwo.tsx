@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Button, Heading } from '../../../../../utils/types';
+import { Heading } from '../../../../../utils/types';
 
 import styles from './SectionTwo.module.scss';
 
@@ -25,8 +25,7 @@ const SectionTwo: React.FunctionComponent<Props> = ({ config }): JSX.Element => 
             <span>{ config.headingOne }</span>
           </React.Fragment>
         }
-        btnText={ config.btn.text }
-        btnLink={ config.btn.link }
+        btn={ config.btn }
         styles={ styles }/>
     </Section>
   );

@@ -15,7 +15,7 @@ type Props = {
 
 const BaseHeader: React.FunctionComponent<Props> = ({ config, styles, type }): JSX.Element => {
   return (
-    <div id={ config.id } className={ styles.wrapper }>
+    <div id={ config.id } className={ styles.wrapper } style={{ backgroundImage: `${ config.bgImage ? 'url(' + config.bgImage + ')' : '' }`}}>
       <Container main styles={ styles }>
         { config.video && <Video src={ config.video as string } /> }
         <Heading
@@ -49,8 +49,7 @@ const BaseHeader: React.FunctionComponent<Props> = ({ config, styles, type }): J
             :  
             config.heading
           }
-          btnText={ config.btn.text }
-          btnLink={ config.btn.link }
+          btn={ config.btn }
           styles={ styles }
         />
       </Container>

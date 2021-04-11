@@ -1,5 +1,5 @@
 
-import { Button as ButtonType, Header } from '../../../../../utils/types';
+import { Heading } from '../../../../../utils/types';
 
 import styles from './SectionFour.module.scss';
 
@@ -7,7 +7,7 @@ import HeadingBox from '../../../../../components/heading/Heading';
 import Section from '../../../../../components/section/Section';
 
 type Props = {
-  config: Header;
+  config: Heading;
 };
 
 const SectionFour: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
@@ -16,10 +16,8 @@ const SectionFour: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
       <HeadingBox
         sub
         heading={ config.heading }
-        textBelow={ config.textOne }
-        btnText={ config.btn.text.toUpperCase() }
-        btnLink={ config.btn.link }
-        btnClasses={'btn-activeFocus'}
+        textBelow={ config.textOne as string }
+        btn={ config.btn }
         styles={ styles }
       />
     </Section>
