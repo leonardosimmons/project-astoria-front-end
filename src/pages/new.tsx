@@ -18,7 +18,7 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
   /* ----------------------  TEMP DATA  ----------------------- */
   const tempHeaderData: Header = {
     spanOne: 'WHAT\'S NEW',
-    spanTwo: 'A lineup of ready-to-wear',
+    spanTwo: 'A lineup of ready-to-wear and accessories from the latest collection.',
     bgImage: '/images/other/ClothesOnRack01.jpg'
   };
 

@@ -19,7 +19,7 @@ export default function mobileData(_: NextApiRequest, res: NextApiResponse<Navba
       {
         tabs: 
         [
-          { name: 'what\'s new', link: link.UNDER_CONSTRUCTION },
+          { name: 'what\'s new', link: link.WHATS_NEW },
           { name: 'handbags', link: link.UNDER_CONSTRUCTION },
           { name: 'women', link: link.UNDER_CONSTRUCTION },
           { name: 'men', link: link.UNDER_CONSTRUCTION },

@@ -29,6 +29,7 @@ export enum link {
   HOME = '/',
   MEN = '/men',
   MX = '/mx',
+  WHATS_NEW = 'new',
   WOMEN = '/women',
   UNDER_CONSTRUCTION = '/under-construction',
 };

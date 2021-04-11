@@ -22,7 +22,7 @@ export default function navbarData(req: NextApiRequest, res: NextApiResponse<Nav
           logo: { text: 'ASTORIA', link: '/' },
           tabs: 
           [
-            { name: 'what\'s new', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+            { name: 'what\'s new', link: '/new', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
             { name: 'men', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
             { name: 'women', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
             { name: 'mx', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
@@ -49,7 +49,7 @@ export default function navbarData(req: NextApiRequest, res: NextApiResponse<Nav
         {
           tabs: 
           [
-            { name: 'what\'s new', link: '/under-construction'},
+            { name: 'what\'s new', link: '/new'},
             { name: 'handbags', link: '/under-construction'},
             { name: 'women', link: '/under-construction'},
             { name: 'men', link: '/under-construction'},

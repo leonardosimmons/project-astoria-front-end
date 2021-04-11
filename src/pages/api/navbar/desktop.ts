@@ -19,7 +19,7 @@ export default function desktopData(_: NextApiRequest, res: NextApiResponse<Navb
         logo: { text: 'ASTORIA', link: '/' },
         tabs: 
         [
-          { name: 'what\'s new', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+          { name: 'what\'s new', link: link.WHATS_NEW, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           { name: 'men', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           { name: 'women', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           { name: 'mx', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
