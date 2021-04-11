@@ -114,10 +114,10 @@
   transition: all .5s;
 
   font-size: 1.4rem;
-  background-color: var(--dark-grey-500);
+  background-color: var(--dark-grey-700);
 
   &:hover {
-    color: var(--grey-500);
+    background-color: var(--dark-grey-500);
     transform: translateY(-0.2rem);
   }
 
