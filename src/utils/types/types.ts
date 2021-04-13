@@ -239,6 +239,20 @@ export type IndexPageData = {
 };
 
 
+//** -----------------------  MENS PAGE  ---------------------- **//
+export type MensPageStaticData = {
+  header: MensHeaderData;
+}
+
+export type MensHeaderData = Header;
+
+export type MensPageData = {
+  nav: NavbarData;
+  data: MensPageStaticData;
+}
+
+
+
 //** --------------------  NAVIGATION BAR  -------------------- **//
 
 export type NavbarDesktopData = {
