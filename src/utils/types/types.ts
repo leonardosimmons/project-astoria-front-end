@@ -114,6 +114,7 @@ export type Header = Heading & {
   id?: string;
   video?: string;
   bgImage?: string;
+  priority?: string;
 };
 
 export type HttpRequest = {
@@ -290,4 +291,5 @@ export type WhatsNewPageData = {
   nav: NavbarData;
   header: Header;
   promoCards: PromoCard[];
+  promoBanners: Header[];
 };

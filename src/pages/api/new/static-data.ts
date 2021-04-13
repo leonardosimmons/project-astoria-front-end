@@ -38,6 +38,57 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
             classes: 'relative btn-activeFocus'
           }
         }
+      ],
+      promoBanners: 
+      [
+        {
+          bgImage: '/images/other/Background01.jpg',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        },
+        {
+          bgImage: '/images/women/FemaleModels02.jpg',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        },
+        {
+          video: '/videos/women/WomenModel01.mp4',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        },
+        {
+          bgImage: '/images/women/WomanModel03.jpg',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        },
+        {
+          bgImage: '/images/other/ShirtAndShoes01.jpg',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        },
+        {
+          bgImage: '/images/kids/KidManiquen.jpg',
+          heading: 'Test Promo Banner Box',
+          btn: {
+            text: 'SHOP NOW',
+            link: '/under-construction'
+          }
+        }
       ]
     }
   )

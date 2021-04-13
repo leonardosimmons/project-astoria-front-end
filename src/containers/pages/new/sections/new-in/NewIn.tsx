@@ -13,14 +13,14 @@ import PromoCard from '../../../../../components/promo/card';
 
 type Props = {
   promoCards: PromoCardType[];
-  heading?: string;
+  priority?: boolean;
 };
 
 
 const NewInPromo: React.FunctionComponent<Props> = (
   { 
     promoCards,
-    heading, 
+    priority,
   }
 ): JSX.Element => {
   return (
@@ -33,9 +33,9 @@ const NewInPromo: React.FunctionComponent<Props> = (
           />
           <Container styles={ styles } classes={'relative'}>
           {
-            promoCards.map((card, index ) => (
+            promoCards.map((card: PromoCardType, index: number ) => (
               <div className={ styles.promoCard } key={ index }>
-                <PromoCard config={ card } />
+                <PromoCard priority={ priority } config={ card } />
                 <div className={ styles.promoCardSpacer } />
               </div>
             ))

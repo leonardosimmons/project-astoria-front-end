@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
-import { WhatsNewPageData } from '../utils/types';
+import { Header, WhatsNewPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/new/WhatsNew.module.scss';
@@ -13,6 +13,7 @@ import Layout from '../containers/layout';
 import Container from '../components/container';
 import NewInPromo from '../containers/pages/new/sections/new-in';
 import MainHeader from '../containers/pages/new/header';
+import PromoBanner from '../components/promo/banner';
 
 
 function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -35,7 +36,14 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
           styles={ headerStyles }/>
       }>
       <Container main parent={ page.WHATS_NEW } classes={'relative'}>
-        <NewInPromo promoCards={ config.promoCards }/>
+        <NewInPromo priority promoCards={ config.promoCards }/>
+        {
+          config.promoBanners.map((banner: Header, index: number) => (
+            <div className={'relative'} key={ index }>
+              <PromoBanner config={ banner } />
+            </div>
+          ))
+        }
       </Container>
     </Layout>
   );
@@ -59,7 +67,8 @@ export const getStaticProps: GetStaticProps = async () => {
           mobile: mobile.data
         },
         header: page.data.header,
-        promoCards: page.data.promoCards
+        promoCards: page.data.promoCards,
+        promoBanners: page.data.promoBanners
       };
 
       return dataToken;

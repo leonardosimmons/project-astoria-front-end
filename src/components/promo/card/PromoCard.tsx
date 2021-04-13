@@ -9,10 +9,11 @@ import { PromoCard as PromoCardType } from '../../../utils/types/types';
 
 type Props = {
   config: PromoCardType;
+  priority?: boolean;
 };
 
 
-const PromoCard: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+const PromoCard: React.FunctionComponent<Props> = ({ config, priority }): JSX.Element => {
   return (
     <div id="promo-card" className={ styles.wrapper }>
       <Container styles={ styles } classes={'relative'}>
@@ -24,6 +25,7 @@ const PromoCard: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
           height={ config.height }
           layout={'responsive'}
           objectFit={'cover'}
+          priority={ priority }
         />
       </Container>
       <ContentBox styles={ styles }>
