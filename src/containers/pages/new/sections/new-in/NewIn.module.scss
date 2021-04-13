@@ -1,0 +1,113 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.mainContainer {
+  height: 95%;
+  width: 100%;
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+}
+
+.container {
+  height: 100%;
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & .promoCard:nth-child(1) {
+    margin-top: 1rem;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  & .promoCard:nth-child(2) {
+    margin-top: 6rem;
+  }
+
+  @media only screen and (min-width: 48em) {
+    width: 100%;
+    flex-direction: row;
+
+    margin-top: 2rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 37%;
+      height: 1px;
+      width: 30%;
+      max-width: 480px;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+      transform: rotate(90deg);
+      border: .5px solid var(--grey-light);
+    }
+
+    & .promoCard:nth-child(1) {
+      margin-top: 0;
+      margin-right: 2rem;
+      border-bottom: none;
+    }
+    & .promoCard:nth-child(2) {
+      margin-top: 0;
+      margin-left: 2rem;
+    }
+  }
+}
+
+.headingOne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  font-weight: 200;
+  font-size: 3rem;
+  letter-spacing: 2px;
+
+  color: var(--dark-grey-300);
+
+  &::after {
+    content: "";
+    height: 1px;
+    width: 95%;
+
+    background-color: var(--dark-grey-300);
+  }
+}
+
+.promoCard {
+  height: 100%;
+  width: 100%;
+
+  @media only screen and (min-width: 48em) {
+    width: 45%;
+  }
+}
+
+.promoCardSpacer {
+  margin: 2rem 0;
+
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
