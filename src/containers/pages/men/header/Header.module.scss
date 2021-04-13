@@ -1,0 +1,45 @@
+.wrapper {
+  height: 640px;
+  width: 100%;
+  max-width: 100%;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainContainer {
+  height: 100%;
+  width: 100%;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentBox {
+  height: 40%;
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: var(--white);
+}
+
+.mainHeading {
+  font-size: 6.5rem;
+  font-weight: 200;
+  letter-spacing: 2px;
+
+  z-index: 10;
+
+  @media only screen and (min-width: 48em) { 
+    font-size: 10rem;
+    letter-spacing: 4px; 
+  }
+}
