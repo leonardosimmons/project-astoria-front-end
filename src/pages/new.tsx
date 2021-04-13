@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
-import { Header, WhatsNewPageData } from '../utils/types';
+import { Header, NavbarData, WhatsNewPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/new/WhatsNew.module.scss';
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
   .then(axios.spread((desktop, mobile, page) => {
     if(desktop.status === 200 && mobile.status === 200 && page.status === 200)
     {
-      const dataToken: WhatsNewPageData = {
+      const dataToken: WhatsNewPageData & { nav: NavbarData } = {
         nav: {
           desktop: desktop.data,
           mobile: mobile.data

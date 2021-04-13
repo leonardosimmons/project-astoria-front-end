@@ -288,7 +288,6 @@ export type NavbarMenuTab = {
 //** -----------------  WHATS NEW PAGE  ----------------- **//
 
 export type WhatsNewPageData = {
-  nav: NavbarData;
   header: Header;
   promoCards: PromoCard[];
   promoBanners: Header[];

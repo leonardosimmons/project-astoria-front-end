@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { WhatsNewPageData } from '../../../utils/types/types';
 
 
-export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<Partial<WhatsNewPageData>>) 
+export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<WhatsNewPageData>) 
 {
   res.status(200).json
   (
