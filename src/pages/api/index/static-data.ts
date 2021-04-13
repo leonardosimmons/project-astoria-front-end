@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IndexSectionData } from '../../../utils/types/types';
+import { IndexSectionData } from '../../../utils/types';
+import { link } from '../../../utils/keys';
 
 
 export default function sectionData(_: NextApiRequest, res: NextApiResponse<IndexSectionData>) 
@@ -45,7 +46,7 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
           subHeadOne: 'Epilogue',
         btn: {
           text: 'SHOP MEN\'S FASHION',
-          link: '/under-construction'
+          link: link.MEN
         }
       },
       three:

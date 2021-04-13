@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { WhatsNewPageData } from '../../../utils/types/types';
+import { WhatsNewPageData } from '../../../utils/types';
+import { link } from '../../../utils/keys';
 
 
 export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<WhatsNewPageData>) 
@@ -34,7 +35,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'MEN',
           btn: {
             text: 'SHOP ALL',
-            link: '/under-construction',
+            link: link.MEN,
             classes: 'relative btn-activeFocus'
           }
         }

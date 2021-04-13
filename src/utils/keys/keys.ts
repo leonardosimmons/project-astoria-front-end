@@ -18,6 +18,7 @@ export enum key {
 
 export enum page {
   HOME = 'home',
+  MENS = 'mens',
   UNDER_CONSTRUCTION = 'under-construction',
   WHATS_NEW = 'whats-new',
 };

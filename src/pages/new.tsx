@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data as WhatsNewPageData
+      config: data
     }
   };
 };

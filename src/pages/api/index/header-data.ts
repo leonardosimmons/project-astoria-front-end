@@ -1,5 +1,6 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
+import { link } from '../../../utils/keys';
 import { IndexHeaderData } from '../../../utils/types';
 
 
@@ -22,7 +23,7 @@ export default function headerData(_: NextApiRequest, res: NextApiResponse<Index
         heading: 'SPRING 2021',
         btn: {
           text: 'WHAT\'S NEW',
-          link: '/new'
+          link: link.WHATS_NEW
         },
         video: '/videos/general/GolfModels01.mp4'
       },
