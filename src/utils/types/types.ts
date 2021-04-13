@@ -165,6 +165,8 @@ export type ProductTag = {
   btn: Button;
 };
 
+export type PromoCard = Heading & Image;
+
 export type NamedLink = {
   name: string;
   link: string;
@@ -286,4 +288,6 @@ export type NavbarMenuTab = {
 
 export type WhatsNewPageData = {
   nav: NavbarData;
+  header: Header;
+  promoCards: PromoCard[];
 };
