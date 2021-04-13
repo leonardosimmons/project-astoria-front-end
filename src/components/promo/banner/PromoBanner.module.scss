@@ -1,0 +1,52 @@
+
+.wrapper {
+  height: 35vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contentBox {
+  width: 95%;
+  height: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: var(--white);
+}
+
+.headingOne {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 200;
+
+  @media only screen and (min-width: 48em) { font-size: 6.5rem; } // 360px
+  @media only screen and (min-width: 80em) { font-size: 11rem; } // 360px
+
+  z-index: 10;
+}
+
+.btn {
+  width: 13rem;
+  padding: .5rem 1rem;
+
+  background-color: var(--dark-grey-700);
+
+  &:hover {
+    background-color: var(--dark-grey-500);
+  }
+
+  @media only screen and (min-width: 64em) {
+    padding: 1rem 2rem; 
+  }
+}
