@@ -1,5 +1,4 @@
 
-import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
@@ -7,10 +6,12 @@ import { MensPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/men/MensPage.module.scss';
+import testStyles from '../styles/sass/utils/Test.module.scss';
 
 import Layout from '../containers/layout/layout';
 import Container from '../components/container/Container';
 import MainHeader from '../containers/pages/men/header';
+import ContentBox from '../components/box/ContentBox';
 
 
 function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -30,12 +31,47 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
         <MainHeader config={ config.data.header } />
       }
     >
-      <Container main parent={ page.MENS } classes={'relative'}>
-        <p>Test Test Test</p>
+      <Container main parent={ page.MENS } styles={ styles } classes={'relative'}>
+        <ContentBox styles={ styles } classes={'relative'}>
+          <div className={`${ styles.productBoxOne } one-x-two-col`}>          
+            <div className={ testStyles.test01 }></div>
+            <div>
+              <div className={ testStyles.test04 }></div>
+              <div className={ testStyles.test05 }></div>
+            </div>
+          </div>
+          <div className={`${ styles.productBoxTwo } even-col`}>          
+            <div className={ testStyles.test02 }></div>
+            <div className={ testStyles.test01 }></div>
+          </div>
+          <div className={`${ styles.productBoxThree } even-col`}>          
+            <div className={ testStyles.test02 }></div>
+            <div className={ testStyles.test01 }></div>
+            <div className={ testStyles.test03 }></div>
+          </div>
+        </ContentBox>
       </Container>
     </Layout>
   );
 };
+
+/*
+
+<div>
+  <div className={`${ testStyles.testBox } even-col test-box`}>          
+    <div className={ testStyles.test02 }></div>
+    <div className={ testStyles.test01 }></div>
+  </div>
+</div>
+<div>
+  <div className={`${ testStyles.testBox } even-col test-box`}>          
+    <div className={ testStyles.test02 }></div>
+    <div className={ testStyles.test01 }></div>
+    <div className={ testStyles.test03 }></div>
+  </div>
+</div>
+
+*/
 
 export default MensPage;
 

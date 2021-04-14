@@ -1,15 +1,41 @@
-.apples {
-  color: red;
+.test01 {
+  width: 100%;
+  height: 100%;
+  background-color: orangered;
 }
 
-.oranges {
-  color: orange;
+.test02 {
+  width: 100%;
+  height: 100%;
+  background-color: olivedrab;
 }
 
-.grapes {
-  color: purple;
+.test03 {
+  width: 100%;
+  height: 100%;
+  background-color: orchid;
 }
 
-.underConstruction {
-  color: green;
+.test04 {
+  width: 100%;
+  height: 100%;
+  background-color: olivedrab;
+
+  border: 1px solid var(--white);
+}
+
+.test05 {
+  width: 100%;
+  height: 100%;
+  background-color: orchid;
+
+  border: 1px solid var(--white);
+}
+
+
+.test {
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--grey-light);
 }
