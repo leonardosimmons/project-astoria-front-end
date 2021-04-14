@@ -21,16 +21,16 @@ const BaseGrid: React.FunctionComponent<Grid> = (
     <React.Fragment>
     {
       oneXtwo ? 
-      <div className={`${ baseStyles.oneXtwoCol }  ${ grid }`}>          
-      <div className={`${ styles ? styles.block ? styles.block : styles.blockOne : '' }`}>{ blockOne }</div>
+      <div className={`${ baseStyles.oneXtwoCol }  ${ grid } relative`}>          
+      <div className={`${ styles ? styles.block ? styles.block : styles.blockOne : '' } relative`}>{ blockOne }</div>
         <div>
-          <div className={`${ styles ? styles.block ? styles.block : styles.blockTwo : '' }`}>{ blockTwo }</div>
-          <div className={`${ styles ? styles.block ? styles.block : styles.blockThree : '' }`}>{ blockThree }</div>
+          <div className={`${ styles ? styles.block ? styles.block : styles.blockTwo : '' } relative`}>{ blockTwo }</div>
+          <div className={`${ styles ? styles.block ? styles.block : styles.blockThree : '' } relative`}>{ blockThree }</div>
         </div>
       </div>
       :
       even ?
-      <div className={`${ baseStyles.evenCol } ${ grid }`}>          
+      <div className={`${ baseStyles.evenCol } ${ grid } relative`}>          
         { children }
       </div>
       : 

@@ -151,6 +151,7 @@ export type Image = {
   priority?: boolean;
   loading?: 'lazy' | 'eager';
   layout?: 'fixed' | 'intrinsic' | 'responsive' | undefined;
+  objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
   loader?: ImageLoader;
 };
 
@@ -176,7 +177,10 @@ export type ProductTag = {
   btn: Button;
 };
 
-export type PromoCard = Heading & Image;
+export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
+  width?: string | number;
+  height?: string | number;
+};
 
 export type NamedLink = {
   name: string;
@@ -252,14 +256,16 @@ export type IndexPageData = {
 //** -----------------------  MENS PAGE  ---------------------- **//
 export type MensPageStaticData = {
   header: MensHeaderData;
-}
+  promoBlock: PromoCard[];
+  promoBanner: Header | Header[];
+};
 
 export type MensHeaderData = Header;
 
 export type MensPageData = {
   nav: NavbarData;
   data: MensPageStaticData;
-}
+};
 
 
 

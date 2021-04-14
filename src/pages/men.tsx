@@ -6,13 +6,15 @@ import { MensPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/men/MensPage.module.scss';
-import testStyles from '../styles/sass/utils/Test.module.scss';
+import promoStyles from '../containers/pages/men/MensPromoCardLrg.module.scss';
 
 import Layout from '../containers/layout/layout';
 import Container from '../components/container/Container';
 import MainHeader from '../containers/pages/men/header';
 import ContentBox from '../components/box/ContentBox';
-import Grid from '../components/grid';
+import ProductGrid from '../components/grid';
+import PromoCard from '../components/promo/card';
+import PromoBanner from '../components/promo/banner/PromoBanner';
 
 
 function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -34,11 +36,25 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
     >
       <Container main styles={ styles } classes={'relative'}>
         <ContentBox styles={ styles } classes={'relative'}>
-          <Grid 
+          <ProductGrid 
             oneXtwo
             grid={ styles.productSectionOne }
-            styles={ styles }/>
+            blockOne={ <PromoCard fill config={ config.data.promoBlock[0] } styles={ promoStyles }/> }
+            blockTwo={ <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles } /> }
+            blockThree={ <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/> }
+            styles={ styles }
+          />
+          <ProductGrid even grid={ styles.productSectionTwo }>
+            <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
+            <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
+          </ProductGrid>
+          <ProductGrid even grid={ styles.productSectionThree }>
+            <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
+            <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/>
+            <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
+          </ProductGrid>
         </ContentBox>
+        <PromoBanner config={ config.data.promoBanner } styles={ styles.wrapper }/>
       </Container>
     </Layout>
   );
@@ -54,7 +70,7 @@ export const getStaticProps: GetStaticProps = async () => {
     axios.get(process.env.MENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop, mobile, data) => {
-    if(desktop.status === 200 && mobile.status === 200) {
+    if(desktop.status === 200 && mobile.status === 200 && data.status === 200) {
       const dataToken: MensPageData = {
         nav: {
           desktop: desktop.data,
