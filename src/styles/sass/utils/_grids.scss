@@ -12,7 +12,7 @@
   
   & > * {     
     flex-basis: 100;
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
   }
 
   @media only screen and (min-width: 48em) {
@@ -30,12 +30,17 @@
   }
 
   & > *:nth-child(1) {
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
     height: 50%;
+  
   }
-
+  
   & > *:nth-child(2) {
     width: 100%;
+
+    & > * {
+      border: 2px solid var(--white);
+    }
   }
 
   @media only screen and (min-width: 48em) {

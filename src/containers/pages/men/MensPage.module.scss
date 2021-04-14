@@ -31,18 +31,39 @@
   height: 100%;
 }
 
-.productBoxOne {
-  height: 1200px;
+.productSectionOne {
+  height: var(--base-product-section-width);
   width: 100%;
+
+  @media only screen and (min-width: 48em) {
+    height: calc(var(--base-product-section-width) * .625);
+  }
+  @media only screen and (min-width: 80em) {
+    height: var(--base-product-section-width);
+  }
 }
 
-.productBoxTwo {
-  height: 600px;
+.productSectionTwo {
+  height: calc(var(--base-product-section-width) * .5);
   width: 100%;
+  
+  @media only screen and (min-width: 48em) {
+    height: calc(var(--base-product-section-width) * .35); 
+  }
+  @media only screen and (min-width: 80em) {
+    height: calc(var(--base-product-section-width) * .5 );
+  }
 }
 
-.productBoxThree {
-  height: 500px;
+.productSectionThree {
+  height: calc(var(--base-product-section-width) * .5);
   width: 100%;
+  
+  @media only screen and (min-width: 48em) {
+    height: calc(var(--base-product-section-width) * .3183); 
+  }
+  @media only screen and (min-width: 80em) {
+    height: calc(var(--base-product-section-width) * .4166666);
+  }
 }
 

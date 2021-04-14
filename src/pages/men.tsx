@@ -33,45 +33,27 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
     >
       <Container main parent={ page.MENS } styles={ styles } classes={'relative'}>
         <ContentBox styles={ styles } classes={'relative'}>
-          <div className={`${ styles.productBoxOne } one-x-two-col`}>          
-            <div className={ testStyles.test01 }></div>
+          <div className={`${ styles.productSectionOne } one-x-two-col`}>          
+            <div className={ testStyles.test01 } />
             <div>
-              <div className={ testStyles.test04 }></div>
-              <div className={ testStyles.test05 }></div>
+              <div className={ testStyles.test04 } />
+              <div className={ testStyles.test05 } />
             </div>
           </div>
-          <div className={`${ styles.productBoxTwo } even-col`}>          
-            <div className={ testStyles.test02 }></div>
-            <div className={ testStyles.test01 }></div>
+          <div className={`${ styles.productSectionTwo } even-col`}>          
+            <div className={ testStyles.test02 } />
+            <div className={ testStyles.test01 } />
           </div>
-          <div className={`${ styles.productBoxThree } even-col`}>          
-            <div className={ testStyles.test02 }></div>
-            <div className={ testStyles.test01 }></div>
-            <div className={ testStyles.test03 }></div>
+          <div className={`${ styles.productSectionThree } even-col`}>          
+            <div className={ testStyles.test02 } />
+            <div className={ testStyles.test01 } />
+            <div className={ testStyles.test03 } />
           </div>
         </ContentBox>
       </Container>
     </Layout>
   );
 };
-
-/*
-
-<div>
-  <div className={`${ testStyles.testBox } even-col test-box`}>          
-    <div className={ testStyles.test02 }></div>
-    <div className={ testStyles.test01 }></div>
-  </div>
-</div>
-<div>
-  <div className={`${ testStyles.testBox } even-col test-box`}>          
-    <div className={ testStyles.test02 }></div>
-    <div className={ testStyles.test01 }></div>
-    <div className={ testStyles.test03 }></div>
-  </div>
-</div>
-
-*/
 
 export default MensPage;
 
