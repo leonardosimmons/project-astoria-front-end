@@ -42,8 +42,7 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
             blockOne={ <PromoCard fill config={ config.data.promoBlock[0] } styles={ promoStyles }/> }
             blockTwo={ <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles } /> }
             blockThree={ <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/> }
-            styles={ styles }
-          />
+            styles={ styles } />
           <ProductGrid even grid={ styles.productSectionTwo }>
             <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
             <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
@@ -54,7 +53,10 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
             <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
           </ProductGrid>
         </ContentBox>
-        <PromoBanner config={ config.data.promoBanner } styles={ styles.wrapper }/>
+        <PromoBanner 
+          config={ config.data.promoBanner } 
+          styles={ styles.wrapper }
+        />
       </Container>
     </Layout>
   );
