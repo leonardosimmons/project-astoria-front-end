@@ -12,6 +12,7 @@ import Layout from '../containers/layout/layout';
 import Container from '../components/container/Container';
 import MainHeader from '../containers/pages/men/header';
 import ContentBox from '../components/box/ContentBox';
+import Grid from '../components/grid';
 
 
 function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -31,24 +32,12 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
         <MainHeader config={ config.data.header } />
       }
     >
-      <Container main parent={ page.MENS } styles={ styles } classes={'relative'}>
+      <Container main styles={ styles } classes={'relative'}>
         <ContentBox styles={ styles } classes={'relative'}>
-          <div className={`${ styles.productSectionOne } one-x-two-col`}>          
-            <div className={ testStyles.test01 } />
-            <div>
-              <div className={ testStyles.test04 } />
-              <div className={ testStyles.test05 } />
-            </div>
-          </div>
-          <div className={`${ styles.productSectionTwo } even-col`}>          
-            <div className={ testStyles.test02 } />
-            <div className={ testStyles.test01 } />
-          </div>
-          <div className={`${ styles.productSectionThree } even-col`}>          
-            <div className={ testStyles.test02 } />
-            <div className={ testStyles.test01 } />
-            <div className={ testStyles.test03 } />
-          </div>
+          <Grid 
+            oneXtwo
+            grid={ styles.productSectionOne }
+            styles={ styles }/>
         </ContentBox>
       </Container>
     </Layout>

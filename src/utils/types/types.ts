@@ -104,6 +104,16 @@ export type FeaturedProduct = {
   tag: ProductTag;
 };
 
+export type Grid = {
+  grid: any;
+  even?: boolean;
+  oneXtwo?: boolean;
+  blockOne?: JSX.Element | HTMLElement;
+  blockTwo?: JSX.Element | HTMLElement;
+  blockThree?: JSX.Element | HTMLElement;
+  styles?: any;
+};
+
 export type Heading = Text & {
   btn?: Button;
   textAbove?: string;
