@@ -225,6 +225,16 @@ export type Text = {
   spanFiveClasses?: string;
 };
 
+//** -------------------  HANDBAG PAGE  ------------------ **//
+export type HandbagPageStaticData = {
+  header: Header;
+};
+
+export type HandbagPageData = {
+  nav: NavbarData;
+  data: HandbagPageStaticData;
+};
+
 
 //** --------------------  INDEX PAGE  -------------------- **//
 
@@ -330,6 +340,7 @@ export type WomensPageStaticData = {
   promoBlock: PromoCard[];
   promoBanner: Header | Header[];
 };
+
 export type WomensPageData = {
   nav: NavbarData;
   data: WomensPageStaticData;

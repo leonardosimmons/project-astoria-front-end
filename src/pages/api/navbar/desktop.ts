@@ -23,7 +23,7 @@ export default function desktopData(_: NextApiRequest, res: NextApiResponse<Navb
           { name: 'men', link: link.MEN, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           { name: 'women', link: link.WOMEN, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           //{ name: 'mx', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
-          { name: 'handbags', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+          { name: 'handbags', link: link.HANDBAGS, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
           { name: 'gifts', link: '/under-construction', src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
         ]
       },

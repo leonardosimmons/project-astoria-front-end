@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { WomensPageStaticData } from '../../../utils/types';
+import { link } from '../../../utils/keys';
 
 export default function womensPageData(_: NextApiRequest, res: NextApiResponse<WomensPageStaticData>)
 {
@@ -30,7 +31,7 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
           heading: 'WOLF BAG',
           btn: {
             text: 'DISCOVER MORE',
-            link: '/under-construction',
+            link: link.HANDBAGS,
             classes: 'btn-activeFocus'
           }
         },

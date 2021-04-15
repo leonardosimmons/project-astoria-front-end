@@ -22,7 +22,7 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
         },
         btn: {
           text: 'shop totes',
-          link: '/under-construction',
+          link: link.HANDBAGS,
         },
         tag: {
           img: {
@@ -37,7 +37,7 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
           },
           btn: {
             text: 'shop totes',
-            link: '/under-construction'
+            link: link.HANDBAGS
           }
         }
       },
@@ -63,12 +63,12 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
         },
         btn: {
           text: 'Shop Women\'s Shoes',
-          link: '/under-construction',
+          link: link.WOMEN
         },
         tag: {
           img: {
             src: '/images/products/women/footwear/Sandal-decal01.jpg',
-            alt: 'handbag',
+            alt: 'sandals',
             width: 100,
             height: 100
           },
@@ -78,7 +78,7 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
           },
           btn: {
             text: 'SHOP SHOES',
-            link: '/under-construction'
+            link: link.WOMEN
           }
         }
       },
