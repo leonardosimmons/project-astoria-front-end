@@ -46,12 +46,12 @@ function WomensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
               styles={ styles } />
             <ProductGrid even grid={ styles.productSectionTwo }>
               <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
-              <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[5] } styles={ promoStyles }/>
             </ProductGrid>
             <ProductGrid even grid={ styles.productSectionThree }>
-              <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
-              <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/>
-              <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[4] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[7] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[6] } styles={ promoStyles }/>
             </ProductGrid>
           </ContentBox>
         </section>
