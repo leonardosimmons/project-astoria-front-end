@@ -14,7 +14,7 @@ export default function headerData(_: NextApiRequest, res: NextApiResponse<Index
         heading: 'EPILOGUE',
         btn: {
           text: 'SHOP NOW',
-          link: '/under-construction'
+          link: link.WHATS_NEW
         },
         video: '/videos/women/WomenWithGun01.mp4'
       },
@@ -33,7 +33,7 @@ export default function headerData(_: NextApiRequest, res: NextApiResponse<Index
         textAbove: 'PROJECT',
         btn: {
           text: 'FIND OUT MORE',
-          link: '/under-construction'
+          link: link.WHATS_NEW
         }
       } 
     ]

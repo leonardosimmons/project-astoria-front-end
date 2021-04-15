@@ -13,8 +13,8 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
       promoBlock: 
       [
         {
-          src: '/images/men/MaleModel01.jpg',
-          alt: 'male model',
+          src: '/images/women/FemaleModel01.jpg',
+          alt: 'female model',
           objectFit: 'contain',
           heading: 'READY-TO-WEAR',
           btn: {
@@ -24,10 +24,10 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
           }
         },
         {
-          src: '/images/products/men/footwear/Shoes01.jpg',
-          alt: 'male model',
+          src: '/images/products/handbags/Handbag03.jpg',
+          alt: 'handbag',
           objectFit: 'contain',
-          heading: 'AIR LIFT 97\'s',
+          heading: 'WOLF BAG',
           btn: {
             text: 'DISCOVER MORE',
             link: '/under-construction',
@@ -35,10 +35,43 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
           }
         },
         {
-          src: '/images/products/men/pants/DenimPants01.jpg',
-          alt: 'male model',
+          src: '/images/products/women/footwear/WomenRedHeels.jpg',
+          alt: 'womens shoes',
           objectFit: 'contain',
-          heading: 'AMERICA DENIM',
+          heading: 'CANDY APPLE RED',
+          btn: {
+            text: 'DISCOVER MORE',
+            link: '/under-construction',
+            classes: 'btn-activeFocus'
+          }
+        },
+        {
+          src: '/images/products/women/WomenJacketInWindow01.jpg',
+          alt: 'women\'s jacket',
+          objectFit: 'contain',
+          heading: 'WOMEN\'S JACKETS',
+          btn: {
+            text: 'DISCOVER MORE',
+            link: '/under-construction',
+            classes: 'btn-activeFocus'
+          }
+        },
+        {
+          src: '/images/products/women/Scarf01.jpg',
+          alt: 'women\'s jacket',
+          objectFit: 'contain',
+          heading: 'WOMEN\'S SCARF',
+          btn: {
+            text: 'DISCOVER MORE',
+            link: '/under-construction',
+            classes: 'btn-activeFocus'
+          }
+        },
+        {
+          src: '/images/products/women/Sweater01.jpg',
+          alt: 'women\'s jacket',
+          objectFit: 'contain',
+          heading: 'CASHMIER SWEATER',
           btn: {
             text: 'DISCOVER MORE',
             link: '/under-construction',
@@ -47,9 +80,20 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
         },
         {
           src: '/images/products/mx/Shirt01.jpg',
-          alt: 'male model',
+          alt: 'women\'s jacket',
           objectFit: 'contain',
-          heading: 'T-SHIRTS',
+          heading: 'T-SHIRT',
+          btn: {
+            text: 'DISCOVER MORE',
+            link: '/under-construction',
+            classes: 'btn-activeFocus'
+          }
+        },
+        {
+          src: '/images/products/men/pants/DenimPants01.jpg',
+          alt: 'women\'s jacket',
+          objectFit: 'contain',
+          heading: 'T-SHIRT',
           btn: {
             text: 'DISCOVER MORE',
             link: '/under-construction',
@@ -58,7 +102,7 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
         },
       ],
       promoBanner: {
-        bgImage: '/images/other/ShirtAndShoes01.jpg',
+        bgImage: '/images/other/Handbag02.jpg',
         heading: 'Test Promo Banner Box',
         btn: {
           text: 'SHOP NOW',

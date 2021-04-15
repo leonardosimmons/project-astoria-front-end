@@ -23,7 +23,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'WOMEN',
           btn: {
             text: 'SHOP ALL',
-            link: '/under-construction',
+            link: link.WOMEN,
             classes: 'relative btn-activeFocus'
           },
         },
@@ -47,7 +47,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.WHATS_NEW
           }
         },
         {
@@ -55,7 +55,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.WOMEN
           }
         },
         {
@@ -63,7 +63,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.WOMEN
           }
         },
         {
@@ -71,7 +71,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.WOMEN
           }
         },
         {
@@ -79,7 +79,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.MEN
           }
         },
         {
@@ -87,7 +87,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           heading: 'Test Promo Banner Box',
           btn: {
             text: 'SHOP NOW',
-            link: '/under-construction'
+            link: link.WHATS_NEW
           }
         }
       ]
