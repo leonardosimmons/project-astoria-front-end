@@ -1,0 +1,18 @@
+.contentBox {
+  height: 40%;
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  z-index: 1;
+}
+
+.mainHeading {
+  z-index: 1;
+}
