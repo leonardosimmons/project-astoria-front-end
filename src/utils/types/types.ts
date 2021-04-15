@@ -254,19 +254,17 @@ export type IndexPageData = {
 
 
 //** -----------------------  MENS PAGE  ---------------------- **//
+export type MensHeaderData = Header;
+
 export type MensPageStaticData = {
   header: MensHeaderData;
   promoBlock: PromoCard[];
   promoBanner: Header | Header[];
 };
-
-export type MensHeaderData = Header;
-
 export type MensPageData = {
   nav: NavbarData;
   data: MensPageStaticData;
 };
-
 
 
 //** --------------------  NAVIGATION BAR  -------------------- **//
@@ -321,4 +319,18 @@ export type WhatsNewPageData = {
   header: Header;
   promoCards: PromoCard[];
   promoBanners: Header[];
+};
+
+
+//** -------------------  WOMENS PAGE  ------------------ **//
+export type WomensHeaderData = Header;
+
+export type WomensPageStaticData = {
+  header: WomensHeaderData;
+  promoBlock: PromoCard[];
+  promoBanner: Header | Header[];
+};
+export type WomensPageData = {
+  nav: NavbarData;
+  data: WomensPageStaticData;
 };
