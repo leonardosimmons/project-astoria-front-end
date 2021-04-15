@@ -35,28 +35,32 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
       }
     >
       <Container main styles={ styles } classes={'relative'}>
-        <ContentBox styles={ styles } classes={'relative'}>
-          <ProductGrid 
-            oneXtwo
-            grid={ styles.productSectionOne }
-            blockOne={ <PromoCard fill config={ config.data.promoBlock[0] } styles={ promoStyles }/> }
-            blockTwo={ <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles } /> }
-            blockThree={ <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/> }
-            styles={ styles } />
-          <ProductGrid even grid={ styles.productSectionTwo }>
-            <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
-            <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
-          </ProductGrid>
-          <ProductGrid even grid={ styles.productSectionThree }>
-            <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
-            <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/>
-            <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
-          </ProductGrid>
-        </ContentBox>
-        <PromoBanner 
-          config={ config.data.promoBanner } 
-          styles={ styles.wrapper }
-        />
+        <section id={'promo-grid'}>
+          <ContentBox styles={ styles } classes={'relative'}>
+            <ProductGrid 
+              oneXtwo
+              grid={ styles.productSectionOne }
+              blockOne={ <PromoCard fill config={ config.data.promoBlock[0] } styles={ promoStyles }/> }
+              blockTwo={ <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/> }
+              blockThree={ <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/> }
+              styles={ styles } />
+            <ProductGrid even grid={ styles.productSectionTwo }>
+              <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
+            </ProductGrid>
+            <ProductGrid even grid={ styles.productSectionThree }>
+              <PromoCard fill config={ config.data.promoBlock[1] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[2] } styles={ promoStyles }/>
+              <PromoCard fill config={ config.data.promoBlock[3] } styles={ promoStyles }/>
+            </ProductGrid>
+          </ContentBox>
+        </section>
+        <section id={'promo-banner'}>
+          <PromoBanner 
+            config={ config.data.promoBanner } 
+            styles={ styles.wrapper }
+          />
+        </section>
       </Container>
     </Layout>
   );

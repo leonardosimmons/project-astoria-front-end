@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import baseStyles from './BaseHeader.module.scss';
+
 import Heading from '../../components/heading';
 import Container from '../../components/container';
 import { Header } from '../../utils/types';
@@ -14,8 +16,8 @@ type Props = {
 
 const BaseHeader: React.FunctionComponent<Props> = ({ config, styles, type }): JSX.Element => {
   return (
-    <div id={ config.id } className={ styles.wrapper } style={{ backgroundImage: `${ config.bgImage ? 'url(' + config.bgImage + ')' : '' }`}}>
-      <Container main styles={ styles } video={ config.video }>
+    <div id={ config.id } className={`${ baseStyles.wrapper } ${ styles.wrapper && styles.wrapper }`} style={{ backgroundImage: `${ config.bgImage ? 'url(' + config.bgImage + ')' : '' }`}}>
+      <Container main styles={ styles } video={ config.video && config.video } classes={ baseStyles.mainContainer }>
         <Heading
           main={ type === 'main' ? true : false  }
           sub={ type === 'sub' ? true : false }
@@ -49,6 +51,7 @@ const BaseHeader: React.FunctionComponent<Props> = ({ config, styles, type }): J
           }
           btn={ config.btn }
           styles={ styles }
+          classes={ baseStyles.contentBox }
         />
       </Container>
     </div>

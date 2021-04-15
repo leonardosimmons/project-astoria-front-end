@@ -8,6 +8,7 @@ import { Heading } from '../../utils/types/types';
 
 
 type Props = Heading & {
+  classes?: string;
   styles?: any;
   main?: boolean;
   sub?: boolean;
@@ -23,11 +24,12 @@ const BaseHeading: React.FunctionComponent<Props> = (
     textAbove,
     textBelow, 
     styles,
+    classes,
     children 
   }
 ): JSX.Element => {
   return (
-    <ContentBox styles={ styles }>
+    <ContentBox styles={ styles && styles } classes={ classes && classes }>
       { children ||
         <React.Fragment>
           {
