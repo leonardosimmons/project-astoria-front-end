@@ -1,10 +1,10 @@
 
 import React from 'react';
+import { Heading } from '../../utils/types/types';
 
 import ContentBox from '../box/ContentBox';
-import TextBox from '../text/Text';
-import Button from '../button/Button';
-import { Heading } from '../../utils/types/types';
+import TextBox from '../text';
+import Button from '../button';
 
 
 type Props = Heading & {
