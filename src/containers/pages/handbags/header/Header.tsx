@@ -11,10 +11,14 @@ type Props = {
 };
 
 
-const Header: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+const MainHeader: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   return (
-    <div />
+    <BaseHeader 
+      type={'main'}
+      config={ config }
+      styles={ styles }
+    />
   );
 };
 
-export default Header;
+export default MainHeader;

@@ -1,7 +1,7 @@
 
 .wrapper {
   height: 100%;
-  width: 92.5%;
+  width: 100%; // changed from 92.5%
   
   display: flex;
   justify-content: center;
@@ -15,5 +15,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }

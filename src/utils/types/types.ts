@@ -108,6 +108,7 @@ export type Grid = {
   grid: any;
   even?: boolean;
   oneXtwo?: boolean;
+  twoXone?: boolean;
   blockOne?: JSX.Element | HTMLElement;
   blockTwo?: JSX.Element | HTMLElement;
   blockThree?: JSX.Element | HTMLElement;
@@ -228,6 +229,8 @@ export type Text = {
 //** -------------------  HANDBAG PAGE  ------------------ **//
 export type HandbagPageStaticData = {
   header: Header;
+  promoBlock: PromoCard[];
+  promoBanner: Header | Header[];
 };
 
 export type HandbagPageData = {

@@ -107,7 +107,7 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
         heading: 'Test Promo Banner Box',
         btn: {
           text: 'SHOP NOW',
-          link: '/under-construction'
+          link: link.HANDBAGS
         }
       }
     }

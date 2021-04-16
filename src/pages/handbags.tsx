@@ -5,12 +5,12 @@ import { page } from '../utils/keys';
 import { HandbagPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
-import baseStyles from '../containers/pages/handbags/Handbags.module.scss';
+import styles from '../containers/pages/handbags/Handbags.module.scss';
+import promoStyles from '../containers/pages/handbags/PromoCard.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import MainHeader from '../containers/pages/handbags/header';
-import ContentBox from '../components/box';
 import ProductGrid from '../components/grid';
 import PromoBanner from '../components/promo/banner';
 
@@ -26,13 +26,37 @@ function Handbags({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
       desktop={ config.nav.desktop }
       mobile={ config.nav.mobile }
       classes={'relative'}
-      styles={ baseStyles }
+      styles={ styles }
+      header={
+        <MainHeader config={ config.data.header } />
+      }
     >
-      <Container main styles={ baseStyles } classes={`relative`}>
-        <section id={'promo-grid'}></section>
-        <section id={'promo-banner'}></section>
-        <section id={'promo-grid-2'}></section>
-        <section id={'promo-banner-2'}></section>
+      <Container main styles={ styles } classes={`relative`}>
+        <section id={'promo-grid'}>
+          <ProductGrid even grid={ styles.even }>
+            <div className={ styles.block }/>
+            <div className={ styles.block }/>
+          </ProductGrid>
+          <ProductGrid even grid={ styles.even }>
+            <div className={ styles.block }/>
+            <div className={ styles.block }/>
+          </ProductGrid>
+        </section>
+        <section id={'promo-banner'} className={'relative'}>
+          <PromoBanner 
+            config={ config.data.promoBanner }
+            styles={ styles.wrapper }/>
+        </section>
+        <section id={'promo-grid-2'}>          
+          <ProductGrid 
+            oneXtwo
+            grid={ styles.oneXtwo }
+            styles={ styles }/>
+          <ProductGrid even grid={ styles.even }>
+            <div className={ styles.block }/>
+            <div className={ styles.block }/>
+          </ProductGrid>
+        </section>
       </Container>
     </Layout>
   );
