@@ -17,6 +17,7 @@ export enum key {
 };
 
 export enum page {
+  GIFTS = 'gifts',
   HANDBAGS = 'handbags',
   HOME = 'home',
   MENS = 'mens',

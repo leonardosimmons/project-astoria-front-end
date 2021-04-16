@@ -23,7 +23,7 @@ export default function mobileData(_: NextApiRequest, res: NextApiResponse<Navba
           { name: 'men', link: link.MEN },
           { name: 'women', link: link.WOMEN },
           { name: 'handbags', link: link.HANDBAGS },
-          { name: 'gifts', link: link.UNDER_CONSTRUCTION },
+          { name: 'gifts', link: link.GIFTS },
           //{ name: 'mx', link: link.UNDER_CONSTRUCTION },
           //{ name: 'children', link: link.UNDER_CONSTRUCTION },
           //{ name: 'jewelry & watches', link: link.UNDER_CONSTRUCTION },
