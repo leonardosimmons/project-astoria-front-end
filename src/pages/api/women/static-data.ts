@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { WomensPageStaticData } from '../../../utils/types';
+import { MainProductPageStaticData } from '../../../utils/types';
 import { link } from '../../../utils/keys';
 
-export default function womensPageData(_: NextApiRequest, res: NextApiResponse<WomensPageStaticData>)
+export default function womensPageData(_: NextApiRequest, res: NextApiResponse<MainProductPageStaticData>)
 {
   res.status(200).json
   (
@@ -11,7 +11,7 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<W
         heading: 'WOMEN\'S',
         video: '/videos/women/WomenWalkingInCity02.mp4'
       },
-      promoBlock: 
+      promoCard: 
       [
         {
           src: '/images/women/FemaleModel01.jpg',

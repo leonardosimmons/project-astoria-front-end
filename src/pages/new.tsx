@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
-import { Header, NavbarData, WhatsNewPageData } from '../utils/types';
+import { Header, MainProductPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/new/WhatsNew.module.scss';
@@ -32,13 +32,13 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
       styles={ styles }
       header={
         <MainHeader
-          config={ config.header }
+          config={ config.page.header }
           styles={ headerStyles }/>
       }>
       <Container main parent={ page.WHATS_NEW } classes={'relative'}>
-        <NewInPromo priority promoCards={ config.promoCards }/>
+        <NewInPromo priority promoCards={ config.page.promoCard }/>
         {
-          config.promoBanners.map((banner: Header, index: number) => (
+          config.page.promoBanner.map((banner: Header, index: number) => (
             <div className={'relative'} key={ index }>
               <PromoBanner config={ banner } />
             </div>
@@ -61,14 +61,12 @@ export const getStaticProps: GetStaticProps = async () => {
   .then(axios.spread((desktop, mobile, page) => {
     if(desktop.status === 200 && mobile.status === 200 && page.status === 200)
     {
-      const dataToken: WhatsNewPageData & { nav: NavbarData } = {
+      const dataToken: MainProductPageData = {
         nav: {
           desktop: desktop.data,
           mobile: mobile.data
         },
-        header: page.data.header,
-        promoCards: page.data.promoCards,
-        promoBanners: page.data.promoBanners
+        page: page.data
       };
 
       return dataToken;
@@ -80,7 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data
+      config: data as MainProductPageData
     }
   };
 };

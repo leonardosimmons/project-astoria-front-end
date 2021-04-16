@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { WhatsNewPageData } from '../../../utils/types';
+import { MainProductPageStaticData } from '../../../utils/types';
 import { link } from '../../../utils/keys';
 
 
-export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<WhatsNewPageData>) 
+export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<MainProductPageStaticData>) 
 {
   res.status(200).json
   (
@@ -13,7 +13,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
         spanTwo: 'A lineup of ready-to-wear and accessories from the latest collection.',
         bgImage: '/images/other/ClothesOnRack01.jpg',
       },
-      promoCards:
+      promoCard:
       [
         {
           src: '/images/women/FemaleModels01.jpg',
@@ -40,7 +40,7 @@ export default function whatNewPageData(_: NextApiRequest, res: NextApiResponse<
           }
         }
       ],
-      promoBanners: 
+      promoBanner: 
       [
         {
           bgImage: '/images/other/Background01.jpg',

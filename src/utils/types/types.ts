@@ -2,30 +2,6 @@
 import { ImageLoader } from "next/image";
 
 
-//** ------------------------  ARROW  ------------------------- **//
-export type Arrow = {
-  container: {
-    right: string;
-    left: string;
-  };
-  arrow: {
-    transform: string;
-  };
-};
-
-
-//** -------------------------  BANK  ------------------------- **//
-export type DataBank = {
-  navbar: NavbarContext
-};
-
-
-//** -----------------------  BACKDROP  ----------------------- **//
-export type BackdropContext = {
-  open: boolean;
-};
-
-
 //** -----------------------  CAROUSEL  ------------------------ **//
 export type CarouselContext = {
   width: number;
@@ -46,14 +22,17 @@ export type CarouselContentContext = {
 };
 
 
-//** --------------------------  DOT  -------------------------- **/
-export type Dot = {
-  active: boolean;
-  index: number;
+//** ------------------------  GENERAL  ------------------------ **/
+export type Arrow = {
+  container: {
+    right: string;
+    left: string;
+  };
+  arrow: {
+    transform: string;
+  };
 };
 
-
-//** ------------------------  GENERAL  ------------------------ **/
 export type BaseOptions = {
   bgImage?: string;
   classes?: string;
@@ -73,10 +52,18 @@ export type BaseOptions = {
   clicked?: () => void;
 };  
 
+export type BackdropContext = {
+  open: boolean;
+};
+
 export type Button = {
   text: string;
   link: string;
   classes?: string;
+};
+
+export type DataBank = {
+  navbar: NavbarContext
 };
 
 export type Direction = {
@@ -86,22 +73,9 @@ export type Direction = {
   left?: boolean;
 };
 
-export type FeaturedProduct = {
-  img: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-  };
-  text: {
-    heading: string;
-    subHeading: string;
-  };
-  btn: {
-    text: string;
-    link: string;
-  },
-  tag: ProductTag;
+export type Dot = {
+  active: boolean;
+  index: number;
 };
 
 export type Grid = {
@@ -169,20 +143,6 @@ export type PageLink = {
   text?: string;
 };
 
-export type ProductTag = {
-  img: Image;
-  txt: {
-    heading: string;
-    body: string;
-  };
-  btn: Button;
-};
-
-export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
-  width?: string | number;
-  height?: string | number;
-};
-
 export type NamedLink = {
   name: string;
   link: string;
@@ -226,21 +186,8 @@ export type Text = {
   spanFiveClasses?: string;
 };
 
-//** -------------------  HANDBAG PAGE  ------------------ **//
-export type HandbagPageStaticData = {
-  header: Header;
-  promoBlock: PromoCard[];
-  promoBanner: Header | Header[];
-};
-
-export type HandbagPageData = {
-  nav: NavbarData;
-  data: HandbagPageStaticData;
-};
-
 
 //** --------------------  INDEX PAGE  -------------------- **//
-
 export type IndexSectionData = {
   one: FeaturedProduct;
   two: Header;
@@ -266,22 +213,20 @@ export type IndexPageData = {
 };
 
 
-//** -----------------------  MENS PAGE  ---------------------- **//
-export type MensHeaderData = Header;
-
-export type MensPageStaticData = {
-  header: MensHeaderData;
-  promoBlock: PromoCard[];
+//** ----------------  MAIN PRODUCT PAGE  ---------------- **//
+export type MainProductPageStaticData = {
+  header: Header | Header[];
+  promoCard: PromoCard[];
   promoBanner: Header | Header[];
 };
-export type MensPageData = {
+
+export type MainProductPageData = {
   nav: NavbarData;
-  data: MensPageStaticData;
+  page: MainProductPageStaticData;
 };
 
 
 //** --------------------  NAVIGATION BAR  -------------------- **//
-
 export type NavbarDesktopData = {
   info: NavbarMenuTabToken[];
   menu: {
@@ -326,25 +271,38 @@ export type NavbarMenuTab = {
 } & Icon;
 
 
-//** -----------------  WHATS NEW PAGE  ----------------- **//
-
-export type WhatsNewPageData = {
-  header: Header;
-  promoCards: PromoCard[];
-  promoBanners: Header[];
+//** ------------------------  PRODUCT  ------------------------ **/
+export type FeaturedProduct = {
+  img: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  text: {
+    heading: string;
+    subHeading: string;
+  };
+  btn: {
+    text: string;
+    link: string;
+  },
+  tag: ProductTag;
 };
 
 
-//** -------------------  WOMENS PAGE  ------------------ **//
-export type WomensHeaderData = Header;
-
-export type WomensPageStaticData = {
-  header: WomensHeaderData;
-  promoBlock: PromoCard[];
-  promoBanner: Header | Header[];
+export type ProductTag = {
+  img: Image;
+  txt: {
+    heading: string;
+    body: string;
+  };
+  btn: Button;
 };
 
-export type WomensPageData = {
-  nav: NavbarData;
-  data: WomensPageStaticData;
+
+//** ------------------------  PROMO  ------------------------ **/
+export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
+  width?: string | number;
+  height?: string | number;
 };

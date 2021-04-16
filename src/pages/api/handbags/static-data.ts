@@ -1,9 +1,9 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { HandbagPageStaticData } from '../../../utils/types';
+import { MainProductPageStaticData } from '../../../utils/types';
 import { link } from '../../../utils/keys';
 
-export default function handbagPageData(_: NextApiRequest, res: NextApiResponse<HandbagPageStaticData>) 
+export default function handbagPageData(_: NextApiRequest, res: NextApiResponse<MainProductPageStaticData>) 
 {
   res.status(200).json
   (
@@ -12,7 +12,7 @@ export default function handbagPageData(_: NextApiRequest, res: NextApiResponse<
         heading: 'HANDBAGS',
         bgImage: '/images/other/Handbag02.jpg'
       },
-      promoBlock: 
+      promoCard: 
       [
         {
           src: '/images/other/Handbag01.jpg',

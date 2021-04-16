@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
-import { HandbagPageData } from '../utils/types';
+import { MainProductPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/handbags/Handbags.module.scss';
@@ -28,7 +28,7 @@ function Handbags({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
       classes={'relative'}
       styles={ styles }
       header={
-        <MainHeader config={ config.data.header } />
+        <MainHeader config={ config.page.header } />
       }
     >
       <Container main styles={ styles } classes={`relative`}>
@@ -44,7 +44,7 @@ function Handbags({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
         </section>
         <section id={'promo-banner'} className={'relative'}>
           <PromoBanner 
-            config={ config.data.promoBanner }
+            config={ config.page.promoBanner }
             styles={ styles.wrapper }/>
         </section>
         <section id={'promo-grid-2'}>          
@@ -71,15 +71,15 @@ export const getStaticProps: GetStaticProps = async () => {
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.HANDBAG_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, data) => {
-    if(desktop.status === 200 && mobile.status === 200 && data.status === 200)
+  .then(axios.spread((desktop, mobile, page) => {
+    if(desktop.status === 200 && mobile.status === 200 && page.status === 200)
     {
-      const dataToken: HandbagPageData = {
+      const dataToken: MainProductPageData = {
         nav: {
           desktop: desktop.data,
           mobile: mobile.data
         },
-        data: data.data
+        page: page.data
       };
       
       return dataToken;
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data as HandbagPageData
+      config: data as MainProductPageData 
     }
   };
 };

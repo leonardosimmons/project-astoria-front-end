@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { MensPageStaticData } from '../../../utils/types';
+import { MainProductPageStaticData } from '../../../utils/types';
 
-export default function mensPageData(_: NextApiRequest, res: NextApiResponse<MensPageStaticData>)
+export default function mensPageData(_: NextApiRequest, res: NextApiResponse<MainProductPageStaticData>)
 {
   res.status(200).json
   (
@@ -10,7 +10,7 @@ export default function mensPageData(_: NextApiRequest, res: NextApiResponse<Men
         heading: 'MEN\'S',
         video: '/videos/men/ManWalkingInCity01.mp4'
       },
-      promoBlock: 
+      promoCard: 
       [
         {
           src: '/images/men/MaleModel01.jpg',
