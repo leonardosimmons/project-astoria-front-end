@@ -165,6 +165,12 @@ export type NamedLink = {
   link: string;
 };
 
+export type SignInForm = {
+  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submit: (e: React.FormEvent) => void;
+};
+
 export type Text = {
   name?: string;
   title?: string;

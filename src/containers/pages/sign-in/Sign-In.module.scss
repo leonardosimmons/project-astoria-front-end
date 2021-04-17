@@ -1,11 +1,11 @@
 
 .wrapper {
-  height: 100vh;
+  height: 92.5vh;
   width: 100%;
 }
 
 .mainContainer {
-  height: 70%;
+  height: 90%;
   width: 90%;
 
   background-color: blue;
@@ -14,40 +14,40 @@
 .contentBox {
   height: 75%;
   width: 90%;
+  max-width: 830px;
 
   padding: 1rem;
 
-  background-color: orangered;
+  background-color: var(--grey-lightest);
   
   & form {
 
   }
 }
 
+.mainHeading {
+  font-size: 5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
 .labelFront {
 
 }
 
-.input {
-
-}
 
 .container {
 
 }
 
-.mainHeading {
-  
-}
 
 .textOne {
 
 }
 
-.btnContainer {
-
-}
-
-.btn {
-  
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,20 +1,40 @@
 
+import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { NextRouter, useRouter } from 'next/router';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
 import { NavbarData } from '../utils/types';
+import { preventDefault, handleInputRef } from '../helpers/functions';
 
 import styles from '../containers/pages/sign-in/Sign-In.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import ContentBox from '../components/box/ContentBox';
-import Input from '../components/input';
 import TextBox from '../components/text';
+import Copyright from '../components/copyright';
+import SignInForm from '../containers/pages/sign-in/form';
 
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  const router: NextRouter = useRouter();
+  const emailRef = React.useRef<string>();
+  const passwordRef = React.useRef<string>();
+  const [ email, setEmail ] = React.useState<string>();
+  const [ password, setPassword ] = React.useState<string>();
+
+  const handleSignIn = preventDefault(() => { 
+    setEmail(emailRef.current);
+    setPassword(passwordRef.current);
+  });
+
+  const handleEmail = handleInputRef(emailRef);
+  const handlePassword = handleInputRef(passwordRef);
+
+  React.useEffect(() => { console.log(email)})
+
   return (
     <Layout
       solid
@@ -24,25 +44,24 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
       desktop={ config.desktop }
       mobile={ config.mobile }
       styles={ styles }
+      footer={ <Copyright /> }
     >
-      <Container wrapper styles={ styles } classes={'relative center'}>
-        <ContentBox styles={ styles } classes={'center-col-start'}>
-          <TextBox mainHeading={'SIGN IN'} styles={ styles }/>
-          <form>
-            <Input col labelFront={'Email Address'} styles={ styles }/>
-            <Input col type={'password'} labelFront={'Password'} styles={ styles }/>
-            <div className={`${ styles.btnContainer } relative center`}>
-              <Input type={'submit'} value={'SUBMIT'} classes={ styles.btn }/>
-              <Input type={'reset'} value={'RESET'} classes={ styles.btn }/>
-            </div>
-          </form>
-          <Container styles={ styles } classes={'relative center'}>
-            <TextBox textOne={'New Customer?'}/> 
-            <Link href={'/under-construction'}>
-              <a>Register</a>
-            </Link>
-          </Container>
-        </ContentBox>
+      <Container wrapper styles={ styles } classes={'relative center-start noselect'}>
+        <Container main styles={ styles } classes={'relative center-col'}>
+          <ContentBox styles={ styles } classes={'center-col-start'}>
+            <TextBox mainHeading={'SIGN IN'} styles={ styles }/>
+            <SignInForm 
+              email={ handleEmail }
+              password={ handlePassword }
+              submit={ handleSignIn }/>
+            <Container styles={ styles } classes={'relative center'}>
+              <TextBox textOne={'New Customer?'}/> 
+              <Link href={'/under-construction'}>
+                <a>Register</a>
+              </Link>
+            </Container>
+          </ContentBox>
+        </Container>
       </Container>
     </Layout>
   );
