@@ -1,5 +1,5 @@
 
-//* -------------------- CENTER -------------------- *//
+//* --------------------- FLEX --------------------- *//
 .center {
   display: flex;
   justify-content: center;
@@ -26,6 +26,19 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+};
+
+.center-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+};
+
+.center-col-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 };
 
 //* -------------------- GENERAL -------------------- *//
