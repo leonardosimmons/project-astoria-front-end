@@ -21,6 +21,7 @@ export enum page {
   HANDBAGS = 'handbags',
   HOME = 'home',
   MENS = 'mens',
+  SIGN_IN = 'sign-in',
   UNDER_CONSTRUCTION = 'under-construction',
   WHATS_NEW = 'whats-new',
 };
@@ -32,6 +33,7 @@ export enum link {
   HOME = '/',
   MEN = '/men',
   MX = '/mx',
+  SIGN_IN = '/sign-in',
   WHATS_NEW = '/new',
   WOMEN = '/women',
   UNDER_CONSTRUCTION = '/under-construction',

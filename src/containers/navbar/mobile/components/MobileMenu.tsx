@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { link } from '../../../../utils/keys';
 import { BaseOptions, NamedLink, NavbarMobileMenu } from '../../../../utils/types';
 
 import Container from '../../../../components/container';
@@ -48,7 +49,7 @@ const NavigationMenu: React.FunctionComponent<Props> = (
           scrollText={ menu.scrollText } 
         />
         <div className={ styles && styles.signIn }>
-          <Link href="/under-construction">
+          <Link href={ link.SIGN_IN }>
             <a className={ styles && styles.signInText }>SIGN IN</a>
           </Link>
         </div>

@@ -20,11 +20,12 @@ type Props = {
     };
     profile:  NavbarMenuTab[];
   };
+  solid?: boolean;
 };
 
-const DesktopNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
   return (
-    <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect`}>
+    <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect solid`}>
       <Container main styles={ navbarStyles }>
         <div className={`${ infoStyles.wrapper || '' }`}>
           <Container styles={ infoStyles }>
@@ -60,6 +61,10 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element 
           </Container>
         </div>
       </Container>
+      <style jsx>{`
+      #desktop-navbar {
+        background: ${ solid ? '#000000' : '' };
+      `}</style>
     </div>
   );
 };

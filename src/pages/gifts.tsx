@@ -20,7 +20,7 @@ function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): 
   return (
     <Layout
       parent={ page.GIFTS }
-      title={'ASTORIA | GIFTS'}
+      title={'ASTORIA | Gifts'}
       classes={'relative'}
       desktop={ config.nav.desktop }
       mobile={ config.nav.mobile }

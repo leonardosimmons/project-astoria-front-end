@@ -2,20 +2,28 @@ import React from 'react';
 import { BaseOptions } from '../../utils/types';
 
 type Props = {
+  col?: boolean;
   toggle?: boolean;
+  placeholder?: string;
+  autoComplete?: boolean;
   label?: string | JSX.Element | HTMLElement;
   labelFront?: string | JSX.Element | HTMLElement;
   labelBack?: string | JSX.Element | HTMLElement;
+  type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week";
 } & BaseOptions;
 
 const Input: React.FunctionComponent<Props> = (
   { 
     parent,
+    col,
     toggle,
     value,
+    type,
     label,
     labelFront,
     labelBack,
+    placeholder,
+    autoComplete,
     changed,
     styles,
     clicked
@@ -38,21 +46,27 @@ const Input: React.FunctionComponent<Props> = (
       <React.Fragment>
         {
           labelFront && 
-          <label className={`${ styles && styles.labelFront } ${ parent ? parent + '__label-front' : ''}`} htmlFor={`${ parent }__input`}>
+          <label className={`${ styles && styles.labelFront } ${ parent ? parent + '__label-front' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
+          >
             { labelFront }
           </label>
         }
+        { col ? <br></br> : '' }
         <input 
           className={`${ styles && styles.input } ${ parent ? parent + '__input' : ''}`} 
-          id={`${ parent }__input`} 
-          type="text" 
-          autoComplete="off"
+          id={`${ parent ? parent + '__input' : ''}`} 
+          type={ type ? type : "text" } 
+          autoComplete={ autoComplete ? "on" : "off" }
+          placeholder={ placeholder ? placeholder : '' }
           value={ value }
           onClick={ clicked }
-          onChange={ changed }/>
+          onChange={ changed }
+        />
+        { col ? <br></br> : ''}
         {
           labelBack && 
-          <label className={`${ styles && styles.labelBack } ${ parent ? parent + '__label-back' : ''}`} htmlFor={`${ parent }__input`}>
+          <label className={`${ styles && styles.labelBack } ${ parent ? parent + '__label-back' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
+          >
             { labelBack }
           </label>
         }

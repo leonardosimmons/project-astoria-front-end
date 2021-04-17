@@ -44,6 +44,7 @@ export type BaseOptions = {
   parent?: string;
   sub?: string;
   styles?: any;
+  toggle?: boolean;
   type?: string;
   uppercase?: boolean;
   value?: any;
@@ -57,9 +58,11 @@ export type BackdropContext = {
 };
 
 export type Button = {
-  text: string;
+  text:  string | number | JSX.Element | HTMLElement;
   link: string;
   classes?: string;
+  type?: "button" | "submit" | "reset";
+  clicked?: () => void;
 };
 
 export type DataBank = {
@@ -128,6 +131,20 @@ export type Image = {
   layout?: 'fixed' | 'intrinsic' | 'responsive' | undefined;
   objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
   loader?: ImageLoader;
+};
+
+export type Input = {
+  value: any;
+  col?: boolean;
+  toggle?: boolean;
+  placeholder?: string;
+  autoComplete?: boolean;
+  label?: string | JSX.Element | HTMLElement;
+  labelFront?: string | JSX.Element | HTMLElement;
+  labelBack?: string | JSX.Element | HTMLElement;
+  clicked?: () => void;
+  changed?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week";
 };
 
 export type Logo = Omit<Image, "src"|"alt"|"width"|"height"> & {

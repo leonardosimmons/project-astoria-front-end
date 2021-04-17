@@ -3,6 +3,7 @@ import { BaseOptions } from '../../utils/types';
 
 type Props = {
   text: string | number | JSX.Element | HTMLElement;
+  type?: "button" | "submit" | "reset";
   toggle?: boolean;
   toggleFor?: string;
   toggleClasses?: string;
@@ -12,7 +13,8 @@ const Button: React.FunctionComponent<Props> = (
   { 
     parent, 
     link, 
-    text, 
+    text,
+    type, 
     toggle, 
     toggleFor,
     styles,
@@ -33,7 +35,8 @@ const Button: React.FunctionComponent<Props> = (
     </div>
     :
     <Link href={ link || ''  }>
-      <button 
+      <button
+        type={ type ? type : "button" } 
         className={`${ styles && styles.btn } ${ parent ? parent + '--button' : ''} ${ classes || '' }`}
         onClick={ clicked }>
         { text as string }

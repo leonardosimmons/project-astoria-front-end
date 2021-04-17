@@ -1,4 +1,33 @@
 
+//* -------------------- CENTER -------------------- *//
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.center-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+};
+
+.center-col-all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+};
+
 //* -------------------- GENERAL -------------------- *//
 // disables users ability to select/highlight a particular element
 .noselect {

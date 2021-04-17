@@ -11,6 +11,7 @@ type Props = {
   desktop: any;
   mobile: any;
   styles: any;
+  solid?: boolean;
   classes?: string;
   desktopNav?: JSX.Element | HTMLElement;
   mobileNav?: JSX.Element | HTMLElement;
@@ -30,6 +31,7 @@ const Layout: React.FunctionComponent<Props> = (
     footer,
     styles,
     classes,
+    solid,
     children 
   }
 ): JSX.Element => {
@@ -44,7 +46,7 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="modal-root" />
       <div id="app" className={`${ styles.page || '' } ${ classes }`}>
         <nav className={`${ styles.nav || '' } ${ parent ? parent + '__nav' : ''} ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
-          { desktopNav || <DesktopNavBar config={ desktop } /> }
+          { desktopNav || <DesktopNavBar solid={ solid } config={ desktop } /> }
           { mobileNav || <MobileNavbar config={ mobile }/> }
         </nav>
         { header && <header className={`${ styles.header || '' } ${ parent ? parent + '__header' : ''}`}>{ header }</header> }
