@@ -8,7 +8,7 @@ import { page } from '../utils/keys';
 import { NavbarData } from '../utils/types';
 import { preventDefault, handleInputRef } from '../helpers/functions';
 
-import styles from '../containers/pages/sign-in/Sign-In.module.scss';
+import styles from '../containers/pages/sign-in/SignIn.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
