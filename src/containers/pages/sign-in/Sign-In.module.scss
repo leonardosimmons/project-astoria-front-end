@@ -7,8 +7,6 @@
 .mainContainer {
   height: 90%;
   width: 90%;
-
-  background-color: blue;
 }
 
 .contentBox {
@@ -18,10 +16,11 @@
 
   padding: 1rem;
 
-  background-color: var(--grey-lightest);
-  
-  & form {
-
+  & > *:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -33,14 +32,31 @@
 }
 
 .input {
-  margin-top: .33rem;
-  margin-bottom: 1rem;
+  width: 23ch;
+  padding: .5rem;
+  border: 1px solid var(--grey-600);
+}
+
+.labelFront {
+  margin-bottom: -1.75rem;
+  font-size: 1.8rem;
+  align-self: flex-start;
 }
 
 .btnContainer {
+  margin-top: .5rem;
+
   & > * {
     margin: 1.5rem 0;
+    width: 10rem;
     padding: .5rem 1rem;
+  
+    color: white;
+    background-color: var(--dark-grey-500);
+
+    &:hover {
+      background-color: var(--dark-grey-300);
+    }
   }
 
   & > *:nth-child(1) {
@@ -51,21 +67,64 @@
   }
 }
 
-.labelFront {
-  font-size: 1.8rem;
-}
 
 .container {
+  & p {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
 
-}
+  & a {
+    font-size: 1.8rem;
+    font-weight: 500;
+    transition: all .2s;
 
-
-.textOne {
-
+    &:hover {
+      transform: translateY(-0.15rem);
+      color: var(--grey-600);
+    }
+  }
 }
 
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+@media only screen and (min-width: 23em) {
+  .mainHeading {
+    margin-bottom: 3rem;
+  }
+
+  .input {
+    width: 27ch;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .mainHeading {
+    margin-bottom: 5rem;
+  }
+
+  .input {
+    width: 30ch;
+    margin-top: .75rem;
+  }
+
+  .btnContainer {
+    & > * {
+      width: 12rem; 
+    }
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .btnContainer {
+    & > * {
+      padding: 1rem 2rem; 
+    }
+  }
 }

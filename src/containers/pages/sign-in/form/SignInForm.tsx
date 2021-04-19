@@ -15,8 +15,8 @@ const signInForm: React.FunctionComponent<Props> = ({ email, password, submit, s
       <Input col labelFront={'Email Address'} styles={ styles } changed={ email }/>
       <Input col type={'password'} labelFront={'Password'} styles={ styles } changed={ password }/>
       <div className={`${ styles.btnContainer } relative center`}>
-        <Input type={'submit'} value={'SUBMIT'}/>
-        <Input type={'reset'} value={'RESET'}/>
+        <Input type={'submit'} value={'SUBMIT'} classes={'relative btn-hoverConfig btn-activeFocus'}/>
+        <Input type={'reset'} value={'RESET'} classes={'relative btn-hoverConfig btn-activeFocus'}/>
       </div>
     </form>
   );
