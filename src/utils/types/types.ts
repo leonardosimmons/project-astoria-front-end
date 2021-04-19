@@ -165,6 +165,15 @@ export type NamedLink = {
   link: string;
 };
 
+export type RegistrationForm = {
+  firstName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  lastName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  age: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submit: (e: React.FormEvent) => void;
+};
+
 export type SignInForm = {
   email: (e: React.ChangeEvent<HTMLInputElement>) => void;
   password: (e: React.ChangeEvent<HTMLInputElement>) => void;

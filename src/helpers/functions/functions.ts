@@ -22,7 +22,7 @@ export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.F
  * @param fn - function to which the event is to be passed
  * @returns 
  */
-export const handleInput = (fn: (i: string) => void) => (e: React.ChangeEvent<HTMLInputElement>): void => {
+export const handleInput = (fn: (i: string | number) => void) => (e: React.ChangeEvent<HTMLInputElement>): void => {
   fn(e.target.value);
 };
 
@@ -31,6 +31,6 @@ export const handleInput = (fn: (i: string) => void) => (e: React.ChangeEvent<HT
  * @param ref - input reference
  * @returns 
  */
-export const handleInputRef = (ref: React.MutableRefObject<string | undefined>) => (e: React.ChangeEvent<HTMLInputElement>): void => {
+export const handleInputRef = (ref: React.MutableRefObject<string | number | undefined>) => (e: React.ChangeEvent<HTMLInputElement>): void => {
   ref.current = e.target.value;
 };
