@@ -171,6 +171,7 @@ export type RegistrationForm = {
   age: (e: React.ChangeEvent<HTMLInputElement>) => void;
   email: (e: React.ChangeEvent<HTMLInputElement>) => void;
   password: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  pwCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submit: (e: React.FormEvent) => void;
 };
 

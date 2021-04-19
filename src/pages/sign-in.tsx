@@ -56,7 +56,7 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
               styles={ styles }/>
             <Container styles={ styles } classes={'relative center-col'}>
               <TextBox textOne={'New Customer?'}/> 
-              <Link href={'/under-construction'}>
+              <Link href={'/register'}>
                 <a>Register</a>
               </Link>
             </Container>
