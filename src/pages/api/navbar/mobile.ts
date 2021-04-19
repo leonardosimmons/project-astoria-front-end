@@ -11,7 +11,7 @@ export default function mobileData(_: NextApiRequest, res: NextApiResponse<Navba
     {
       icons:
       [
-        { link: link.UNDER_CONSTRUCTION, src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
+        { link: link.CART, src: '/icons/svg/small/briefcase.svg', alt: 'test', width: 22.5, height: 22.5 },
         { link: link.SIGN_IN, src: '/icons/svg/small/profile.svg', alt: 'test', width: 22.5, height: 22.5  },
         { link: link.UNDER_CONSTRUCTION, src: '/icons/svg/small/search-glass.svg', alt: 'test', width: 22.5, height: 22.5 }
       ],

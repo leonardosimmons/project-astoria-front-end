@@ -13,14 +13,19 @@ export enum cpnt {
 
 export enum key {
   RIGHT = 'right',
-  LEFT = 'left'
+  LEFT = 'left',
+  UP = 'up',
+  DOWN = 'down'
 };
 
 export enum page {
+  ADMIN = 'admin',
+  CART = 'cart',
   GIFTS = 'gifts',
   HANDBAGS = 'handbags',
   HOME = 'home',
   MENS = 'mens',
+  SHIPPING = 'shipping',
   SIGN_IN = 'sign-in',
   UNDER_CONSTRUCTION = 'under-construction',
   WHATS_NEW = 'whats-new',
@@ -28,11 +33,14 @@ export enum page {
 
 
 export enum link {
+  ADMIN = '/admin',
+  CART = '/cart',
   GIFTS = '/gifts',
   HANDBAGS = '/handbags',
   HOME = '/',
   MEN = '/men',
   MX = '/mx',
+  SHIPPING = '/SHIPPING',
   SIGN_IN = '/sign-in',
   WHATS_NEW = '/new',
   WOMEN = '/women',
