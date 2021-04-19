@@ -27,13 +27,13 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
   const [ email, setEmail ] = React.useState<string>();
   const [ password, setPassword ] = React.useState<string>();
 
-  const handleEmail = handleInputRef(emailRef);
-  const handlePassword = handleInputRef(passwordRef);
-  const handleSignIn = preventDefault(() => { 
+  const handleEmail = React.useCallback(handleInputRef(emailRef), []);
+  const handlePassword = React.useCallback(handleInputRef(emailRef), []);
+  const handleFormSubmit = React.useCallback(preventDefault(() => {
     setEmail(emailRef.current);
     setPassword(passwordRef.current);
-  });
-
+  }), []);
+  
   return (
     <Layout
       solid
@@ -52,7 +52,7 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
             <SignInForm 
               email={ handleEmail }
               password={ handlePassword }
-              submit={ handleSignIn }
+              submit={ handleFormSubmit }
               styles={ styles }/>
             <Container styles={ styles } classes={'relative center-col'}>
               <TextBox textOne={'New Customer?'}/> 
