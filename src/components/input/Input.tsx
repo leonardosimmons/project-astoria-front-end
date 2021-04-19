@@ -3,12 +3,14 @@ import { BaseOptions } from '../../utils/types';
 
 type Props = {
   col?: boolean;
+  classes?: string;
   toggle?: boolean;
   placeholder?: string;
   autoComplete?: boolean;
   label?: string | JSX.Element | HTMLElement;
   labelFront?: string | JSX.Element | HTMLElement;
   labelBack?: string | JSX.Element | HTMLElement;
+  labelClasses?: string;
   type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week";
 } & BaseOptions;
 
@@ -22,10 +24,12 @@ const Input: React.FunctionComponent<Props> = (
     label,
     labelFront,
     labelBack,
+    labelClasses,
     placeholder,
     autoComplete,
     changed,
     styles,
+    classes,
     clicked
   }
 ): JSX.Element => {
@@ -33,7 +37,7 @@ const Input: React.FunctionComponent<Props> = (
       toggle ? 
       <React.Fragment>
         <input 
-          className={`${ styles && styles.checkbox } ${ parent ? parent + '__checkbox' : ''}`} 
+          className={`${ styles && styles.checkbox } ${ parent ? parent + '__checkbox' : ''} ${ classes ? classes : '' }`} 
           id={`${ parent }__toggle`} 
           type="checkbox"
           value={ value } 
@@ -46,14 +50,14 @@ const Input: React.FunctionComponent<Props> = (
       <React.Fragment>
         {
           labelFront && 
-          <label className={`${ styles && styles.labelFront } ${ parent ? parent + '__label-front' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
+          <label className={`${ styles && styles.labelFront || '' } ${ labelClasses ? labelClasses : '' } ${ parent ? parent + '__label-front' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
           >
             { labelFront }
           </label>
         }
         { col ? <br></br> : '' }
         <input 
-          className={`${ styles && styles.input } ${ parent ? parent + '__input' : ''}`} 
+          className={`${ styles && styles.input || '' } ${ parent ? parent + '__input' : ''} ${ classes ? classes : '' }`} 
           id={`${ parent ? parent + '__input' : ''}`} 
           type={ type ? type : "text" } 
           autoComplete={ autoComplete ? "on" : "off" }
@@ -65,7 +69,7 @@ const Input: React.FunctionComponent<Props> = (
         { col ? <br></br> : ''}
         {
           labelBack && 
-          <label className={`${ styles && styles.labelBack } ${ parent ? parent + '__label-back' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
+          <label className={`${ styles && styles.labelBack || '' } ${ labelClasses ? labelClasses : '' } ${ parent ? parent + '__label-back' : ''}`} htmlFor={`${ parent ? parent + '__input' : ''}`}
           >
             { labelBack }
           </label>

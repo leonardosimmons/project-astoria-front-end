@@ -20,20 +20,19 @@ import SignInForm from '../containers/pages/sign-in/form';
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const router: NextRouter = useRouter();
+  
+  /* -------------------------  FORM  ------------------------- */
   const emailRef = React.useRef<string>();
   const passwordRef = React.useRef<string>();
   const [ email, setEmail ] = React.useState<string>();
   const [ password, setPassword ] = React.useState<string>();
 
+  const handleEmail = handleInputRef(emailRef);
+  const handlePassword = handleInputRef(passwordRef);
   const handleSignIn = preventDefault(() => { 
     setEmail(emailRef.current);
     setPassword(passwordRef.current);
   });
-
-  const handleEmail = handleInputRef(emailRef);
-  const handlePassword = handleInputRef(passwordRef);
-
-  React.useEffect(() => { console.log(email)})
 
   return (
     <Layout
@@ -53,7 +52,8 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
             <SignInForm 
               email={ handleEmail }
               password={ handlePassword }
-              submit={ handleSignIn }/>
+              submit={ handleSignIn }
+              styles={ styles }/>
             <Container styles={ styles } classes={'relative center'}>
               <TextBox textOne={'New Customer?'}/> 
               <Link href={'/under-construction'}>

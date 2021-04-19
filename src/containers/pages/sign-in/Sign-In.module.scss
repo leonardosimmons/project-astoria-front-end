@@ -32,10 +32,28 @@
   letter-spacing: 2px;
 }
 
-.labelFront {
-
+.input {
+  margin-top: .33rem;
+  margin-bottom: 1rem;
 }
 
+.btnContainer {
+  & > * {
+    margin: 1.5rem 0;
+    padding: .5rem 1rem;
+  }
+
+  & > *:nth-child(1) {
+    margin-right: 1rem;
+  }
+  & > *:nth-child(2) {
+    margin-left: 1rem;
+  }
+}
+
+.labelFront {
+  font-size: 1.8rem;
+}
 
 .container {
 
