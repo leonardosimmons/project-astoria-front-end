@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { page } from '../utils/keys';
 import { MainProductPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
@@ -8,16 +8,16 @@ import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 import styles from '../containers/pages/men/MensPage.module.scss';
 import promoStyles from '../containers/pages/men/MensPromoCardLrg.module.scss';
 
-import Layout from '../containers/layout/layout';
-import Container from '../components/container/Container';
+import Layout from '../containers/layout';
+import Container from '../components/container';
+import ContentBox from '../components/box';
 import MainHeader from '../containers/pages/men/header';
-import ContentBox from '../components/box/ContentBox';
 import ProductGrid from '../components/grid';
 import PromoCard from '../components/promo/card';
-import PromoBanner from '../components/promo/banner/PromoBanner';
+import PromoBanner from '../components/promo/banner';
 
 
-function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function MensPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
 
@@ -68,7 +68,7 @@ function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
 export default MensPage;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
