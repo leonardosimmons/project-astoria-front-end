@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
 import { MainProductPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
@@ -13,7 +13,7 @@ import MainHeader from '../containers/pages/handbags/header';
 import ProductGrid from '../components/grid';
 import PromoBanner from '../components/promo/banner';
 
-function giftsPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
 
@@ -63,8 +63,7 @@ function giftsPage({ config }: InferGetServerSidePropsType<typeof getServerSideP
 
 export default giftsPage;
 
-
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),

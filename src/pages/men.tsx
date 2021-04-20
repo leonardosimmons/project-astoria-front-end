@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
 import { MainProductPageData } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
@@ -17,7 +17,7 @@ import PromoCard from '../components/promo/card';
 import PromoBanner from '../components/promo/banner';
 
 
-function MensPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function MensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
 
@@ -68,7 +68,7 @@ function MensPage({ config }: InferGetServerSidePropsType<typeof getServerSidePr
 export default MensPage;
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
