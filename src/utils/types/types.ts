@@ -158,6 +158,8 @@ export type Logo = Omit<Image, "src"|"alt"|"width"|"height"> & {
 export type PageLink = {
   link: string;
   text?: string;
+  name?: string;
+  type?: string;
 };
 
 export type NamedLink = {
@@ -306,10 +308,12 @@ export type NavbarContext = {
   menu: NavbarDesktopMenu | NavbarMobileMenu 
 };
 
-export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse;
+export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse & { id?: number, type?: string };
 
 export type NavbarMenuTab = {
   name: string;
+  id?: number;
+  type?: string;
 } & Icon;
 
 

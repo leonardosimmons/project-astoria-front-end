@@ -27,21 +27,12 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
   const dispatch: React.Dispatch<AppActions> = useDispatch();
   const context = useSelector((state: AppState) => state.indexPage);
 
+
   /* --------------  USER SCROLL POSITION  -------------- */
   useNavScrollConfig();
 
 
-  /* -------------------  INTRO BOX  -------------------- */
-  const [ introModal, setIntroModal ] = React.useState<boolean>(true);
-  const firstLoadRef = React.useRef<boolean>(false); //! add to redux [ initLoad ]
-
-
   /* --------------------  HANDLERS  --------------------- */
-  const introBtnClickHandler = React.useCallback((): void => {
-    firstLoadRef.current = true;
-    setIntroModal(false);
-  }, []);
-
   const introModalToggle = React.useCallback((): void => {
     dispatch(firstLoad());
     dispatch(toggleIntroModal());
@@ -55,7 +46,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       title={`Astoria | Home`}
       classes={`relative`}
       styles={ styles }
-      desktop={ config.nav.desktop }
+      desktop={ config.nav.desktop.data }
       mobile={ config.nav.mobile }
       header={
         <React.Fragment>
@@ -81,7 +72,7 @@ export default Index;
 /* -----------------  STATIC GENERATION  ----------------- */
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get('http://localhost:4000/astoria/navbar/desktop', { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -102,7 +93,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }))
   .catch(err => { 
-    throw new Error(`Error: ${ err.message }`); 
+    throw new Error(err.message); 
   });
 
   return {

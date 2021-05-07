@@ -18,7 +18,7 @@ type Props = {
       logo: PageLink;
       tabs: NavbarMenuTabToken[];
     };
-    profile:  NavbarMenuTab[];
+    profiles:  NavbarMenuTab[];
   };
   solid?: boolean;
 };
@@ -41,7 +41,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               <Logo 
                 classes={'logoFont'}
                 styles={ menuStyles } 
-                text={ config?.menu.logo.text as string }
+                text={ config?.menu.logo.name as string }
                 link={ config?.menu.logo.link as string } />
             </div>
             <MenuTab
@@ -57,7 +57,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
             <MenuTab
               left 
               styles={ profileStyles }
-              tabs={ config?.profile as NavbarMenuTab[] }/>
+              tabs={ config?.profiles as NavbarMenuTab[] }/>
           </Container>
         </div>
       </Container>

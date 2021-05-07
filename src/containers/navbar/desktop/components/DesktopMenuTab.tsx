@@ -19,7 +19,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
   return (
     <div className={ styles && styles.tabs || '' }>
     {
-      tabs.map((tab: NavbarMenuTab, index: number) => {
+      tabs?.map((tab: NavbarMenuTab, index: number) => {
         const key = index + 1;
         return (
           <Icon
