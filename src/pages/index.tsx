@@ -1,7 +1,10 @@
 
 import React from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { AppActions } from '../redux-store/action-types';
+import { AppState } from '../redux-store/reducers';
 import { IndexPageData } from '../utils/types';
 import { page } from '../utils/keys';
 
@@ -17,8 +20,13 @@ import SectionTwo from '../containers/pages/index/sections/two';
 import SectionThree from '../containers/pages/index/sections/three';
 import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
+import { firstLoad, toggleIntroModal } from '../containers/pages/index/state/actions';
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  /* ----------------  BASE CONTROLLERS  ---------------- */
+  const dispatch: React.Dispatch<AppActions> = useDispatch();
+  const context = useSelector((state: AppState) => state.indexPage);
+
   /* --------------  USER SCROLL POSITION  -------------- */
   useNavScrollConfig();
 
@@ -34,6 +42,11 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
     setIntroModal(false);
   }, []);
 
+  const introModalToggle = React.useCallback((): void => {
+    dispatch(firstLoad());
+    dispatch(toggleIntroModal());
+  }, []);
+
 
   /* ---------------------  RENDER  --------------------- */
   return (
@@ -46,12 +59,12 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       mobile={ config.nav.mobile }
       header={
         <React.Fragment>
-          { introModal && <IntroModal btnClickHandler={ introBtnClickHandler }/> }
-          <IndexHeader headerConfig={ config.header } classes={ introModal ? 'none' : '' }/>
+          { context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> }
+          <IndexHeader headerConfig={ config.header } classes={ context.introModal ? 'none' : '' }/>
         </React.Fragment>
       }
     >
-      <Container main parent={ page.HOME } classes={`relative ${ introModal ? 'none' : '' }`}>
+      <Container main parent={ page.HOME } classes={`relative ${ context.introModal ? 'none' : '' }`}>
         <SectionOne config={ config.section.one }/>
         <SectionTwo config={ config.section.two }/>
         <SectionThree config={ config.section.three }/>

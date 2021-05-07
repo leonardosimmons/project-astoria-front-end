@@ -245,6 +245,15 @@ export type IndexPageData = {
   header: IndexHeaderData;
 };
 
+export type IndexPageContext = {
+  firstLoad: boolean;
+  introModal: boolean;
+};
+
+export type IndexPage = {
+  data: IndexPageData;
+  context: IndexPageContext;
+};
 
 //** ----------------  MAIN PRODUCT PAGE  ---------------- **//
 export type MainProductPageStaticData = {
