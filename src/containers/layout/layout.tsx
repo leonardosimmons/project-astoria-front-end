@@ -8,7 +8,7 @@ import MobileNavbar from '../navbar/mobile';
 type Props = {
   parent: string;
   title: string;
-  desktop?: any;
+  desktop: any;
   mobile: any;
   styles: any;
   solid?: boolean;

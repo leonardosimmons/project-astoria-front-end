@@ -47,7 +47,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       classes={`relative`}
       styles={ styles }
       desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile }
+      mobile={ config.nav.mobile.data }
       header={
         <React.Fragment>
           { context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> }
@@ -72,7 +72,7 @@ export default Index;
 /* -----------------  STATIC GENERATION  ----------------- */
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get('http://localhost:4000/astoria/navbar/desktop', { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
