@@ -51,7 +51,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       header={
         <React.Fragment>
           { context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> }
-          <IndexHeader headerConfig={ config.header } classes={ context.introModal ? 'none' : '' }/>
+          <IndexHeader headerConfig={ config.header.data.headers } classes={ context.introModal ? 'none' : '' }/>
         </React.Fragment>
       }
     >
