@@ -23,8 +23,8 @@ function userCart({ config }: InferGetServerSidePropsType<typeof getServerSidePr
       parent={ page.SIGN_IN }
       title={'ASTORIA | Sign-in'}
       classes={'relative'}
-      desktop={ config.desktop }
-      mobile={ config.mobile }
+      desktop={ config.desktop.data }
+      mobile={ config.mobile.data }
       styles={ styles }
       footer={ <Copyright /> }
     >
