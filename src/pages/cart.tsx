@@ -12,8 +12,10 @@ import styles from '../containers/pages/cart/Cart.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
+import ContentBox from '../components/box';
 import Copyright from '../components/copyright';
 import OrderPreview from '../containers/pages/cart/preview';
+import OrderSummary from '../containers/pages/cart/summary';
 
 
 function userCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
@@ -30,10 +32,7 @@ function userCart({ config }: InferGetServerSidePropsType<typeof getServerSidePr
     >
       <Container wrapper styles={ styles } classes={'relative center noselect'}>
         <OrderPreview />
-        <div id={'order-summary'} className={ styles.summaryBox}>
-          {/* order summary */}
-          {/* comp shipping promo box */}
-        </div>
+        <OrderSummary />
       </Container>
     </Layout>
   );
