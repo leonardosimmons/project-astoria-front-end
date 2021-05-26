@@ -3,12 +3,19 @@
   height: 100%;
   width: 100%;
 
+  display: flex;
+  justify-content: flex-start;
+
+  margin-bottom: 2rem;
+
   background-color: var(--grey-200);
 }
 
 .contentBox {
   height: 80%;
   width: 95%;
+  
+  margin-bottom: 2rem;
 }
 
 .desktopHeading {
@@ -23,11 +30,14 @@
 }
 
 .mobileHeading {
+  margin-top: 2rem;
+
   font-size: 3rem;
 }
 
 .container {
-  height: 50rem; //100%;
+  height: 100%; //100%;
+  min-height: 20rem;
   width: 90%;
 
   display: flex;
@@ -35,11 +45,28 @@
 
   border-top: 1px solid var(--grey-900);
   border-bottom: 1px solid var(--grey-900);
+
+  & > p {
+    text-align: center;
+    padding: 1rem 0;
+    color: var(--grey-900);
+  }
 }
 
+//* 528px
+@media only screen and (min-width: 33em) {
+  .wrapper {
+    width: 90%;
+  }
+}
+
+//* 768px
 @media only screen and (min-width: 48em) {
   .wrapper {
     height: 85%;
+    width: 100%;
+
+    margin-bottom: 0;
   }
 
   .contentBox {
@@ -54,8 +81,38 @@
     display: none;
   }
 }
+
+//* 1024px
 @media only screen and (min-width: 64em) {
   .wrapper {
     height: 80%;
+    min-height: 1055px;
+  }
+
+  .contentBox {
+    margin-bottom: 0;
+  }
+
+  .container {
+    & > p {
+      text-align: left;
+    }
+  }
+
+  .desktopHeading {
+    font-size: 2.25rem;
+  }
+}
+
+//* 1536px
+@media only screen and (min-width: 96em) {
+  .wrapper {
+    & > *:nth-child(2) {
+      flex: 0 1 30%;
+    }
+  }
+
+  .desktopHeading {
+    font-size: 2.5rem;
   }
 }

@@ -12,6 +12,7 @@ type Props = {
 
 const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
   const tempAmountInCart: number = 0;
+  const tempCartItems = [];
 
   return (
     <Container wrapper styles={ styles } classes={'relative center-col'}>
@@ -19,7 +20,12 @@ const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
         <TextBox mainHeading={'YOUR SELECTIONS'} mainHeadingClasses={ styles.desktopHeading }/>
         <TextBox mainHeading={`Shopping Bag (${ tempAmountInCart })`} mainHeadingClasses={ styles.mobileHeading }/>
         <Container styles={ styles } classes={'relative'}>
-          {/* PRODUCT PREVIEW HERE */}
+          {
+            tempCartItems.length === 0 ? 
+            <p>{'No items currently in cart'}</p>
+            : 
+            ''
+          }
         </Container>
       </ContentBox>
     </Container>

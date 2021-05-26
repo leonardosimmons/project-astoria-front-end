@@ -1,9 +1,12 @@
 .wrapper {
-  height: 92.5vh; //! change to  100%
+  height: 100%; //! change to  100%
+  min-height: 92.5vh;
   width: 96.5%;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   
   & > *:nth-child(1) {
@@ -26,12 +29,25 @@
   padding-bottom: 2rem;
 }
 
+//* 768px
 @media only screen and (min-width: 48em) {
   .wrapper {
+    height: 92.5vh;
+
     flex-direction: row;
 
     & > *:nth-child(1) {
       margin-top: 0;
+    }
+  }
+}
+
+
+//* 1536px
+@media only screen and (min-width: 96em) {
+  .wrapper {
+    & > *:nth-child(2) {
+      flex: 0 1 30%;
     }
   }
 }

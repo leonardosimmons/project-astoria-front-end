@@ -12,7 +12,6 @@ import styles from '../containers/pages/cart/Cart.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import ContentBox from '../components/box';
 import Copyright from '../components/copyright';
 import OrderPreview from '../containers/pages/cart/preview';
 import OrderSummary from '../containers/pages/cart/summary';

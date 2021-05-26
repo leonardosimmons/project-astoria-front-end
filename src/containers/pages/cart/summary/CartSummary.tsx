@@ -17,7 +17,7 @@ const CartSummary: React.FunctionComponent<Props> = (): JSX.Element => {
   const tempBtn = { text: 'Proceeed to Checkout', link: '/under-construction'};
 
   return (
-    <div className={styles.summaryBox}>
+    <Container wrapper styles={styles}>
       <Heading
         classes={styles.heading}
         styles={styles} 
@@ -26,7 +26,7 @@ const CartSummary: React.FunctionComponent<Props> = (): JSX.Element => {
         <h3>{`SUBTOTAL (${tempTotal}) ITEMS`}</h3>
         <p>{`$${tempCost}`}</p>
       </Heading>
-    </div>
+    </Container>
   );
 };
 
