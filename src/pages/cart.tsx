@@ -13,8 +13,8 @@ import styles from '../containers/pages/cart/Cart.module.scss';
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import Copyright from '../components/copyright';
-import OrderPreview from '../containers/pages/cart/preview';
-import OrderSummary from '../containers/pages/cart/summary';
+import CartPreview from '../containers/pages/cart/preview';
+import CartSummary from '../containers/pages/cart/summary';
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -54,8 +54,8 @@ function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSidePr
       footer={ <Copyright /> }
     >
       <Container wrapper styles={ styles } classes={'relative center noselect'}>
-        <OrderPreview />
-        <OrderSummary />
+        <CartPreview />
+        <CartSummary />
       </Container>
     </Layout>
   );
