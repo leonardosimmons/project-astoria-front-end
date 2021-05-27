@@ -9,9 +9,8 @@ import styles from '../containers/pages/shipping/Shipping.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import ContentBox from '../components/box/ContentBox';
+import Copyright from '../components/copyright';
 import Input from '../components/input';
-import Copyright from '../components/copyright/Copyright';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -51,7 +50,7 @@ function ShippingPage({ data }: InferGetStaticPropsType<typeof getStaticProps>):
       mobile={data.mobile.data}
       footer={<Copyright />}
     >
-      <Container wrapper styles={styles}>
+      <Container wrapper styles={styles} classes={'noselect'}>
         <h1>{'SHIPPING'}</h1>
         <form className={styles.form}>
           <Input col labelFront={'Address'} placeholder={'Enter address'} styles={styles}/>

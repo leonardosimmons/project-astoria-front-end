@@ -4,8 +4,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { page } from '../utils/keys';
 import { NavbarData } from '../utils/types';
+import { page } from '../utils/keys';
 import { preventDefault, handleInputRef } from '../helpers/functions/functions';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
@@ -17,7 +17,31 @@ import OrderPreview from '../containers/pages/cart/preview';
 import OrderSummary from '../containers/pages/cart/summary';
 
 
-function userCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await axios.all([
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
+  ])
+  .then(axios.spread((desktop, mobile) => {
+    if(desktop.status === 200 && mobile.status === 200) {
+      const dataToken: NavbarData = {
+        desktop: desktop.data,
+        mobile: mobile.data
+      }
+      
+      return dataToken;
+    }
+  }))
+  .catch(err => { throw new Error(`Error: ${ err.message }`)});
+  
+  return {
+    props: {
+      config: data as NavbarData
+    }
+  };
+};
+
+function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   return (
     <Layout
       solid
@@ -37,29 +61,4 @@ function userCart({ config }: InferGetServerSidePropsType<typeof getServerSidePr
   );
 };
 
-export default userCart;
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop, mobile) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      }
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      config: data as NavbarData
-    }
-  };
-};
+export default UserCart;
