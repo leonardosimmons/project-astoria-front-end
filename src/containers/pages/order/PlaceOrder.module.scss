@@ -6,7 +6,7 @@
 }
 
 .main {
-  height: 97.5%;
+  height: 96.5%;
   width: 100%;
 }
 
@@ -31,12 +31,14 @@
   width: 90%;
   max-width: 1285px;
 
-  & > *:nth-child(1) {
-    height: 100%;
-    flex: 0 1 100%;
-  
-    background-color: orangered;
+  & > div:not(:last-child) {
+    margin-top: 7rem;
+    margin-bottom: 2rem;
   }
+}
+
+.copyright {
+  margin-bottom: 2rem;
 }
 
 //* 768px
@@ -45,6 +47,11 @@
     height: 100vh;
   }
 
+  .grid {
+    & > div:not(:last-child) {
+      margin: 0;
+    }
+  }
 }
 
 //* 1024px

@@ -1,0 +1,42 @@
+
+.wrapper {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.contentBox {
+  height: 100%;
+  width: 95%;
+  
+  & > div {
+    padding: 1rem;
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--grey-600);
+    }
+  
+    & > h2 {
+      font-size: 3rem;
+    }
+
+    & > p {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+
+//* 768px
+@media only screen and (min-width: 48em) {
+  .wrapper {
+    flex: 0 1 100%;
+  }
+}

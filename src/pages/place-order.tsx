@@ -11,6 +11,7 @@ import Container from '../components/container';
 import Copyright from '../components/copyright';
 import Grid from '../components/grid';
 import OrderSummary from '../containers/pages/order/components/OrderSummary';
+import OrderPreview from '../containers/pages/order/components/OrderPreview';
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -49,11 +50,11 @@ function PlaceOrder({ data }: InferGetServerSidePropsType<typeof getServerSidePr
       styles={styles}
       desktop={data.desktop.data}
       mobile={data.mobile.data}
-      footer={<Copyright />}
+      footer={<Copyright styles={styles}/>}
     >
       <Container wrapper styles={styles}>
         <Grid even grid={styles.grid}>
-          <div className={styles.testOne}></div>
+          <OrderPreview />
           <OrderSummary />
         </Grid>
       </Container>
