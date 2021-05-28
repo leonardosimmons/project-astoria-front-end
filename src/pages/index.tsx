@@ -52,13 +52,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data as IndexPageData
+      data: data as IndexPageData
     }
   };
 };
 
 
-function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function Index({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* ----------------  BASE CONTROLLERS  ---------------- */
   const dispatch: React.Dispatch<AppActions> = useDispatch();
   const context = useSelector((state: AppState) => state.indexPage);
@@ -82,21 +82,21 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       title={`Astoria | Home`}
       classes={`relative`}
       styles={ styles }
-      desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile.data }
+      desktop={ data.nav.desktop.data }
+      mobile={ data.nav.mobile.data }
       header={
         <React.Fragment>
           { context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> }
-          <IndexHeader headerConfig={ config.header.data.headers } classes={ context.introModal ? 'none' : '' }/>
+          <IndexHeader headerConfig={ data.header.data.headers } classes={ context.introModal ? 'none' : '' }/>
         </React.Fragment>
       }
     >
       <Container main parent={ page.HOME } classes={`relative ${ context.introModal ? 'none' : '' }`}>
-        <SectionOne config={ config.section.one }/>
-        <SectionTwo config={ config.section.two }/>
-        <SectionThree config={ config.section.three }/>
-        <SectionFour config={ config.section.four }/>
-        <AppointmentSection config={ config.section.appt } />
+        <SectionOne config={ data.section.one }/>
+        <SectionTwo config={ data.section.two }/>
+        <SectionThree config={ data.section.three }/>
+        <SectionFour config={ data.section.four }/>
+        <AppointmentSection config={ data.section.appt } />
       </Container>
     </Layout>
   );
