@@ -14,42 +14,6 @@ import Container from '../components/container';
 import NewInPromo from '../containers/pages/new/sections/new-in';
 import MainHeader from '../containers/pages/new/header';
 import PromoBanner from '../components/promo/banner';
-
-
-function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  /* -----------------  USER SCROLL POSITION  ----------------- */
-  useNavScrollConfig();
-
-  return (
-    <Layout
-      parent={ page.WHATS_NEW }
-      title={'Astoria | What\'s New'}
-      desktop={ config.nav.desktop }
-      mobile={ config.nav.mobile }
-      classes={'relative'}
-      styles={ styles }
-      header={
-        <MainHeader
-          config={ config.page.header }
-          styles={ headerStyles }/>
-      }>
-      <Container main parent={ page.WHATS_NEW } classes={'relative'}>
-        <NewInPromo priority promoCards={ config.page.promoCard }/>
-        {
-          config.page.promoBanner.map((banner: Header, index: number) => (
-            <div className={'relative'} key={ index }>
-              <PromoBanner config={ banner } />
-            </div>
-          ))
-        }
-      </Container>
-    </Layout>
-  );
-};
-
-export default WhatsNewPage;
-
-
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -80,3 +44,37 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   };
 };
+
+
+function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  /* -----------------  USER SCROLL POSITION  ----------------- */
+  useNavScrollConfig();
+
+  return (
+    <Layout
+      parent={ page.WHATS_NEW }
+      title={'Astoria | What\'s New'}
+      desktop={ config.nav.desktop.data }
+      mobile={ config.nav.mobile.data }
+      classes={'relative'}
+      styles={ styles }
+      header={
+        <MainHeader
+          config={ config.page.header }
+          styles={ headerStyles }/>
+      }>
+      <Container main parent={ page.WHATS_NEW } classes={'relative'}>
+        <NewInPromo priority={true} promoCards={ config.page.promoCard }/>
+        {
+          config.page.promoBanner.map((banner: Header, index: number) => (
+            <div className={'relative'} key={ index }>
+              <PromoBanner config={ banner } />
+            </div>
+          ))
+        }
+      </Container>
+    </Layout>
+  );
+};
+
+export default WhatsNewPage;

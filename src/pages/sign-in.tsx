@@ -12,10 +12,35 @@ import styles from '../containers/pages/sign-in/SignIn.module.scss';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
-import ContentBox from '../components/box/ContentBox';
+import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
 import SignInForm from '../containers/pages/sign-in/form';
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await axios.all([
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
+  ])
+  .then(axios.spread((desktop, mobile) => {
+    if(desktop.status === 200 && mobile.status === 200) {
+      const dataToken: NavbarData = {
+        desktop: desktop.data,
+        mobile: mobile.data
+      }
+
+      return dataToken;
+    }
+  }))
+  .catch(err => { throw new Error(`Error: ${ err.message }`)});
+
+  return {
+    props: {
+      config: data as NavbarData
+    }
+  }
+};
 
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -56,9 +81,8 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
               styles={ styles }/>
             <Container styles={ styles } classes={'relative center-col'}>
               <TextBox textOne={'New Customer?'}/> 
-              <Link href={'/register'}>
-                <a>Register</a>
-              </Link>
+              <Link href={'/register'}><a>{'Register'}</a></Link>
+              <Link href={'/'}><a>{'Sign In as Guest'}</a></Link>
             </Container>
           </ContentBox>
         </Container>
@@ -68,27 +92,3 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
 };
 
 export default signInPage;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop, mobile) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      }
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      config: data as NavbarData
-    }
-  }
-};

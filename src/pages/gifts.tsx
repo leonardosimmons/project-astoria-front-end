@@ -13,6 +13,36 @@ import MainHeader from '../containers/pages/handbags/header';
 import ProductGrid from '../components/grid';
 import PromoBanner from '../components/promo/banner';
 
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await axios.all([
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.GIFTS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  ])
+  .then(axios.spread((desktop, mobile, page) => {
+    if(desktop.status === 200 && mobile.status === 200 && page.status === 200) {
+      const dataToken: MainProductPageData = {
+        nav: {
+          desktop: desktop.data,
+          mobile: mobile.data
+        },
+        page: page.data
+      }
+
+      return dataToken;
+    }
+  }))
+  .catch(err => { throw new Error(`Error: ${ err.message }`)});
+
+  return {
+    props: {
+      config: data as MainProductPageData
+    }
+  }
+};
+
+
 function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
@@ -22,8 +52,8 @@ function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): 
       parent={ page.GIFTS }
       title={'ASTORIA | Gifts'}
       classes={'relative'}
-      desktop={ config.nav.desktop }
-      mobile={ config.nav.mobile }
+      desktop={ config.nav.desktop.data }
+      mobile={ config.nav.mobile.data }
       styles={ styles }
       header={
         <MainHeader config={ config.page.header } />
@@ -62,31 +92,3 @@ function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): 
 };
 
 export default giftsPage;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.GIFTS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
-  ])
-  .then(axios.spread((desktop, mobile, page) => {
-    if(desktop.status === 200 && mobile.status === 200 && page.status === 200) {
-      const dataToken: MainProductPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data
-        },
-        page: page.data
-      }
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      config: data as MainProductPageData
-    }
-  }
-};

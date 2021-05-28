@@ -16,6 +16,31 @@ import TextBox from '../components/text';
 import RegistrationForm from '../containers/pages/register/form';
 
 
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await axios.all([
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
+  ])
+  .then(axios.spread((desktop, mobile) => {
+    if(desktop.status === 200 && mobile.status === 200) {
+      const dataToken: NavbarData = {
+        desktop: desktop.data,
+        mobile: mobile.data
+      };
+
+      return dataToken;
+    }
+  }))
+  .catch(err => { throw new Error(`Error: ${ err.message }`)});
+
+  return {
+    props: {
+      config: data as NavbarData
+    }
+  };
+};
+
+
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const firstNameRef = React.useRef<string>();
   const lastNameRef = React.useRef<string>();
@@ -83,27 +108,3 @@ function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
 
 export default registerPage;
 
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop, mobile) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      };
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      config: data as NavbarData
-    }
-  };
-};

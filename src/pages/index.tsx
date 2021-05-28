@@ -11,6 +11,8 @@ import { page } from '../utils/keys';
 import styles from '../containers/pages/index/Index.module.scss';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
+import { firstLoad, toggleIntroModal } from '../containers/pages/index/state/actions';
+
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import IntroModal from '../containers/pages/index/intro';
@@ -20,7 +22,41 @@ import SectionTwo from '../containers/pages/index/sections/two';
 import SectionThree from '../containers/pages/index/sections/three';
 import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
-import { firstLoad, toggleIntroModal } from '../containers/pages/index/state/actions';
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await axios.all([
+    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  ])
+  .then(axios.spread((desktop, mobile, header, data) => { 
+    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)
+    {
+      const dataToken: IndexPageData = {
+          nav: {
+            desktop: desktop.data,
+            mobile: mobile.data,
+          },
+          header: header.data,
+          section: data.data
+      };
+
+      return dataToken;
+    }
+  }))
+  .catch(err => { 
+    throw new Error(err.message); 
+  });
+
+  return {
+    props: {
+      config: data as IndexPageData
+    }
+  };
+};
+
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* ----------------  BASE CONTROLLERS  ---------------- */
@@ -67,38 +103,3 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 };
 
 export default Index;
-
-
-/* -----------------  STATIC GENERATION  ----------------- */
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
-  ])
-  .then(axios.spread((desktop, mobile, header, data) => { 
-    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)
-    {
-      const dataToken: IndexPageData = {
-          nav: {
-            desktop: desktop.data,
-            mobile: mobile.data,
-          },
-          header: header.data,
-          section: data.data
-      };
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { 
-    throw new Error(err.message); 
-  });
-
-  return {
-    props: {
-      config: data as IndexPageData
-    }
-  };
-};
