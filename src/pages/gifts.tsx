@@ -52,8 +52,8 @@ function giftsPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): 
       parent={ page.GIFTS }
       title={'ASTORIA | Gifts'}
       classes={'relative'}
-      desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile.data }
+      desktop={ config.nav.desktop }
+      mobile={ config.nav.mobile }
       styles={ styles }
       header={
         <MainHeader config={ config.page.header } />

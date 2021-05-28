@@ -46,8 +46,8 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="modal-root" />
       <div id="app" className={`${ styles.page || '' } ${ classes }`}>
         <nav className={`${ styles.nav || '' } ${ parent ? parent + '__nav' : ''} ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
-          { desktopNav || <DesktopNavBar solid={ solid } config={ desktop } /> }
-          { mobileNav || <MobileNavbar config={ mobile }/> }
+          <DesktopNavBar solid={ solid } config={ desktop }/>
+          <MobileNavbar config={ mobile }/>
         </nav>
         { header && <header className={`${ styles.header || '' } ${ parent ? parent + '__header' : ''}`}>{ header }</header> }
         { children && <main className={`${ styles.main || '' } ${ parent ? parent + '__main' : ''}`}>{ children }</main> }

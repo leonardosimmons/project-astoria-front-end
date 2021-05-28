@@ -48,8 +48,8 @@ function PlaceOrder({ data }: InferGetServerSidePropsType<typeof getServerSidePr
       parent={'place-order'}
       title={'ASTORIA | Place Order'}
       styles={styles}
-      desktop={data.desktop.data}
-      mobile={data.mobile.data}
+      desktop={data.desktop}
+      mobile={data.mobile}
       footer={<Copyright styles={styles}/>}
     >
       <Container wrapper styles={styles}>

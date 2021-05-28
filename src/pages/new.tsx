@@ -54,8 +54,8 @@ function WhatsNewPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
     <Layout
       parent={ page.WHATS_NEW }
       title={'Astoria | What\'s New'}
-      desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile.data }
+      desktop={ config.nav.desktop }
+      mobile={ config.nav.mobile }
       classes={'relative'}
       styles={ styles }
       header={

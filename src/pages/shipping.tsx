@@ -46,8 +46,8 @@ function ShippingPage({ data }: InferGetStaticPropsType<typeof getStaticProps>):
       parent={page.SHIPPING}
       title={'ASTORIA | Shipping'}
       styles={styles}
-      desktop={data.desktop.data}
-      mobile={data.mobile.data}
+      desktop={data.desktop}
+      mobile={data.mobile}
       footer={<Copyright />}
     >
       <Container wrapper styles={styles} classes={'noselect'}>

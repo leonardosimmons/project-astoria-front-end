@@ -12,13 +12,13 @@ import MenuTab from './components/DesktopMenuTab';
 
 
 type Props = {
-  config?: {
+  config: {
     info: NavbarMenuTabToken[];
     menu: {
       logo: PageLink;
       tabs: NavbarMenuTabToken[];
     };
-    profiles:  NavbarMenuTab[];
+    profile:  NavbarMenuTab[];
   };
   solid?: boolean;
 };
@@ -32,7 +32,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
             <MenuTab 
               left
               styles={ infoStyles }
-              tabs={ config?.info as NavbarMenuTabToken[] } />
+              tabs={ config.info as NavbarMenuTabToken[] } />
           </Container>
         </div>
         <div className={ menuStyles.wrapper || '' }>
@@ -41,15 +41,15 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               <Logo 
                 classes={'logoFont'}
                 styles={ menuStyles } 
-                text={ config?.menu.logo.name as string }
-                link={ config?.menu.logo.link as string } />
+                text={ config.menu.logo.name as string }
+                link={ config.menu.logo.link as string } />
             </div>
             <MenuTab
               right
               column 
               uppercase
               styles={ menuStyles } 
-              tabs={ config?.menu.tabs as NavbarMenuTabToken[] } />
+              tabs={ config.menu.tabs as NavbarMenuTabToken[] } />
           </Container>
         </div>
         <div className={ profileStyles.wrapper || '' }>
@@ -57,7 +57,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
             <MenuTab
               left 
               styles={ profileStyles }
-              tabs={ config?.profiles as NavbarMenuTab[] }/>
+              tabs={ config.profile as NavbarMenuTab[] }/>
           </Container>
         </div>
       </Container>

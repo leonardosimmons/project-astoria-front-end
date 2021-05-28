@@ -24,10 +24,6 @@ export default function mobileData(_: NextApiRequest, res: NextApiResponse<Navba
           { name: 'women', link: link.WOMEN },
           { name: 'handbags', link: link.HANDBAGS },
           { name: 'gifts', link: link.GIFTS },
-          //{ name: 'mx', link: link.UNDER_CONSTRUCTION },
-          //{ name: 'children', link: link.UNDER_CONSTRUCTION },
-          //{ name: 'jewelry & watches', link: link.UNDER_CONSTRUCTION },
-          //{ name: 'beauty', link: link.UNDER_CONSTRUCTION },
         ],
         scrollText: ['Save your favorite items', 'Browse a personailized list created just for you', 'View your recent orders, track shipping and manage returns']
       }

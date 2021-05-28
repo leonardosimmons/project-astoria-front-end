@@ -56,8 +56,8 @@ function WomensPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
     <Layout
       parent={ page.MENS }
       title={'ASTORIA | Women\'s Fashion'}
-      desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile.data }
+      desktop={config.nav.desktop}
+      mobile={config.nav.mobile}
       classes={'relative'}
       styles={ styles }
       header={

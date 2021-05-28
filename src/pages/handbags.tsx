@@ -52,8 +52,8 @@ function Handbags({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
     <Layout
       parent={ page.HANDBAGS }
       title={'ASTORIA | Handbags'}
-      desktop={ config.nav.desktop.data }
-      mobile={ config.nav.mobile.data }
+      desktop={ config.nav.desktop }
+      mobile={ config.nav.mobile }
       classes={'relative'}
       styles={ styles }
       header={
