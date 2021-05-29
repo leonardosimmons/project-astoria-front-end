@@ -1,12 +1,16 @@
 
 import React from 'react';
 import axios from 'axios';
+import { Dispatch } from 'redux';
+import { AppActions } from '../redux-store/action-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { InferGetStaticPropsType, GetStaticProps } from 'next';
 import { handleInputRef, preventDefault } from '../helpers/functions';
-import { NavbarData } from '../utils/types/types';
+import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
+import { setAge, setEmail, setFirstName, setLastName, setPassword, setPwCheck } from '../containers/pages/register/state/actions';
 
 import Layout from '../containers/layout';
 import Copyright from '../components/copyright';
@@ -14,6 +18,7 @@ import Container from '../components/container';
 import ContentBox from '../components/box/ContentBox';
 import TextBox from '../components/text';
 import RegistrationForm from '../containers/pages/register/form';
+import { AppState } from '../redux-store/reducers';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -42,20 +47,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  const dispatch: Dispatch<AppActions> = useDispatch();
+
   const firstNameRef = React.useRef<string>();
   const lastNameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();
   const emailRef = React.useRef<string>();
   const passwordRef = React.useRef<string>();
   const pwCheckRef = React.useRef<string>();
-
-  //! add to redux
-  const [ firstName, setFirstName ] = React.useState<string>();
-  const [ lastName, setLastName ] = React.useState<string>();
-  const [ age, setAge ] = React.useState<number>();
-  const [ email, setEmail ] = React.useState<string>();
-  const [ password, setPassword ] = React.useState<string>();
-  const [ pwCheck, setPwCheck ] = React.useState<string>();
 
   const handleFirstName = React.useCallback(handleInputRef(firstNameRef), []);
   const handleLastName = React.useCallback(handleInputRef(lastNameRef), []);
@@ -64,15 +63,13 @@ function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
   const handlePassword = React.useCallback(handleInputRef(passwordRef), []);
   const handlePwCheck = React.useCallback(handleInputRef(pwCheckRef), []);
   const handleFormSubmit = React.useCallback(preventDefault(() => {
-    setFirstName(firstNameRef.current);
-    setLastName(lastNameRef.current);
-    setAge(ageRef.current);
-    setEmail(emailRef.current);
-    setPassword(passwordRef.current);
-    setPwCheck(pwCheckRef.current);
+    dispatch(setFirstName(firstNameRef.current as string));
+    dispatch(setLastName(lastNameRef.current as string));
+    dispatch(setAge(ageRef.current as number));
+    dispatch(setEmail(emailRef.current as string));
+    dispatch(setPassword(passwordRef.current as string));
+    dispatch(setPwCheck(pwCheckRef.current as string));
   }), []);
-
-  console.log(`FirstName: ${ firstName }\nLastName: ${ lastName }\nAge: ${ age }\nEmail: ${ email }\nPassword: ${ password }\nPwCheck: ${ pwCheck }`);
 
   return (
     <Layout

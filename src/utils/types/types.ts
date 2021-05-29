@@ -65,6 +65,8 @@ export type Button = {
   clicked?: () => void;
 };
 
+export type Combinable = string | number;
+
 export type DataBank = {
   navbar: NavbarContext
 };
@@ -347,8 +349,19 @@ export type ProductTag = {
 };
 
 
-//** ------------------------  PROMO  ------------------------ **/
+//** ------------------------  PROMO  ------------------------ *//
 export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
   width?: string | number;
   height?: string | number;
+};
+
+
+//** ------------------  REGISTRATION FORM ------------------- *//
+export type RegistrationFormConext = {
+  firstName: string;
+  lastName: string;
+  age: Combinable;
+  email: string;
+  password: string;
+  pwCheck: string;
 };
