@@ -1,29 +1,13 @@
 import { AppActions } from '../../../../redux-store/action-types';
 import { Combinable } from '../../../../utils/types';
-import { SET_AGE, SET_EMAIL, SET_FIRSTNAME, SET_LASTNAME, SET_PASSWORD, SET_PW_CHECK } from './action-types';
+import { SET_AGE, SET_EMAIL, SET_USERNAME, SET_PASSWORD, SET_PW_CHECK } from './action-types';
 
 
-export const setFirstName = (name: string): AppActions => 
+export const setUsername = (name: string): AppActions => 
 (
   {
-    type: SET_FIRSTNAME,
+    type: SET_USERNAME,
     payload: name
-  }
-);
-
-export const setLastName = (name: string): AppActions => 
-(
-  {
-    type: SET_LASTNAME,
-    payload: name
-  }
-);
-
-export const setAge = (age: Combinable): AppActions => 
-(
-  {
-    type: SET_AGE,
-    payload: age
   }
 );
 
@@ -32,6 +16,14 @@ export const setEmail = (email: string): AppActions =>
   {
     type: SET_EMAIL,
     payload: email
+  }
+);
+
+export const setAge = (age: Combinable): AppActions => 
+(
+  {
+    type: SET_AGE,
+    payload: age
   }
 );
 

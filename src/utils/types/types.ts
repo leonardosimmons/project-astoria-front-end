@@ -169,16 +169,6 @@ export type NamedLink = {
   link: string;
 };
 
-export type RegistrationForm = {
-  firstName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  lastName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  age: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  pwCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submit: (e: React.FormEvent) => void;
-};
-
 export type SignInForm = {
   email: (e: React.ChangeEvent<HTMLInputElement>) => void;
   password: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -358,10 +348,18 @@ export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
 
 //** ------------------  REGISTRATION FORM ------------------- *//
 export type RegistrationFormConext = {
-  firstName: string;
-  lastName: string;
-  age: Combinable;
+  username: string;
   email: string;
+  age: Combinable;
   password: string;
   pwCheck: string;
+};
+
+export type RegistrationForm = {
+  username: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  age: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  pwCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submit: (e: React.FormEvent) => void;
 };

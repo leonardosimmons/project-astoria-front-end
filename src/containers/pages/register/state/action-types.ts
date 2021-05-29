@@ -1,8 +1,7 @@
 import { Combinable } from '../../../../utils/types';
 
 //** ---------------------  TYPES  --------------------- **//
-export const SET_FIRSTNAME = 'set_firstname';
-export const SET_LASTNAME = 'set_lastname';
+export const SET_USERNAME = 'set_username';
 export const SET_AGE = 'set_age';
 export const SET_EMAIL = 'set_email';
 export const SET_PASSWORD = 'set_password';
@@ -10,13 +9,8 @@ export const SET_PW_CHECK = 'set_pw_check';
 
 
 //** --------------------  ACTIONS  -------------------- **//
-export type SetFirstNameAction = {
-  type: typeof SET_FIRSTNAME;
-  payload: string;
-};
-
-export type SetLastNameAction = {
-  type: typeof SET_LASTNAME;
+export type SetUsernameAction = {
+  type: typeof SET_USERNAME;
   payload: string;
 };
 
@@ -41,4 +35,4 @@ export type SetPwCheck = {
 };
 
 
-export type RegistrationFormActions = SetFirstNameAction | SetLastNameAction | SetAgeAction | SetEmailAction | SetPassword | SetPwCheck;
+export type RegistrationFormActions = SetUsernameAction | SetAgeAction | SetEmailAction | SetPassword | SetPwCheck;

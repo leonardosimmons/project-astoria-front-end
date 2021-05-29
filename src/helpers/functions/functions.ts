@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Combinable } from '../../utils/types';
 
 /**
  * watches and stores current user's scroll position
@@ -33,4 +34,17 @@ export const handleInput = (fn: (i: string | number) => void) => (e: React.Chang
  */
 export const handleInputRef = (ref: React.MutableRefObject<string | number | undefined>) => (e: React.ChangeEvent<HTMLInputElement>): void => {
   ref.current = e.target.value;
+};
+
+
+/**
+ * Checks the given regular expression against the given parameter
+ * @param regex - regular expression
+ * @param s - string or number to be checked
+ */
+export function preg_match(regex: string, c: Combinable): boolean | undefined {
+  if (typeof c === 'string')
+    return (new RegExp(regex).test(c));
+  if (typeof c === 'number') 
+    return (new RegExp(regex).test(c.toString()));
 };

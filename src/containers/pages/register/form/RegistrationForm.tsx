@@ -12,10 +12,9 @@ type Props = RegistrationForm & {
 
 const registrationForm: React.FunctionComponent<Props> = (
   {
-    firstName,
-    lastName,
-    age,
+    username,
     email,
+    age,
     password,
     pwCheck,
     submit,
@@ -24,10 +23,9 @@ const registrationForm: React.FunctionComponent<Props> = (
 ): JSX.Element => {
   return (
     <Form submit={ submit } styles={ styles || '' }>
-      <Input col labelFront={'First name'} styles={ styles } changed={ firstName }/>
-      <Input col labelFront={'Last name'} styles={ styles } changed={ lastName }/>
-      <Input col labelFront={'Age'} type={'number'} styles={ styles } changed={ age }/>
+      <Input col labelFront={'Username'} styles={ styles } changed={ username }/>
       <Input col labelFront={'Email Address'} type={'email'} styles={ styles } changed={ email }/>
+      <Input col labelFront={'Age'} type={'number'} styles={ styles } changed={ age }/>
       <Input col labelFront={'Password'} type={'password'} styles={ styles } changed={ password }/>
       <Input col labelFront={'Re-enter password'} type={'password'} styles={ styles } changed={ pwCheck }/>
       <div className={`${ styles.btnContainer } relative center`}>

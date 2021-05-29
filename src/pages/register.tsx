@@ -10,7 +10,7 @@ import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
-import { setAge, setEmail, setFirstName, setLastName, setPassword, setPwCheck } from '../containers/pages/register/state/actions';
+import { setAge, setEmail, setUsername, setPassword, setPwCheck } from '../containers/pages/register/state/actions';
 
 import Layout from '../containers/layout';
 import Copyright from '../components/copyright';
@@ -18,7 +18,6 @@ import Container from '../components/container';
 import ContentBox from '../components/box/ContentBox';
 import TextBox from '../components/text';
 import RegistrationForm from '../containers/pages/register/form';
-import { AppState } from '../redux-store/reducers';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -49,22 +48,19 @@ export const getStaticProps: GetStaticProps = async () => {
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const dispatch: Dispatch<AppActions> = useDispatch();
 
-  const firstNameRef = React.useRef<string>();
-  const lastNameRef = React.useRef<string>();
+  const usernameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();
   const emailRef = React.useRef<string>();
   const passwordRef = React.useRef<string>();
   const pwCheckRef = React.useRef<string>();
-
-  const handleFirstName = React.useCallback(handleInputRef(firstNameRef), []);
-  const handleLastName = React.useCallback(handleInputRef(lastNameRef), []);
+  
+  const handleUsername = React.useCallback(handleInputRef(usernameRef), []);
   const handleAge = React.useCallback(handleInputRef(ageRef), []);
   const handleEmail = React.useCallback(handleInputRef(emailRef), []);
   const handlePassword = React.useCallback(handleInputRef(passwordRef), []);
   const handlePwCheck = React.useCallback(handleInputRef(pwCheckRef), []);
   const handleFormSubmit = React.useCallback(preventDefault(() => {
-    dispatch(setFirstName(firstNameRef.current as string));
-    dispatch(setLastName(lastNameRef.current as string));
+    dispatch(setUsername(usernameRef.current as string));
     dispatch(setAge(ageRef.current as number));
     dispatch(setEmail(emailRef.current as string));
     dispatch(setPassword(passwordRef.current as string));
@@ -87,10 +83,9 @@ function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
           <ContentBox styles={ styles } classes={'relative center-col-start'}>
             <TextBox mainHeading={'New Account'} styles={ styles } />
             <RegistrationForm 
-              firstName={ handleFirstName }
-              lastName={ handleLastName }
-              age={ handleAge }
+              username={ handleUsername }
               email={ handleEmail }
+              age={ handleAge }
               password={ handlePassword }
               pwCheck={ handlePwCheck }
               submit={ handleFormSubmit }
@@ -104,4 +99,3 @@ function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
 };
 
 export default registerPage;
-
