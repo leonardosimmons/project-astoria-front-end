@@ -1,13 +1,23 @@
 
 import { RegistrationFormConext } from '../../../../utils/types';
-import { RegistrationFormActions, SET_AGE, SET_EMAIL, SET_FIRSTNAME, SET_LASTNAME, SET_PASSWORD, SET_PW_CHECK, SET_USERNAME } from './action-types';
+import 
+{ 
+  RegistrationFormActions, 
+  SET_AGE, 
+  SET_EMAIL, 
+  SET_PASSWORD, 
+  SET_PW_CHECK, 
+  SET_USERNAME, 
+  TOGGLE_ERROR_FLAG
+} from './action-types';
 
 const registrationFormContext: RegistrationFormConext = {
   username: '',
   email: '',
   age: 0,
   password: '',
-  pwCheck: ''
+  pwCheck: '',
+  errorFlag: false
 }; 
 
 
@@ -25,6 +35,8 @@ export function registrationFormReducer(state = registrationFormContext, action:
       return {...state, password: action.payload};
     case SET_PW_CHECK:
       return {...state, pwCheck: action.payload};
+    case TOGGLE_ERROR_FLAG:
+      return {...state, errorFlag: !state.errorFlag};
     default:
       return state;
   }

@@ -1,6 +1,14 @@
 import { AppActions } from '../../../../redux-store/action-types';
 import { Combinable } from '../../../../utils/types';
-import { SET_AGE, SET_EMAIL, SET_USERNAME, SET_PASSWORD, SET_PW_CHECK } from './action-types';
+import 
+{ 
+  SET_AGE, 
+  SET_EMAIL, 
+  SET_USERNAME, 
+  SET_PASSWORD, 
+  SET_PW_CHECK, 
+  TOGGLE_ERROR_FLAG 
+} from './action-types';
 
 
 export const setUsername = (name: string): AppActions => 
@@ -42,3 +50,5 @@ export const setPwCheck = (password: string): AppActions =>
     payload: password
   }
 );
+
+export const toggleErrorFlag = (): AppActions => ({ type: TOGGLE_ERROR_FLAG });

@@ -10,7 +10,15 @@ import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
-import { setAge, setEmail, setUsername, setPassword, setPwCheck } from '../containers/pages/register/state/actions';
+import 
+{ 
+  setAge, 
+  setEmail, 
+  setUsername, 
+  setPassword, 
+  setPwCheck 
+} from '../containers/pages/register/state/actions';
+import { ValidationController } from '../helpers/ValidationController';
 
 import Layout from '../containers/layout';
 import Copyright from '../components/copyright';
@@ -47,24 +55,31 @@ export const getStaticProps: GetStaticProps = async () => {
 
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const dispatch: Dispatch<AppActions> = useDispatch();
+  const validate: ValidationController = new ValidationController();
 
   const usernameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();
   const emailRef = React.useRef<string>();
   const passwordRef = React.useRef<string>();
   const pwCheckRef = React.useRef<string>();
-  
+
   const handleUsername = React.useCallback(handleInputRef(usernameRef), []);
   const handleAge = React.useCallback(handleInputRef(ageRef), []);
   const handleEmail = React.useCallback(handleInputRef(emailRef), []);
   const handlePassword = React.useCallback(handleInputRef(passwordRef), []);
   const handlePwCheck = React.useCallback(handleInputRef(pwCheckRef), []);
   const handleFormSubmit = React.useCallback(preventDefault(() => {
-    dispatch(setUsername(usernameRef.current as string));
-    dispatch(setAge(ageRef.current as number));
-    dispatch(setEmail(emailRef.current as string));
-    dispatch(setPassword(passwordRef.current as string));
-    dispatch(setPwCheck(pwCheckRef.current as string));
+    validate.registrationForm(usernameRef.current as string, emailRef.current as string, ageRef.current as number, passwordRef.current as string, pwCheckRef.current as string);
+
+    if (validate.isValidated) {
+      dispatch(setUsername(usernameRef.current as string));
+      dispatch(setAge(ageRef.current as number));
+      dispatch(setEmail(emailRef.current as string));
+      dispatch(setPassword(passwordRef.current as string));
+      dispatch(setPwCheck(pwCheckRef.current as string));
+    } else {
+        alert(validate.error);
+    }
   }), []);
 
   return (

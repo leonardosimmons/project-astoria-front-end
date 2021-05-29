@@ -353,6 +353,7 @@ export type RegistrationFormConext = {
   age: Combinable;
   password: string;
   pwCheck: string;
+  errorFlag: boolean;
 };
 
 export type RegistrationForm = {

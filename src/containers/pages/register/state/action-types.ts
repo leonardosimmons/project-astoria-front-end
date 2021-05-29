@@ -6,6 +6,7 @@ export const SET_AGE = 'set_age';
 export const SET_EMAIL = 'set_email';
 export const SET_PASSWORD = 'set_password';
 export const SET_PW_CHECK = 'set_pw_check';
+export const TOGGLE_ERROR_FLAG = 'set_error_flag';
 
 
 //** --------------------  ACTIONS  -------------------- **//
@@ -34,5 +35,9 @@ export type SetPwCheck = {
   payload: string;
 };
 
+export type ToggleErrorFlag = {
+  type: typeof TOGGLE_ERROR_FLAG;
+};
 
-export type RegistrationFormActions = SetUsernameAction | SetAgeAction | SetEmailAction | SetPassword | SetPwCheck;
+
+export type RegistrationFormActions = SetUsernameAction | SetAgeAction | SetEmailAction | SetPassword | SetPwCheck | ToggleErrorFlag;
