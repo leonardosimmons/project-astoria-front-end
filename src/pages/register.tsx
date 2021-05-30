@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const dispatch: Dispatch<AppActions> = useDispatch();
+  const dispatch: React.Dispatch<AppActions> = useDispatch();
   const validate: ValidationController = new ValidationController();
   const context: RegistrationFormContext = useSelector((state: AppState) => state.regForm);
 

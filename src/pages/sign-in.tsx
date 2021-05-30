@@ -82,7 +82,7 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
             <Container styles={ styles } classes={'relative center-col'}>
               <TextBox textOne={'New Customer?'}/> 
               <Link href={'/register'}><a>{'Register'}</a></Link>
-              <Link href={'/'}><a>{'Sign In as Guest'}</a></Link>
+              <Link href={'/'}><a>{'Continue as Guest'}</a></Link>
             </Container>
           </ContentBox>
         </Container>

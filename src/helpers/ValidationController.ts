@@ -118,7 +118,7 @@ class ValidationController implements Validation
 
   private username(field: string) {
     if (field === '') return 'No Username entered. \n';
-    else if (field.length === undefined || field.length < 5) return 'Usename must be at least 5 characters long. \n';
+    else if (field?.length && field.length < 5) return 'Usename must be at least 5 characters long. \n';
     else if (preg_match('\W', field)) return 'Username must only contain letters, numbers, _ and -. \n';
     
     return '';
@@ -126,7 +126,7 @@ class ValidationController implements Validation
 
   private password(field: string) {
     if (field === '') return 'No Password entered \n';
-    else if (field.length === undefined || field.length < 6) return 'Password must be at least 6 characters long \n';
+    else if (field?.length && field.length < 6) return 'Password must be at least 6 characters long \n';
     else if (!preg_match('[a-z]', field) || !preg_match('[A-Z]', field ) || !preg_match('[0-9]', field)) 
       return 'Passwords require at least (1) uppercase letter, (1) lowercase letter and (1) number \n';
     
@@ -147,7 +147,7 @@ class ValidationController implements Validation
   
   private email(field: string) {
     if (field === '') return 'No Email address was entered \n';
-    else if (!(field.indexOf('.') > 0 || field.indexOf('@') > 0) && preg_match('[^a-zA-z0-9_-]', field)) 
+    else if (!(field?.indexOf('.') > 0 || field?.indexOf('@') > 0) && preg_match('[^a-zA-z0-9_-]', field)) 
       return 'The entered email address is invalid \n';
 
     return '';
