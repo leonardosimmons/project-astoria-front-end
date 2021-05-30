@@ -2,7 +2,7 @@
 import { Combinable } from '../utils/types';
 import { preg_match } from './functions';
 
-interface Validation {
+interface ValidationControls {
   readonly isValidated: boolean;
   readonly error: string;
   lenCheck: (field: string, len: number) => boolean;
@@ -10,7 +10,7 @@ interface Validation {
   signInForm: (un: string, pw: string) => boolean;
 };
 
-class ValidationController implements Validation
+class ValidationController implements ValidationControls
 {
   private _validated: boolean;
   private _error: string;
@@ -28,15 +28,7 @@ class ValidationController implements Validation
     return this._error;
   }
 
-  // Controllers
-  private validate(): void {
-    this._validated = true;
-  };
-  
-  public lenCheck(field: string, len: number): boolean {
-    return field.length > len ? true : false;
-  }
-
+  // Controllers  
   public registrationForm(un: string, e: string, a: Combinable, pw: string, pwC: string): boolean {
     let fail = '';
     fail = fail.concat(this.username(un));
@@ -75,6 +67,18 @@ class ValidationController implements Validation
   }
 
   // Functions
+  public lenCheck(field: string, len: number): boolean {
+    return field.length > len ? true : false;
+  }
+  
+  private validate(): void {
+    this._validated = true;
+  };
+  
+  private pwCheck(pw: string, pwC: string): boolean {
+    return pwC === pw ? true : false;
+  }
+
   private title(field: string, len: number): string {
     let fail = '';
     if (field === '') { fail = 'No title was entered'; }
@@ -115,10 +119,6 @@ class ValidationController implements Validation
     
     return '';
   };
-
-  private pwCheck(pw: string, pwC: string): boolean {
-    return pwC === pw ? true : false;
-  }
 
   private age(field: Combinable): string {
     if (field === '' || field === 0) return 'No Age was entered\n';
