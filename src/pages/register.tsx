@@ -6,7 +6,8 @@ import { AppActions } from '../redux-store/action-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { InferGetStaticPropsType, GetStaticProps } from 'next';
 import { handleInputRef, preventDefault } from '../helpers/functions';
-import { NavbarData } from '../utils/types';
+import { NavbarData, RegistrationFormContext } from '../utils/types';
+import { AppState } from '../redux-store/reducers';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
@@ -16,7 +17,7 @@ import
   setEmail, 
   setUsername, 
   setPassword, 
-  setPwCheck 
+  setPwCheck
 } from '../containers/pages/register/state/actions';
 import { ValidationController } from '../helpers/ValidationController';
 
@@ -56,6 +57,7 @@ export const getStaticProps: GetStaticProps = async () => {
 function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const dispatch: Dispatch<AppActions> = useDispatch();
   const validate: ValidationController = new ValidationController();
+  const context: RegistrationFormContext = useSelector((state: AppState) => state.regForm);
 
   const usernameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();
@@ -68,6 +70,7 @@ function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>
   const handleEmail = React.useCallback(handleInputRef(emailRef), []);
   const handlePassword = React.useCallback(handleInputRef(passwordRef), []);
   const handlePwCheck = React.useCallback(handleInputRef(pwCheckRef), []);
+
   const handleFormSubmit = React.useCallback(preventDefault(() => {
     validate.registrationForm(usernameRef.current as string, emailRef.current as string, ageRef.current as number, passwordRef.current as string, pwCheckRef.current as string);
 

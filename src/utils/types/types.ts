@@ -347,7 +347,7 @@ export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
 
 
 //** ------------------  REGISTRATION FORM ------------------- *//
-export type RegistrationFormConext = {
+export type RegistrationFormContext = {
   username: string;
   email: string;
   age: Combinable;

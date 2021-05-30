@@ -23,9 +23,9 @@ export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.F
  * @param fn - function to which the event is to be passed
  * @returns 
  */
-export const handleInput = (fn: (i: string | number) => void) => (e: React.ChangeEvent<HTMLInputElement>): void => {
+export const handleInput = ((fn: React.Dispatch<React.SetStateAction<string | undefined>>) => (e: React.ChangeEvent<HTMLInputElement>): void => {
   fn(e.target.value);
-};
+});
 
 /**
  * places a ref on the given input element

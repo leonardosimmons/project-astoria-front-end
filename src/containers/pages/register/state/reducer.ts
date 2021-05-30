@@ -1,5 +1,5 @@
 
-import { RegistrationFormConext } from '../../../../utils/types';
+import { RegistrationFormContext } from '../../../../utils/types';
 import 
 { 
   RegistrationFormActions, 
@@ -11,7 +11,7 @@ import
   TOGGLE_ERROR_FLAG
 } from './action-types';
 
-const registrationFormContext: RegistrationFormConext = {
+const registrationFormContext: RegistrationFormContext = {
   username: '',
   email: '',
   age: 0,
@@ -21,7 +21,7 @@ const registrationFormContext: RegistrationFormConext = {
 }; 
 
 
-export function registrationFormReducer(state = registrationFormContext, action: RegistrationFormActions): RegistrationFormConext
+export function registrationFormReducer(state = registrationFormContext, action: RegistrationFormActions): RegistrationFormContext
 {
   switch(action.type)
   {
