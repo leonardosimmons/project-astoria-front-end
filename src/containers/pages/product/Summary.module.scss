@@ -2,23 +2,58 @@
 .wrapper {
   flex: 0 1 80%;
   height: 100%;
-  background-color: green;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  & > h1 {
+    width: 80%;
+    text-align: center;
+    
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 4rem;
+    font-weight: 200;
+
+    border-bottom: 1px solid var(--grey-600);
+
+    color: var(--grey-900);
+  }
+
+  & > p {
+    margin-bottom: 2rem;
+
+    font-size: 2.35rem;
+
+    color: var(--black);
+  }
 }
 
 .form {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .size {
   &Box {
-
+    width: 13ch;
+    margin-bottom: 2rem;
   }
 }
 
 .btn {
-
+  padding: 1rem 2.5rem;
+  color: white;
+  background-color: var(--black);
 }

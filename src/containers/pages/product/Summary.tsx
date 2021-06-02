@@ -19,7 +19,7 @@ const ProductSummary: React.FunctionComponent<Props> = ({}):JSX.Element => {
   }), []);
 
   return (
-    <Container wrapper styles={styles}>
+    <Container wrapper styles={styles} classes={'relative noselect'}>
       <Heading classes={styles.heading}>
         <h1>{'PRODUCT NAME GOES HERE'}</h1>
         <p>{'$0.00'}</p>
