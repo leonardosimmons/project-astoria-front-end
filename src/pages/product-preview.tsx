@@ -12,6 +12,7 @@ import Container from '../components/container';
 import Grid from '../components/grid';
 import Copyright from '../components/copyright';
 import ProductSummary from '../containers/pages/product/Summary';
+import ProductDetails from '../containers/pages/product/Details';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -66,7 +67,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
           </div>
           <ProductSummary />
         </Grid>
-        <div className={styles.detailsBox}></div>
+        <ProductDetails />
       </Container>
     </Layout>
   );
