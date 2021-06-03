@@ -1,6 +1,8 @@
 
+import styles from './LoadSpinner.module.scss';
+
 const LoadSpinner: React.FunctionComponent = ():JSX.Element => (
-  <div className={'loading-spinner'}>
+  <div className={styles.spinner}>
     <div />
     <div />
     <div />
