@@ -338,6 +338,15 @@ export type ProductTag = {
   btn: Button;
 };
 
+export type ProductPreviewPage = {
+  id: string;
+  name: string;
+  price: string;
+  style: string;
+  desc: string;
+  img: string;
+  list: Array<string>;
+};
 
 //** ------------------------  PROMO  ------------------------ *//
 export type PromoCard = Heading & Omit<Image, "width"|"height"> & {

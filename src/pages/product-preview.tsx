@@ -2,7 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { NavbarData } from '../utils/types/types';
+import { NavbarData, ProductPreviewPage } from '../utils/types';
+import { preventDefault } from '../helpers/functions';
 import Image from 'next/image';
 
 import styles from '../containers/pages/product/Preview.module.scss';
@@ -42,12 +43,30 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+
+const tempData: ProductPreviewPage = {
+  id: '1',
+  name: 'Prada Bottoms',
+  price: '1,250', 
+  style: ' ‎660285 XKBVB 4594', 
+  desc: 'Part of the House’s codes first presented during the ‘30s, the distinctive GG motif has been the inspiration for new explorations of expression for almost a century. In a new interpretation, the GG is presented as a jacquard on this cotton V-neck sweater.',
+  img: '/images/products/men/pants/DenimPants01.jpg',
+  list: ['Placeholder One', 'Placeholder Two', 'Placeholder Three', 'Placeholder Four', 'Placeholder Five', 'Placeholder Six', 'Placeholder Seven', 'Placeholder Eight', 'Placeholder Nine', ]
+};
+
+
 function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  
+  const addToCart = React.useCallback(preventDefault((e: React.FormEvent) => {
+    // add new item to user cart within the database
+    // re-route user to /cart 
+  }), []);
+
   return (
     <Layout
       parent={''}
       styles={styles}
-      title={'ASTORIA | Product Preview'}
+      title={`ASTORIA | ${tempData.name}`}
       classes={'relative'}
       desktop={data.desktop}
       mobile={data.mobile}
@@ -58,16 +77,25 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
           <div className={styles.imgBox}>
             <Image
               priority 
-              src={'/images/products/men/pants/DenimPants01.jpg'}
+              src={tempData.img}
               alt={'product'}
               layout={'fill'}
               objectFit={'contain'}
               objectPosition={'center'}
             />
           </div>
-          <ProductSummary />
+          <ProductSummary 
+            id={tempData.id}
+            name={tempData.name}
+            price={tempData.price}
+            addToCart={addToCart}
+          />
         </Grid>
-        <ProductDetails />
+        <ProductDetails
+          style={tempData.style}
+          desc={tempData.desc}
+          details={tempData.list}
+        />
       </Container>
     </Layout>
   );
