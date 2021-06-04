@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { NavbarData, ProductPreviewPage } from '../utils/types';
+import { NavbarData, ProductPreviewData } from '../utils/types';
 import { preventDefault } from '../helpers/functions';
 import Image from 'next/image';
 
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-const tempData: ProductPreviewPage = {
+const tempData: ProductPreviewData = {
   id: '1',
   name: 'Prada Bottoms',
   price: '1,250', 

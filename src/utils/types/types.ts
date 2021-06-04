@@ -338,7 +338,7 @@ export type ProductTag = {
   btn: Button;
 };
 
-export type ProductPreviewPage = {
+export type ProductPreviewData = {
   id: string;
   name: string;
   price: string;
