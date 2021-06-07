@@ -23,7 +23,7 @@ const Details: React.FunctionComponent<Props> = ({ style, desc, details }): JSX.
           <BaseHeading classes={styles.heading}>
             <h2>
               <span>{'PRODUCT DETAILS'}</span>
-              <span>{`Style ${style}`}</span>
+              <span>{`Style: ${style}`}</span>
             </h2>
             <p>{desc}</p>
           </BaseHeading>

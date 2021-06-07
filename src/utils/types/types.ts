@@ -359,11 +359,14 @@ export type ProductData = {
   id: string;
   slug: string;
   style: string;
-  name: string;
-  price: string;
-  desc: string;
-  img: string;
-  list: Array<string>;
+  details: {
+    type: string;
+    name: string;
+    price: number;
+    desc: string;
+    img: string;
+    list: Array<string>;
+  };
 };
 
 export type ProductPageData = {
