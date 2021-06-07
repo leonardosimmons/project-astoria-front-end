@@ -57,6 +57,8 @@ export type BackdropContext = {
   open: boolean;
 };
 
+export type Buffer<T> = T | Array<T> | undefined;
+
 export type Button = {
   text:  string | number | JSX.Element | HTMLElement;
   link: string;
@@ -66,6 +68,11 @@ export type Button = {
 };
 
 export type Combinable = string | number;
+
+export type Data<T> = {
+  message: string;
+  payload: T;
+};
 
 export type DataBank = {
   navbar: NavbarContext
@@ -115,8 +122,11 @@ export type HttpRequest = {
 };
 
 export type HttpResponse = {
-  type?: string;
+  msesage: string;
+  data?: any;
+  payload?: any;
   value?: any;
+  type?: string;
 };
 
 export type Icon = Image & Direction & PageLink;
@@ -173,6 +183,13 @@ export type SignInForm = {
   email: (e: React.ChangeEvent<HTMLInputElement>) => void;
   password: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submit: (e: React.FormEvent) => void;
+};
+
+export type StaticPath = {
+  params: {
+    id?: string;
+    slug?: string;
+  };
 };
 
 export type Text = {
@@ -338,20 +355,27 @@ export type ProductTag = {
   btn: Button;
 };
 
-export type ProductPreviewData = {
+export type ProductData = {
   id: string;
+  slug: string;
+  style: string;
   name: string;
   price: string;
-  style: string;
   desc: string;
   img: string;
   list: Array<string>;
 };
 
+export type ProductPageData = {
+  nav: NavbarData;
+  product: ProductData;
+};
+
 //** ------------------------  PROMO  ------------------------ *//
 export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
-  width?: string | number;
-  height?: string | number;
+  id?: Combinable;
+  width?: Combinable;
+  height?: Combinable;
 };
 
 
