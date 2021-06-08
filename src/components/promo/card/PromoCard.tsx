@@ -5,10 +5,10 @@ import baseStyles from './PromoCard.module.scss';
 import Container from '../../container';
 import ContentBox from '../../box/ContentBox';
 import HeadingBox from '../../heading/Heading';
-import { PromoCard as PromoCardType } from '../../../utils/types/types';
+import { ProductCard } from '../../../utils/types';
 
 type Props = {
-  config: PromoCardType;
+  config: ProductCard;
   priority?: boolean;
   classes?: string;
   styles?: any;
@@ -16,30 +16,30 @@ type Props = {
 };
 
 
-const PromoCard: React.FunctionComponent<Props> = ({ config, priority, fill, classes, styles }): JSX.Element => {
+const PreviewCard: React.FunctionComponent<Props> = ({ config, priority, fill, classes, styles }): JSX.Element => {
   return (
     <div id="promo-card" className={`${ baseStyles.wrapper } ${ styles ? styles.wrapper ? styles.wrapper : '' : '' }`}>
       <Container styles={ baseStyles } classes={`${ styles ? styles.container ? styles.container : '' : '' } relative`}>
         {
           fill ?
           <Image 
-            src={ config.src }
-            alt={ config.alt }
+            src={ config.img.src }
+            alt={ config.img.alt }
             quality={100}
             layout={'fill'}
-            objectFit={ config.objectFit ? config.objectFit : 'cover' }
+            objectFit={ config.img.objectFit ? config.img.objectFit : 'cover' }
             priority={ priority }
             className={ classes && classes }
           />
           :
           <Image 
-            src={ config.src }
-            alt={ config.alt }
+            src={ config.img.src }
+            alt={ config.img.alt }
             quality={100}
-            width={ config.width as string }
-            height={ config.height as string }
-            layout={ config.layout ? config.layout : 'responsive' }
-            objectFit={ config.objectFit ? config.objectFit : 'cover' }
+            width={ config.img.width as string }
+            height={ config.img.height as string }
+            layout={ config.img.layout ? config.img.layout : 'responsive' }
+            objectFit={ config.img.objectFit ? config.img.objectFit : 'cover' }
             priority={ priority }
             className={ classes && classes }
           />
@@ -49,7 +49,7 @@ const PromoCard: React.FunctionComponent<Props> = ({ config, priority, fill, cla
       <ContentBox styles={ baseStyles } classes={ styles ? styles.contentBox ? styles.contentBox : '' : '' }>
         <HeadingBox 
           sub
-          heading={ config.heading }
+          heading={ config.text }
           btn={ config.btn }
           styles={ baseStyles }
         />
@@ -58,4 +58,4 @@ const PromoCard: React.FunctionComponent<Props> = ({ config, priority, fill, cla
   );
 };
 
-export default PromoCard;
+export default PreviewCard;

@@ -134,8 +134,8 @@ export type Icon = Image & Direction & PageLink;
 export type Image = {
   src: string;
   alt: string;
-  width: string | number;
-  height: string | number;
+  width?: string | number;
+  height?: string | number;
   sizes?: string;
   quality?: number;
   priority?: boolean;
@@ -269,13 +269,14 @@ export type IndexPage = {
 //** ----------------  MAIN PRODUCT PAGE  ---------------- **//
 export type MainProductPageStaticData = {
   header: Header | Header[];
-  promoCard: PromoCard[];
   promoBanner: Header | Header[];
+  promoCard?: PromoCard[];
 };
 
 export type MainProductPageData = {
   nav: NavbarData;
   page: MainProductPageStaticData;
+  card: ProductCard[];
 };
 
 
@@ -345,16 +346,6 @@ export type FeaturedProduct = {
   tag: ProductTag;
 };
 
-
-export type ProductTag = {
-  img: Image;
-  txt: {
-    heading: string;
-    body: string;
-  };
-  btn: Button;
-};
-
 export type Product = {
   meta: {
     id: string;
@@ -372,6 +363,21 @@ export type Product = {
     image: Image;
     link: string;
   };
+};
+
+export type ProductCard = {
+  img: Image;
+  text: string;
+  btn: Button;
+};
+
+export type ProductTag = {
+  img: Image;
+  txt: {
+    heading: string;
+    body: string;
+  };
+  btn: Button;
 };
 
 export type ProductPageData = {
