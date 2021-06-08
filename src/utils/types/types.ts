@@ -355,23 +355,28 @@ export type ProductTag = {
   btn: Button;
 };
 
-export type ProductData = {
-  id: string;
-  slug: string;
-  style: string;
+export type Product = {
+  meta: {
+    id: string;
+    slug: string;
+  };
   details: {
     type: string;
+    style: string;
     name: string;
     price: number;
     desc: string;
-    img: string;
     list: Array<string>;
+  };
+  preview: {
+    image: Image;
+    link: string;
   };
 };
 
 export type ProductPageData = {
   nav: NavbarData;
-  product: ProductData;
+  product: Product;
 };
 
 //** ------------------------  PROMO  ------------------------ *//

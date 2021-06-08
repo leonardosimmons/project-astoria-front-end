@@ -2,7 +2,7 @@
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Data, NavbarDesktopData, NavbarMobileData, ProductData, ProductPageData, StaticPath } from '../../utils/types';
+import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductPageData, StaticPath } from '../../utils/types';
 import { preventDefault } from '../../helpers/functions';
 import Image from 'next/image';
 
@@ -19,8 +19,8 @@ import ProductDetails from '../../containers/pages/product/Details';
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const res: AxiosResponse<any> = await axios.get(process.env.GET_ALL_PRODUCTS_API as string, { headers: { 'Content-Type': 'application/json' } });
-    const data: Data<Array<ProductData>> = await res.data;
-    const paths: Array<StaticPath> = data.payload.map((product: ProductData) => ({ params: {slug: product.slug} }));
+    const data: Data<Array<Product>> = await res.data;
+    const paths: Array<StaticPath> = data.payload.map((product: Product) => ({ params: {slug: product.meta.slug} }));
 
     return {
       paths,
@@ -43,10 +43,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, products: AxiosResponse<any>) => { 
     if(desktop.status === 200 && mobile.status === 200 && products.status === 200)
     {
-      let buffer: ProductData | undefined;
+      let buffer: Product | undefined;
 
-      products.data.payload.map((product: ProductData) => {
-        if(product.slug === slug) 
+      products.data.payload.map((product: Product) => {
+        if(product.meta.slug === slug) 
           buffer = product;
       });
 
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
           desktop: desktop.data as NavbarDesktopData,
           mobile: mobile.data as NavbarMobileData,
         },
-        product: buffer as ProductData
+        product: buffer as Product
       };
 
       return dataToken;
@@ -95,7 +95,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
           <div className={styles.imgBox}>
             <Image
               priority 
-              src={data.product.details.img}
+              src={data.product.preview.image.src}
               alt={'product'}
               layout={'fill'}
               objectFit={'contain'}
@@ -111,7 +111,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
           />
         </Grid>
         <ProductDetails
-          style={data.product.style}
+          style={data.product.details.style}
           desc={data.product.details.desc}
           details={data.product.details.list}
         />
