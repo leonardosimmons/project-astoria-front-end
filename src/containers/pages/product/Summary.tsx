@@ -10,14 +10,15 @@ import { Combinable } from '../../../utils/types';
 
 type Props = {
   id: Combinable;
-  type: string;
+  fit: string;
   name: string;
   price: string;
   addToCart: (e: React.FormEvent) => void;
 };
 
 
-const ProductSummary: React.FunctionComponent<Props> = ({ id, type, name, price, addToCart }):JSX.Element => {
+const ProductSummary: React.FunctionComponent<Props> = ({ id, fit, name, price, addToCart }):JSX.Element => {
+  console.log(fit)
   return (
     <Container wrapper styles={styles} classes={'relative noselect'}>
       <Heading classes={styles.heading}>
@@ -26,10 +27,10 @@ const ProductSummary: React.FunctionComponent<Props> = ({ id, type, name, price,
       </Heading>
       <form onSubmit={addToCart} className={styles.form}>
         {
-          type !== 'other' &&
+          fit !== 'other' &&
           <select required id={id as string} name={'size'} className={styles.sizeBox}>
             {
-              type === 'clothes' ?
+              fit === 'standard' ?
               <>
               <option value={'select'}>{'SELECT SIZE '}</option>
               <option value={'XS'}>{'X-SMALL'}</option>
@@ -41,6 +42,38 @@ const ProductSummary: React.FunctionComponent<Props> = ({ id, type, name, price,
               <option value={'3XL'}>{'XXX-LARGE'}</option>
               </>
               :
+              fit === 'women' ?
+              <>
+              <option value={'select'}>{'SELECT SIZE '}</option>
+              <option value={0o0}>{0o0}</option>
+              <option value={0}>{0}</option>
+              <option value={1}>{1}</option>
+              <option value={2}>{2}</option>
+              <option value={3}>{3}</option>
+              <option value={4}>{4}</option>
+              <option value={5}>{5}</option>
+              <option value={6}>{6}</option>
+              <option value={7}>{7}</option>
+              <option value={8}>{8}</option>
+              <option value={9}>{9}</option>
+              <option value={10}>{10}</option>
+              <option value={11}>{11}</option>
+              <option value={12}>{12}</option>
+              <option value={13}>{13}</option>
+              <option value={14}>{14}</option>
+              <option value={15}>{15}</option>
+              <option value={16}>{16}</option>
+              <option value={17}>{17}</option>
+              <option value={18}>{18}</option>
+              <option value={19}>{19}</option>
+              <option value={20}>{20}</option>
+              <option value={21}>{21}</option>
+              <option value={22}>{22}</option>
+              <option value={23}>{23}</option>
+              <option value={24}>{24}</option>
+              </>
+              :
+              fit === 'shoes' ? 
               <>
               <option value={'select'}>{'SELECT SIZE '}</option>
               <option value={5}>{5}</option>
@@ -50,6 +83,7 @@ const ProductSummary: React.FunctionComponent<Props> = ({ id, type, name, price,
               <option value={7}>{7}</option>
               <option value={7.5}>{7.5}</option>
               <option value={8}>{8}</option>
+              <option value={8.5}>{8.5}</option>
               <option value={9}>{9}</option>
               <option value={9.5}>{9.5}</option>
               <option value={10}>{10}</option>
@@ -61,6 +95,7 @@ const ProductSummary: React.FunctionComponent<Props> = ({ id, type, name, price,
               <option value={13}>{13}</option>
               <option value={13.5}>{13.5}</option>
               </>
+              : ''
             }
           </select>
         }

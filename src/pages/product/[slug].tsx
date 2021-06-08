@@ -33,12 +33,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const slug: string = context.params?.slug as string;
+  const slug: string = context.params!.slug as string;
 
   const data: ProductPageData | undefined = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get((process.env.GET_PRODUCT_API + `/?slug=${slug}`) as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get((process.env.GET_PRODUCT_API + `/?loc=slug&val=${slug}`) as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, products: AxiosResponse<any>) => { 
     if(desktop.status === 200 && mobile.status === 200 && products.status === 200)
@@ -103,7 +103,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
           </div>
           <ProductSummary 
             id={data.product.id}
-            type={data.product.details.type}
+            fit={data.product.details.fit}
             name={data.product.details.name}
             price={data.product.details.price.toLocaleString()}
             addToCart={addToCart}
