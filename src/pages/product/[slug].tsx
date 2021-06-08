@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const data: ProductPageData | undefined = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.GET_ALL_PRODUCTS_API as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get((process.env.GET_PRODUCT_API + `/?slug=${slug}`) as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, products: AxiosResponse<any>) => { 
     if(desktop.status === 200 && mobile.status === 200 && products.status === 200)
@@ -46,7 +46,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       let buffer: Product | undefined;
 
       products.data.payload.map((product: Product) => {
-        if(product.meta.slug === slug) 
           buffer = product;
       });
 
