@@ -13,12 +13,12 @@ type Props = {
   fit: string;
   name: string;
   price: string;
+  chosenSize: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   addToCart: (e: React.FormEvent) => void;
 };
 
 
-const ProductSummary: React.FunctionComponent<Props> = ({ id, fit, name, price, addToCart }):JSX.Element => {
-  console.log(fit)
+const ProductSummary: React.FunctionComponent<Props> = ({ id, fit, name, price, chosenSize, addToCart }):JSX.Element => {
   return (
     <Container wrapper styles={styles} classes={'relative noselect'}>
       <Heading classes={styles.heading}>
@@ -28,7 +28,10 @@ const ProductSummary: React.FunctionComponent<Props> = ({ id, fit, name, price, 
       <form onSubmit={addToCart} className={styles.form}>
         {
           fit !== 'other' &&
-          <select required id={id as string} name={'size'} className={styles.sizeBox}>
+          <select 
+            required
+            className={styles.sizeBox}
+            onChange={chosenSize}>
             {
               fit === 'standard' ?
               <>

@@ -1,9 +1,9 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { NextRouter, useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductPageData, StaticPath } from '../../utils/types';
-import { preventDefault } from '../../helpers/functions';
+import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath } from '../../utils/types';
 import Image from 'next/image';
 
 import styles from '../../containers/pages/product/Preview.module.scss';
@@ -25,10 +25,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return {
       paths,
       fallback: false
-    }
+    };
   }
   catch(err) {
-    throw new Error(err.message)
+    throw new Error(err.message);
   }
 };
 
@@ -45,9 +45,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     {
       let buffer: Product | undefined;
 
-      products.data.payload.map((product: Product) => {
-          buffer = product;
-      });
+      products.data.payload.map((product: Product) => { buffer = product; });
 
       const dataToken: ProductPageData = {
         nav: {
@@ -73,14 +71,33 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  const router: NextRouter = useRouter();
+  const chosenSizeRef: React.MutableRefObject<string | undefined> = React.useRef<string>();
 
-  const addToCart = React.useCallback(preventDefault((e: React.FormEvent) => {
-    // add new item to user cart within the database
-    // re-route user to /cart 
-  }), []);
+  function handleChosenSize(e: React.ChangeEvent<HTMLSelectElement>): void {
+    chosenSizeRef.current = e.target.value;
+    // add chosen size to redux 
+  };
+
+  function addToCart(e: React.FormEvent) {
+    e.preventDefault();
+
+    // add new item to user cart within the database/ redux
+    const cartToken: ProductCartToken = {
+      user: 'guest',
+      product: {
+        id: data.product.id,
+        size: chosenSizeRef.current as string,
+        amount: 1
+      }
+    };
+
+    router.push('/cart');
+  };
 
   return (
     <Layout
+      solid
       parent={''}
       styles={styles}
       title={`ASTORIA | ${data.product.details.name}`}
@@ -106,6 +123,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
             fit={data.product.details.fit}
             name={data.product.details.name}
             price={data.product.details.price.toLocaleString()}
+            chosenSize={handleChosenSize}
             addToCart={addToCart}
           />
         </Grid>

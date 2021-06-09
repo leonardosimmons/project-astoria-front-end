@@ -67,6 +67,15 @@ export type Button = {
   clicked?: () => void;
 };
 
+export type ProductCartToken = {
+  user: string;
+  product: {
+    id: string;
+    size: string;
+    amount: number;
+  };
+};
+
 export type Combinable = string | number;
 
 export type Data<T> = {
