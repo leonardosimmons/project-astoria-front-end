@@ -3,10 +3,10 @@ import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { page } from '../utils/keys';
 import { NavbarData } from '../utils/types';
-import { preventDefault, handleInputRef } from '../helpers/functions';
 
 import styles from '../containers/pages/sign-in/SignIn.module.scss';
 
@@ -15,7 +15,6 @@ import Container from '../components/container';
 import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
-import SignInForm from '../containers/pages/sign-in/form';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -45,20 +44,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const router: NextRouter = useRouter();
-  
-  /* -------------------------  FORM  ------------------------- */
-  const emailRef = React.useRef<string>();
-  const passwordRef = React.useRef<string>();
-  const [ email, setEmail ] = React.useState<string>();
-  const [ password, setPassword ] = React.useState<string>();
+  const [ session, loading ] = useSession();
 
-  const handleEmail = React.useCallback(handleInputRef(emailRef), []);
-  const handlePassword = React.useCallback(handleInputRef(emailRef), []);
-  const handleFormSubmit = React.useCallback(preventDefault(() => {
-    setEmail(emailRef.current);
-    setPassword(passwordRef.current);
-  }), []);
-  
   return (
     <Layout
       solid
@@ -73,16 +60,10 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
       <Container wrapper styles={ styles } classes={'relative center-start noselect'}>
         <Container main styles={ styles } classes={'relative center-col'}>
           <ContentBox styles={ styles } classes={'center-col-start'}>
-            <TextBox mainHeading={'SIGN IN'} styles={ styles }/>
-            <SignInForm 
-              email={ handleEmail }
-              password={ handlePassword }
-              submit={ handleFormSubmit }
-              styles={ styles }/>
+            <TextBox mainHeading={'WELCOME'} styles={ styles }/>
+            <button onClick={() => signIn('', {callbackUrl: '/'})}>{'Sign in'}</button>
+            <Link href={'/'}><a>{'Continue as Guest'}</a></Link>
             <Container styles={ styles } classes={'relative center-col'}>
-              <TextBox textOne={'New Customer?'}/> 
-              <Link href={'/register'}><a>{'Register'}</a></Link>
-              <Link href={'/'}><a>{'Continue as Guest'}</a></Link>
             </Container>
           </ContentBox>
         </Container>

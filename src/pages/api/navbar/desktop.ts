@@ -28,7 +28,7 @@ export default function desktopData(_: NextApiRequest, res: NextApiResponse<Navb
       [
         {  name: 'Cart', link: link.CART, src: '/icons/svg/small/shopping-bag.svg', alt: 'shopping car', width: 10, height: 10 },
         { name: 'Sign In', link: link.SIGN_IN, src: '/icons/svg/user.svg', alt: 'shopping car', width: 10, height: 10 },
-        { name: 'Blog', link: link.UNDER_CONSTRUCTION, src: '/icons/svg/blog.svg', alt: 'shopping car', width: 10, height: 10 },
+        //{ name: 'Blog', link: link.UNDER_CONSTRUCTION, src: '/icons/svg/blog.svg', alt: 'shopping car', width: 10, height: 10 },
       ]
     }
   );

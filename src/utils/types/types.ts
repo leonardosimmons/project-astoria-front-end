@@ -327,7 +327,7 @@ export type NavbarContext = {
   menu: NavbarDesktopMenu | NavbarMobileMenu 
 };
 
-export type NavbarMenuTabToken = NavbarMenuTab & HttpResponse & { id?: number, type?: string };
+export type NavbarMenuTabToken = NavbarMenuTab & Partial<HttpResponse> & { id?: number, type?: string };
 
 export type NavbarMenuTab = {
   name: string;

@@ -1,6 +1,6 @@
 .wrapper
 {
-  flex: 0 1 27.7%;
+  flex: 0 1 30%;
 
   font-size: 1.25rem;
 }
@@ -26,9 +26,32 @@
 {
   display: flex;
   margin: 0 .55rem;
+
+  & > button {
+    align-self: flex-start;
+  }
 }
 
 .icon
 {
   filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%);
+}
+
+.signed {
+  &In {
+    &Box {
+      display: flex;
+      margin: 0 .5rem;
+
+      & > span:nth-child(1) {
+        margin: 0 .5rem;
+      }
+    }
+  }
+
+  &Out {
+    &Box {
+      display: flex;
+    }
+  }
 }
