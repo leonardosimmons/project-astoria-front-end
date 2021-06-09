@@ -1,8 +1,10 @@
+
 import '../styles';
 import '../styles/sass';
 import { Provider } from 'react-redux';
 import { useStore } from '../redux-store/store';
 import type { AppProps } from 'next/app';
+import { Provider as AuthProvider } from 'next-auth/client'
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,7 +12,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <AuthProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </AuthProvider>
     </Provider>
   )
 };
