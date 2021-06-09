@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import { NavbarMenuTab, NavbarMenuTabToken, PageLink } from '../../../utils/types';
 
 import navbarStyles from './styles/Navbar.module.scss';

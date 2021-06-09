@@ -1,4 +1,5 @@
 import React from 'react';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import { link } from '../../../utils/keys';
 import { Icon as _Icon, NamedLink, NavbarMobileMenu } from '../../../utils/types';
 
@@ -20,6 +21,9 @@ type Props = {
 };
 
 const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+  const [ session, loading ] = useSession();
+
+
   return (
     <div id="mobile-navbar" className={`${ mainStyles.wrapper || '' } noselect`} >
       <Container main styles={ mainStyles } >
@@ -34,23 +38,26 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
           text={'ASTORIA'}
           link={ link.HOME } />     
         <div className={ mainStyles.icons || '' }>
-        {
-          config.icons.map((icon: _Icon, index: number) => {
-            const key = index + 1;
-            return (
-              <Icon 
-                key={ index }
-                index={ key }
+          <Icon 
+            styles={ mainStyles }
+            link={ config.icons[0].link as string }
+            src={ config.icons[0].src as string }
+            alt={ config.icons[0].alt as string }
+            width={ config.icons[0].width as number }
+            height={ config.icons[0].height as number } 
+          />
+          {
+            session
+            ? <button onClick={() => signOut()}>Sign Out</button>
+            : <Icon 
                 styles={ mainStyles }
-                link={ icon.link as string }
-                src={ icon.src as string }
-                alt={ icon.alt as string }
-                width={ icon.width as number }
-                height={ icon.height as number } 
+                link={ config.icons[1].link as string }
+                src={ config.icons[1].src as string }
+                alt={ config.icons[1].alt as string }
+                width={ config.icons[1].width as number }
+                height={ config.icons[1].height as number } 
               />
-            )
-          })
-        } 
+          }
         </div>
       </Container>
     </div>
