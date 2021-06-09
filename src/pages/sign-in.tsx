@@ -46,6 +46,9 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
   const router: NextRouter = useRouter();
   const [ session, loading ] = useSession();
 
+  // NOTES
+  // connect Continue as guest with redux
+
   return (
     <Layout
       solid
@@ -61,8 +64,12 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
         <Container main styles={ styles } classes={'relative center-col'}>
           <ContentBox styles={ styles } classes={'center-col-start'}>
             <TextBox mainHeading={'WELCOME'} styles={ styles }/>
-            <button onClick={() => signIn('', {callbackUrl: '/'})}>{'Sign in'}</button>
-            <Link href={'/'}><a>{'Continue as Guest'}</a></Link>
+            <button className={'btn-activeFocus'} onClick={() => signIn('github', {callbackUrl: '/'})}>
+              {'Sign in with GitHub'}
+            </button>
+            <button onClick={() => router.push('/')}>
+              {'Continue as Guest'}
+            </button>
             <Container styles={ styles } classes={'relative center-col'}>
             </Container>
           </ContentBox>

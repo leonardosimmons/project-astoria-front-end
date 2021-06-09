@@ -86,12 +86,12 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       mobile={ config.nav.mobile }
       header={
         <React.Fragment>
-          { context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> }
-          <IndexHeader headerConfig={ config.header } classes={ context.introModal ? 'none' : '' }/>
+          {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}
+          <IndexHeader headerConfig={ config.header } classes={ context.introModal ? '' : '' }/>
         </React.Fragment>
       }
     >
-      <Container main parent={ page.HOME } classes={`relative ${ context.introModal ? 'none' : '' }`}>
+      <Container main parent={ page.HOME } classes={`relative ${ context.introModal ? '' : '' }`}>
         <SectionOne config={ config.section.one }/>
         <SectionTwo config={ config.section.two }/>
         <SectionThree config={ config.section.three }/>
