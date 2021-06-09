@@ -20,6 +20,12 @@
     &:hover {
       color: var(--secondary-darkest);
     }
+
+    &:active,
+    &:focus {
+      outline: none;
+      color: var(--primary-darker);
+    }
   }
 
   & > button:not(:last-of-type) {
@@ -31,6 +37,11 @@
 
     &:hover {
       border: 1px solid var(--secondary-darkest);
+    }
+
+    &:active,
+    &:focus {
+      border: 1px solid var(--primary-darker);
     }
   }
 }
