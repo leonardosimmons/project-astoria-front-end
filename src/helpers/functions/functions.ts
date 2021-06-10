@@ -1,23 +1,7 @@
 import React from 'react';
 import { Combinable } from '../../utils/types';
 
-/**
- * watches and stores current user's scroll position
- */
-export function storeScrollPosition() {
-  document.documentElement.dataset.scroll = window.scrollY.toString();
-};
-
-/**
- * prevents form default action and passes event to given function (inline in render function)
- * @param fn - function to which the event is to be passed
- * @returns 
- */
-export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.FormEvent): void => {
-  e.preventDefault();
-  fn(e);
-};
-
+//* handleInput
 /**
  * consumes input change event and passes to provided function (fn)
  * @param fn - function to which the event is to be passed
@@ -27,6 +11,7 @@ export const handleInput = ((fn: React.Dispatch<React.SetStateAction<string | un
   fn(e.target.value);
 });
 
+//* handleInputRef
 /**
  * places a ref on the given input element
  * @param ref - input reference
@@ -36,7 +21,7 @@ export const handleInputRef = (ref: React.MutableRefObject<string | number | und
   ref.current = e.target.value;
 };
 
-
+//* preg_match
 /**
  * Checks the given regular expression against the given parameter
  * @param regex - regular expression
@@ -47,4 +32,51 @@ export function preg_match(regex: string, c: Combinable): boolean | undefined {
     return (new RegExp(regex).test(c));
   if (typeof c === 'number') 
     return (new RegExp(regex).test(c.toString()));
+};
+
+//* preventDefault
+/**
+ * prevents form default action and passes event to given function (inline in render function)
+ * @param fn - function to which the event is to be passed
+ * @returns 
+ */
+export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.FormEvent): void => {
+  e.preventDefault();
+  fn(e);
+};
+
+//* strShortener
+/**
+ * Checks the given strings length against the given length and returns a shortened version if necessary
+ * @param s - string
+ * @param len - length
+ * @param concat - addon to end of string
+ * @returns 
+ */
+export function strShortener(s: string, len: number, concat?: string): string {
+  let strArr: Array<string> = s.split('');
+  let newStr: string = '';
+  
+  if (len < s.length) {
+    for (let i=0; i < len; i++) {
+      newStr = newStr.concat(strArr[i]);
+    }
+  }
+  else {
+    newStr = s;
+  }
+  
+  if(concat) {
+    newStr = newStr.concat(concat);
+  }
+  
+  return newStr;
+};
+
+//* storeScrollPosition
+/**
+ * watches and stores current user's scroll position
+ */
+ export function storeScrollPosition() {
+  document.documentElement.dataset.scroll = window.scrollY.toString();
 };

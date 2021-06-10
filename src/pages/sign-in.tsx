@@ -1,12 +1,11 @@
 
 import React from 'react';
 import axios from 'axios';
-import Link from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { page } from '../utils/keys';
 import { NavbarData } from '../utils/types';
+import { page } from '../utils/keys';
 
 import styles from '../containers/pages/sign-in/SignIn.module.scss';
 
@@ -46,8 +45,10 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
   const router: NextRouter = useRouter();
   const [ session, loading ] = useSession();
 
-  // NOTES
-  // connect Continue as guest with redux
+  // redirects if user is already logged in
+  if(session) {
+    router.push('/');
+  }
 
   return (
     <Layout

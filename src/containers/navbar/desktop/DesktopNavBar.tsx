@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { signOut, useSession } from 'next-auth/client';
+import { strShortener } from '../../../helpers/functions';
 import { NavbarMenuTab, NavbarMenuTabToken, PageLink } from '../../../utils/types';
 
 import navbarStyles from './styles/Navbar.module.scss';
@@ -28,24 +29,6 @@ type Props = {
 
 const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
   const [ session, loading ] = useSession();
-
-  const test: string = 'mm0leo13123123@yahoo.com';
-
-  function strShortener(s: string, len: number, concat?: string): string {
-    let strArr: Array<string> = s.split('');
-    let newStr: string = '';
-
-    for (let i=0; i < len; i++) {
-      newStr = newStr.concat(strArr[i]);
-    }
-
-    if(concat) {
-      newStr = newStr.concat(concat);
-    }
-
-    return newStr;
-  };
-
 
   return (
     <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect solid`}>
@@ -82,7 +65,8 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
                 session &&
                 <div className={profileStyles.signedInBox}>
                   <span>{'Hello'}</span>
-                  <span>{strShortener(test, 10, '...')}</span>
+                  <span>{strShortener((session.user?.name as string), 12, '...')}</span>
+                  <span>{session.user?.name as string}</span>
                 </div>
               }
               <BaseIcon 
