@@ -1,6 +1,7 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { useSession } from 'next-auth/client';
 import { NextRouter, useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath } from '../../utils/types';
@@ -71,12 +72,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  /* ----------------  BASE CONTROLLERS  ---------------- */
   const router: NextRouter = useRouter();
+  const [ session, loading ] = useSession();
   const chosenSizeRef: React.MutableRefObject<string | undefined> = React.useRef<string>();
 
+  /* --------------------  FUNCTIONS  --------------------- */
   function handleChosenSize(e: React.ChangeEvent<HTMLSelectElement>): void {
     chosenSizeRef.current = e.target.value;
-    // add chosen size to redux 
   };
 
   function addToCart(e: React.FormEvent) {
@@ -84,13 +87,13 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
 
     // add new item to user cart within the database/ redux
     const cartToken: ProductCartToken = {
-      user: 'guest',
+      user: session ? session.user?.name as string : 'guest',
       product: {
         id: data.product.id,
         size: chosenSizeRef.current as string,
         amount: 1
       }
-    };
+    }
 
     router.push('/cart');
   };
