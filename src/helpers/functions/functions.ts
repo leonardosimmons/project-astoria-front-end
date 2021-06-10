@@ -45,6 +45,17 @@ export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.F
   fn(e);
 };
 
+//* rand
+/**
+ * Generates a random number based on the given range
+ * @param min 
+ * @param max 
+ * @returns 
+ */
+export function rand(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
 //* strShortener
 /**
  * Checks the given strings length against the given length and returns a shortened version if necessary
