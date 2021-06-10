@@ -420,3 +420,16 @@ export type RegistrationForm = {
   pwCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submit: (e: React.FormEvent) => void;
 };
+
+
+//** ------------------------  USER ------------------------- *//
+export type User = {
+  name: string;
+  email: string;
+  image?: string;
+};
+
+export type UserContext = {
+  id: string;
+  user: User;
+};
