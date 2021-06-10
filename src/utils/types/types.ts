@@ -430,6 +430,6 @@ export type User = {
 };
 
 export type UserContext = {
-  id: string;
+  id: Combinable;
   user: User;
 };
