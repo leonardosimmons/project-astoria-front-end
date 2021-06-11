@@ -1,6 +1,7 @@
 import React from 'react';
 import { Combinable } from '../../utils/types';
 
+
 //* handleInput
 /**
  * consumes input change event and passes to provided function (fn)

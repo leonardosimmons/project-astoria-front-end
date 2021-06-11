@@ -16,6 +16,7 @@ import Logo from '../../../components/logo';
 import Container from '../../../components/container';
 import MenuTab from './components/DesktopMenuTab';
 import BaseIcon from '../../../components/icon/Icon';
+import { useUser } from '../../../helpers/hooks/useUser';
 
 
 type Props = {
@@ -31,13 +32,7 @@ type Props = {
 };
 
 const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
-  const [ session, loading ] = useSession();
-  const dispatch: React.Dispatch<AppActions> = useDispatch();
-
-  function handleUserSignOut() {
-    dispatch(signOutUser());
-    signOut();
-  };
+  const user = useUser();
 
   return (
     <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect solid`}>
@@ -71,11 +66,11 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
           <Container styles={ profileStyles }>
             <div className={profileStyles.tabs}>
               {
-                session &&
+                user.session &&
                 <div className={profileStyles.signedInBox}>
-                  <span>{'Hello'}</span>
-                  <span>{strShortener((session.user?.name as string), 12, '...')}</span>
-                  <span>{session.user?.name as string}</span>
+                  <span>{user.loading ? 'loading...' : 'Hello'}</span>
+                  <span>{strShortener(user.info.name, 12, '...')}</span>
+                  <span>{user.info.name}</span>
                 </div>
               }
               <BaseIcon 
@@ -92,7 +87,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               </a>
               </BaseIcon>
               {
-                !session ?
+                !user.session ?
                 <>
                   <BaseIcon 
                     left
@@ -109,7 +104,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
                   </BaseIcon>
                 </> 
                 :
-                <button onClick={handleUserSignOut}>{'Sign Out'}</button>
+                <button onClick={() => user.signOut()}>{'Sign Out'}</button>
               }
             </div>
           </Container>

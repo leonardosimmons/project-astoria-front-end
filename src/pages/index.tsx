@@ -2,18 +2,15 @@
 import React from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/client';
-import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { AppActions } from '../redux-store/action-types';
-import { IndexPageData, IndexPageSelectors, User } from '../utils/types';
+import { IndexPageData, User } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
 
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
-import { getIndexPageSelectors } from '../containers/pages/index/selectors';
-import { firstLoad, toggleIntroModal } from '../containers/pages/index/state/actions';
-import { setUser, signInUser } from '../redux-store/user/actions';
+import { useUser } from '../helpers/hooks/useUser';
+import { rand } from '../helpers/functions';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -59,40 +56,42 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+const randMin: number = 100000000;
+const randMax: number = 999999999;
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  /* ----------------  BASE CONTROLLERS  ---------------- */
-  const [ session, loading ] = useSession();
-  const context: IndexPageSelectors = useSelector(getIndexPageSelectors);
-  const dispatch: React.Dispatch<AppActions> = useDispatch();
+  const user = useUser();
+  const [ session ] = useSession();
 
-
-  /* --------------  USER SCROLL POSITION  -------------- */
+  // USER SCROLL POSITION
   useNavScrollConfig();
 
-  /* -----------------------  USER  ----------------------- */
-  // signs in user upon logging in
+  // USER SIGN IN
   React.useEffect(() => {
-    if (session && !context.user.status.signedIn) {
+    if (session && !user.status.signedIn) {
+      const buffer: Array<any> = [];
+      const api: string = process.env.NEXT_PUBLIC_GET_ALL_PRODUCTS_API as string;
+      const headers = { 'Content-Type': 'application/json' };
+      
+      // check to see if user exists within database
+      // if no user exists CREATE a new one
+      axios.get(api, { headers })
+      .then(res => res.status === 200 && res.data)
+      .then(data => data.payload.map((d: any) => buffer.push(d)))
+      .catch(err => err.message); 
+      
+      console.log(buffer);
+    
       const userToken: User = {
         name: session.user?.name as string,
         email: session.user?.email as string,
         image: session.user?.image as string
       };
 
-      // check to see if user exists within database -> ADD USER IF NOT
-
-      dispatch(setUser(userToken));
-      dispatch(signInUser());
+      //! change id param to user id from db
+      user.signIn(rand(randMin, randMax), userToken);
     }
   }, [session]);
-
-
-  /* --------------------  HANDLERS  --------------------- */
-  const introModalToggle = React.useCallback((): void => {
-    dispatch(firstLoad());
-    dispatch(toggleIntroModal());
-  }, []);
 
 
   /* ---------------------  RENDER  --------------------- */
@@ -107,11 +106,11 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       header={
         <React.Fragment>
           {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}
-          <IndexHeader headerConfig={ config.header } classes={ context.page.introModal ? '' : '' }/>
+          <IndexHeader headerConfig={ config.header } classes={''}/>
         </React.Fragment>
       }
     >
-      <Container main parent={ page.HOME } classes={`relative ${ context.page.introModal ? '' : '' }`}>
+      <Container main parent={ page.HOME } classes={`relative`}>
         <SectionOne config={ config.section.one }/>
         <SectionTwo config={ config.section.two }/>
         <SectionThree config={ config.section.three }/>

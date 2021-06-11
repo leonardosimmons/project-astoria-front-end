@@ -12,6 +12,7 @@ import Container from '../../../components/container';
 import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
+import { useUser } from '../../../helpers/hooks/useUser';
 
 type Props = {
   config: {
@@ -20,9 +21,9 @@ type Props = {
   };
 };
 
-const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
-  const [ session, loading ] = useSession();
 
+const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+  const user = useUser();
 
   return (
     <div id="mobile-navbar" className={`${ mainStyles.wrapper || '' } noselect`} >
@@ -47,8 +48,8 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
             height={ config.icons[0].height as number } 
           />
           {
-            session
-            ? <button onClick={() => signOut()}>Sign Out</button>
+            user.session
+            ? <button onClick={() => user.signOut()}>Sign Out</button>
             : <Icon 
                 styles={ mainStyles }
                 link={ config.icons[1].link as string }
