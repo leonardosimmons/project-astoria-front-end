@@ -22,6 +22,16 @@ export type CarouselContentContext = {
 };
 
 
+//** -------------------------  CART  ------------------------- **//
+export type CartContext = {
+  user: Partial<UserContext>;
+  products: Array<Product>;
+  summary: {
+    total: number;
+  }
+};
+
+
 //** ------------------------  GENERAL  ------------------------ **/
 export type Arrow = {
   container: {
@@ -65,15 +75,6 @@ export type Button = {
   classes?: string;
   type?: "button" | "submit" | "reset";
   clicked?: () => void;
-};
-
-export type ProductCartToken = {
-  user: string;
-  product: {
-    id: string;
-    size: string;
-    amount: number;
-  };
 };
 
 export type Combinable = string | number;
@@ -397,6 +398,15 @@ export type ProductTag = {
 export type ProductPageData = {
   nav: NavbarData;
   product: Product;
+};
+
+export type ProductCartToken = {
+  user: Partial<UserContext>;
+  product: Product;
+  order: {
+    size: string;
+    amount: number;
+  }
 };
 
 //** ------------------------  PROMO  ------------------------ *//

@@ -5,6 +5,7 @@ import { CarouselActions } from '../features/carousel/action-types';
 import { IndexPageActions } from '../containers/pages/index/state/action-types';
 import { RegistrationFormActions } from '../containers/pages/register/state/action-types';
 import { UserActions } from './user/action-types';
+import { CartActions } from './cart/action-types';
 
 
-export type AppActions = BackdropActions | CarouselActions | NavBarActions | IndexPageActions | RegistrationFormActions | UserActions;
+export type AppActions = BackdropActions | CarouselActions | CartActions | NavBarActions | IndexPageActions | RegistrationFormActions | UserActions;

@@ -1,10 +1,12 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/client';
 import { NextRouter, useRouter } from 'next/router';
+import { AppState } from '../../redux-store/reducers';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath } from '../../utils/types';
+import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath, User, UserContext } from '../../utils/types';
 import Image from 'next/image';
 
 import styles from '../../containers/pages/product/Preview.module.scss';
@@ -75,6 +77,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
   /* ----------------  BASE CONTROLLERS  ---------------- */
   const router: NextRouter = useRouter();
   const [ session, loading ] = useSession();
+  const user: UserContext = useSelector((state: AppState) => state.user);
   const chosenSizeRef: React.MutableRefObject<string | undefined> = React.useRef<string>();
 
   /* --------------------  FUNCTIONS  --------------------- */
@@ -87,13 +90,16 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
 
     // add new item to user cart within the database/ redux
     const cartToken: ProductCartToken = {
-      user: session ? session.user?.name as string : 'guest',
-      product: {
-        id: data.product.id,
+      user: { 
+        id: session ? user.id : 'guest',
+        info: user.info 
+      },
+      product: data.product,
+      order: {
         size: chosenSizeRef.current as string,
         amount: 1
       }
-    }
+    };
 
     router.push('/cart');
   };
