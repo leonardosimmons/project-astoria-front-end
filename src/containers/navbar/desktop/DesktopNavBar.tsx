@@ -1,13 +1,16 @@
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { signOut, useSession } from 'next-auth/client';
-import { strShortener } from '../../../helpers/functions';
+import { AppActions } from '../../../redux-store/action-types';
 import { NavbarMenuTab, NavbarMenuTabToken, PageLink } from '../../../utils/types';
+import { signOutUser } from '../../../redux-store/user/actions';
 
 import navbarStyles from './styles/Navbar.module.scss';
 import infoStyles from './styles/Information.module.scss';
 import menuStyles from './styles/Menu.module.scss';
 import profileStyles from './styles/Profile.module.scss';
+import { strShortener } from '../../../helpers/functions';
 
 import Logo from '../../../components/logo';
 import Container from '../../../components/container';
@@ -29,6 +32,12 @@ type Props = {
 
 const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
   const [ session, loading ] = useSession();
+  const dispatch: React.Dispatch<AppActions> = useDispatch();
+
+  function handleUserSignOut() {
+    dispatch(signOutUser());
+    signOut();
+  };
 
   return (
     <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect solid`}>
@@ -100,7 +109,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
                   </BaseIcon>
                 </> 
                 :
-                <button onClick={() => signOut()}>{'Sign Out'}</button>
+                <button onClick={handleUserSignOut}>{'Sign Out'}</button>
               }
             </div>
           </Container>

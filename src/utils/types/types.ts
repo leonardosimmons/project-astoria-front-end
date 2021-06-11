@@ -275,6 +275,11 @@ export type IndexPage = {
   context: IndexPageContext;
 };
 
+export type IndexPageSelectors = {
+  page: IndexPageContext;
+  user: UserContext;
+};
+
 //** ----------------  MAIN PRODUCT PAGE  ---------------- **//
 export type MainProductPageStaticData = {
   header: Header | Header[];
@@ -431,5 +436,8 @@ export type User = {
 
 export type UserContext = {
   id: Combinable;
-  user: User;
+  info: User;
+  status: {
+    signedIn: boolean;
+  };
 };
