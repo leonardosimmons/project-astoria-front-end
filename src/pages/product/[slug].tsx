@@ -6,11 +6,11 @@ import { useSession } from 'next-auth/client';
 import { NextRouter, useRouter } from 'next/router';
 import { AppState } from '../../redux-store/reducers';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath, User, UserContext } from '../../utils/types';
-import Image from 'next/image';
+import { Data, NavbarDesktopData, NavbarMobileData, Product, ProductCartToken, ProductPageData, StaticPath, UserContext } from '../../utils/types';
 
 import styles from '../../containers/pages/product/Preview.module.scss';
 
+import Image from 'next/image';
 import Layout from '../../containers/layout';
 import Container from '../../components/container';
 import Grid from '../../components/grid';

@@ -1,10 +1,10 @@
 
 import { AppActions } from '../action-types';
-import { User } from '../../utils/types';
+import { UserInfo } from '../../utils/types';
 import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
 
 
-export const setUser = (id: number, u: User): AppActions => ({
+export const setUser = (id: number, u: UserInfo): AppActions => ({
   type: SET_USER,
   payload: {
     id: id,

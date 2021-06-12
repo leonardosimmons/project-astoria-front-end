@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IndexPageData, User, UserCheck, UserData } from '../utils/types';
+import { IndexPageData, UserInfo, UserCheck, UserData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
@@ -65,7 +65,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 
   // USER SIGN IN
   React.useEffect(() => {
-    async function checkUser(user: User): Promise<any> {
+    async function checkUser(user: UserInfo): Promise<any> {
       const res = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
       const data = await res.data;
 
@@ -78,7 +78,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
     };
 
     if (session && !user.status.signedIn) {      
-      const userToken: User = {
+      const userToken: UserInfo = {
         name: 'Test Name', // temp
         email: session.user?.email as string,
         image: session.user?.image as string
@@ -107,20 +107,6 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
     }
   }, [session]);
 
-
-  function test() {
-    axios({
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      url: process.env.NEXT_PUBLIC_ADD_USER_API,
-      //data: userToken
-    })
-    .then(res => res.status === 200 && res.data)
-    .then(data => data.payload.map())
-    .catch(err => console.log(err.message));
-  };
-
-
   /* ---------------------  RENDER  --------------------- */
   return (
     <Layout 
@@ -135,9 +121,6 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
           {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}
           <IndexHeader headerConfig={ config.header } classes={''}/>
         </React.Fragment>
-      }
-      footer={
-        <button onClick={test}>Click Me</button>
       }
     >
       <Container main parent={ page.HOME } classes={`relative`}>

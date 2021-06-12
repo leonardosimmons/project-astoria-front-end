@@ -438,7 +438,7 @@ export type RegistrationForm = {
 
 
 //** ------------------------  USER ------------------------- *//
-export type User = {
+export type UserInfo = {
   name: string;
   email: string;
   image?: string;
@@ -451,7 +451,7 @@ export type UserCheck = {
 
 export type UserContext = {
   id: Combinable;
-  info: User;
+  info: UserInfo;
   status: {
     signedIn: boolean;
   };
@@ -459,5 +459,5 @@ export type UserContext = {
 
 export type UserData = {
   id: Combinable;
-  info: User;
+  info: UserInfo;
 };
