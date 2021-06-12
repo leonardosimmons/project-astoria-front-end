@@ -3,14 +3,13 @@ import React from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IndexPageData, User } from '../utils/types';
+import { IndexPageData, User, UserCheck, UserData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
 
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 import { useUser } from '../helpers/hooks/useUser';
-import { rand } from '../helpers/functions';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -56,8 +55,6 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const randMin: number = 100000000;
-const randMax: number = 999999999;
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const user = useUser();
@@ -68,30 +65,60 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 
   // USER SIGN IN
   React.useEffect(() => {
-    if (session && !user.status.signedIn) {
-      const buffer: Array<any> = [];
-      const api: string = process.env.NEXT_PUBLIC_GET_ALL_PRODUCTS_API as string;
-      const headers = { 'Content-Type': 'application/json' };
-      
-      // check to see if user exists within database
-      // if no user exists CREATE a new one
-      axios.get(api, { headers })
-      .then(res => res.status === 200 && res.data)
-      .then(data => data.payload.map((d: any) => buffer.push(d)))
-      .catch(err => err.message); 
-      
-      console.log(buffer);
-    
+    async function checkUser(user: User): Promise<any> {
+      const res = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
+      const data = await res.data;
+
+      const userCheck: boolean = data.payload.some((u: UserData) => user.name === u.info.name);
+
+      return {
+        isTaken: userCheck,
+        users: data.payload.map((u: UserData) => u)
+      }
+    };
+
+    if (session && !user.status.signedIn) {      
       const userToken: User = {
-        name: session.user?.name as string,
+        name: 'Test Name', // temp
         email: session.user?.email as string,
         image: session.user?.image as string
       };
 
-      //! change id param to user id from db
-      user.signIn(rand(randMin, randMax), userToken);
+      checkUser(userToken)
+      .then((res: UserCheck) => {
+        if (res.isTaken) {
+          let verifiedId: number = 0;
+
+          res.users.map((u: UserData) => {
+            if (u.info.name === userToken.name) {
+              verifiedId = u.id as number;
+            }
+          });
+          
+          user.signIn(verifiedId, userToken);
+          return;
+        }
+
+        // add new user to database
+
+        return; 
+      })
+      .catch(err => console.log(err));
     }
   }, [session]);
+
+
+  function test() {
+    axios({
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      url: process.env.NEXT_PUBLIC_ADD_USER_API,
+      //data: userToken
+    })
+    .then(res => res.status === 200 && res.data)
+    .then(data => data.payload.map())
+    .catch(err => console.log(err.message));
+  };
 
 
   /* ---------------------  RENDER  --------------------- */
@@ -108,6 +135,9 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
           {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}
           <IndexHeader headerConfig={ config.header } classes={''}/>
         </React.Fragment>
+      }
+      footer={
+        <button onClick={test}>Click Me</button>
       }
     >
       <Container main parent={ page.HOME } classes={`relative`}>

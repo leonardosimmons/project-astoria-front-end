@@ -1,18 +1,19 @@
 import React from 'react';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
 import { link } from '../../../utils/keys';
-import { Icon as _Icon, NamedLink, NavbarMobileMenu } from '../../../utils/types';
+import { Icon as _Icon, NavbarMobileMenu } from '../../../utils/types';
 
 import mainStyles from './styles/Navbar.module.scss';
 import tabStyles from './styles/MenuTab.module.scss';
 import menuStyles from './styles/Menu.module.scss';
 import carouselStyles from './styles/Carousel.module.scss';
 
+import { useUser } from '../../../helpers/hooks/useUser';
+
 import Container from '../../../components/container';
 import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
-import { useUser } from '../../../helpers/hooks/useUser';
 
 type Props = {
   config: {
@@ -24,6 +25,7 @@ type Props = {
 
 const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   const user = useUser();
+  const [ session ] = useSession();
 
   return (
     <div id="mobile-navbar" className={`${ mainStyles.wrapper || '' } noselect`} >
@@ -48,7 +50,7 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
             height={ config.icons[0].height as number } 
           />
           {
-            user.session
+            session
             ? <button onClick={() => user.signOut()}>Sign Out</button>
             : <Icon 
                 styles={ mainStyles }

@@ -444,10 +444,20 @@ export type User = {
   image?: string;
 };
 
+export type UserCheck = {
+  isTaken: boolean;
+  users: Array<UserContext>;
+}
+
 export type UserContext = {
   id: Combinable;
   info: User;
   status: {
     signedIn: boolean;
   };
+};
+
+export type UserData = {
+  id: Combinable;
+  info: User;
 };

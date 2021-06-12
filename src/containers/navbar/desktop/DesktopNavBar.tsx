@@ -1,22 +1,20 @@
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { signOut, useSession } from 'next-auth/client';
-import { AppActions } from '../../../redux-store/action-types';
+import { useSession } from 'next-auth/client';
 import { NavbarMenuTab, NavbarMenuTabToken, PageLink } from '../../../utils/types';
-import { signOutUser } from '../../../redux-store/user/actions';
 
 import navbarStyles from './styles/Navbar.module.scss';
 import infoStyles from './styles/Information.module.scss';
 import menuStyles from './styles/Menu.module.scss';
 import profileStyles from './styles/Profile.module.scss';
+
 import { strShortener } from '../../../helpers/functions';
+import { useUser } from '../../../helpers/hooks/useUser';
 
 import Logo from '../../../components/logo';
 import Container from '../../../components/container';
 import MenuTab from './components/DesktopMenuTab';
 import BaseIcon from '../../../components/icon/Icon';
-import { useUser } from '../../../helpers/hooks/useUser';
 
 
 type Props = {
@@ -33,6 +31,7 @@ type Props = {
 
 const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
   const user = useUser();
+  const [ session ] = useSession();
 
   return (
     <div id="desktop-navbar" className={`${ navbarStyles.wrapper || '' } noselect solid`}>
@@ -66,9 +65,9 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
           <Container styles={ profileStyles }>
             <div className={profileStyles.tabs}>
               {
-                user.session &&
+                session &&
                 <div className={profileStyles.signedInBox}>
-                  <span>{user.loading ? 'loading...' : 'Hello'}</span>
+                  <span>{session.loading ? 'loading...' : 'Hello'}</span>
                   <span>{strShortener(user.info.name, 12, '...')}</span>
                   <span>{user.info.name}</span>
                 </div>
@@ -87,7 +86,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               </a>
               </BaseIcon>
               {
-                !user.session ?
+                !session ?
                 <>
                   <BaseIcon 
                     left
