@@ -11,6 +11,10 @@ export function useUser() {
   const dispatch: React.Dispatch<AppActions> = useDispatch();
   const user: UserContext = useSelector((state: AppState) => state.user);
 
+  async function register(u: UserInfo) {
+    
+  };
+
   function signIn(id: number, u: UserInfo): void {
     dispatch(setUser(id, u));
     dispatch(signInUser());

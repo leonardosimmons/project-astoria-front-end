@@ -79,7 +79,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 
     if (session && !user.status.signedIn) {      
       const userToken: UserInfo = {
-        name: 'Test Name', // temp
+        name: session.user?.name as string,
         email: session.user?.email as string,
         image: session.user?.image as string
       };
@@ -99,13 +99,24 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
           return;
         }
 
-        // add new user to database
+        axios({
+          method: 'post',
+          url: process.env.NEXT_PUBLIC_ADD_USER_API,
+          data: {
+            name: userToken.name,
+            email: userToken.email,
+            image: userToken.image
+          }
+        })
+        .then((res) => res.status === 201 && res.data)
+        .then(data => user.signIn(data.payload.id, data.payload.info))
+        .catch(err => { throw new Error(err)})
 
-        return; 
       })
       .catch(err => console.log(err));
     }
   }, [session]);
+
 
   /* ---------------------  RENDER  --------------------- */
   return (

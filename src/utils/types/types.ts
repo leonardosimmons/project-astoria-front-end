@@ -441,7 +441,7 @@ export type RegistrationForm = {
 export type UserInfo = {
   name: string;
   email: string;
-  image?: string;
+  image: string;
 };
 
 export type UserCheck = {

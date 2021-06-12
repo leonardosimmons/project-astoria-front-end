@@ -66,23 +66,27 @@ export function rand(min: number, max: number) {
  * @returns 
  */
 export function strShortener(s: string, len: number, concat?: string): string {
-  let strArr: Array<string> = s.split('');
-  let newStr: string = '';
-  
-  if (len < s.length) {
-    for (let i=0; i < len; i++) {
-      newStr = newStr.concat(strArr[i]);
+  if (s) {
+    let strArr: Array<string> = s.split('');
+    let newStr: string = '';
+    
+    if (len < s.length) {
+      for (let i=0; i < len; i++) {
+        newStr = newStr.concat(strArr[i]);
+      }
     }
-  }
-  else {
-    newStr = s;
-  }
-  
-  if(concat) {
-    newStr = newStr.concat(concat);
-  }
-  
-  return newStr;
+    else {
+      newStr = s;
+    }
+    
+    if(concat) {
+      newStr = newStr.concat(concat);
+    }
+    
+    return newStr;
+  };
+
+  return '';
 };
 
 //* storeScrollPosition
