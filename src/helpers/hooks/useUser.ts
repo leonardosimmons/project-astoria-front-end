@@ -1,10 +1,9 @@
 
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from './redux';
 import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext } from '../../utils/types';
-import { AppState } from '../../redux-store/reducers';
 import { setUser, signOutUser, verifyAndSignInUser } from '../../redux-store/user/actions';
-import React from 'react';
 
 
 const guestProfile: Partial<UserContext> = {
@@ -17,9 +16,9 @@ const guestProfile: Partial<UserContext> = {
 };
 
 export function useUser() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const user: UserContext = useAppSelector((state) => state.user);
   const guest = React.useRef<Partial<UserContext>>(guestProfile);
-  const user: UserContext = useSelector((state: AppState) => state.user);
 
   function guestSignIn(): void {
     dispatch(setUser(guest.current.id as number, guest.current.info!));
