@@ -10,27 +10,27 @@ export function useCart() {
   const dispatch = useAppDispatch();
   const cart: CartContext = useAppSelector((state) => state.cart);
 
-  function add(p: ProductCartToken) {
+  function add(p: ProductCartToken): void {
     dispatch(addToCart(p));
   };
 
-  function isEmpty(e: boolean) {
+  function isEmpty(e: boolean): void {
     dispatch(setIsEmpty(e))
   };
 
-  function remove(p: ProductCartToken) {
+  function remove(p: ProductCartToken): void {
     dispatch(removeFromCart(p));
   };
 
-  function reset() {
+  function reset(): void {
     dispatch(resetCart());
   };
 
-  function updateQuantity(i: number, q: number) {
+  function updateQuantity(i: number, q: number): void {
     dispatch(updateProductQuantity(i, q));
   };
 
-  function updateCount(q: number) {
+  function updateCount(q: number): void {
     dispatch(updateProductCount(q));
   };
 
