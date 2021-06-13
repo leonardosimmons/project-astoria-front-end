@@ -2,7 +2,7 @@
 import { AppActions } from '../action-types';
 import { CartContext, ProductCartToken } from '../../utils/types';
 
-import { RESET_CART, SET_IS_EMPTY } from './action-types';
+import { RESET_CART, SET_CART_USER, SET_IS_EMPTY } from './action-types';
 import { 
   ADD_PRODUCT, 
   REMOVE_PRODUCT, 
@@ -59,6 +59,11 @@ export function cartReducer(state = cartInitialState, action: AppActions): CartC
           ...state.status, 
           isEmpty: action.payload
         }
+      };
+    case SET_CART_USER:
+      return {
+        ...state,
+        user: {...action.payload, status: { signedIn: true }}
       };
     case UPDATE_PRODUCT:
       return {

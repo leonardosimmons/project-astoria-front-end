@@ -47,7 +47,11 @@ export function updateTotalProductCount(q: number): AppActions {
 //* Thunk
 export function addToCart(p: ProductCartToken): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
-    // add product to user's cart within database
+    // determine if product is already in cart
+    // if so -> then update product quantity
+    // else add to cart
+
+    // update user's cart within the database
 
     dispatch(addProductToCart(p));
   };

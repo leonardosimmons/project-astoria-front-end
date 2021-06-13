@@ -4,7 +4,6 @@ import axios from 'axios';
 import { AppActions, AppThunk } from '../action-types';
 import { UserData, UserInfo } from '../../utils/types';
 import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
-import { useCart } from '../../helpers/hooks/useCart';
 import { setCartUser } from '../cart/actions/actions';
 
 
