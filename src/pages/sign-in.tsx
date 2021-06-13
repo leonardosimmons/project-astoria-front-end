@@ -14,6 +14,7 @@ import Container from '../components/container';
 import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
+import { useUser } from '../helpers/hooks/useUser';
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -42,6 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  const user = useUser();
   const router: NextRouter = useRouter();
   const [ session, loading ] = useSession();
 
@@ -49,6 +51,11 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
   if(session) {
     router.push('/');
   }
+
+  function guestSignIn() {
+    user.guestSignIn();
+    router.push('/');
+  };
 
   return (
     <Layout
@@ -68,7 +75,7 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
             <button className={'btn-activeFocus'} onClick={() => signIn('github', {callbackUrl: '/'})}>
               {'Sign in with GitHub'}
             </button>
-            <button onClick={() => router.push('/')}>
+            <button onClick={() => guestSignIn()}>
               {'Continue as Guest'}
             </button>
             <Container styles={ styles } classes={'relative center-col'}>

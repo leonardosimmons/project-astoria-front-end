@@ -13,6 +13,13 @@ export function useUser() {
   const dispatch: React.Dispatch<AppActions> = useDispatch();
   const user: UserContext = useSelector((state: AppState) => state.user);
 
+  function guestSignIn(): void {
+    const id: number = 123456789;
+    const guest: UserInfo = {name: 'guest', email: '', image: ''};
+
+    dispatch(setUser(id, guest));
+  };
+
   async function register(u: UserInfo): Promise<void> {
     axios({
       method: 'post',
@@ -54,6 +61,7 @@ export function useUser() {
     id: user.id,
     info: user.info,
     status: user.status,
+    guestSignIn,
     register,
     signIn,
     signOut,
