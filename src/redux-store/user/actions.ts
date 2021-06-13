@@ -4,15 +4,14 @@ import axios from 'axios';
 import { AppActions, AppThunk } from '../action-types';
 import { UserData, UserInfo } from '../../utils/types';
 import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
+import { useCart } from '../../helpers/hooks/useCart';
+import { setCartUser } from '../cart/actions/actions';
 
 
-export function setUser (id: number, u: UserInfo): AppActions {
+export function setUser (u: UserData): AppActions {
   return {
     type: SET_USER,
-    payload: {
-      id: id,
-      info: u
-    }
+    payload: u
   };
 };
 
@@ -46,8 +45,14 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
         vId = uD.id as number;
       }
     });
+
+    const token: UserData = {
+      id: vId,
+      info: user
+    };
     
-    dispatch(setUser(vId, user));
+    dispatch(setUser(token));
+    dispatch(setCartUser(token));
     dispatch(signInUser());
     return;
   }
@@ -63,7 +68,13 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
   })
   .then((res) => res.status === 201 && res.data)
   .then(data => {
-    dispatch(setUser(data.payload.id, data.payload.info));
+    const token: UserData = {
+      id: data.payload.id,
+      info: data.payload.info
+    };
+
+    dispatch(setUser(token));
+    dispatch(setCartUser(token));
     dispatch(signInUser());
   })
   .catch(err => { throw new Error(err) })

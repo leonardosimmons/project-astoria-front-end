@@ -1,5 +1,5 @@
 
-import { UserInfo } from '../../utils/types';
+import { UserData } from '../../utils/types';
 
 //** ---------------------  TYPES  --------------------- **//
 export const SET_USER = 'set_user';
@@ -10,10 +10,7 @@ export const SIGN_OUT_USER = 'sign_out_user';
 //** --------------------  ACTIONS  -------------------- **//
 export type SetUserAction = {
   type: typeof SET_USER;
-  payload: {
-    id: number;
-    info: UserInfo;
-  };
+  payload: UserData;
 };  
 
 export type SignInUserAction = {

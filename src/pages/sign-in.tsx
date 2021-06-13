@@ -9,12 +9,13 @@ import { page } from '../utils/keys';
 
 import styles from '../containers/pages/sign-in/SignIn.module.scss';
 
+import { useUser } from '../helpers/hooks/useUser';
+
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
-import { useUser } from '../helpers/hooks/useUser';
 
 
 export const getStaticProps: GetStaticProps = async () => {
