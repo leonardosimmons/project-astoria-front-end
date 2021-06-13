@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import { AppActions } from '../action-types';
+import { AppActions, AppThunk } from '../action-types';
 import { UserData, UserInfo } from '../../utils/types';
 import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
 
@@ -30,7 +30,7 @@ export function signOutUser(): AppActions {
 
 
 //* Middleware
-export const verifyAndSignInUser = (user: UserInfo) => async (dispatch: React.Dispatch<AppActions>) => {
+export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   const res = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
   const data = await res.data;
 

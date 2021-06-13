@@ -1,5 +1,7 @@
 
 import { ImageLoader } from "next/image";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
 
 //** -----------------------  CAROUSEL  ------------------------ **//
@@ -23,20 +25,24 @@ export type CarouselContentContext = {
 
 
 //** -------------------------  CART  ------------------------- **//
+export type CartSummary = {
+  count: number;
+  total: number;
+};
+
+export type CartStatus = {
+  isCheckingOut: boolean;
+  isComplete: boolean;
+  isEmpty: boolean;
+  isPending: boolean;
+  isUser: boolean;
+};
+
 export type CartContext = {
   user: UserContext;
   items: Array<ProductCartToken>;
-  summary: {
-    total: number;
-    items: number;
-  };
-  status: {
-    isCheckingOut: boolean;
-    isComplete: boolean;
-    isEmpty: boolean;
-    isPending: boolean;
-    isUser: boolean;
-  };
+  summary: CartSummary;
+  status: CartStatus;
 };
 
 
@@ -248,6 +254,7 @@ export type Text = {
   spanFiveClasses?: string;
 };
 
+export type ThunkAction<R, S, E, A extends Action> = (dispatch: ThunkDispatch<S, E, A>, getState: () => S, extraArgument: E) => R;
 
 //** --------------------  INDEX PAGE  -------------------- **//
 export type IndexSectionData = {
