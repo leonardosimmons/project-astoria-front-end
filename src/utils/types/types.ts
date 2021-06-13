@@ -33,6 +33,7 @@ export type CartContext = {
   status: {
     isCheckingOut: boolean;
     isComplete: boolean;
+    isEmpty: boolean;
     isPending: boolean;
     isUser: boolean;
   };
@@ -408,12 +409,12 @@ export type ProductPageData = {
 };
 
 export type ProductCartToken = {
-  user: UserContext;
+  user: Partial<UserContext>;
   product: Product;
   order: {
     size: string;
-    amount: number;
-  }
+    quantity: number;
+  };
 };
 
 //** ------------------------  PROMO  ------------------------ *//

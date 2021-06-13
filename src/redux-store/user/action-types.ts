@@ -24,4 +24,5 @@ export type SignOutUserAction = {
   type: typeof SIGN_OUT_USER;
 };
 
+
 export type UserActions = SetUserAction | SignInUserAction | SignOutUserAction;

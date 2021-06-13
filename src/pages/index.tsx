@@ -1,6 +1,7 @@
 
 import React from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { IndexPageData, UserInfo, UserCheck, UserData } from '../utils/types';
@@ -72,25 +73,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
         image: session.user?.image as string
       };
 
-      user.verify(token)
-      .then((res: UserCheck) => {
-        if (res.isTaken) 
-        {
-          let vId: number = 0;
-
-          res.users.map((u: UserData) => {
-            if (u.info.name === token.name) {
-              vId = u.id as number;
-            }
-          });
-          
-          user.signIn(vId, token);
-          return;
-        }
-
-        user.register(token);
-      })
-      .catch(err => console.log(err));
+      user.signIn(token);
     }
   }, [session]);
 

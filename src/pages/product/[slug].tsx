@@ -17,6 +17,7 @@ import Grid from '../../components/grid';
 import Copyright from '../../components/copyright';
 import ProductSummary from '../../containers/pages/product/Summary';
 import ProductDetails from '../../containers/pages/product/Details';
+import { useUser } from '../../helpers/hooks/useUser';
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -75,9 +76,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* ----------------  BASE CONTROLLERS  ---------------- */
+  const user = useUser();
   const router: NextRouter = useRouter();
   const [ session, loading ] = useSession();
-  const user: UserContext = useSelector((state: AppState) => state.user);
   const chosenSizeRef: React.MutableRefObject<string | undefined> = React.useRef<string>();
 
   /* --------------------  FUNCTIONS  --------------------- */
@@ -92,13 +93,11 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
     const cartToken: ProductCartToken = {
       user: { 
         id: session ? user.id : 'guest',
-        info: user.info,
-        status: user.status 
       },
       product: data.product,
       order: {
         size: chosenSizeRef.current as string,
-        amount: 1
+        quantity: 1
       }
     };
 
