@@ -24,11 +24,18 @@ export type CarouselContentContext = {
 
 //** -------------------------  CART  ------------------------- **//
 export type CartContext = {
-  user: Partial<UserContext>;
-  products: Array<Product>;
+  user: UserContext;
+  items: Array<ProductCartToken>;
   summary: {
     total: number;
-  }
+    items: number;
+  };
+  status: {
+    isCheckingOut: boolean;
+    isComplete: boolean;
+    isPending: boolean;
+    isUser: boolean;
+  };
 };
 
 
@@ -401,7 +408,7 @@ export type ProductPageData = {
 };
 
 export type ProductCartToken = {
-  user: Partial<UserContext>;
+  user: UserContext;
   product: Product;
   order: {
     size: string;

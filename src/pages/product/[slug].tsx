@@ -92,7 +92,8 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
     const cartToken: ProductCartToken = {
       user: { 
         id: session ? user.id : 'guest',
-        info: user.info 
+        info: user.info,
+        status: user.status 
       },
       product: data.product,
       order: {
