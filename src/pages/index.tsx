@@ -33,12 +33,12 @@ export const getStaticProps: GetStaticProps = async () => {
     if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)
     {
       const dataToken: IndexPageData = {
-          nav: {
-            desktop: desktop.data,
-            mobile: mobile.data,
-          },
-          header: header.data,
-          section: data.data
+        nav: {
+          desktop: desktop.data,
+          mobile: mobile.data,
+        },
+        header: header.data,
+        section: data.data
       };
 
       return dataToken;
@@ -65,53 +65,30 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 
   // USER SIGN IN
   React.useEffect(() => {
-    async function checkUser(user: UserInfo): Promise<any> {
-      const res = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
-      const data = await res.data;
-
-      const userCheck: boolean = data.payload.some((u: UserData) => user.name === u.info.name);
-
-      return {
-        isTaken: userCheck,
-        users: data.payload.map((u: UserData) => u)
-      }
-    };
-
     if (session && !user.status.signedIn) {      
-      const userToken: UserInfo = {
+      const token: UserInfo = {
         name: session.user?.name as string,
         email: session.user?.email as string,
         image: session.user?.image as string
       };
 
-      checkUser(userToken)
+      user.verify(token)
       .then((res: UserCheck) => {
-        if (res.isTaken) {
-          let verifiedId: number = 0;
+        if (res.isTaken) 
+        {
+          let vId: number = 0;
 
           res.users.map((u: UserData) => {
-            if (u.info.name === userToken.name) {
-              verifiedId = u.id as number;
+            if (u.info.name === token.name) {
+              vId = u.id as number;
             }
           });
           
-          user.signIn(verifiedId, userToken);
+          user.signIn(vId, token);
           return;
         }
 
-        axios({
-          method: 'post',
-          url: process.env.NEXT_PUBLIC_ADD_USER_API,
-          data: {
-            name: userToken.name,
-            email: userToken.email,
-            image: userToken.image
-          }
-        })
-        .then((res) => res.status === 201 && res.data)
-        .then(data => user.signIn(data.payload.id, data.payload.info))
-        .catch(err => { throw new Error(err)})
-
+        user.register(token);
       })
       .catch(err => console.log(err));
     }
