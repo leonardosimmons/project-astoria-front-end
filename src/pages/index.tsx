@@ -1,7 +1,6 @@
 
 import React from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import { useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { IndexPageData, UserInfo, UserCheck, UserData } from '../utils/types';

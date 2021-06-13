@@ -18,11 +18,11 @@ const guestProfile: Partial<UserContext> = {
 
 export function useUser() {
   const dispatch = useDispatch();
-  const [ guest ] = React.useState<Partial<UserContext>>(guestProfile);
+  const guest = React.useRef<Partial<UserContext>>(guestProfile);
   const user: UserContext = useSelector((state: AppState) => state.user);
 
   function guestSignIn(): void {
-    dispatch(setUser(guest.id as number, guest.info!));
+    dispatch(setUser(guest.current.id as number, guest.current.info!));
   };
 
   function signIn(u: UserInfo): void {
