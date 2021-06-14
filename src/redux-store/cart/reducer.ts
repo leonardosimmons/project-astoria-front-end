@@ -19,7 +19,10 @@ const cartInitialState: CartContext = {
       email: '',
       image: ''
     },
-    status : { signedIn: false }
+    status : {
+      isError: false, 
+      signedIn: false 
+    }
   },
   items: [],
   summary: { count: 0, total: 0 },
@@ -63,7 +66,13 @@ export function cartReducer(state = cartInitialState, action: AppActions): CartC
     case SET_CART_USER:
       return {
         ...state,
-        user: {...action.payload, status: { signedIn: true }}
+        user: {
+          ...action.payload, 
+          status: {
+            ...state.user.status, 
+            signedIn: true 
+          }
+        }
       };
     case UPDATE_PRODUCT:
       return {

@@ -11,7 +11,10 @@ export const userInitialState: UserContext = {
     email: '',
     image: ''
   },
-  status : { signedIn: false }
+  status : {
+    isError: false, 
+    signedIn: false 
+  }
 };
 
 export function userReducer(state = userInitialState, action: AppActions): UserContext {
@@ -19,7 +22,7 @@ export function userReducer(state = userInitialState, action: AppActions): UserC
     case SET_USER:
       return {...state, id: action.payload.id, info: action.payload.info};
     case SIGN_IN_USER:
-      return {...state, status: { signedIn: true }};
+      return {...state, status: { ...state.status, signedIn: true }};
     case SIGN_OUT_USER:
       return userInitialState;
     default:

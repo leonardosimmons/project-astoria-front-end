@@ -29,52 +29,57 @@ export function signOutUser(): AppActions {
 
 //* Middleware
 export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
-  const res = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
-  const data = await res.data;
+ try {
+    const data = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string).then(res => res.status === 200 && res.data);
+    const users = data.payload.map((u: UserData) => u);
+    const isTaken: boolean = users.some((uD: UserData) => user.name === uD.info.name);
 
-  const users = data.payload.map((u: UserData) => u);
-  const isTaken: boolean = users.some((uD: UserData) => user.name === uD.info.name);
+    if (isTaken) 
+    {
+      let vId: number = 0;
 
-  if (isTaken) 
-  {
-    let vId: number = 0;
+      users.map((uD: UserData) => {
+        if (uD.info.name === user.name) {
+          vId = uD.id as number;
+        }
+      });
 
-    users.map((uD: UserData) => {
-      if (uD.info.name === user.name) {
-        vId = uD.id as number;
-      }
-    });
-
-    const token: UserData = {
-      id: vId,
-      info: user
-    };
-    
-    dispatch(setUser(token));
-    dispatch(setCartUser(token));
-    dispatch(signInUser());
-    return;
-  }
-
-  axios({
-    method: 'post',
-    url: process.env.NEXT_PUBLIC_ADD_USER_API,
-    data: {
-      name: user.name,
-      email: user.email,
-      image: user.image
+      const token: UserData = {
+        id: vId,
+        info: user
+      };
+      
+      dispatch(setUser(token));
+      dispatch(setCartUser(token));
+      dispatch(signInUser());
+      return;
     }
-  })
-  .then((res) => res.status === 201 && res.data)
-  .then(data => {
-    const token: UserData = {
-      id: data.payload.id,
-      info: data.payload.info
-    };
 
-    dispatch(setUser(token));
-    dispatch(setCartUser(token));
-    dispatch(signInUser());
-  })
-  .catch(err => { throw new Error(err) })
+    axios({
+      method: 'post',
+      url: process.env.NEXT_PUBLIC_ADD_USER_API,
+      data: {
+        name: user.name,
+        email: user.email,
+        image: user.image
+      }
+    })
+    .then((res) => res.status === 201 && res.data)
+    .then(data => {
+      const token: UserData = {
+        id: data.payload.id,
+        info: data.payload.info
+      };
+
+      dispatch(setUser(token));
+      dispatch(setCartUser(token));
+      dispatch(signInUser());
+    })
+    .catch(err => { throw new Error(err) })
+ }
+ catch(err) {
+  // create error state
+
+  console.log(err);
+ }
 };
