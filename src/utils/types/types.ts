@@ -469,6 +469,7 @@ export type UserContext = {
   info: UserInfo;
   status: {
     signedIn: boolean;
+    isError: boolean;
   };
 };
 

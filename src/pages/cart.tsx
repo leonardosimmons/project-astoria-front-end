@@ -1,12 +1,9 @@
 
 import React from 'react';
-import axios from 'axios';
-import Link from 'next/link';
-import { NextRouter, useRouter } from 'next/router';
+import axios, { AxiosResponse } from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
-import { preventDefault, handleInputRef } from '../helpers/functions/functions';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
 
@@ -22,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile) => {
+  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>) => {
     if(desktop.status === 200 && mobile.status === 200) {
       const dataToken: NavbarData = {
         desktop: desktop.data,
