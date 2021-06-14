@@ -63,6 +63,13 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
   // USER SCROLL POSITION
   useNavScrollConfig();
 
+  // GUEST SIGN IN
+  React.useEffect(() => {
+    if (!session) {
+      user.guestSignIn();
+    }
+  }, []);
+  
   // USER SIGN IN
   React.useEffect(() => {
     if (session && !user.status.signedIn) {      
