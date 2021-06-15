@@ -22,12 +22,20 @@ import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
 
 
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API,
+  INDEX_HEADER_DATA_API,
+  INDEX_PAGE_DATA_API
+} = process.env;
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
   .then(axios.spread((desktop, mobile, header, data) => { 
     if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)

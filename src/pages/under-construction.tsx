@@ -13,11 +13,18 @@ import TextContent from '../components/text';
 import Container from '../components/container';
 
 
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API,
+  UNDER_CONSTRUCTION_PAGE_DATA_API
+} = process.env;
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.UNDER_CONSTRUCTION_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(UNDER_CONSTRUCTION_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop, mobile, staticData) => { 
     if(desktop.status === 200 && mobile.status === 200)

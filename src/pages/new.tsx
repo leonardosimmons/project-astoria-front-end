@@ -14,6 +14,15 @@ import Container from '../components/container';
 import NewInPromo from '../containers/pages/new/sections/new-in';
 import MainHeader from '../containers/pages/new/header';
 import PromoBanner from '../components/promo/banner';
+
+
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API,
+  WHATS_NEW_PAGE_DATA_API
+} = process.env;
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),

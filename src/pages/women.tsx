@@ -17,11 +17,19 @@ import PromoCard from '../components/promo/card';
 import PromoBanner from '../components/promo/banner';
 
 
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API,
+  WOMENS_PAGE_DATA_API
+} = process.env;
+
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.WOMENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(WOMENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop, mobile, page) => {
     if(desktop.status === 200 && mobile.status === 200 && page.status === 200) {

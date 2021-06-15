@@ -14,10 +14,16 @@ import CartPreview from '../containers/pages/cart/preview';
 import CartSummary from '../containers/pages/cart/summary';
 
 
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API
+} = process.env;
+
+
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>) => {
     if(desktop.status === 200 && mobile.status === 200) {

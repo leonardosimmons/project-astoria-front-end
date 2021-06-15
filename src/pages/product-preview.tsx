@@ -16,10 +16,16 @@ import ProductSummary from '../containers/pages/product/Summary';
 import ProductDetails from '../containers/pages/product/Details';
 
 
+const {
+  NAVBAR_DESKTOP_API,
+  NAVBAR_MOBILE_API
+} = process.env;
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const data: NavbarData | undefined = await axios.all([
-    axios.get(process.env.NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(process.env.NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
   ])
   .then(axios.spread((desktop, mobile) => { 
     if(desktop.status === 200 && mobile.status === 200)
