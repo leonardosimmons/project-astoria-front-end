@@ -48,11 +48,16 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
         id: vId,
         info: user
       };
-      
-      dispatch(setUser(token));
-      dispatch(setCartUser(token));
-      dispatch(signInUser());
-      return;
+
+      // sign in at database
+      const isSignedIn = await axios.put(process.env.NEXT_PUBLIC_SIGN_IN_USER_API as string, {u_Id: vId}).then((res) => res.data.payload);
+
+      if(isSignedIn) {
+        dispatch(setUser(token));
+        dispatch(setCartUser(token));
+        dispatch(signInUser());
+        return;
+      }
     }
 
     axios({
@@ -71,9 +76,10 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
         info: data.payload.info
       };
 
-      dispatch(setUser(token));
-      dispatch(setCartUser(token));
-      dispatch(signInUser());
+      axios.put(process.env.NEXT_PUBLIC_SIGN_IN_USER_API as string, {u_Id: token.id})
+        .then((res) => res.data.payload)
+
+    
     })
     .catch(err => { throw new Error(err) })
  }
@@ -82,4 +88,17 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
 
   console.log(err);
  }
+};
+
+
+export const userSignOut = (u_Id: number): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
+  try {
+    await axios.put(process.env.NEXT_PUBLIC_SIGN_OUT_USER_API as string, {u_Id})
+            .then(() => signOutUser);
+  }
+  catch(err) {
+    // create error state
+
+    console.log(err);
+  }
 };

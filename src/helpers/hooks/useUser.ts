@@ -3,7 +3,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from './redux';
 import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext, UserData } from '../../utils/types';
-import { setUser, signOutUser, verifyAndSignInUser } from '../../redux-store/user/actions';
+import { setUser, signOutUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
 import { useCart } from './useCart';
 
 
@@ -40,8 +40,8 @@ export function useUser() {
     dispatch(verifyAndSignInUser(u));
   };
 
-  function signOut(): void {
-    dispatch(signOutUser());
+  function signOut(u_Id: number): void {
+    dispatch(userSignOut(u_Id));
     signOutSession();
   };
 
