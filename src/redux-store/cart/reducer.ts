@@ -21,7 +21,7 @@ const cartInitialState: CartContext = {
     },
     status : {
       isError: false, 
-      signedIn: false 
+      isSignedIn: false 
     }
   },
   items: [],
@@ -70,7 +70,7 @@ export function cartReducer(state = cartInitialState, action: AppActions): CartC
           ...action.payload, 
           status: {
             ...state.user.status, 
-            signedIn: true 
+            isSignedIn: true 
           }
         }
       };

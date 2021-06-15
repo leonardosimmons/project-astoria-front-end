@@ -72,7 +72,7 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
   
   // USER SIGN IN
   React.useEffect(() => {
-    if (session && !user.status.signedIn) {      
+    if (session && !user.status.isSignedIn) {      
       const token: UserInfo = {
         name: session.user?.name as string,
         email: session.user?.email as string,

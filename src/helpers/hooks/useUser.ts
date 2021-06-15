@@ -15,7 +15,8 @@ const guestProfile: UserContext = {
     image: ''
   },
   status: {
-    signedIn: false
+    isError: false,
+    isSignedIn: false
   }
 };
 

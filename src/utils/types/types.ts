@@ -468,7 +468,7 @@ export type UserContext = {
   id: Combinable;
   info: UserInfo;
   status: {
-    signedIn: boolean;
+    isSignedIn: boolean;
     isError: boolean;
   };
 };
