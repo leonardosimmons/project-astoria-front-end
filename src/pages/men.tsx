@@ -21,8 +21,8 @@ const {
   NAVBAR_DESKTOP_API,
   NAVBAR_MOBILE_API,
   MENS_PAGE_DATA_API,
+  STATIC_PRODUCT_API,
   MENS_PRODUCTS,
-  GET_PRODUCT_API
 } = process.env;
 
 
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async () => {
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(MENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(GET_PRODUCT_API as string + MENS_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
+    axios.get(STATIC_PRODUCT_API as string + MENS_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
   .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, staticData: AxiosResponse<any>, products: AxiosResponse<any>) => {
     if(desktop.status === 200 && mobile.status === 200 && staticData.status === 200 && products.status === 200) 
