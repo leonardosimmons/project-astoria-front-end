@@ -1,11 +1,11 @@
 
 import React from 'react';
+import { useSession } from 'next-auth/client';
 import { useAppDispatch, useAppSelector } from './redux';
 import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext, UserData } from '../../utils/types';
 import { setUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
 import { useCart } from './useCart';
-import { Session } from 'next-auth';
 
 
 const guestProfile: UserContext = {
@@ -21,8 +21,10 @@ const guestProfile: UserContext = {
   }
 };
 
-export function useUser(session: Session | null) {
+
+export function useUser() {
   const cart = useCart();
+  const [ session ] = useSession();
   const dispatch = useAppDispatch();
   const guest = React.useRef<UserData>(guestProfile);
   const user: UserContext = useAppSelector((state) => state.user);
@@ -32,7 +34,7 @@ export function useUser(session: Session | null) {
     if (!session) {
       guestSignIn();
     }
-  }, []);
+  }, [session]);
   
   // USER SIGN IN
   React.useEffect(() => {

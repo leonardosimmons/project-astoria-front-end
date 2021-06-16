@@ -66,9 +66,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const [ session ] = useSession();
-
+  
+  useUser();
   useNavScrollConfig();
-  useUser(session);
 
   return (
     <Layout 
