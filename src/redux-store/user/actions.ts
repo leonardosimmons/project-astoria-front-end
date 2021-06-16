@@ -1,10 +1,11 @@
 
 import React from 'react';
-import axios from 'axios';
 import { AppActions, AppThunk } from '../action-types';
 import { UserData, UserInfo } from '../../utils/types';
-import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
 import { setCartUser } from '../cart/actions/actions';
+import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
+
+import { HttpController } from '../../helpers/HttpController';
 
 
 export function setUser (u: UserData): AppActions {
@@ -29,9 +30,10 @@ export function signOutUser(): AppActions {
 
 //* Middleware
 export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
- try {
-    const data = await axios.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string).then(res => res.status === 200 && res.data);
-    const users = data.payload.map((u: UserData) => u);
+  try {
+    const api: string = '/sign-in';
+    const http: HttpController = new HttpController();
+    const users: Array<UserData> = await http.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
     const isTaken: boolean = users.some((uD: UserData) => user.name === uD.info.name);
 
     if (isTaken) 
@@ -50,7 +52,7 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
       };
 
       // sign in at database
-      const isSignedIn = await axios.put(process.env.NEXT_PUBLIC_SIGN_IN_USER_API as string, {u_Id: vId}).then((res) => res.data.payload);
+      const isSignedIn = await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: vId});
 
       if(isSignedIn) {
         dispatch(setUser(token));
@@ -60,41 +62,39 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
       }
     }
 
-    axios({
-      method: 'post',
-      url: process.env.NEXT_PUBLIC_ADD_USER_API,
-      data: {
-        name: user.name,
-        email: user.email,
-        image: user.image
-      }
-    })
-    .then((res) => res.status === 201 && res.data)
+    const token: UserInfo = {
+      name: user.name,
+      email: user.email,
+      image: user.image
+    };
+    
+    await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, token)
+    .then((res) => { if(res) return res.status === 201 && res.data })
     .then(data => {
       const token: UserData = {
         id: data.payload.id,
         info: data.payload.info
       };
 
-      axios.put(process.env.NEXT_PUBLIC_SIGN_IN_USER_API as string, {u_Id: token.id})
-        .then((res) => res.data.payload)
-
-    
+      http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: token.id});
     })
-    .catch(err => { throw new Error(err) })
- }
- catch(err) {
-  // create error state
+    .catch(err => { throw new Error(err) });
+  }
+  catch(err) {
+   // create error state
 
-  console.log(err);
- }
+   console.log(err);
+  }
 };
 
 
 export const userSignOut = (u_Id: number): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   try {
-    await axios.put(process.env.NEXT_PUBLIC_SIGN_OUT_USER_API as string, {u_Id})
-            .then(() => signOutUser);
+    const api: string = '/sign-out';
+    const http: HttpController = new HttpController();
+
+    await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id})
+    .then((res) => { if(res) return dispatch(signOutUser()); });
   }
   catch(err) {
     // create error state
