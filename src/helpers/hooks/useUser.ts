@@ -3,7 +3,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from './redux';
 import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext, UserData } from '../../utils/types';
-import { setUser, signOutUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
+import { setUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
 import { useCart } from './useCart';
 
 

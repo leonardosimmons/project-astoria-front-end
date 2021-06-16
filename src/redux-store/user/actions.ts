@@ -69,16 +69,21 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
     };
     
     await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, token)
-    .then((res) => { if(res) return res.status === 201 && res.data })
-    .then(data => {
-      const token: UserData = {
-        id: data.payload.id,
-        info: data.payload.info
-      };
+      .then((res) => { 
+        if(res) 
+          return res.status === 201 && res.data 
+        }
+      )
+      .then(data => {
+        const token: UserData = {
+          id: data.payload.id,
+          info: data.payload.info
+        };
 
-      http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: token.id});
-    })
-    .catch(err => { throw new Error(err) });
+        http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: token.id});
+        }
+      )
+    .catch(err => { throw new Error(err); });
   }
   catch(err) {
    // create error state
@@ -94,7 +99,12 @@ export const userSignOut = (u_Id: number): AppThunk => async (dispatch: React.Di
     const http: HttpController = new HttpController();
 
     await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id})
-    .then((res) => { if(res) return dispatch(signOutUser()); });
+      .then((res) => { 
+        if(res) 
+          return dispatch(signOutUser()); 
+        }
+      )
+      .catch(err => { throw new Error(err); })
   }
   catch(err) {
     // create error state
