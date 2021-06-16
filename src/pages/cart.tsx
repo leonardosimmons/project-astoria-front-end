@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
@@ -20,7 +20,7 @@ const {
 } = process.env;
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const data = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout
       solid
