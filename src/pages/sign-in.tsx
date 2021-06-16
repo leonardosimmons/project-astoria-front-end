@@ -8,7 +8,6 @@ import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/sign-in/SignIn.module.scss';
-
 import { useUser } from '../helpers/hooks/useUser';
 
 import Layout from '../containers/layout';
@@ -50,9 +49,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const user = useUser();
+  const [ session ] = useSession();
   const router: NextRouter = useRouter();
-  const [ session, loading ] = useSession();
+  const user = useUser(session);
 
   // redirects if user is already logged in
   if(session) {

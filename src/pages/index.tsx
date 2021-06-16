@@ -65,34 +65,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const user = useUser();
   const [ session ] = useSession();
 
-  // USER SCROLL POSITION
   useNavScrollConfig();
+  useUser(session);
 
-  // GUEST SIGN IN
-  React.useEffect(() => {
-    if (!session) {
-      user.guestSignIn();
-    }
-  }, []);
-  
-  // USER SIGN IN
-  React.useEffect(() => {
-    if (session && !user.status.isSignedIn) {      
-      const token: UserInfo = {
-        name: session.user?.name as string,
-        email: session.user?.email as string,
-        image: session.user?.image as string
-      };
-
-      user.signIn(token);
-    }
-  }, [session]);
-
-
-  /* ---------------------  RENDER  --------------------- */
   return (
     <Layout 
       parent={ page.HOME } 
