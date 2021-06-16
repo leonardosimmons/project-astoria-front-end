@@ -5,6 +5,7 @@ import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext, UserData } from '../../utils/types';
 import { setUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
 import { useCart } from './useCart';
+import { Session } from 'next-auth';
 
 
 const guestProfile: UserContext = {
@@ -20,11 +21,31 @@ const guestProfile: UserContext = {
   }
 };
 
-export function useUser() {
+export function useUser(session: Session | null) {
   const cart = useCart();
   const dispatch = useAppDispatch();
   const guest = React.useRef<UserData>(guestProfile);
   const user: UserContext = useAppSelector((state) => state.user);
+
+  // GUEST SIGN IN
+  React.useEffect(() => {
+    if (!session) {
+      guestSignIn();
+    }
+  }, []);
+  
+  // USER SIGN IN
+  React.useEffect(() => {
+    if (session && !user.status.isSignedIn) {      
+      const token: UserInfo = {
+        name: session.user?.name as string,
+        email: session.user?.email as string,
+        image: session.user?.image as string
+      };
+
+      signIn(token);
+    }
+  }, [session]);
 
   function guestSignIn(): void {
     const token: UserData = {
