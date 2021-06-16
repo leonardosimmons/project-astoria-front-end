@@ -1,6 +1,6 @@
 
 import { AppActions, AppThunk } from '../../action-types';
-import { ProductCartToken } from '../../../utils/types';
+import { ProductCartToken, ProductOrderToken } from '../../../utils/types';
 import { 
   ADD_PRODUCT, 
   REMOVE_PRODUCT, 
@@ -9,6 +9,8 @@ import {
 } from './../action-types/product';
 import React from 'react';
 import { AppState } from '../../reducers';
+import { HttpController } from '../../../helpers/HttpController';
+import { Session } from 'next-auth';
 
 
 //* Actions
@@ -45,15 +47,22 @@ export function updateTotalProductCount(q: number): AppActions {
 
 
 //* Thunk
-export function addToCart(p: ProductCartToken): AppThunk {
+export function addToCart(prod: ProductCartToken, session: Session | null): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
-    // determine if product is already in cart
-    // if so -> then update product quantity
-    // else add to cart
+    const http: HttpController = new HttpController();
+    const url: string = process.env.NEXT_PUBLIC_ADD_TO_CART as string;
 
-    // update user's cart within the database
+    const token: ProductOrderToken = {
+      u_id: prod.user.id as string,
+      prod_id: prod.product.meta.id,
+      size: prod.order.size,
+      quantity: prod.order.quantity
+    };
 
-    dispatch(addProductToCart(p));
+    http.post(url, token);
+
+
+    dispatch(addProductToCart(prod));
   };
 };
 

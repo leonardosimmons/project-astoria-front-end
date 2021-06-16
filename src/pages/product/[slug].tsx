@@ -26,17 +26,13 @@ import Grid from '../../components/grid';
 import Copyright from '../../components/copyright';
 import ProductSummary from '../../containers/pages/product/Summary';
 import ProductDetails from '../../containers/pages/product/Details';
-import { useFetch } from '../../helpers/hooks/useFetch';
 
 
 const {
   NAVBAR_DESKTOP_API,
   NAVBAR_MOBILE_API,
   STATIC_PRODUCT_API,
-  NEXT_PUBLIC_ADD_TO_CART
 } = process.env;
-
-const g_Id: number = 123456789;
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -96,7 +92,6 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
   /* ----------------  BASE CONTROLLERS  ---------------- */
   const user = useUser();
   const cart = useCart();
-  const fetch = useFetch();
   const [ session ] = useSession();
   const router: NextRouter = useRouter();
   const chosenSizeRef = React.useRef<string>();
@@ -111,8 +106,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
 
     const p: ProductCartToken = {
       user: { 
-        id: session ? user.id : g_Id,
-        
+        id: user.id,
       },
       product: data.product,
       order: {
@@ -122,13 +116,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
     };
 
     if (user.id === cart.user.id) {
-      //! add to thunk
-      //! create signIn check custom hook (random)
-      const isAdded = await fetch.post(NEXT_PUBLIC_ADD_TO_CART as string, p); // database
-      
-      if(!isAdded) {
-        cart.add(p); // redux
-      }
+      cart.add(p);
     }
 
     router.push('/cart');
