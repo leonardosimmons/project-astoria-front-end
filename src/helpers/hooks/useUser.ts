@@ -6,10 +6,10 @@ import { signOut as signOutSession } from 'next-auth/client';
 import { UserInfo, UserContext, UserData } from '../../utils/types';
 import { setUser, userSignOut, verifyAndSignInUser } from '../../redux-store/user/actions';
 import { useCart } from './useCart';
-
+import { rand } from '../functions';
 
 const guestProfile: UserContext = {
-  id: 123456789,
+  id: rand(100000000, 999999999),
   info: {
     name: 'guest', 
     email: '', 
@@ -31,7 +31,7 @@ export function useUser() {
 
   // GUEST SIGN IN
   React.useEffect(() => {
-    if (!session) {
+    if (!session && user.id === 0) {
       guestSignIn();
     }
   }, [session]);

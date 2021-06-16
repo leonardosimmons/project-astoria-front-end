@@ -49,7 +49,7 @@ function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
     <Layout
       solid
       parent={ page.SIGN_IN }
-      title={'ASTORIA | Sign-in'}
+      title={'ASTORIA | Cart'}
       classes={'relative'}
       desktop={ config.desktop }
       mobile={ config.mobile }

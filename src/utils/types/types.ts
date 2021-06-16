@@ -424,6 +424,13 @@ export type ProductCartToken = {
   };
 };
 
+export type ProductOrderToken = {
+  u_id: string;
+  prod_id: string;
+  size: string;
+  quantity: number;
+};
+
 //** ------------------------  PROMO  ------------------------ *//
 export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
   id?: Combinable;
