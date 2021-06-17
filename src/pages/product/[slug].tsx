@@ -1,7 +1,6 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { useSession } from 'next-auth/client';
 import { NextRouter, useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { 
@@ -92,7 +91,6 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
   /* ----------------  BASE CONTROLLERS  ---------------- */
   const user = useUser();
   const cart = useCart();
-  const [ session ] = useSession();
   const router: NextRouter = useRouter();
   const chosenSizeRef = React.useRef<string>();
 

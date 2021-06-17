@@ -68,6 +68,7 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
       image: user.image
     };
     
+    // creates new user in database
     await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, token)
       .then((res) => { 
         if(res) 
@@ -80,6 +81,7 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
           info: data.payload.info
         };
 
+        // signs in new user in database
         http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: token.id});
         }
       )
