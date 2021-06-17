@@ -45,3 +45,4 @@ yarn-error.log*
 *.mp4
 favicon.ico
 temp.tsx
+.vscode
