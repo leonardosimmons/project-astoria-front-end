@@ -6,8 +6,6 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--grey-700); 
-
 }
 
 .contentBox {
@@ -25,10 +23,8 @@
  
 .img {
   &Box {
-    height: 100%;
-    flex: 0 1 30%;
-    padding: 1rem;
-    margin-right: 1rem;
+    height: 300px;
+    margin-bottom: 2rem;
   }
 }
 
@@ -49,11 +45,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
 
     & > button {
-      width: 10ch;
       font-size: 1.1rem;
-      text-align: left;
+      text-align: center;
       font-weight: 700;
     }
   }
@@ -63,6 +59,7 @@
     display: flex;
     flex-direction: column;
     
+    margin-top: 2rem;
     margin-bottom: 3rem;
     border-right: .5px solid var(--grey-500);
 
@@ -87,6 +84,7 @@
     }
 
     & > p:nth-child(2) {
+      margin: 1rem auto;
       color: var(--grey-900);
     }
   }
@@ -111,7 +109,7 @@
     flex: 0 1 40%;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse !important;
   }
 }
 
@@ -125,6 +123,7 @@
     & > select {
       font-size: 1.2rem;
       padding: .5rem;
+
     }
   }
 }
@@ -134,6 +133,9 @@
     height: 90%;
     width: 100%;
     text-align: center;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 
     font-size: 1.8rem;
     font-weight: 200;
@@ -156,16 +158,58 @@
     flex-direction: row;
   }
 
+  .img {
+    &Box {
+      height: 100%;
+      flex: 0 1 30%;
+      padding: 1rem;
+      margin-right: 2rem;
+      margin-bottom: 0;
+    }
+  }
+
   .details {
     &Grid {
       display: flex;
       flex-direction: column !important;
+
+      text-align: left;
+
+      & > button {
+        width: 10ch;
+        text-align: left;
+        transition: all .3s;
+
+        &:hover {
+          transform: translateY(-.15rem);
+        }
+      }
+    }
+
+    &Heading {
+      margin-top: 0;
+    }
+
+    &Avail {
+      & > p:nth-child(2) {
+        margin: 0;
+        text-align: left;
+      }
     }
   }
 
   .options {
     &Grid {
       flex-direction: column !important;
+    }
+  }
+
+  .price {
+    &Box {   
+      margin-top: 0;
+      margin-bottom: 0;
+  
+      font-size: 1.8rem;
     }
   }
 }
@@ -201,6 +245,8 @@
       & > select {
         font-size: 1.4rem;
         padding: .5rem;
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
   }

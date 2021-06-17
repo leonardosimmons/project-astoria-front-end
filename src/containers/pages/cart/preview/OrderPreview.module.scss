@@ -38,7 +38,7 @@
 .container {
   height: 100%; //100%;
   min-height: 20rem;
-  width: 90%;
+  width: 98%;
 
   display: flex;
   flex-direction: column;
@@ -50,6 +50,10 @@
     text-align: center;
     padding: 1rem 0;
     color: var(--grey-900);
+  }
+
+  & > :not(:last-child) {
+    border-bottom: 1px solid var(--grey-700); 
   }
 }
 
@@ -79,6 +83,10 @@
 
   .mobileHeading {
     display: none;
+  }
+
+  .container {
+    overflow: auto;
   }
 }
 
