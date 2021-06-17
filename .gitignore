@@ -36,7 +36,7 @@ yarn-error.log*
 /server
 /public/assets
 /src/buffer
-/src/pages/test
+/src/pages/test.tsx
 /src/*.txt
 *.png
 *.jpg
