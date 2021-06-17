@@ -24,35 +24,18 @@ const guestProfile: UserContext = {
 
 export function useUser() {
   const cart = useCart();
-  const [ session ] = useSession();
+  const [ session, loading ] = useSession();
   const dispatch = useAppDispatch();
   const guest = React.useRef<UserData>(guestProfile);
   const user: UserContext = useAppSelector((state) => state.user);
 
-  // GUEST SIGN IN
-  React.useEffect(() => {
-    if (!session && user.id === 0) {
-      guestSignIn();
-    }
-  }, [session]);
-  
-  // USER SIGN IN
-  React.useEffect(() => {
-    if (session && !user.status.isSignedIn) {      
-      const token: UserInfo = {
-        name: session.user?.name as string,
-        email: session.user?.email as string,
-        image: session.user?.image as string
-      };
-
-      signIn(token);
-    }
-  }, [session]);
-
   function guestSignIn(): void {
     const token: UserData = {
       id: guest.current.id,
-      info: guest.current.info
+      info: {
+        ...guest.current.info,
+        name: `guest_${rand(100000, 999999)}`
+      }
     };
 
     cart.assignUser(guestProfile);
