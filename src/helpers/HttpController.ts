@@ -1,12 +1,13 @@
 
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { HttpHeader } from '../utils/types/types';
 
 
 interface HttpControllerInterface {
   get: (url: string) => Promise<any>;
   post<T>(url: string, data: T): Promise<any>;
   put<T>(url: string, data: T): Promise<any>;
-  signIn: (u_id: number) => Promise<any>;
+  signInUser: (u_id: number, header: HttpHeader) => Promise<any>;
 };
 
 
@@ -27,10 +28,13 @@ class HttpController implements HttpControllerInterface
     return this._buffer;
   };
 
-  public async get(url: string): Promise<any> {
+  public async get(url: string, headers?: HttpHeader): Promise<any> {
     try {
       return await this._conn({ 
-        method: 'get', 
+        method: 'get',
+        headers: headers 
+        ? {...headers} 
+        : {'Content-Type': 'application/json'},  
         url 
       })
       .then((res: AxiosResponse<any>) => res.status === 200 && res.data.payload)
@@ -45,10 +49,13 @@ class HttpController implements HttpControllerInterface
     }
   };
 
-  public async post<T>(url: string, data: T): Promise<AxiosResponse<any> | false> {
+  public async post<T>(url: string, data: T, headers?: HttpHeader): Promise<AxiosResponse<any> | false> {
     try {
       return await this._conn({
-        method:'post', 
+        method:'post',
+        headers: headers 
+        ? {...headers} 
+        : {'Content-Type': 'application/json'}, 
         url, 
         data: {...data} 
       })
@@ -64,10 +71,13 @@ class HttpController implements HttpControllerInterface
     }
   };
 
-  public async put<T>(url: string, data: T): Promise<AxiosResponse<any> | false> {
+  public async put<T>(url: string, data: T, headers?: HttpHeader): Promise<AxiosResponse<any> | false> {
     try {
       return await this._conn({
-        method: 'put', 
+        method: 'put',
+        headers: headers 
+        ? {...headers} 
+        : {'Content-Type': 'application/json'},  
         url, 
         data
       })
@@ -83,7 +93,7 @@ class HttpController implements HttpControllerInterface
     }
   }
 
-  public async signIn(u_id: number): Promise<any> {
+  public async signInUser(u_id: number): Promise<any> {
     try {
       const api: string = '/sign-in';
       return await this.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_id}).then((res) => {
