@@ -28,10 +28,37 @@ export function signOutUser(): AppActions {
 };
 
 
-//* Middleware
-export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
+//* Thunk
+export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispatch: React.Dispatch<AppActions>) => {
   try {
-    const api: string = '/sign-in';
+    const http: HttpController = new HttpController();
+
+    // creates new user in database
+    const data = await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, user).then((res) => { 
+      if(res) return res.data; 
+    });
+
+    // signs in user to database
+    const status = await http.signIn(data.payload.id); //! return an jwt token
+
+    if (status.isSignedIn) {
+      const token: UserData = {
+        id: data.payload.id,
+        info: data.payload.info
+      };
+
+      dispatch(setUser(token));
+      dispatch(setCartUser(token));
+      dispatch(signInUser());
+    }
+  }
+  catch(err) {
+    throw new Error(err);
+  }
+};
+
+export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions | AppThunk>) => {
+  try {
     const http: HttpController = new HttpController();
     const users: Array<UserData> = await http.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
     const isTaken: boolean = users.some((uD: UserData) => user.name === uD.info.name);
@@ -46,15 +73,15 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
         }
       });
 
-      const token: UserData = {
-        id: vId,
-        info: user
-      };
-
       // sign in at database
-      const isSignedIn = await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: vId});
+      const status = await http.signIn(vId); //! return a jwt token
+      
+      if (status.isSignedIn) {
+        const token: UserData = {
+          id: vId,
+          info: user
+        };
 
-      if(isSignedIn) {
         dispatch(setUser(token));
         dispatch(setCartUser(token));
         dispatch(signInUser());
@@ -62,30 +89,7 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
       }
     }
 
-    const token: UserInfo = {
-      name: user.name,
-      email: user.email,
-      image: user.image
-    };
-    
-    // creates new user in database
-    await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, token)
-      .then((res) => { 
-        if(res) 
-          return res.status === 201 && res.data 
-        }
-      )
-      .then(data => {
-        const token: UserData = {
-          id: data.payload.id,
-          info: data.payload.info
-        };
-
-        // signs in new user in database
-        http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id: token.id});
-        }
-      )
-    .catch(err => { throw new Error(err); });
+    dispatch(createAndSignInNewUser(user));
   }
   catch(err) {
    // create error state
@@ -95,12 +99,12 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
 };
 
 
-export const userSignOut = (u_Id: number): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
+export const userSignOut = (u_id: number): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   try {
     const api: string = '/sign-out';
     const http: HttpController = new HttpController();
 
-    await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_Id})
+    await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_id})
       .then((res) => { 
         if(res) 
           return dispatch(signOutUser()); 

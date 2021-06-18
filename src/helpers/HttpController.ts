@@ -6,6 +6,7 @@ interface HttpControllerInterface {
   get: (url: string) => Promise<any>;
   post<T>(url: string, data: T): Promise<any>;
   put<T>(url: string, data: T): Promise<any>;
+  signIn: (u_id: number) => Promise<any>;
 };
 
 
@@ -81,6 +82,21 @@ class HttpController implements HttpControllerInterface
       return false;
     }
   }
+
+  public async signIn(u_id: number): Promise<any> {
+    try {
+      const api: string = '/sign-in';
+      return await this.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_id}).then((res) => {
+        if (res) {
+          return res.status === 200 ? res.data.payload : false;
+        }
+      });
+    }
+    catch(err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  };
 };
 
 export { HttpController };
