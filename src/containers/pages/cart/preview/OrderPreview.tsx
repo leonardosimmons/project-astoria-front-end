@@ -4,6 +4,7 @@ import styles from './OrderPreview.module.scss';
 import ContentBox from '../../../../components/box';
 import Container from '../../../../components/container';
 import TextBox from '../../../../components/text';
+import ProductOrderCard from '../../../../components/product/order';
 
 type Props = {
 
@@ -12,7 +13,7 @@ type Props = {
 
 const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
   const tempAmountInCart: number = 0;
-  const tempCartItems = [];
+  const tempCartItems = ['test'];
 
   return (
     <Container wrapper styles={ styles } classes={'relative center-col'}>
@@ -23,8 +24,11 @@ const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
           {
             tempCartItems.length === 0 ? 
             <p>{'No items currently in cart'}</p>
-            : 
-            ''
+            :
+            <>
+            <ProductOrderCard />
+            <ProductOrderCard />
+            </> 
           }
         </Container>
       </ContentBox>
