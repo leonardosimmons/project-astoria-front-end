@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async () => {
 function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const [ session ] = useSession();
   const router: NextRouter = useRouter();
-  const user = useUser(session);
+  const user = useUser();
 
   // redirects if user is already logged in
   if(session) {
@@ -61,6 +61,10 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
   function guestSignIn() {
     user.guestSignIn();
     router.push('/');
+  };
+
+  function userSignIn(provider: string, url: string) {
+    signIn(provider, {callbackUrl: url});
   };
 
   return (
@@ -78,7 +82,7 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
         <Container main styles={ styles } classes={'relative center-col'}>
           <ContentBox styles={ styles } classes={'center-col-start'}>
             <TextBox mainHeading={'WELCOME'} styles={ styles }/>
-            <button className={'btn-activeFocus'} onClick={() => signIn('github', {callbackUrl: '/'})}>
+            <button className={'btn-activeFocus'} onClick={() => userSignIn('github', '/')}>
               {'Sign in with GitHub'}
             </button>
             <button onClick={() => guestSignIn()}>

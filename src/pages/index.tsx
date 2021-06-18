@@ -70,17 +70,10 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
   
   //useUser();
   useNavScrollConfig();
-
-  // GUEST SIGN IN
-  React.useEffect(() => {
-    if (!session) {
-      user.guestSignIn();
-    }
-  }, [session]);
   
   // USER SIGN IN
   React.useEffect(() => {
-    if (session) {      
+    if (session && !user.status.isSignedIn) {      
       const token: UserInfo = {
         name: session.user?.name as string,
         email: session.user?.email as string,

@@ -51,7 +51,7 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
           />
           {
             session
-            ? <button onClick={() => user.signOut()}>Sign Out</button>
+            ? <button onClick={() => user.signOut(user.id as number)}>Sign Out</button>
             : <Icon 
                 styles={ mainStyles }
                 link={ config.icons[1].link as string }
