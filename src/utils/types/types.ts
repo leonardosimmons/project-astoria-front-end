@@ -138,6 +138,11 @@ export type Header = Heading & {
   priority?: string;
 };
 
+export type HttpHeader = {
+  'Content-Type'?: string; 
+  Authorization?: string;
+};
+
 export type HttpRequest = {
   url: string;
   type: 'GET' | 'POST' | 'DELETE' | 'PUT';

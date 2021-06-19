@@ -29,7 +29,7 @@ export function signOutUser(): AppActions {
 
 
 //* Thunk
-export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispatch: React.Dispatch<AppActions>) => {
+export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispatch: React.Dispatch<AppActions | AppThunk>) => {
   try {
     const http: HttpController = new HttpController();
 
@@ -39,22 +39,28 @@ export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispat
     });
 
     // signs in user to database
-    const status = await http.signIn(data.payload.id); //! return an jwt token
+    const status = await http.signInUser(data.payload.id);
 
-    if (status.isSignedIn) {
-      const token: UserData = {
+    if (status.signedIn) {
+      const u: UserData = {
         id: data.payload.id,
         info: data.payload.info
       };
 
-      dispatch(setUser(token));
-      dispatch(setCartUser(token));
-      dispatch(signInUser());
+      localStorage.setItem('access_token', JSON.stringify(status.token));
+
+      dispatch(userSignIn(u));
     }
   }
   catch(err) {
     throw new Error(err);
   }
+};
+
+export const userSignIn = (token: UserData): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
+  dispatch(setUser(token));
+  dispatch(setCartUser(token));
+  dispatch(signInUser());
 };
 
 export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppActions | AppThunk>) => {
@@ -74,17 +80,17 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
       });
 
       // sign in at database
-      const status = await http.signIn(vId); //! return a jwt token
+      const status = await http.signInUser(vId);
       
-      if (status.isSignedIn) {
-        const token: UserData = {
+      if (status.signedIn) {
+        const u: UserData = {
           id: vId,
           info: user
         };
 
-        dispatch(setUser(token));
-        dispatch(setCartUser(token));
-        dispatch(signInUser());
+        localStorage.setItem('access_token', JSON.stringify(status.token));
+
+        dispatch(userSignIn(u));
         return;
       }
     }

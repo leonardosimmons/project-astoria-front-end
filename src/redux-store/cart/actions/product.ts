@@ -51,15 +51,21 @@ export function addToCart(prod: ProductCartToken, session: Session | null): AppT
   return async (dispatch: React.Dispatch<AppActions>) => {
     const http: HttpController = new HttpController();
     const url: string = process.env.NEXT_PUBLIC_ADD_TO_CART as string;
+    const token = JSON.parse(localStorage.getItem('access_token') as string);
 
-    const token: ProductOrderToken = {
+    const p: ProductOrderToken = {
       u_id: prod.user.id as string,
       prod_id: prod.product.meta.id,
       size: prod.order.size,
       quantity: prod.order.quantity
     };
 
-    http.post(url, token);
+    try {
+      await http.post(url, p, token); 
+    }
+    catch(err) {
+      console.log(err);
+    }
 
 
     dispatch(addProductToCart(prod));
@@ -68,7 +74,7 @@ export function addToCart(prod: ProductCartToken, session: Session | null): AppT
 
 export function removeFromCart(p: ProductCartToken): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
-    // remove product from user's cart within database
+    // remove product from user's cart within database w/ auth token
     
     dispatch(removeProductFromCart(p));
   };
