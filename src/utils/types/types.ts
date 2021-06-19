@@ -1,7 +1,6 @@
 
+import { AxiosResponse } from "axios";
 import { ImageLoader } from "next/image";
-import { Action } from "redux";
-import { ThunkDispatch } from "redux-thunk";
 
 
 //** -----------------------  CAROUSEL  ------------------------ **//
@@ -139,8 +138,8 @@ export type Header = Heading & {
 };
 
 export type HttpHeader = {
-  'Content-Type'?: string; 
-  Authorization?: string;
+  'Content-Type'?: string;
+  'auth-token'?: string; 
 };
 
 export type HttpRequest = {
@@ -157,6 +156,8 @@ export type HttpResponse = {
   value?: any;
   type?: string;
 };
+
+export type HttpServerResponse = AxiosResponse | false;
 
 export type Icon = Image & Direction & PageLink;
 

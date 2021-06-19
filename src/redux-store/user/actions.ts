@@ -47,7 +47,7 @@ export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispat
         info: data.payload.info
       };
 
-      localStorage.setItem('access_token', JSON.stringify(status.token));
+      localStorage.setItem('auth-token', JSON.stringify(status.token));
 
       dispatch(userSignIn(u));
     }
@@ -88,7 +88,7 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
           info: user
         };
 
-        localStorage.setItem('access_token', JSON.stringify(status.token));
+        localStorage.setItem('auth-token', JSON.stringify(status.token));
 
         dispatch(userSignIn(u));
         return;
