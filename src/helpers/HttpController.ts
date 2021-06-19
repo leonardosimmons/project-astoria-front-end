@@ -29,7 +29,7 @@ class HttpController implements HttpControllerInterface
     });
   };
 
-  get data() {
+  get result() {
     return this._buffer;
   };
 
