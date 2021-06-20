@@ -1,5 +1,9 @@
 
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { 
+  AxiosInstance,
+  AxiosResponse, 
+  CancelToken, 
+  CancelTokenSource } from 'axios';
 import { HttpResponse, HttpServerResponse } from '../utils/types';
 
 
@@ -16,6 +20,8 @@ class HttpController implements HttpControllerInterface
   private _buffer: any;
   private _auth: string;
   private _conn: AxiosInstance;
+  private _source: CancelTokenSource;
+  private _cancelToken: CancelToken;
 
   constructor() {
     this._buffer;
@@ -27,11 +33,21 @@ class HttpController implements HttpControllerInterface
         put: { 'auth-token': `Bearer ${this._auth}`}
       }
     });
+    this._source = axios.CancelToken.source();
+    this._cancelToken = this._source.token;
   };
 
   get result() {
     return this._buffer;
   };
+
+  get source() {
+    return this._source;
+  }
+
+  get cancelToken() {
+    return this._cancelToken;
+  }
 
   public async get(url: string): Promise<any> {
     try {
