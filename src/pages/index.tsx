@@ -84,6 +84,14 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
     }
   }, [session]);
 
+  // AUTO LOG OUT on error
+  React.useEffect(() => {
+    if (!session && user.id !== 0) {
+      user.signOut(user.id as number);
+    }
+  }, [session]);
+  
+  
   return (
     <Layout 
       parent={ page.HOME } 

@@ -51,7 +51,6 @@ export function addToCart(prod: ProductCartToken, session: Session | null): AppT
   return async (dispatch: React.Dispatch<AppActions>) => {
     const http: HttpController = new HttpController();
     const url: string = process.env.NEXT_PUBLIC_ADD_TO_CART as string;
-    const token = JSON.parse(localStorage.getItem('access_token') as string);
 
     const p: ProductOrderToken = {
       u_id: prod.user.id as string,
@@ -61,7 +60,7 @@ export function addToCart(prod: ProductCartToken, session: Session | null): AppT
     };
 
     try {
-      await http.post(url, p, token); 
+      await http.post(url, p); 
     }
     catch(err) {
       console.log(err);

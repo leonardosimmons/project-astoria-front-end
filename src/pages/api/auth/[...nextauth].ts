@@ -9,7 +9,10 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET
     }),
   ],
+  session: {
+    maxAge: 60 * 60 // 1h
+  }
 
-  database: process.env.DATABASE_URL,
+  //database: process.env.DATABASE_URL,
 });
  
