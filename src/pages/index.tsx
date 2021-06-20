@@ -1,9 +1,9 @@
 
 import React from 'react';
-import axios from 'axios';
+import axios, { CancelTokenSource } from 'axios';
 import { useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IndexPageData, UserInfo, UserCheck, UserData } from '../utils/types';
+import { IndexPageData, UserInfo } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
@@ -64,6 +64,9 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
+const logoutTime: number = 20 * 60 * 1000; // 20mins
+
+
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const user = useUser();
   const [ session ] = useSession();
@@ -73,6 +76,8 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
   
   // USER SIGN IN
   React.useEffect(() => {
+    const source: CancelTokenSource = axios.CancelToken.source();
+
     if (session && !user.status.isSignedIn) {      
       const token: UserInfo = {
         name: session.user?.name as string,
@@ -81,8 +86,28 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
       };
 
       user.signIn(token);
+
+      return () => {
+        source.cancel();
+      }
     }
   }, [session]);
+
+  // AUTO SIGN OUT GUEST
+  React.useEffect(() => {
+    const source: CancelTokenSource = axios.CancelToken.source();
+
+    if (!session && user.id !== 0) {
+      const logout: NodeJS.Timeout = setTimeout(() => {
+        user.signOut(user.id as number);
+      }, logoutTime);
+
+      return () => {
+        clearTimeout(logout);
+        source.cancel();
+      }
+    }
+  }, [user.id]);
 
   return (
     <Layout 
