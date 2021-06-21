@@ -15,6 +15,7 @@ import MainHeader from '../containers/pages/men/header';
 import ProductGrid from '../components/grid';
 import PreviewCard from '../components/promo/card';
 import PromoBanner from '../components/promo/banner';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
@@ -77,6 +78,8 @@ export const getStaticProps: GetStaticProps = async () => {
 function MensPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
+
+  useWatchUserSignIn();
 
   return (
     <Layout

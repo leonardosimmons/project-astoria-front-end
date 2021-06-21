@@ -4,11 +4,12 @@ import jwt from 'jsonwebtoken';
 import axios, { CancelTokenSource }  from 'axios';
 import { useSession } from 'next-auth/client';
 import { UserInfo } from '../../utils/types';
+
 import { getAuthToken } from '../functions';
 import { useUser } from './useUser';
 
 
-const logoutTime: number = 20 * 1000; // 20mins
+const logoutTime: number = 30 * 60 * 1000; // 30mins
 
 
 export function useWatchUserSignIn() {
@@ -28,6 +29,7 @@ export function useWatchUserSignIn() {
       };
 
       user.signIn(token);
+      setSignedIn(true);
 
       return () => {
         source.cancel();
@@ -42,6 +44,7 @@ export function useWatchUserSignIn() {
     if (!session && user.id !== 0) {
       const logout: NodeJS.Timeout = setTimeout(() => {
         user.signOut(user.id as number);
+        setSignedIn(false);
       }, logoutTime);
 
       return () => {
@@ -53,9 +56,10 @@ export function useWatchUserSignIn() {
 
   // RELOG USER ON ERROR/ RELOAD
   React.useEffect(() => {
-    if (!session && user.id === 0) {      
-      if (localStorage.getItem('auth-token') !== undefined) {
-        const token: string = getAuthToken();
+    if (!session && user.id === 0) { 
+      const token: string = getAuthToken(); 
+          
+      if (token) {
         const decoded = jwt.decode(token);
         
         console.log(decoded);

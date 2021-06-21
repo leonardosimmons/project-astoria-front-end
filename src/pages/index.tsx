@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IndexPageData, UserInfo } from '../utils/types';
+import { IndexPageData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
@@ -61,8 +61,6 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   };
 };
-
-
 
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
