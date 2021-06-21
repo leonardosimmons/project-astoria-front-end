@@ -49,7 +49,8 @@ export function updateTotalProductCount(q: number): AppActions {
 //* Thunk
 export function addToCart(prod: ProductCartToken, session: Session | null): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
-    const http: HttpController = new HttpController();
+    const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
+    const http: HttpController = new HttpController(token);
     const url: string = process.env.NEXT_PUBLIC_ADD_TO_CART as string;
 
     const p: ProductOrderToken = {
@@ -73,6 +74,7 @@ export function addToCart(prod: ProductCartToken, session: Session | null): AppT
 
 export function removeFromCart(p: ProductCartToken): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
+    const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
     // remove product from user's cart within database w/ auth token
     
     dispatch(removeProductFromCart(p));
