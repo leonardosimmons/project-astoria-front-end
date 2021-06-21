@@ -112,7 +112,8 @@ export const userSignOut = (u_id: number): AppThunk => async (dispatch: React.Di
 
     await http.put(process.env.NEXT_PUBLIC_USER_API as string + api, {u_id})
       .then((res) => { 
-        if(res) 
+        if(res)
+          localStorage.setItem('auth-token', ''); 
           return dispatch(signOutUser()); 
         }
       )

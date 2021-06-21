@@ -9,7 +9,7 @@ import { getAuthToken } from '../functions';
 import { useUser } from './useUser';
 
 
-const logoutTime: number = 30 * 60 * 1000; // 30mins
+const logoutTime: number = 20 * 60 * 1000; // 20mins
 
 
 export function useWatchUserSignIn() {
@@ -50,19 +50,6 @@ export function useWatchUserSignIn() {
       return () => {
         clearTimeout(logout);
         source.cancel();
-      }
-    }
-  }, [user.id]);
-
-  // RELOG USER ON ERROR/ RELOAD
-  React.useEffect(() => {
-    if (!session && user.id === 0) { 
-      const token: string = getAuthToken(); 
-          
-      if (token) {
-        const decoded = jwt.decode(token);
-        
-        console.log(decoded);
       }
     }
   }, [user.id]);
