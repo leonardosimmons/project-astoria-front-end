@@ -1,15 +1,13 @@
 
 import React from 'react';
-import axios, { CancelTokenSource } from 'axios';
-import { useSession } from 'next-auth/client';
+import axios from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { IndexPageData, UserInfo } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
 
-import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
-import { useUser } from '../helpers/hooks/useUser';
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';;
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -20,6 +18,7 @@ import SectionTwo from '../containers/pages/index/sections/two';
 import SectionThree from '../containers/pages/index/sections/three';
 import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
@@ -64,50 +63,14 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-const logoutTime: number = 20 * 60 * 1000; // 20mins
 
 
 function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const user = useUser();
-  const [ session ] = useSession();
-  
-  //useUser();
+  // Watches user scroll
   useNavScrollConfig();
   
-  // USER SIGN IN
-  React.useEffect(() => {
-    const source: CancelTokenSource = axios.CancelToken.source();
-
-    if (session && !user.status.isSignedIn) {      
-      const token: UserInfo = {
-        name: session.user?.name as string,
-        email: session.user?.email as string,
-        image: session.user?.image as string
-      };
-
-      user.signIn(token);
-
-      return () => {
-        source.cancel();
-      }
-    }
-  }, [session]);
-
-  // AUTO SIGN OUT GUEST
-  React.useEffect(() => {
-    const source: CancelTokenSource = axios.CancelToken.source();
-
-    if (!session && user.id !== 0) {
-      const logout: NodeJS.Timeout = setTimeout(() => {
-        user.signOut(user.id as number);
-      }, logoutTime);
-
-      return () => {
-        clearTimeout(logout);
-        source.cancel();
-      }
-    }
-  }, [user.id]);
+  // Watches user/guest sign in status
+  useWatchUserSignIn();
 
   return (
     <Layout 

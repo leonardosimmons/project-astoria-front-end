@@ -1,21 +1,25 @@
 
 import React from 'react';
-import { Session } from "next-auth";
-import { UserInfo } from '../../utils/types/types';
+import jwt from 'jsonwebtoken';
+import axios, { CancelTokenSource }  from 'axios';
+import { useSession } from 'next-auth/client';
+import { UserInfo } from '../../utils/types';
+import { getAuthToken } from '../functions';
+import { useUser } from './useUser';
 
-export function useWatchUserSignIn(user: any, session: Session | null) {
+
+const logoutTime: number = 20 * 1000; // 20mins
+
+
+export function useWatchUserSignIn() {
+  const user = useUser();
+  const [ session ] = useSession();
   const [ isSignedIn, setSignedIn ] = React.useState<boolean>(false);
 
-  // GUEST SIGN IN
-  React.useEffect(() => {
-    if (!session) {
-      user.guestSignIn();
-      setSignedIn(false);
-    }
-  }, []);
-  
   // USER SIGN IN
   React.useEffect(() => {
+    const source: CancelTokenSource = axios.CancelToken.source();
+
     if (session && !user.status.isSignedIn) {      
       const token: UserInfo = {
         name: session.user?.name as string,
@@ -24,9 +28,40 @@ export function useWatchUserSignIn(user: any, session: Session | null) {
       };
 
       user.signIn(token);
-      setSignedIn(true);
+
+      return () => {
+        source.cancel();
+      }
     }
   }, [session]);
+
+  // AUTO SIGN OUT GUEST
+  React.useEffect(() => {
+    const source: CancelTokenSource = axios.CancelToken.source();
+
+    if (!session && user.id !== 0) {
+      const logout: NodeJS.Timeout = setTimeout(() => {
+        user.signOut(user.id as number);
+      }, logoutTime);
+
+      return () => {
+        clearTimeout(logout);
+        source.cancel();
+      }
+    }
+  }, [user.id]);
+
+  // RELOG USER ON ERROR/ RELOAD
+  React.useEffect(() => {
+    if (!session && user.id === 0) {      
+      if (localStorage.getItem('auth-token') !== undefined) {
+        const token: string = getAuthToken();
+        const decoded = jwt.decode(token);
+        
+        console.log(decoded);
+      }
+    }
+  }, [user.id]);
 
   return {
     isSignedIn
