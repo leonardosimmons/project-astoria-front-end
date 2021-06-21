@@ -1,6 +1,10 @@
 import React from 'react';
 import { Combinable } from '../../utils/types';
 
+//* getAuthToken
+export function getAuthToken() {
+  return JSON.parse(localStorage.getItem('auth-token') as string);
+};
 
 //* handleInput
 /**
@@ -55,6 +59,16 @@ export const preventDefault = (fn: (e: React.FormEvent) => void ) => (e: React.F
  */
 export function rand(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
+};
+
+//* reset auth token
+export function resetLocal(key: string) {
+  localStorage.setItem(key, '');
+};
+
+//* storeLocal
+export function storeLocal<T>(name: string, data: T): void {
+  localStorage.setItem(name, JSON.stringify(data));
 };
 
 //* strShortener
