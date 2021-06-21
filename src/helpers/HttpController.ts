@@ -18,19 +18,17 @@ interface HttpControllerInterface {
 class HttpController implements HttpControllerInterface
 {
   private _buffer: any;
-  private _auth: string;
   private _conn: AxiosInstance;
   private _source: CancelTokenSource;
   private _cancelToken: CancelToken;
 
-  constructor() {
+  constructor(token?: string) {
     this._buffer;
-    this._auth = JSON.parse(localStorage.getItem('auth-token') as string);
     this._conn = axios.create({
       baseURL: process.env.NEXT_PUBLIC_BASE_API as string,
       headers: {
-        post: { 'auth-token': `Bearer ${this._auth}`},
-        put: { 'auth-token': `Bearer ${this._auth}`}
+        post: { 'auth-token': `Bearer ${token}`},
+        put: { 'auth-token': `Bearer ${token}`}
       }
     });
     this._source = axios.CancelToken.source();
