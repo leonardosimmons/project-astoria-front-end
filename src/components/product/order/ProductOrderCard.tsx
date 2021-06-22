@@ -8,9 +8,11 @@ import ContentBox from '../../box/ContentBox';
 import BaseGrid from '../../grid/Grid';
 import Image from 'next/image';
 import BaseHeading from '../../heading/Heading';
+import { ProductCartToken } from '../../../utils/types/types';
 
 
 type Props = {
+  token: ProductCartToken;
   //chosenQuantity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
@@ -19,14 +21,14 @@ const test: any = {
   qty: 2
 }
 
-const ProductOrderCard: React.FunctionComponent<Props> = (): JSX.Element => {
+const ProductOrderCard: React.FunctionComponent<Props> = ({ token }): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
         <BaseGrid even grid={styles.grid}>
           <div className={`${styles.imgBox} relative`}>
             <Image 
-              src={'/images/products/men/pants/DenimPants01.jpg'}
+              src={token.product.preview.image.src}
               alt={'product'}
               layout={'fill'}
               objectFit={'contain'}
@@ -35,9 +37,9 @@ const ProductOrderCard: React.FunctionComponent<Props> = (): JSX.Element => {
           <div className={styles.detailsBox}>
             <BaseGrid even grid={styles.detailsGrid}>
               <BaseHeading classes={styles.detailsHeading}>
-                <h2>{'Astoria American Denim Jeans'}</h2>
-                <p>{'Style# 660285 XKBVB 4594'}</p>
-                <p>{'Size: Large'}</p>
+                <h2>{token.product.details.name}</h2>
+                <p>{`Style# ${token.product.details.style}`}</p>
+                <p>{`Size: ${token.order.size}`}</p>
               </BaseHeading>
               <div className={styles.detailsAvail}>
                 <p>{'AVAILABLE'}</p>
@@ -50,7 +52,7 @@ const ProductOrderCard: React.FunctionComponent<Props> = (): JSX.Element => {
             <div className={styles.optionsBox}>
               <form className={styles.qtyForm}>
                 <select>
-                  <option value={1}>{`QTY: ${test.qty}`}</option>
+                  <option value={1}>{`QTY: ${token.order.quantity}`}</option>
                   <option value={1}>{1}</option>
                   <option value={2}>{2}</option>
                   <option value={3}>{3}</option>
@@ -76,7 +78,7 @@ const ProductOrderCard: React.FunctionComponent<Props> = (): JSX.Element => {
             </div>
             <div className={styles.optionsBox}>
               <div className={styles.priceBox}>
-                <span>{'$' + test.price.toLocaleString()}</span>
+                <span>{'$' + token.product.details.price.toLocaleString()}</span>
               </div>
             </div>
           </BaseGrid>

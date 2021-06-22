@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from './redux';
 import { CartContext, ProductCartToken, UserContext } from '../../utils/types';
 
-import { resetCart, setCartUser, setIsEmpty } from '../../redux-store/cart/actions';
+import { getUserCart, resetCart, setCartUser, setIsEmpty } from '../../redux-store/cart/actions';
 import { addToCart, removeFromCart, updateProductCount, updateProductQuantity } from '../../redux-store/cart/actions/product';
 import { useSession } from 'next-auth/client';
 
@@ -14,7 +14,7 @@ export function useCart() {
 
   
   function add(p: ProductCartToken): void {
-    dispatch(addToCart(p, session));
+    dispatch(addToCart(p));
   };
   
   function assignUser(u: UserContext): void {
@@ -23,6 +23,10 @@ export function useCart() {
 
   function isEmpty(e: boolean): void {
     dispatch(setIsEmpty(e))
+  };
+
+  function get() {
+    dispatch(getUserCart());
   };
 
   function remove(p: ProductCartToken): void {
@@ -49,6 +53,7 @@ export function useCart() {
     add,
     assignUser,
     isEmpty,
+    get,
     remove,
     reset,
     updateQuantity,

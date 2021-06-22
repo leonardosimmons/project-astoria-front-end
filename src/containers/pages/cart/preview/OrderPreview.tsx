@@ -5,15 +5,17 @@ import ContentBox from '../../../../components/box';
 import Container from '../../../../components/container';
 import TextBox from '../../../../components/text';
 import ProductOrderCard from '../../../../components/product/order';
+import { ProductCartToken } from '../../../../utils/types/types';
+import { useAppSelector } from '../../../../helpers/hooks/redux';
 
 type Props = {
-
+  
 };
 
+const tempAmountInCart: number = 0;
 
-const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
-  const tempAmountInCart: number = 0;
-  const tempCartItems = ['test'];
+const OrderPreview: React.FunctionComponent<Props> = (): JSX.Element => {
+  const context = useAppSelector((state) => state.cart);
 
   return (
     <Container wrapper styles={ styles } classes={'relative center-col'}>
@@ -22,12 +24,14 @@ const OrderPreview: React.FunctionComponent<Props> = ({}): JSX.Element => {
         <TextBox mainHeading={`Shopping Bag (${ tempAmountInCart })`} mainHeadingClasses={ styles.mobileHeading }/>
         <Container styles={ styles } classes={'relative'}>
           {
-            tempCartItems.length === 0 ? 
+           context.items.length === 0 ? 
             <p>{'No items currently in cart'}</p>
             :
             <>
-            <ProductOrderCard />
-            <ProductOrderCard />
+            { context.items.map((prod: ProductCartToken) => (
+                <ProductOrderCard token={prod} />
+              ))
+            }
             </> 
           }
         </Container>
