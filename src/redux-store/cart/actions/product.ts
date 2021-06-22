@@ -47,7 +47,7 @@ export function updateTotalProductCount(q: number): AppActions {
 
 
 //* Thunk
-export function addToCart(prod: ProductCartToken, session: Session | null): AppThunk {
+export function addToCart(prod: ProductCartToken): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
     const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
     const http: HttpController = new HttpController(token);
