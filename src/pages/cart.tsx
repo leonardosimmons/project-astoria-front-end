@@ -2,7 +2,7 @@
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { NavbarData, ProductCartToken } from '../utils/types';
+import { CartContext, NavbarData, ProductCartToken } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
@@ -15,6 +15,7 @@ import Container from '../components/container';
 import Copyright from '../components/copyright';
 import OrderPreview from '../containers/pages/cart/preview';
 import OrderSummary from '../containers/pages/cart/summary';
+import { NextRouter, useRouter } from 'next/router';
 
 
 const {
@@ -49,18 +50,21 @@ export const getStaticProps: GetStaticProps = async () => {
 
 function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const cart = useCart();
-  const context = useAppSelector((state) => state.cart);
+  const qRef = React.useRef<string>('');
+  const router: NextRouter = useRouter();
+  const context: CartContext = useAppSelector((state) => state.cart);
 
   useWatchUserSignIn();
 
-  // loads current users cart
-  React.useEffect(() => {
-    cart.get();
-  }, []);
-  
   const removeProduct = React.useCallback((p: ProductCartToken) => {
     cart.remove(p.order.id);
     cart.get();
+  }, []);
+
+  const handleQuantity = React.useCallback((p: ProductCartToken) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+    qRef.current = e.target.value;
+    cart.updateQuantity(p.order.id, parseInt(qRef.current));
+    router.reload();
   }, []);
 
   return (
@@ -75,8 +79,8 @@ function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
       footer={ <Copyright /> }
     >
       <Container wrapper styles={ styles } classes={'relative center noselect'}>
-        <OrderPreview cart={context} remove={removeProduct}/>
-        <OrderSummary />
+        <OrderPreview cart={context} remove={removeProduct} quantity={handleQuantity}/>
+        <OrderSummary cart={context}/>
       </Container>
     </Layout>
   );

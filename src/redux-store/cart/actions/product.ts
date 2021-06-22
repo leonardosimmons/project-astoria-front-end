@@ -1,6 +1,4 @@
 
-import React from 'react';
-import { AppState } from '../../reducers';
 import { ProductCartToken, ProductOrderToken } from '../../../utils/types';
 import { HttpController } from '../../../helpers/HttpController';
 
@@ -48,8 +46,8 @@ export function updateTotalProductCount(q: number): AppActions {
 
 
 //* Thunk
-export function addToCart(prod: ProductCartToken): AppThunk {
-  return async (dispatch: React.Dispatch<AppActions>) => {
+export function addToCart(prod: ProductCartToken): AppThunk { 
+  return async () => {
     const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
     const http: HttpController = new HttpController(token);
     const url: string = process.env.NEXT_PUBLIC_ADD_TO_CART as string;
@@ -70,33 +68,31 @@ export function addToCart(prod: ProductCartToken): AppThunk {
   };
 };
 
-export function removeFromCart(id: number): AppThunk {
-  return async (dispatch: React.Dispatch<AppActions>) => {
+export function removeFromCart(id: number): AppThunk { 
+  return async () => {
     const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
     const http: HttpController = new HttpController(token);
-
-    await http.remove('/cart/remove-product', { order_id: id });
-  };
-};
-
-export function updateProductQuantity(index: number, quantity: number): AppThunk { 
-  return async (dispatch: React.Dispatch<AppActions>, getState: () => AppState) => {
-    const i: number = index;
-    const q: number = quantity;
-    const prod: ProductCartToken = getState().cart.items[i];
-
-    prod.order.quantity = prod.order.quantity + q;
-
-    // updated user's cart within database
-
-    dispatch(updateProduct(i, prod));
-  };
-};
-
-export function updateProductCount(quantity: number): AppThunk {
-  return async (dispatch: React.Dispatch<AppActions>) => {  
-    // updated user's cart within database
     
-    dispatch(updateTotalProductCount(quantity));
+    try {
+      await http.remove(process.env.NEXT_PUBLIC_REMOVE_FROM_CART as string, { order_id: id });
+    }
+    catch(err) {
+      console.log(err);
+    }
   };
+};
+
+export function updateProductQuantity(id: number, quantity: number): AppThunk { 
+  return async () => {
+    const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
+    const http: HttpController = new HttpController(token);
+    const update = { id: id, quantity: quantity };
+  
+    try {
+      await http.put(process.env.NEXT_PUBLIC_UPDATE_PRODUCT_QUANTITY as string, update);
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
 };

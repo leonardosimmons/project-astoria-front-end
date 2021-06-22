@@ -14,11 +14,11 @@ import { ProductCartToken } from '../../../utils/types';
 type Props = {
   token: ProductCartToken;
   remove: (p: ProductCartToken) => void;
-  //chosenQuantity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  chosenQuantity: (p: ProductCartToken) => (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 
-const ProductOrderCard: React.FunctionComponent<Props> = ({ token, remove }): JSX.Element => {
+const ProductOrderCard: React.FunctionComponent<Props> = ({ token, remove, chosenQuantity }): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
@@ -48,7 +48,7 @@ const ProductOrderCard: React.FunctionComponent<Props> = ({ token, remove }): JS
           <BaseGrid even grid={styles.optionsGrid}>
             <div className={styles.optionsBox}>
               <form className={styles.qtyForm}>
-                <select>
+                <select onChange={chosenQuantity(token)}>
                   <option value={1}>{`QTY: ${token.order.quantity}`}</option>
                   <option value={1}>{1}</option>
                   <option value={2}>{2}</option>

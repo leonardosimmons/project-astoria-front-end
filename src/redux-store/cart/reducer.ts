@@ -2,12 +2,18 @@
 import { AppActions } from '../action-types';
 import { CartContext, ProductCartToken } from '../../utils/types';
 
-import { RESET_CART, SET_CART_USER, SET_IS_EMPTY } from './action-types';
+import { 
+  RESET_CART, 
+  SET_CART_USER, 
+  SET_IS_EMPTY, 
+  UPDATE_TOTAL_COUNT, 
+  UPDATE_TOTAL_PRICE 
+} from './action-types';
+
 import { 
   ADD_PRODUCT, 
   REMOVE_PRODUCT, 
   UPDATE_PRODUCT, 
-  UPDATE_TOTAL_PRODUCT_COUNT  
 } from './action-types/product';
 
 
@@ -79,14 +85,22 @@ export function cartReducer(state = cartInitialState, action: AppActions): CartC
         ...state, 
         items: state.items.splice(action.payload.index, 1, action.payload.product)
       };
-    case UPDATE_TOTAL_PRODUCT_COUNT:
+    case UPDATE_TOTAL_COUNT:
       return {
         ...state,
-        summary: { 
-          ...state.summary, 
-          count: state.summary.count + action.payload
+        summary: {
+          ...state.summary,
+          count: action.payload
         }
-      }
+      };
+    case UPDATE_TOTAL_PRICE:
+      return {
+        ...state,
+        summary: {
+          ...state.summary,
+          total: action.payload
+        }
+      };
     default:
       return state;
   };

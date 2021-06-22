@@ -1,9 +1,16 @@
 
 import React from 'react';
-import { HttpController } from '../../../helpers/HttpController';
-import { ProductCartToken, UserData } from '../../../utils/types/types';
 import { AppActions, AppThunk } from '../../action-types';
-import { RESET_CART, SET_CART_USER, SET_IS_EMPTY } from '../action-types';
+import { HttpController } from '../../../helpers/HttpController';
+import { ProductCartToken, UserData } from '../../../utils/types';
+import { 
+  RESET_CART, 
+  SET_CART_USER, 
+  SET_IS_EMPTY, 
+  UPDATE_TOTAL_COUNT, 
+  UPDATE_TOTAL_PRICE 
+} from '../action-types';
+
 import { addProductToCart } from './product';
 
 
@@ -29,7 +36,22 @@ export function setCartUser(u: UserData): AppActions {
   };
 };
 
+export function updateTotalCount(t: number): AppActions {
+  return {
+    type: UPDATE_TOTAL_COUNT,
+    payload: t
+  };
+};
 
+export function updateTotalPrice(p: number): AppActions {
+  return {
+    type: UPDATE_TOTAL_PRICE,
+    payload: p
+  };
+};
+
+
+//* Thunk
 export function getUserCart(): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
     const ISSERVER = typeof window === 'undefined';

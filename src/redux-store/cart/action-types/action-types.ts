@@ -7,6 +7,8 @@ import { CartProductActions } from './product';
 export const RESET_CART = 'reset_cart';
 export const SET_IS_EMPTY = 'set_is_empty';
 export const SET_CART_USER = 'set_cart_user';
+export const UPDATE_TOTAL_COUNT = 'update_total_count';
+export const UPDATE_TOTAL_PRICE = 'update_total_price';
 
 
 //** --------------------  ACTIONS  -------------------- **//
@@ -24,5 +26,14 @@ export type SetCartUserAction = {
   payload: UserData;
 };
 
+export type UpdateTotalCountAction = {
+  type: typeof UPDATE_TOTAL_COUNT;
+  payload: number;
+};
 
-export type CartActions = CartProductActions | ResetCartAction | SetIsEmptyAction | SetCartUserAction;
+export type UpdateTotalPriceAction = {
+  type: typeof UPDATE_TOTAL_PRICE;
+  payload: number;
+};
+
+export type CartActions = CartProductActions | ResetCartAction | SetIsEmptyAction | SetCartUserAction | UpdateTotalCountAction | UpdateTotalPriceAction;
