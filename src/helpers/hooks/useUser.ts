@@ -6,6 +6,7 @@ import { UserInfo, UserContext, UserData } from '../../utils/types';
 import { rand } from '../functions';
 import { 
   createAndSignInNewUser, 
+  relogUser, 
   userSignOut, 
   verifyAndSignInUser 
 } from '../../redux-store/user/actions';
@@ -36,6 +37,10 @@ export function useUser() {
     
     dispatch(createAndSignInNewUser(token.info));
   };
+
+  function relog(): void {
+    dispatch(relogUser());
+  };
   
   function signIn(u: UserInfo): void {
     dispatch(verifyAndSignInUser(u));
@@ -52,6 +57,7 @@ export function useUser() {
     status: user.status,
     get,
     guestSignIn,
+    relog,
     signIn,
     signOut
   };

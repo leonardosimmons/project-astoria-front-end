@@ -54,6 +54,13 @@ export function useWatchUserSignIn() {
     }
   }, [user.id]);
 
+  // AUTO RESIGN IN USER/GUEST 
+  React.useEffect(() => {
+    if (!session && user.id === 0) {
+      user.relog();
+    }
+  }, []);
+
   return {
     isSignedIn
   }

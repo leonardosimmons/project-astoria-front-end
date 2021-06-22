@@ -7,6 +7,8 @@ import { SET_USER, SIGN_IN_USER, SIGN_OUT_USER } from './action-types';
 
 import { HttpController } from '../../helpers/HttpController';
 
+const jwt = require('jsonwebtoken');
+
 
 export function setUser (u: UserData): AppActions {
   return {
@@ -57,6 +59,29 @@ export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispat
   }
 };
 
+export const relogUser = (): AppThunk => async (dispatch: React.Dispatch<AppThunk>) => {
+  const ISSERVER = typeof window === 'undefined';
+  
+  if(!ISSERVER) {
+    const token: string = JSON.parse(window.localStorage.getItem('auth-token') as string);
+    const http: HttpController = new HttpController(token);
+
+    if (token) {
+      let user: UserData = <UserData>{};
+      const decoded = jwt.decode(token);
+      const users: Array<UserData> = await http.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
+      
+      users.map((u: UserData) => {
+        if (decoded.u_id === u.id) {
+          user = u;
+        }
+      });
+
+      dispatch(verifyAndSignInUser(user.info));
+    }
+  }
+};
+
 export const userSignIn = (token: UserData): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   dispatch(setUser(token));
   dispatch(setCartUser(token));
@@ -103,7 +128,6 @@ export const verifyAndSignInUser = (user: UserInfo): AppThunk => async (dispatch
    console.log(err);
   }
 };
-
 
 export const userSignOut = (u_id: number): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   try {
