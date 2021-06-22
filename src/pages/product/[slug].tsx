@@ -108,6 +108,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
       },
       product: data.product,
       order: {
+        id: 0,
         size: chosenSizeRef.current as string,
         quantity: 1
       }
@@ -115,6 +116,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
 
     if (user.id === cart.user.id) {
       cart.add(p);
+      cart.get();
     }
 
     router.push('/cart');

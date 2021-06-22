@@ -8,20 +8,17 @@ import ContentBox from '../../box/ContentBox';
 import BaseGrid from '../../grid/Grid';
 import Image from 'next/image';
 import BaseHeading from '../../heading/Heading';
-import { ProductCartToken } from '../../../utils/types/types';
+import { ProductCartToken } from '../../../utils/types';
 
 
 type Props = {
   token: ProductCartToken;
+  remove: (p: ProductCartToken) => void;
   //chosenQuantity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const test: any = {
-  price: 1250,
-  qty: 2
-}
 
-const ProductOrderCard: React.FunctionComponent<Props> = ({ token }): JSX.Element => {
+const ProductOrderCard: React.FunctionComponent<Props> = ({ token, remove }): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
@@ -45,7 +42,7 @@ const ProductOrderCard: React.FunctionComponent<Props> = ({ token }): JSX.Elemen
                 <p>{'AVAILABLE'}</p>
                 <p>{'Your selection is available for immediate purchase online.'}</p>
               </div>
-              <button>{'REMOVE'}</button>
+              <button onClick={() => remove(token)}>{'REMOVE'}</button>
             </BaseGrid>
           </div>
           <BaseGrid even grid={styles.optionsGrid}>
