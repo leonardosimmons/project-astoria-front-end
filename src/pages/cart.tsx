@@ -1,15 +1,13 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { useSession } from 'next-auth/client';
-import { NextRouter, useRouter } from 'next/router';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NavbarData, ProductCartToken } from '../utils/types';
-import { link, page } from '../utils/keys';
+import { page } from '../utils/keys';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
 import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
-import { useUser } from './../helpers/hooks/useUser';
+import { useAppSelector } from '../helpers/hooks/redux';
 import { useCart } from '../helpers/hooks/useCart';
 
 import Layout from '../containers/layout';
@@ -47,31 +45,23 @@ export const getStaticProps: GetStaticProps = async () => {
       config: data as NavbarData
     }
   };
-};``
+};
 
 function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const user = useUser();
   const cart = useCart();
-  const [ session ] = useSession();
-  const router: NextRouter = useRouter();
-  const [ current, setCurrent ] = React.useState<Array<ProductCartToken>>();
+  const context = useAppSelector((state) => state.cart);
 
   useWatchUserSignIn();
 
-  // redirects user if not signed in
-  React.useEffect(() => {
-    if (!session && user.id === 0) {
-      router.push(link.SIGN_IN);
-    }
-  }, []);
-
-
   // loads current users cart
   React.useEffect(() => {
-    if (user.id !== 0) {
-      cart.get();
-    }
-  }, [user.id]);
+    cart.get();
+  }, []);
+  
+  const removeProduct = React.useCallback((p: ProductCartToken) => {
+    cart.remove(p.order.id);
+    cart.get();
+  }, []);
 
   return (
     <Layout
@@ -85,7 +75,7 @@ function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
       footer={ <Copyright /> }
     >
       <Container wrapper styles={ styles } classes={'relative center noselect'}>
-        <OrderPreview />
+        <OrderPreview cart={context} remove={removeProduct}/>
         <OrderSummary />
       </Container>
     </Layout>

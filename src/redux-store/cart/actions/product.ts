@@ -1,16 +1,17 @@
 
-import { AppActions, AppThunk } from '../../action-types';
+import React from 'react';
+import { AppState } from '../../reducers';
 import { ProductCartToken, ProductOrderToken } from '../../../utils/types';
+import { HttpController } from '../../../helpers/HttpController';
+
+import { AppActions, AppThunk } from '../../action-types';
 import { 
   ADD_PRODUCT, 
   REMOVE_PRODUCT, 
   UPDATE_PRODUCT, 
   UPDATE_TOTAL_PRODUCT_COUNT 
 } from './../action-types/product';
-import React from 'react';
-import { AppState } from '../../reducers';
-import { HttpController } from '../../../helpers/HttpController';
-import { Session } from 'next-auth';
+
 
 
 //* Actions
@@ -66,18 +67,15 @@ export function addToCart(prod: ProductCartToken): AppThunk {
     catch(err) {
       console.log(err);
     }
-
-
-    dispatch(addProductToCart(prod));
   };
 };
 
-export function removeFromCart(p: ProductCartToken): AppThunk {
+export function removeFromCart(id: number): AppThunk {
   return async (dispatch: React.Dispatch<AppActions>) => {
     const token: string = JSON.parse(localStorage.getItem('auth-token') as string);
-    // remove product from user's cart within database w/ auth token
-    
-    dispatch(removeProductFromCart(p));
+    const http: HttpController = new HttpController(token);
+
+    await http.remove('/cart/remove-product', { order_id: id });
   };
 };
 

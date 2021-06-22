@@ -1,15 +1,28 @@
 
 import { useAppDispatch, useAppSelector } from './redux';
-import { CartContext, ProductCartToken, UserContext } from '../../utils/types';
+import { 
+  CartContext, 
+  ProductCartToken, 
+  UserContext 
+} from '../../utils/types';
 
-import { getUserCart, resetCart, setCartUser, setIsEmpty } from '../../redux-store/cart/actions';
-import { addToCart, removeFromCart, updateProductCount, updateProductQuantity } from '../../redux-store/cart/actions/product';
-import { useSession } from 'next-auth/client';
+import { 
+  getUserCart, 
+  resetCart, 
+  setCartUser, 
+  setIsEmpty 
+} from '../../redux-store/cart/actions';
+
+import { 
+  addToCart, 
+  removeFromCart, 
+  updateProductCount, 
+  updateProductQuantity 
+} from '../../redux-store/cart/actions/product';
 
 
 export function useCart() {
   const dispatch = useAppDispatch();
-  const [ session ] = useSession();
   const cart: CartContext = useAppSelector((state) => state.cart);
 
   
@@ -29,8 +42,8 @@ export function useCart() {
     dispatch(getUserCart());
   };
 
-  function remove(p: ProductCartToken): void {
-    dispatch(removeFromCart(p));
+  function remove(id: number): void {
+    dispatch(removeFromCart(id));
   };
 
   function reset(): void {
