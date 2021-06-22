@@ -9,8 +9,9 @@ import { HttpResponse, HttpServerResponse } from '../utils/types';
 
 interface HttpControllerInterface {
   get: (url: string) => Promise<any>;
-  post<T>(url: string, data: T, token: string): Promise<AxiosResponse<any> | false>;
-  put<T>(url: string, data: T): Promise<AxiosResponse<any> | false>;
+  post<T>(url: string, data: T, token: string): Promise<HttpServerResponse>;
+  put<T>(url: string, data: T): Promise<HttpServerResponse>;
+  remove: (url: string, data?: any) => Promise<HttpServerResponse>;
   signInUser: (u_id: number) => Promise<any>;
 };
 
@@ -26,10 +27,7 @@ class HttpController implements HttpControllerInterface
     this._buffer;
     this._conn = axios.create({
       baseURL: process.env.NEXT_PUBLIC_BASE_API as string,
-      headers: {
-        post: { 'auth-token': `Bearer ${token}`},
-        put: { 'auth-token': `Bearer ${token}`}
-      }
+      headers: { 'auth-token': `Bearer ${token}` }
     });
     this._source = axios.CancelToken.source();
     this._cancelToken = this._source.token;
@@ -61,7 +59,7 @@ class HttpController implements HttpControllerInterface
     }
   };
 
-  public async post<T>(url: string, data: T): Promise<AxiosResponse<any> | false> {
+  public async post<T>(url: string, data: T): Promise<HttpServerResponse> {
     try {
       const res: AxiosResponse<any> = await this._conn({ method:'post', url, data: {...data} });
       const response: HttpServerResponse = res.status === 200 ? res : res.status === 201 ? res : false;
@@ -75,7 +73,7 @@ class HttpController implements HttpControllerInterface
     }
   };
 
-  public async put<T>(url: string, data: T): Promise<AxiosResponse<any> | false> {
+  public async put<T>(url: string, data: T): Promise<HttpServerResponse> {
     try {
       const res: AxiosResponse<any> = await this._conn({ method: 'put', url, data });
       const response: HttpServerResponse = res.status === 200 ? res : false;
@@ -87,7 +85,21 @@ class HttpController implements HttpControllerInterface
       console.log(err);
       throw new Error(err);
     }
-  }
+  };
+
+  public async remove(url: string, data?: any): Promise<HttpServerResponse> {
+    try {
+      const res: AxiosResponse<any> = await this._conn.delete(url, { params: {...data}});
+      const response: HttpServerResponse = res.status === 200 ? res : false;
+  
+      this._buffer = response;
+      return response;
+    }
+    catch(err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  };
 
   public async signInUser(u_id: number): Promise<any> {
     try {
