@@ -102,6 +102,11 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
   async function addToCart(e: React.FormEvent) {
     e.preventDefault();
 
+    if (!user.status.isSignedIn) {
+      router.push('/sign-in');
+      return;
+    }
+
     const p: ProductCartToken = {
       user: { 
         id: user.id,
