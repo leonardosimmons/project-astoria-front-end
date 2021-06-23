@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PromoCard as PromoCardType } from '../../../../../utils/types';
+import { ProductCard, PromoCard as PromoCardType } from '../../../../../utils/types';
 
 import styles from './NewIn.module.scss';
 
@@ -12,14 +12,14 @@ import PromoCard from '../../../../../components/promo/card';
 
 
 type Props = {
-  promoCards: PromoCardType[];
+  cards: Array<ProductCard>;
   priority?: boolean;
 };
 
 
 const NewInPromo: React.FunctionComponent<Props> = (
   { 
-    promoCards,
+    cards,
     priority,
   }
 ): JSX.Element => {
@@ -33,7 +33,7 @@ const NewInPromo: React.FunctionComponent<Props> = (
           />
           <Container styles={ styles } classes={'relative'}>
           {
-            promoCards.map((card: PromoCardType, index: number ) => (
+            cards.map((card: ProductCard, index: number ) => (
               <div className={ styles.promoCard } key={ index }>
                 <PromoCard priority={ priority } config={ card } />
                 <div className={ styles.promoCardSpacer } />
