@@ -45,7 +45,7 @@ export type CartContext = {
 };
 
 
-//** ------------------------  GENERAL  ------------------------ **/
+//** -----------------------  GENERAL  ----------------------- **//
 export type Arrow = {
   container: {
     right: string;
@@ -302,7 +302,7 @@ export type IndexPageSelectors = {
   user: UserContext;
 };
 
-//** ----------------  MAIN PRODUCT PAGE  ---------------- **//
+//** ----------------  MAIN PRODUCT PAGE  ----------------- **//
 export type MainProductPageStaticData = {
   header: Header | Header[];
   promoBanner: Header | Header[];
@@ -316,7 +316,7 @@ export type MainProductPageData = {
 };
 
 
-//** --------------------  NAVIGATION BAR  -------------------- **//
+//** -----------------  NAVIGATION BAR  ----------------- **//
 export type NavbarDesktopData = {
   info: NavbarMenuTabToken[];
   menu: {
@@ -363,7 +363,39 @@ export type NavbarMenuTab = {
 } & Icon;
 
 
-//** ------------------------  PRODUCT  ------------------------ **/
+//** --------------------  ORDER  -------------------- **//
+export type OrderShipping = {
+  info: {
+    address: string;
+    city: string;
+    postal: number;
+    country: string;
+  };
+  status: {
+    isVerified: boolean;
+    isError: boolean;
+  };
+};
+
+export type OrderStatus = {
+  isComplete: boolean;
+  isError: boolean;
+  isPending: boolean;
+  isVerified: boolean;
+  payment: boolean;
+  shipping: boolean;
+};
+
+export type Order = {
+  user: UserData;
+  items: Array<Product>;
+  summary: CartSummary;
+  shipping: OrderShipping;
+  status: OrderStatus;
+};
+
+
+//** -------------------  PRODUCT  ------------------- **//
 export type FeaturedProduct = {
   img: {
     src: string;
@@ -438,7 +470,7 @@ export type ProductOrderToken = {
   quantity: number;
 };
 
-//** ------------------------  PROMO  ------------------------ *//
+//** -------------------  PROMO  ------------------- *//
 export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
   id?: Combinable;
   width?: Combinable;
@@ -446,7 +478,7 @@ export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
 };
 
 
-//** ------------------  REGISTRATION FORM ------------------- *//
+//** -------------  REGISTRATION FORM -------------- *//
 export type RegistrationFormContext = {
   username: string;
   email: string;
@@ -466,7 +498,7 @@ export type RegistrationForm = {
 };
 
 
-//** ------------------------  USER ------------------------- *//
+//** -------------------  USER -------------------- *//
 export type UserInfo = {
   name: string;
   email: string;
