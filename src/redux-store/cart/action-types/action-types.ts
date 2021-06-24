@@ -1,6 +1,7 @@
 
 import { UserData } from '../../../utils/types';
 import { CartProductActions } from './product';
+import { CartStatusActions } from './status';
 
 
 //** ---------------------  TYPES  --------------------- **//
@@ -36,4 +37,4 @@ export type UpdateTotalPriceAction = {
   payload: number;
 };
 
-export type CartActions = CartProductActions | ResetCartAction | SetIsEmptyAction | SetCartUserAction | UpdateTotalCountAction | UpdateTotalPriceAction;
+export type CartActions = CartProductActions | CartStatusActions | ResetCartAction | SetIsEmptyAction | SetCartUserAction | UpdateTotalCountAction | UpdateTotalPriceAction;

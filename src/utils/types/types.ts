@@ -33,8 +33,8 @@ export type CartStatus = {
   isCheckingOut: boolean;
   isComplete: boolean;
   isEmpty: boolean;
+  isError: boolean;
   isPending: boolean;
-  isUser: boolean;
 };
 
 export type CartContext = {

@@ -16,6 +16,14 @@ import {
   UPDATE_PRODUCT, 
 } from './action-types/product';
 
+import { 
+  UPDATE_CHECKING_OUT_STATUS, 
+  UPDATE_EMPTY_STATUS, 
+  UPDATE_COMPLETE_STATUS, 
+  UPDATE_PENDING_STATUS, 
+  UPDATE_ERROR_STATUS 
+} from './action-types/status';
+
 
 const cartInitialState: CartContext = {
   user: {
@@ -36,8 +44,8 @@ const cartInitialState: CartContext = {
     isCheckingOut: false,
     isComplete: false,
     isEmpty: true,
+    isError: false,
     isPending: false,
-    isUser: false
   }
 };
 
@@ -78,6 +86,46 @@ export function cartReducer(state = cartInitialState, action: AppActions): CartC
             ...state.user.status, 
             isSignedIn: true 
           }
+        }
+      };
+    case UPDATE_CHECKING_OUT_STATUS:
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isCheckingOut: action.payload
+        }
+      };
+    case UPDATE_COMPLETE_STATUS:
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isComplete: action.payload
+        }
+      };
+    case UPDATE_EMPTY_STATUS:
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isEmpty: action.payload
+        }
+      };
+      case UPDATE_ERROR_STATUS:
+        return {
+          ...state,
+          status: {
+            ...state.status,
+            isError: action.payload
+          }
+        };
+    case UPDATE_PENDING_STATUS: 
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isPending: action.payload
         }
       };
     case UPDATE_PRODUCT:
