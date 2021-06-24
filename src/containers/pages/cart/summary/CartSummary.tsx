@@ -18,7 +18,12 @@ const CartSummary: React.FunctionComponent<Props> = ({ cart }): JSX.Element => {
       <Heading
         classes={styles.heading}
         styles={styles} 
-        btn={{ text: 'Proceeed to Checkout', link: '/under-construction' }}
+        btn={{ 
+          text: 'Proceeed to Checkout', 
+          link: cart.user.status.isSignedIn && cart.items.length > 0 
+          ? '/shipping' 
+          : '/sign-in' 
+        }}
       >
         <h3>{`SUBTOTAL (${cart.summary.count}) ITEMS`}</h3>
         <p>{`$${cart.summary.total.toLocaleString()}`}</p>

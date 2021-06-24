@@ -1,6 +1,7 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { NextRouter, useRouter } from 'next/router';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { CartContext, NavbarData, ProductCartToken } from '../utils/types';
 import { page } from '../utils/keys';
@@ -15,7 +16,6 @@ import Container from '../components/container';
 import Copyright from '../components/copyright';
 import OrderPreview from '../containers/pages/cart/preview';
 import OrderSummary from '../containers/pages/cart/summary';
-import { NextRouter, useRouter } from 'next/router';
 
 
 const {
@@ -54,6 +54,7 @@ function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): J
   const router: NextRouter = useRouter();
   const context: CartContext = useAppSelector((state) => state.cart);
 
+  // Checks for existsing session/ guest login
   useWatchUserSignIn();
 
   const removeProduct = React.useCallback((p: ProductCartToken) => {
