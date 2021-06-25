@@ -5,7 +5,7 @@ import {
   RESET_SHIPPING,
   SET_ADDRESS, 
   SET_CITY, 
-  SET_COUNTRY, 
+  SET_STATE, 
   SET_POSTAL_CODE, 
   SET_SHIPPING_INFO, 
   UPDATE_SHIPPING_ERROR_STATUS,
@@ -18,7 +18,7 @@ const shippingInitialState: OrderShipping = {
     address: '',
     city: '',
     postal: 0,
-    country: ''
+    state: ''
   },
   status: { 
     isVerified: false, 
@@ -39,8 +39,8 @@ export function shippingReducer(state = shippingInitialState, action: AppActions
       return {...state, info: {...state.info, city: action.payload}}
     case SET_POSTAL_CODE:
       return {...state, info: {...state.info, postal: action.payload}}
-    case SET_COUNTRY:
-      return {...state, info: {...state.info, country: action.payload}}
+    case SET_STATE:
+      return {...state, info: {...state.info, state: action.payload}}
     case SET_SHIPPING_INFO:
       return {...state, info: action.payload}
     case UPDATE_SHIPPING_VERIFICATION_STATUS:

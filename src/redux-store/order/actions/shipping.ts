@@ -5,7 +5,7 @@ import {
   RESET_SHIPPING,
   SET_ADDRESS, 
   SET_CITY, 
-  SET_COUNTRY, 
+  SET_STATE, 
   SET_POSTAL_CODE, 
   SET_SHIPPING_INFO, 
   UPDATE_SHIPPING_ERROR_STATUS, 
@@ -40,9 +40,9 @@ export function setOrderPostalCode(p: number): AppActions {
   };
 };
 
-export function setOrderCountry(c: string): AppActions {
+export function setOrderState(c: string): AppActions {
   return {
-    type: SET_COUNTRY,
+    type: SET_STATE,
     payload: c
   };
 };

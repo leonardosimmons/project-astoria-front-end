@@ -373,7 +373,7 @@ export type OrderShippingInfo = {
   address: string;
   city: string;
   postal: number;
-  country: string;
+  state: string;
 };
 
 export type OrderShipping = {
