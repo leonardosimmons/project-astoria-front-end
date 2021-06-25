@@ -1,4 +1,5 @@
 
+import { OrderShippingInfo } from '../../../utils/types/types';
 import { AppActions } from '../../action-types';
 import { 
   RESET_SHIPPING,
@@ -6,6 +7,7 @@ import {
   SET_CITY, 
   SET_COUNTRY, 
   SET_POSTAL_CODE, 
+  SET_SHIPPING_INFO, 
   UPDATE_SHIPPING_ERROR_STATUS, 
   UPDATE_SHIPPING_VERIFICATION_STATUS 
 } from '../action-types/shipping';
@@ -42,6 +44,13 @@ export function setOrderCountry(c: string): AppActions {
   return {
     type: SET_COUNTRY,
     payload: c
+  };
+};
+
+export function setOrderShippingInfo(o: OrderShippingInfo): AppActions {
+  return {
+    type: SET_SHIPPING_INFO,
+    payload: o
   };
 };
 

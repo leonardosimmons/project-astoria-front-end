@@ -1,6 +1,6 @@
 
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { NextRouter, useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
@@ -15,6 +15,7 @@ import Container from '../components/container';
 import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
@@ -28,7 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile) => {
+  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>) => {
     if(desktop.status === 200 && mobile.status === 200) {
       const dataToken: NavbarData = {
         desktop: desktop.data,
@@ -42,13 +43,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      config: data as NavbarData
+      data: data as NavbarData
     }
   }
 };
 
 
-function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function signInPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const [ session ] = useSession();
   const router: NextRouter = useRouter();
   const user = useUser();
@@ -58,9 +59,12 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
     router.push('/');
   }
 
+  // checks for existsing session/ guest login
+  useWatchUserSignIn();
+
   function guestSignIn() {
     user.guestSignIn();
-    router.push('/');
+    router.back();
   };
 
   function userSignIn(provider: string, url: string) {
@@ -73,8 +77,8 @@ function signInPage({ config }: InferGetStaticPropsType<typeof getStaticProps>):
       parent={ page.SIGN_IN }
       title={'ASTORIA | Sign-in'}
       classes={'relative'}
-      desktop={config.desktop}
-      mobile={config.mobile}
+      desktop={data.desktop}
+      mobile={data.mobile}
       styles={ styles }
       footer={ <Copyright /> }
     >

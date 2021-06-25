@@ -7,6 +7,7 @@ import {
   SET_CITY, 
   SET_COUNTRY, 
   SET_POSTAL_CODE, 
+  SET_SHIPPING_INFO, 
   UPDATE_SHIPPING_ERROR_STATUS,
   UPDATE_SHIPPING_VERIFICATION_STATUS
 } from './../action-types/shipping';
@@ -40,6 +41,8 @@ export function shippingReducer(state = shippingInitialState, action: AppActions
       return {...state, info: {...state.info, postal: action.payload}}
     case SET_COUNTRY:
       return {...state, info: {...state.info, country: action.payload}}
+    case SET_SHIPPING_INFO:
+      return {...state, info: action.payload}
     case UPDATE_SHIPPING_VERIFICATION_STATUS:
       return {...state, status: {...state.status, isVerified: action.payload}}
     case UPDATE_SHIPPING_ERROR_STATUS:

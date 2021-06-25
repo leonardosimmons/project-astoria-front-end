@@ -3,7 +3,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from './redux';
 import { useCart } from './useCart';
 import { useUser } from './useUser';
-import { Order, OrderCheckout } from '../../utils/types';
+import { Order, OrderCheckout, OrderShippingInfo } from '../../utils/types';
 import { orderInitialState } from '../../redux-store/order/reducer';
 
 import { 
@@ -12,33 +12,36 @@ import {
   setOrderCity, 
   setOrderCountry, 
   setOrderPostalCode, 
-  shippingVerificationStatus 
+  shippingVerificationStatus, 
+  setOrderShippingInfo
 } from '../../redux-store/order/actions/shipping';
 import { 
   updateOrderCompletionStatus, 
   updateOrderErrorStatus, 
   updateOrderPaymentStatus, 
+  updateOrderPendingStatus, 
   updateOrderShippingStatus, 
   updateOrderVerificationStatus 
 } from '../../redux-store/order/actions/status';
+import { ValidationController } from '../ValidationController';
 
 
 function useOrder() {
   const user = useUser();
   const cart = useCart();
   const dispatch = useAppDispatch();
+  const validate = new ValidationController();
   const order: OrderCheckout = useAppSelector((state) => state.order);
   const [ current, setCurrent ] = React.useState<Order>(orderInitialState);
 
   // auto updates order upon mount/update
   React.useEffect(() => {
-    const token: Order = createToken();
-    setCurrent(token);
+    const token: Order = createToken() as Order;
+    
+    if (token) {
+      setCurrent(token);
+    }
   }, [order]);
-
-  React.useEffect(() => {
-    console.log(current);
-  }, [current]);
 
   function createToken(): Order {
     return {
@@ -69,31 +72,42 @@ function useOrder() {
     dispatch(setOrderCountry(c));
   };
 
+  function setShippingInfo(o: OrderShippingInfo): void {
+    dispatch(setOrderShippingInfo(o));
+  };
+
   function shippingError(e: boolean): void {
     dispatch(shippingErrorStatus(e));
   };
 
-  function updateCompletionStatus(s: boolean): void {
+  function completionStatus(s: boolean): void {
     dispatch(updateOrderCompletionStatus(s));
   };
 
-  function updateErrorStatus(e: boolean): void {
+  function errorStatus(e: boolean): void {
     dispatch(updateOrderErrorStatus(e));
   };
   
-  function updatePaymentStatus(s: boolean): void {
+  function paymentStatus(s: boolean): void {
     dispatch(updateOrderPaymentStatus(s));
   };
   
-  function updatePendingStatus(p: boolean): void {
-    dispatch(updateOrderPaymentStatus(p));
+  function pendingStatus(p: boolean): void {
+    dispatch(updateOrderPendingStatus(p));
   };
 
-  function updateShippingStatus(s: boolean): void {
+  function resetShippingStatus() {
+    verifyShipping(false);
+    shippingStatus(false);
+    shippingError(false);
+    errorStatus(false);
+  };
+
+  function shippingStatus(s: boolean): void {
     dispatch(updateOrderShippingStatus(s));
   };
 
-  function updateVerificationStatus(v: boolean): void {
+  function verificationStatus(v: boolean): void {
     dispatch(updateOrderVerificationStatus(v));
   };
   
@@ -107,13 +121,16 @@ function useOrder() {
     setCity,
     setPostalCode,
     setCountry,
+    setShippingInfo,
     shippingError,
-    updateCompletionStatus,
-    updateErrorStatus,
-    updatePaymentStatus,
-    updatePendingStatus,
-    updateShippingStatus,
-    updateVerificationStatus,
+    completionStatus,
+    errorStatus,
+    paymentStatus,
+    pendingStatus,
+    resetShippingStatus,
+    shippingStatus,
+    verificationStatus,
+    validate,
     verifyShipping
   }
 };
