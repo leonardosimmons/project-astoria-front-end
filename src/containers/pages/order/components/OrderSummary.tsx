@@ -4,13 +4,15 @@ import React from 'react';
 import styles from './OrderSummary.module.scss';
 
 import Container from '../../../../components/container';
-import ContentBox from '../../../../components/box/ContentBox';
-import Button from '../../../../components/button/Button';
+import ContentBox from '../../../../components/box';
+import Button from '../../../../components/button';
 
-type Props = {};
+type Props = {
+  total: number
+};
 
 
-const OrderSummary: React.FunctionComponent<Props> = (): JSX.Element => {
+const OrderSummary: React.FunctionComponent<Props> = ({ total }): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
@@ -19,19 +21,19 @@ const OrderSummary: React.FunctionComponent<Props> = (): JSX.Element => {
         </div>
         <div>
           <p>{'Items'}</p>
-          <p>{`$189.97`}</p>
+          <p>{`$${total.toLocaleString()}`}</p>
         </div>
         <div>
           <p>{'Shipping'}</p>
-          <p>{`$3.00`}</p>
+          <p>{`FREE`}</p>
         </div>
         <div>
           <p>{'Tax'}</p>
-          <p>{`$9.97`}</p>
+          <p>{`$87.53`}</p>
         </div>
         <div>
           <p>{'Total'}</p>
-          <p>{`$189.97`}</p>
+          <p>{`$${(total + 87.53).toLocaleString()}`}</p>
         </div>
         <div>
           <Button 

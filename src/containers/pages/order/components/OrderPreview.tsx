@@ -1,21 +1,27 @@
 
 import React from 'react';
-import ContentBox from '../../../../components/box';
-import Container from '../../../../components/container';
+import { Order } from '../../../../utils/types';
 
 import styles from './OrderPreview.module.scss';
 
+import ContentBox from '../../../../components/box';
+import Container from '../../../../components/container';
 
-type Props = {};
+
+type Props = {
+  order: Order
+};
 
 
-const OrderPreview: React.FunctionComponent<Props> = (): JSX.Element => {
+const OrderPreview: React.FunctionComponent<Props> = ({ order }): JSX.Element => {
+  const state: string = 'random';
+
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
         <div className={styles.shippingBox}>
           <h2>{'SHIPPING'}</h2>
-          <p>{'Address: 1337 Main St. Portland, OR 97225, USA'}</p>
+          <p>{`Address: ${order.shipping.info.address} ${order.shipping.info.city}, ${state} ${order.shipping.info.postal}, USA`}</p>
         </div>
         <div className={styles.paymentBox}>
           <h2>{'PAYMENT METHOD'}</h2>
