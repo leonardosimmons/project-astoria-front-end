@@ -364,13 +364,20 @@ export type NavbarMenuTab = {
 
 
 //** --------------------  ORDER  -------------------- **//
+export type OrderCheckout = {
+  shipping: OrderShipping;
+  status: OrderStatus;
+};
+
+export type OrderShippingInfo = {
+  address: string;
+  city: string;
+  postal: number;
+  country: string;
+};
+
 export type OrderShipping = {
-  info: {
-    address: string;
-    city: string;
-    postal: number;
-    country: string;
-  };
+  info: OrderShippingInfo;
   status: {
     isVerified: boolean;
     isError: boolean;
@@ -388,7 +395,7 @@ export type OrderStatus = {
 
 export type Order = {
   user: UserData;
-  items: Array<Product>;
+  items: Array<Partial<ProductCartToken>>;
   summary: CartSummary;
   shipping: OrderShipping;
   status: OrderStatus;

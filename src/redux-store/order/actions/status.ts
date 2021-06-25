@@ -1,6 +1,7 @@
 
 import { AppActions } from '../../action-types';
 import { 
+  RESET_ORDER_STATUS,
   UPDATE_COMPLETION_STATUS, 
   UPDATE_ERROR_STATUS, 
   UPDATE_PAYMENT_STATUS, 
@@ -10,42 +11,48 @@ import {
 } from '../action-types/status';
 
 
-export function updateCompletionStatus(s: boolean): AppActions {
+export function resetAllOrderStatus(): AppActions {
+  return {
+    type: RESET_ORDER_STATUS
+  };
+};
+
+export function updateOrderCompletionStatus(s: boolean): AppActions {
   return {
     type: UPDATE_COMPLETION_STATUS,
     payload: s
   };
 };
 
-export function updateErrorStatus(s: boolean): AppActions {
+export function updateOrderErrorStatus(s: boolean): AppActions {
   return {
     type: UPDATE_ERROR_STATUS,
     payload: s
   };
 };
 
-export function updatePendingStatus(s: boolean): AppActions {
+export function updateOrderPendingStatus(s: boolean): AppActions {
   return {
     type: UPDATE_PENDING_STATUS,
     payload: s
   };
 };
 
-export function updateVerificationStatus(s: boolean): AppActions {
+export function updateOrderVerificationStatus(s: boolean): AppActions {
   return {
     type: UPDATE_VERIFICATION_STATUS,
     payload: s
   };
 };
 
-export function updatePaymentStatus(s: boolean): AppActions {
+export function updateOrderPaymentStatus(s: boolean): AppActions {
   return {
     type: UPDATE_PAYMENT_STATUS,
     payload: s
   };
 };
 
-export function updateShippingStatus(s: boolean): AppActions {
+export function updateOrderShippingStatus(s: boolean): AppActions {
   return {
     type: UPDATE_SHIPPING_STATUS,
     payload: s

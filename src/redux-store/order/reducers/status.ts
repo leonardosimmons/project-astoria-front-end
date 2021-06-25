@@ -2,6 +2,7 @@
 import { OrderStatus } from '../../../utils/types';
 import { AppActions } from '../../action-types';
 import { 
+  RESET_ORDER_STATUS,
   UPDATE_COMPLETION_STATUS, 
   UPDATE_ERROR_STATUS, 
   UPDATE_PAYMENT_STATUS, 
@@ -24,6 +25,8 @@ const orderStatusInitialState: OrderStatus = {
 function orderStatusReducer(state = orderStatusInitialState, action: AppActions): OrderStatus {
   switch(action.type)
   {
+    case RESET_ORDER_STATUS:
+      return orderStatusInitialState;
     case UPDATE_COMPLETION_STATUS:
       return {...state, isComplete: action.payload};
     case UPDATE_ERROR_STATUS:

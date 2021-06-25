@@ -1,53 +1,60 @@
 
-import { AppActions } from "../../action-types";
+import { AppActions } from '../../action-types';
 import { 
-  ERROR_STATUS, 
+  RESET_SHIPPING,
   SET_ADDRESS, 
   SET_CITY, 
   SET_COUNTRY, 
   SET_POSTAL_CODE, 
-  VERIFICATION_STATUS 
-} from "../action-types/shipping";
+  UPDATE_SHIPPING_ERROR_STATUS, 
+  UPDATE_SHIPPING_VERIFICATION_STATUS 
+} from '../action-types/shipping';
 
 
-export function setAddress(a: string): AppActions {
+export function resetOrderShipping(): AppActions {
+  return {
+    type: RESET_SHIPPING
+  };
+};
+
+export function setOrderAddress(a: string): AppActions {
   return {
     type: SET_ADDRESS,
     payload: a
   };
 };
 
-export function setCity(c: string): AppActions {
+export function setOrderCity(c: string): AppActions {
   return {
     type: SET_CITY,
     payload: c
   };
 };
 
-export function setPostalCode(p: number): AppActions {
+export function setOrderPostalCode(p: number): AppActions {
   return {
     type: SET_POSTAL_CODE,
     payload: p
   };
 };
 
-export function setCountry(c: string): AppActions {
+export function setOrderCountry(c: string): AppActions {
   return {
     type: SET_COUNTRY,
     payload: c
   };
 };
 
-export function verified(s: boolean): AppActions {
+export function shippingVerificationStatus(s: boolean): AppActions {
   return {
-    type: VERIFICATION_STATUS,
+    type: UPDATE_SHIPPING_VERIFICATION_STATUS,
     payload: s
   };
 };
 
-export function error(e: boolean): AppActions {
+export function shippingErrorStatus(e: boolean): AppActions {
   return {
-    type: ERROR_STATUS,
+    type: UPDATE_SHIPPING_ERROR_STATUS,
     payload: e
   };
 };

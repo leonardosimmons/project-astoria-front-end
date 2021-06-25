@@ -1,5 +1,6 @@
 
 //** ---------------------  TYPES  --------------------- **//
+export const RESET_ORDER_STATUS = 'reset_order_status';
 export const UPDATE_COMPLETION_STATUS = 'completion_status';
 export const UPDATE_ERROR_STATUS = 'error_status';
 export const UPDATE_PENDING_STATUS = 'pending_status';
@@ -9,6 +10,10 @@ export const UPDATE_SHIPPING_STATUS = 'shipping_status';
 
 
 //** --------------------  ACTIONS  -------------------- **//
+export type ResetOrderStatusAction = {
+  type: typeof RESET_ORDER_STATUS;
+};
+
 export type UpdateCompletionStatusAction = {
   type: typeof UPDATE_COMPLETION_STATUS;
   payload: boolean;
@@ -40,4 +45,4 @@ export type UpdateVerificationStatusAction = {
 };
 
 
-export type OrderStatusActions = UpdateCompletionStatusAction | UpdateErrorStatusAction | UpdatePaymentStatusAction | UpdatePendingStatusAction | UpdateShippingStatusAction | UpdateVerificationStatusAction;
+export type OrderStatusActions = ResetOrderStatusAction | UpdateCompletionStatusAction | UpdateErrorStatusAction | UpdatePaymentStatusAction | UpdatePendingStatusAction | UpdateShippingStatusAction | UpdateVerificationStatusAction;
