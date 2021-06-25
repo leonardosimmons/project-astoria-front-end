@@ -63,12 +63,13 @@ export const relogUser = (): AppThunk => async (dispatch: React.Dispatch<AppThun
   const ISSERVER = typeof window === 'undefined';
   
   if(!ISSERVER) {
-    const token: string = JSON.parse(window.localStorage.getItem('auth-token') as string);
+    const token: string = window.localStorage.getItem('auth-token') as string;
     const http: HttpController = new HttpController(token);
 
     if (token) {
       let user: UserData = <UserData>{};
-      const decoded = jwt.decode(token);
+      const parsed = JSON.parse(token);
+      const decoded = jwt.decode(parsed);
       const users: Array<UserData> = await http.get(process.env.NEXT_PUBLIC_GET_ALL_USERS_API as string);
       
       users.map((u: UserData) => {
