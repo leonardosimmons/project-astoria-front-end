@@ -395,7 +395,7 @@ export type OrderStatus = {
 
 export type Order = {
   user: UserData;
-  items: Array<Partial<ProductCartToken>>;
+  items: Array<ProductCartToken>;
   summary: CartSummary;
   shipping: OrderShipping;
   status: OrderStatus;
