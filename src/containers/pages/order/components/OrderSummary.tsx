@@ -11,7 +11,6 @@ type Props = {
   total: number
 };
 
-
 const OrderSummary: React.FunctionComponent<Props> = ({ total }): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
@@ -29,11 +28,11 @@ const OrderSummary: React.FunctionComponent<Props> = ({ total }): JSX.Element =>
         </div>
         <div>
           <p>{'Tax'}</p>
-          <p>{`$87.53`}</p>
+          <p>{`$${total * .075}`}</p>
         </div>
         <div>
           <p>{'Total'}</p>
-          <p>{`$${(total + 87.53).toLocaleString()}`}</p>
+          <p>{`$${(total + (total * .075)).toLocaleString()}`}</p>
         </div>
         <div>
           <Button 

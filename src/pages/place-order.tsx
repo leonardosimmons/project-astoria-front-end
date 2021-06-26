@@ -5,6 +5,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { NavbarData } from '../utils/types';
 
 import styles from '../containers/pages/order/PlaceOrder.module.scss';
+import { useOrder } from '../helpers/hooks/useOrder';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -49,6 +50,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 function PlaceOrder({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element
 {
+  const order = useOrder();
+
   return (
     <Layout
       parent={'place-order'}
@@ -60,8 +63,8 @@ function PlaceOrder({ data }: InferGetServerSidePropsType<typeof getServerSidePr
     >
       <Container wrapper styles={styles}>
         <Grid even grid={styles.grid}>
-          <OrderPreview />
-          <OrderSummary />
+          <OrderPreview order={order} />
+          <OrderSummary total={order.summary.total} />
         </Grid>
       </Container>
     </Layout>

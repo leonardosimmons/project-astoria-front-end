@@ -1,15 +1,16 @@
 
 import React from 'react';
-import { Order } from '../../../../utils/types';
+import { Order, ProductCartToken } from '../../../../utils/types';
 
 import styles from './OrderPreview.module.scss';
 
 import ContentBox from '../../../../components/box';
 import Container from '../../../../components/container';
+import ProductCheckoutCard from './ProductCheckoutCard';
 
 
 type Props = {
-  order: Order
+  order: Order;
 };
 
 
@@ -21,7 +22,7 @@ const OrderPreview: React.FunctionComponent<Props> = ({ order }): JSX.Element =>
       <ContentBox styles={styles}>
         <div className={styles.shippingBox}>
           <h2>{'SHIPPING'}</h2>
-          <p>{`Address: ${order.shipping.info.address} ${order.shipping.info.city}, ${state} ${order.shipping.info.postal}, USA`}</p>
+          <p>{`Address: ${order.shipping.info.address} ${order.shipping.info.city}, ${order.shipping.info.state} ${order.shipping.info.postal}`}</p>
         </div>
         <div className={styles.paymentBox}>
           <h2>{'PAYMENT METHOD'}</h2>
@@ -30,8 +31,9 @@ const OrderPreview: React.FunctionComponent<Props> = ({ order }): JSX.Element =>
         <div className={styles.itemsBox}>
           <h2>{'ORDER ITEMS'}</h2>
           <div className={styles.items}>
-            <span>{'TEST ITEM ONE'}</span>
-            <span>{'TEST ITEM TWO'}</span>
+          {order.items.map((item: ProductCartToken, index: number) => (
+            <ProductCheckoutCard key={index} product={item}/>
+          ))}
           </div>
         </div>
       </ContentBox>
