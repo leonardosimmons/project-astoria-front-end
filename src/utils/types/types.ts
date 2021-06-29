@@ -364,7 +364,7 @@ export type NavbarMenuTab = {
 
 
 //** --------------------  ORDER  -------------------- **//
-export type OrderCheckout = {
+export type OrderContext = {
   shipping: OrderShipping;
   status: OrderStatus;
 };

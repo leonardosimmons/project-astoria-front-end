@@ -23,7 +23,7 @@ export const orderInitialState: Order = {
       address: '',
       city: '',
       postal: 0,
-      country: ''
+      state: ''
     },
     status: { 
       isVerified: false, 

@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from './redux';
 import { useCart } from './useCart';
 import { useUser } from './useUser';
-import { OrderCheckout, OrderShippingInfo } from '../../utils/types/types';
+import { OrderContext, OrderShippingInfo } from '../../utils/types/types';
 
 import { 
   shippingErrorStatus, 
@@ -29,7 +29,7 @@ function useOrder() {
   const cart = useCart();
   const dispatch = useAppDispatch();
   const validate = new ValidationController();
-  const order: OrderCheckout = useAppSelector((state) => state.order);
+  const order: OrderContext = useAppSelector((state) => state.order);
 
 
   function setAddress(a: string): void {
