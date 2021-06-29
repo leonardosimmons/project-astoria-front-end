@@ -44,6 +44,13 @@
   filter: invert(100%) sepia(98%) saturate(7%) hue-rotate(206deg) brightness(101%) contrast(104%);
 }
 
+.cartCount {
+  margin: 0 .35rem;
+  padding: .2rem .65rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
 .signed {
   &In {
     &Box {

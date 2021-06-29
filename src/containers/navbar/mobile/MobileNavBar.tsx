@@ -14,6 +14,7 @@ import Container from '../../../components/container';
 import MenuTab from './components/MobileMenuTab';
 import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
+import { useCart } from '../../../helpers/hooks/useCart';
 
 type Props = {
   config: {
@@ -25,6 +26,7 @@ type Props = {
 
 const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
   const user = useUser();
+  const cart = useCart();
   const [ session ] = useSession();
 
   return (
@@ -42,17 +44,24 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
           link={ link.HOME } />     
         <div className={ mainStyles.icons || '' }>
           <Icon 
+            left
             styles={ mainStyles }
             link={ config.icons[0].link as string }
             src={ config.icons[0].src as string }
             alt={ config.icons[0].alt as string }
             width={ config.icons[0].width as number }
             height={ config.icons[0].height as number } 
-          />
+          >
+          {cart.items.length > 0
+          ? <a className={mainStyles.cartCount}>{<span>{cart.getCount()}</span>}</a>
+          : <div className={mainStyles.emptyCart} />
+          }
+          </Icon>
           {
             session
             ? <button onClick={() => user.signOut(user.id as number)}>Sign Out</button>
             : <Icon 
+                left
                 styles={ mainStyles }
                 link={ config.icons[1].link as string }
                 src={ config.icons[1].src as string }

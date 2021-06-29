@@ -10,6 +10,7 @@ import profileStyles from './styles/Profile.module.scss';
 
 import { strShortener } from '../../../helpers/functions';
 import { useUser } from '../../../helpers/hooks/useUser';
+import { useCart } from '../../../helpers/hooks/useCart';
 
 import Logo from '../../../components/logo';
 import Container from '../../../components/container';
@@ -31,6 +32,7 @@ type Props = {
 
 const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
   const user = useUser();
+  const cart = useCart();
   const [ session ] = useSession();
 
   return (
@@ -81,9 +83,10 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
                 width={config.profile[0].width}
                 height={config.profile[0].height}
               >
-              <a className={ profileStyles.tabText } >
-                { config.profile[0].name }
-              </a>
+              {cart.items.length > 0
+              ? <a className={profileStyles.cartCount}>{cart.getCount()}</a>
+              : <a className={ profileStyles.tabText }>{ config.profile[0].name }</a>
+              }
               </BaseIcon>
               {
                 !session ?

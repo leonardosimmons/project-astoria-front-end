@@ -30,7 +30,7 @@ export function useCart() {
   // loads current users cart
   React.useEffect(() => {
     get();
-  }, []);
+  }, [cart.user]);
 
   // auto update total count
   React.useEffect(() => {
@@ -73,6 +73,16 @@ export function useCart() {
     dispatch(getUserCart());
   };
 
+  function getCount(): number {
+    let count: number = 0;
+
+    cart.items.forEach((item: ProductCartToken) => {
+      count = count + item.order.quantity;
+    });
+
+    return count;
+  };
+
   function remove(id: number): void {
     dispatch(removeFromCart(id));
   };
@@ -102,6 +112,7 @@ export function useCart() {
     assignUser,
     isEmpty,
     get,
+    getCount,
     remove,
     reset,
     updateCount,
