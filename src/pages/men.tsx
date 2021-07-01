@@ -99,18 +99,18 @@ function MensPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX
             <ProductGrid 
               oneXtwo
               grid={ styles.productSectionOne }
-              blockOne={ <PreviewCard fill priority={true} config={ data.card[0] } styles={ promoStyles }/> }
-              blockTwo={ <PreviewCard fill priority={true} config={ data.card[1] } styles={ promoStyles }/> }
-              blockThree={ <PreviewCard fill priority={true} config={ data.card[2] } styles={ promoStyles }/> }
+              blockOne={ <PreviewCard fill priority={true} config={ data.card[4] } styles={ promoStyles }/> }
+              blockTwo={ <PreviewCard fill priority={true} config={ data.card[0] } styles={ promoStyles }/> }
+              blockThree={ <PreviewCard fill priority={true} config={ data.card[7] } styles={ promoStyles }/> }
               styles={ styles } />
             <ProductGrid even grid={ styles.productSectionTwo }>
               <PreviewCard fill config={ data.card[3] } styles={ promoStyles }/>
-              <PreviewCard fill config={ data.card[1] } styles={ promoStyles }/>
+              <PreviewCard fill config={ data.card[6] } styles={ promoStyles }/>
             </ProductGrid>
             <ProductGrid even grid={ styles.productSectionThree }>
-              <PreviewCard fill config={ data.card[1] } styles={ promoStyles }/>
               <PreviewCard fill config={ data.card[2] } styles={ promoStyles }/>
-              <PreviewCard fill config={ data.card[3] } styles={ promoStyles }/>
+              <PreviewCard fill config={ data.card[1] } styles={ promoStyles }/>
+              <PreviewCard fill config={ data.card[5] } styles={ promoStyles }/>
             </ProductGrid>
           </ContentBox>
         </section>
