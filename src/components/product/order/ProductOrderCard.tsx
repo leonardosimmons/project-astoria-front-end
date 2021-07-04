@@ -36,7 +36,9 @@ const ProductOrderCard: React.FunctionComponent<Props> = ({ token, remove, chose
               <BaseHeading classes={styles.detailsHeading}>
                 <h2>{token.product.details.name}</h2>
                 <p>{`Style# ${token.product.details.style}`}</p>
-                <p>{`Size: ${token.order.size}`}</p>
+                {token.order.size !== 'other' &&
+                   <p>{`Size: ${token.order.size}`}</p>
+                }
               </BaseHeading>
               <div className={styles.detailsAvail}>
                 <p>{'AVAILABLE'}</p>

@@ -114,7 +114,7 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
       product: data.product,
       order: {
         id: 0,
-        size: chosenSizeRef.current as string,
+        size: chosenSizeRef.current ? chosenSizeRef.current as string : 'other',
         quantity: 1
       }
     };
