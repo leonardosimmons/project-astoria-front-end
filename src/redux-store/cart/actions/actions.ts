@@ -57,15 +57,22 @@ export function getUserCart(): AppThunk {
     const ISSERVER = typeof window === 'undefined';
     
     if (!ISSERVER) {
-      const token: string = JSON.parse(window.localStorage.getItem('auth-token') as string);
-      const http: HttpController = new HttpController(token);
+      const buffer: string = window.localStorage.getItem('auth-token') as string;
+      
+      if (buffer) {
+        const token: string = JSON.parse(buffer);
+        const http: HttpController = new HttpController(token);
 
-      if (token) {
-        const cart: Array<ProductCartToken> = await http.get(process.env.NEXT_PUBLIC_GET_USER_CART as string);
-        dispatch(resetCart());
-        
-        for(let i=0; i < cart.length; i++) {
-          dispatch(addProductToCart(cart[i]));
+        try {
+          const cart: Array<ProductCartToken> = await http.get(process.env.NEXT_PUBLIC_GET_USER_CART as string);
+          dispatch(resetCart());
+          
+          for(let i=0; i < cart.length; i++) {
+            dispatch(addProductToCart(cart[i]));
+          }
+        }
+        catch(err) {
+          console.log(err);
         }
       }
     }
