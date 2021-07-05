@@ -99,18 +99,17 @@ function WomensPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): J
             <ProductGrid 
               oneXtwo
               grid={ styles.productSectionOne }
-              blockOne={ <PromoCard fill priority={true} config={ data.cards[0] } styles={ promoStyles }/> }
-              blockTwo={ <PromoCard fill priority={true} config={ data.cards[1] } styles={ promoStyles }/> }
-              blockThree={ <PromoCard fill priority={true} config={ data.cards[2] } styles={ promoStyles }/> }
+              blockOne={ <PromoCard priority fill config={ data.card[0] } styles={ promoStyles }/> }
+              blockTwo={ <PromoCard priority fill config={ data.card[7] } styles={ promoStyles }/> }
+              blockThree={ <PromoCard priority fill config={ data.card[2] } styles={ promoStyles }/> }
               styles={ styles } />
             <ProductGrid even grid={ styles.productSectionTwo }>
-              <PromoCard fill config={ data.cards[3] } styles={ promoStyles }/>
-              <PromoCard fill config={ data.cards[5] } styles={ promoStyles }/>
+              <PromoCard fill config={ data.card[3] } styles={ promoStyles }/>
+              <PromoCard fill config={ data.card[4] } styles={ promoStyles }/>
             </ProductGrid>
             <ProductGrid even grid={ styles.productSectionThree }>
-              <PromoCard fill config={ data.cards[4] } styles={ promoStyles }/>
-              <PromoCard fill config={ data.cards[7] } styles={ promoStyles }/>
-              <PromoCard fill config={ data.cards[6] } styles={ promoStyles }/>
+              <PromoCard fill config={ data.card[5] } styles={ promoStyles }/>
+              <PromoCard fill config={ data.card[6] } styles={ promoStyles }/>
             </ProductGrid>
           </ContentBox>
         </section>
