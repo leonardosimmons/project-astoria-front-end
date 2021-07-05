@@ -7,6 +7,7 @@ import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/men/MensPage.module.scss';
 import promoStyles from '../containers/pages/men/MensPromoCardLrg.module.scss';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -15,7 +16,6 @@ import MainHeader from '../containers/pages/men/header';
 import ProductGrid from '../components/grid';
 import PreviewCard from '../components/promo/card';
 import PromoBanner from '../components/promo/banner';
-import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
@@ -99,9 +99,9 @@ function MensPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX
             <ProductGrid 
               oneXtwo
               grid={ styles.productSectionOne }
-              blockOne={ <PreviewCard fill priority={true} config={ data.card[4] } styles={ promoStyles }/> }
-              blockTwo={ <PreviewCard fill priority={true} config={ data.card[0] } styles={ promoStyles }/> }
-              blockThree={ <PreviewCard fill priority={true} config={ data.card[7] } styles={ promoStyles }/> }
+              blockOne={ <PreviewCard priority fill config={ data.card[4] } styles={ promoStyles }/> }
+              blockTwo={ <PreviewCard priority fill config={ data.card[0] } styles={ promoStyles }/> }
+              blockThree={ <PreviewCard priority fill config={ data.card[7] } styles={ promoStyles }/> }
               styles={ styles } />
             <ProductGrid even grid={ styles.productSectionTwo }>
               <PreviewCard fill config={ data.card[3] } styles={ promoStyles }/>
