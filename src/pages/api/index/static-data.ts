@@ -1,85 +1,20 @@
+
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IndexSectionData } from '../../../utils/types';
+import { IndexStaticSectionData } from '../../../utils/types';
 import { link } from '../../../utils/keys';
 
 
-export default function sectionData(_: NextApiRequest, res: NextApiResponse<IndexSectionData>) 
+export default function sectionData(_: NextApiRequest, res: NextApiResponse<IndexStaticSectionData>) 
 {
   res.status(200).json
   (
     {
-      one: 
-      {
-        img: {
-          src: '/images/products/handbags/Handbag01.jpg',
-          alt: 'handbag',
-          width: 750,
-          height: 750, 
-        },
-        text: {
-          heading: 'epilogue',
-          subHeading: 'Astoria OR 1958 mediam tote'
-        },
-        btn: {
-          text: 'shop totes',
-          link: link.HANDBAGS,
-        },
-        tag: {
-          img: {
-            src: '/images/products/handbags/Handbag-decal01.jpg',
-            alt: 'handbag',
-            width: 100,
-            height: 100
-          },
-          txt: {
-            heading: 'Handbags',
-            body: 'A cult fabric is imagined through the Astoria lens with the emblematic monogram motif.',
-          },
-          btn: {
-            text: 'shop totes',
-            link: link.HANDBAGS
-          }
-        }
-      },
       two: {
           headingOne: 'Men\'s Collection',
           subHeadOne: 'Epilogue',
         btn: {
           text: 'SHOP MEN\'S FASHION',
           link: link.MEN
-        }
-      },
-      three:
-      {
-        img: {
-          src: '/images/products/women/footwear/Sandal01.jpg',
-          alt: 'women\'s sandal',
-          width: 675,
-          height: 675, 
-        },
-        text: {
-          heading: 'epilogue',
-          subHeading: 'Women\'s leather platform espadrille'
-        },
-        btn: {
-          text: 'Shop Women\'s Shoes',
-          link: link.WOMEN
-        },
-        tag: {
-          img: {
-            src: '/images/products/women/footwear/Sandal-decal01.jpg',
-            alt: 'sandals',
-            width: 100,
-            height: 100
-          },
-          txt: {
-            heading: 'Espadrilles',
-            body: 'Brought to life in black leather for the Epilogue collection is the espadrille sandal with a cord wedge-shaped heel.',
-          },
-          btn: {
-            text: 'SHOP SHOES',
-            link: link.WOMEN
-          }
         }
       },
       four: {

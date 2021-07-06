@@ -21,8 +21,8 @@ const Tag: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
           className={ styles.image } 
           src={ config.img.src }
           alt={ config.img.alt }
-          width={ config.img.width }
-          height={ config.img.height }
+          width={ config.img.width as number }
+          height={ config.img.height as number}
         />
         <TextBox 
           subHeadOne={ config.txt.heading }
@@ -30,7 +30,7 @@ const Tag: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
           styles={ styles } />
         <Button
           styles={ styles } 
-          text={ config.btn.text.toUpperCase() }
+          text={ (config.btn.text as string).toUpperCase() }
           link={ config.btn.link }
           classes={'relative btn-activeFocus'}/>
       </ContentBox>

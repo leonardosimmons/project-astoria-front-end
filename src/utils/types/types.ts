@@ -263,10 +263,8 @@ export type Text = {
 //export type ThunkAction<R, S, E, A extends Action> = (dispatch: ThunkDispatch<S, E, A>, getState: () => S, extraArgument: E) => R;
 
 //** --------------------  INDEX PAGE  -------------------- **//
-export type IndexSectionData = {
-  one: FeaturedProduct;
+export type IndexStaticSectionData = {
   two: Header;
-  three: FeaturedProduct;
   four: Header;
   appt: {
     text: {
@@ -283,8 +281,9 @@ export type IndexHeaderData = Header[];
 
 export type IndexPageData = {
   nav: NavbarData;
-  section: IndexSectionData;
   header: IndexHeaderData;
+  section: IndexStaticSectionData;
+  featured: Array<Product>;
 };
 
 export type IndexPageContext = {

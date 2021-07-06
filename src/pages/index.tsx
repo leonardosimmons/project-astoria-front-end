@@ -25,19 +25,22 @@ const {
   NAVBAR_DESKTOP_API,
   NAVBAR_MOBILE_API,
   INDEX_HEADER_DATA_API,
-  INDEX_PAGE_DATA_API
+  INDEX_PAGE_DATA_API,
+  STATIC_PRODUCT_API, 
+  FEATURED_PRODUCTS
 } = process.env;
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios.all([
+  const data: IndexPageData | undefined = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
+    axios.get(STATIC_PRODUCT_API as string + FEATURED_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, header, data) => { 
-    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && data.status === 200)
+  .then(axios.spread((desktop, mobile, header, info, featured) => { 
+    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && info.status === 200 && featured.status === 200)
     {
       const dataToken: IndexPageData = {
         nav: {
@@ -45,13 +48,14 @@ export const getStaticProps: GetStaticProps = async () => {
           mobile: mobile.data,
         },
         header: header.data,
-        section: data.data
+        section: info.data,
+        featured: featured.data.payload
       };
 
       return dataToken;
     }
   }))
-  .catch(err => { 
+  .catch(err => {
     throw new Error(err.message); 
   });
 
@@ -72,12 +76,12 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
 
   return (
     <Layout 
-      parent={ page.HOME } 
+      parent={page.HOME} 
       title={`Astoria | Home`}
       classes={`relative`}
-      styles={ styles }
-      desktop={ config.nav.desktop }
-      mobile={ config.nav.mobile }
+      styles={styles}
+      desktop={config.nav.desktop}
+      mobile={config.nav.mobile}
       header={
         <React.Fragment>
           {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}
@@ -85,12 +89,12 @@ function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.
         </React.Fragment>
       }
     >
-      <Container main parent={ page.HOME } classes={`relative`}>
-        <SectionOne config={ config.section.one }/>
-        <SectionTwo config={ config.section.two }/>
-        <SectionThree config={ config.section.three }/>
-        <SectionFour config={ config.section.four }/>
-        <AppointmentSection config={ config.section.appt } />
+      <Container main parent={page.HOME} classes={`relative`}>
+        <SectionOne config={config.featured[1]}/>
+        <SectionTwo config={config.section.two}/>
+        <SectionThree config={config.featured[0]}/>
+        <SectionFour config={config.section.four}/>
+        <AppointmentSection config={config.section.appt} />
       </Container>
     </Layout>
   );
