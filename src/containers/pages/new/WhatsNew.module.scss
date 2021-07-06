@@ -5,3 +5,9 @@
 .hide {
   display: none;
 }
+
+.banner {
+  & > div div h2 {
+    font-weight: 400;
+  }
+}

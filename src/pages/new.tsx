@@ -100,7 +100,7 @@ function WhatsNewPage({ data }: InferGetStaticPropsType<typeof getStaticProps>):
         <NewInPromo priority={true} cards={ data.card }/>
         {
           data.page.promoBanner.map((banner: Header, index: number) => (
-            <div className={'relative'} key={ index }>
+            <div className={`relative ${styles.banner}`} key={ index }>
               <PromoBanner config={ banner } />
             </div>
           ))

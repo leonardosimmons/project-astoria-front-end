@@ -10,7 +10,7 @@ export default function handbagPageData(_: NextApiRequest, res: NextApiResponse<
     {
       header: {
         heading: 'HANDBAGS',
-        bgImage: '/images/other/Handbag02.jpg'
+        bgImage: '/images/other/handbag-03.jpg'
       },
       promoCard: 
       [

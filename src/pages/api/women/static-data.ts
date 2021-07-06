@@ -104,7 +104,7 @@ export default function womensPageData(_: NextApiRequest, res: NextApiResponse<M
       ],
       promoBanner: {
         bgImage: '/images/other/Handbag02.jpg',
-        heading: 'Test Promo Banner Box',
+        heading: 'HANDBAGS',
         btn: {
           text: 'SHOP NOW',
           link: link.HANDBAGS
