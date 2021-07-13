@@ -26,6 +26,7 @@ import Container from '../components/container';
 import ContentBox from '../components/box/ContentBox';
 import TextBox from '../components/text';
 import RegistrationForm from '../containers/pages/register/form';
+import { RegistrationFormActions } from '../containers/pages/register/state/action-types';
 
 
 const {
@@ -60,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 
 function registerPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
-  const dispatch: React.Dispatch<AppActions> = useDispatch();
+  const dispatch: React.Dispatch<RegistrationFormActions> = useDispatch();
   const validate: ValidationController = new ValidationController();
 
   const usernameRef = React.useRef<string>();
