@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { page } from '../utils/keys';
 import { NavbarData, OrderShippingInfo } from '../utils/types';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { handleInputRef, preventDefault } from '../helpers/functions';
 
 import styles from '../containers/pages/shipping/Shipping.module.scss';
@@ -23,7 +23,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data: NavbarData | undefined = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function ShippingPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function ShippingPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const cart = useCart();
   const order = useOrder();
   const router = useRouter();

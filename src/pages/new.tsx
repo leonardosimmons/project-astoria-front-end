@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { page } from '../utils/keys';
 import { Header, MainProductPageData, Product, ProductCard } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
@@ -27,7 +27,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data: MainProductPageData | undefined = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function WhatsNewPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function WhatsNewPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   // Watches users scroll position/ controlls navbar fade
   useNavScrollConfig();
 

@@ -1,16 +1,15 @@
 
 import React from 'react';
 import axios from 'axios';
-import { Dispatch } from 'redux';
 import { AppActions } from '../redux-store/action-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { InferGetStaticPropsType, GetStaticProps } from 'next';
-import { handleInputRef, preventDefault } from '../helpers/functions';
-import { NavbarData, RegistrationFormContext } from '../utils/types';
-import { AppState } from '../redux-store/reducers';
+import { useDispatch} from 'react-redux';
+import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
+import { handleInputRef, preventDefault } from '../helpers/functions';
+
 import 
 { 
   setAge, 
@@ -35,7 +34,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
@@ -60,10 +59,9 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function registerPage({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function registerPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const dispatch: React.Dispatch<AppActions> = useDispatch();
   const validate: ValidationController = new ValidationController();
-  const context: RegistrationFormContext = useSelector((state: AppState) => state.regForm);
 
   const usernameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();

@@ -3,7 +3,7 @@ import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { NextRouter, useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
@@ -24,7 +24,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function signInPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function signInPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const [ session ] = useSession();
   const router: NextRouter = useRouter();
   const user = useUser();

@@ -1,6 +1,6 @@
 
 import axios, { AxiosResponse } from 'axios';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { page } from '../utils/keys';
 import { MainProductPageData, Product, ProductCard } from '../utils/types';
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
@@ -27,7 +27,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data: MainProductPageData | undefined = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function MensPage({ data }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function MensPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   /* -----------------  USER SCROLL POSITION  ----------------- */
   useNavScrollConfig();
 

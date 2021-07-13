@@ -2,7 +2,7 @@
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { NextRouter, useRouter } from 'next/router';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType } from 'next';
 import { CartContext, NavbarData, ProductCartToken } from '../utils/types';
 import { page } from '../utils/keys';
 
@@ -24,7 +24,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-function UserCart({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const cart = useCart();
   const qRef = React.useRef<string>('');
   const router: NextRouter = useRouter();

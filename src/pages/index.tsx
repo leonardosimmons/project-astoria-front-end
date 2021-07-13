@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { IndexPageData } from '../utils/types';
 import { page } from '../utils/keys';
 
@@ -31,7 +31,7 @@ const {
 } = process.env;
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data: IndexPageData | undefined = await axios.all([
     axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 
-function Index({ config }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+function Index({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   // Watches user scroll
   useNavScrollConfig();
   
