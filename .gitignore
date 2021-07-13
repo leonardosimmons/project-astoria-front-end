@@ -33,17 +33,9 @@ yarn-error.log*
 
 
 # User
-/server
-/public/assets
 /src/buffer
 /src/pages/test.tsx
 /src/*.txt
-*.png
-*.jpg
-*.JPG
-*.jpeg
-*.svg
-*.mp4
 favicon.ico
 temp.tsx
 .vscode
