@@ -36,12 +36,12 @@ const Appointment: React.FunctionComponent<Props> = ({ config }): JSX.Element =>
           styles={ styles }/>
         <Container styles={ styles }>
           <Button 
-            text={ config.btnOne.text.toUpperCase() }
+            text={ (config.btnOne.text as string).toUpperCase() }
             link={ config.btnOne.link } 
             styles={ styles }/>
           <div className={ styles.btnSpacer }></div>
           <Button 
-            text={ config.btnTwo.text.toUpperCase()}
+            text={ (config.btnTwo.text as string).toUpperCase()}
             link={ config.btnTwo.link }  
             styles={ styles }
             classes={'relative'}/>
