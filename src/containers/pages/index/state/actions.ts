@@ -1,8 +1,8 @@
 
-import { AppActions } from '../../../../redux-store/action-types';
+
 import { FIRST_LOAD, IndexPageActions, INTRO_MODAL_TOGGLE } from './action-types';
 
-export const firstLoad = (): AppActions => (
+export const firstLoad = (): IndexPageActions => (
   {
     type: FIRST_LOAD
   }
