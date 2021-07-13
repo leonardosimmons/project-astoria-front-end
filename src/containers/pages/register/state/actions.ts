@@ -7,11 +7,12 @@ import
   SET_USERNAME, 
   SET_PASSWORD, 
   SET_PW_CHECK, 
-  TOGGLE_ERROR_FLAG 
+  TOGGLE_ERROR_FLAG, 
+  RegistrationFormActions
 } from './action-types';
 
 
-export const setUsername = (name: string): AppActions => 
+export const setUsername = (name: string): RegistrationFormActions => 
 (
   {
     type: SET_USERNAME,
@@ -19,7 +20,7 @@ export const setUsername = (name: string): AppActions =>
   }
 );
 
-export const setEmail = (email: string): AppActions => 
+export const setEmail = (email: string): RegistrationFormActions => 
 (
   {
     type: SET_EMAIL,
@@ -27,7 +28,7 @@ export const setEmail = (email: string): AppActions =>
   }
 );
 
-export const setAge = (age: Combinable): AppActions => 
+export const setAge = (age: Combinable): RegistrationFormActions => 
 (
   {
     type: SET_AGE,
@@ -35,7 +36,7 @@ export const setAge = (age: Combinable): AppActions =>
   }
 );
 
-export const setPassword = (password: string): AppActions => 
+export const setPassword = (password: string): RegistrationFormActions => 
 (
   {
     type: SET_PASSWORD,
@@ -43,7 +44,7 @@ export const setPassword = (password: string): AppActions =>
   }
 );
 
-export const setPwCheck = (password: string): AppActions => 
+export const setPwCheck = (password: string): RegistrationFormActions => 
 (
   {
     type: SET_PW_CHECK,
@@ -51,4 +52,4 @@ export const setPwCheck = (password: string): AppActions =>
   }
 );
 
-export const toggleErrorFlag = (): AppActions => ({ type: TOGGLE_ERROR_FLAG });
+export const toggleErrorFlag = (): RegistrationFormActions => ({ type: TOGGLE_ERROR_FLAG });
