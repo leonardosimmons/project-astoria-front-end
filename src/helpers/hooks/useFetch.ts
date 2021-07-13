@@ -3,7 +3,7 @@ import { HttpController } from '../HttpController';
 
 export function useFetch(baseUrl?: string, headers?: any) 
 {
-  const http: HttpController = new HttpController(baseUrl, headers);
+  const http: HttpController = new HttpController(baseUrl);
   
   function get(url: string) {
     return http.get(url);
@@ -18,7 +18,7 @@ export function useFetch(baseUrl?: string, headers?: any)
   };
 
   return {
-    data: http.data,
+    data: http.result,
     get,
     post,
     put
