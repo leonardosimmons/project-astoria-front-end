@@ -32,8 +32,15 @@ const {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
+    const paths: Array<StaticPath> = [];
     const data: Data<Array<Product>> = await axios.get(STATIC_PRODUCT_API as string + '/data', { headers: { 'Content-Type': 'application/json' } }).then(res => res.data);
-    const paths: Array<StaticPath> = data.payload.map((product: Product) => ({ params: {slug: product.meta.slug} }));
+    const buffer: Array<StaticPath> = data.payload.map((product: Product) => ({ params: {slug: product.meta.slug} }));
+
+    buffer.map((prod: StaticPath) => {
+      if(prod.params.slug !== '') {
+        paths.push(prod);
+      }
+    })
 
     return {
       paths,
