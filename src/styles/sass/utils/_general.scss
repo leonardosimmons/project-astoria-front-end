@@ -42,6 +42,10 @@
 };
 
 //* -------------------- GENERAL -------------------- *//
+.hide {
+  display: none;
+}
+
 // disables users ability to select/highlight a particular element
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -61,8 +65,8 @@
   background-color: var(--black);
 }
 
-.hide {
-  display: none;
+.relative {
+  position: relative;
 }
 
 //* --------------------- HOVER --------------------- *//
