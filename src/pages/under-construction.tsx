@@ -14,24 +14,18 @@ import Container from '../components/container';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   UNDER_CONSTRUCTION_PAGE_DATA_API
 } = process.env;
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(UNDER_CONSTRUCTION_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, staticData) => { 
-    if(desktop.status === 200 && mobile.status === 200)
+  .then(axios.spread((staticData) => { 
+    if(staticData.status === 200)
     {
       const dataToken = {
-        desktop: desktop.data,
-        mobile: mobile.data,
         data: staticData.data
       };
 
@@ -42,18 +36,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      navConfig: {
-        desktop: data?.desktop,
-        mobile: data?.mobile,
-        data: data?.data
-      },
       data: data?.data
     }
   };
 };
 
 
-function UnderConstructionPage({ navConfig, data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+function UnderConstructionPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   const prevPage = React.useCallback(() => {
     window.history.back();
@@ -64,8 +53,6 @@ function UnderConstructionPage({ navConfig, data }: InferGetServerSidePropsType<
       styles={ style } 
       parent={ page.UNDER_CONSTRUCTION } 
       title={'Under Construction...'}
-      desktop={navConfig.desktop}
-      mobile={navConfig.mobile}
     >
       <Container main styles={ style } parent={ page.UNDER_CONSTRUCTION } >
         <ContentBox

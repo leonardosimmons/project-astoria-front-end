@@ -16,15 +16,8 @@ import Logo from '../../../components/logo';
 import Icon from '../../../components/icon';
 import { useCart } from '../../../helpers/hooks/useCart';
 
-type Props = {
-  config: {
-    icons: _Icon[];
-    menu: NavbarMobileMenu;
-  };
-};
 
-
-const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element => {
+const MobileNavBar: React.FunctionComponent = (): JSX.Element => {
   const user = useUser();
   const cart = useCart();
   const [ session ] = useSession();
@@ -37,7 +30,7 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
           menuStyle={ menuStyles }
           carouselStyle={ carouselStyles } 
           title={'Menu'}
-          menu={ config.menu } />
+        />
         <Logo 
           styles={ mainStyles } 
           text={'ASTORIA'}
@@ -46,11 +39,11 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
           <Icon 
             left
             styles={ mainStyles }
-            link={ config.icons[0].link as string }
-            src={ config.icons[0].src as string }
-            alt={ config.icons[0].alt as string }
-            width={ config.icons[0].width as number }
-            height={ config.icons[0].height as number } 
+            link={'/cart'}
+            src={'/icons/svg/small/briefcase.svg'}
+            alt={'cart'}
+            width={22.5}
+            height={22.5} 
           >
           {cart.items.length > 0
           ? <a className={mainStyles.cartCount}>{<span>{cart.getCount()}</span>}</a>
@@ -63,11 +56,11 @@ const MobileNavBar: React.FunctionComponent<Props> = ({ config }): JSX.Element =
             : <Icon 
                 left
                 styles={ mainStyles }
-                link={ config.icons[1].link as string }
-                src={ config.icons[1].src as string }
-                alt={ config.icons[1].alt as string }
-                width={ config.icons[1].width as number }
-                height={ config.icons[1].height as number } 
+                link={'/sign-in'}
+                src={'/icons/svg/small/profile.svg'}
+                alt={'photo'}
+                width={22.5}
+                height={22.5} 
               />
           }
         </div>

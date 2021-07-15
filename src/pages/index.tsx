@@ -22,8 +22,6 @@ import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   INDEX_HEADER_DATA_API,
   INDEX_PAGE_DATA_API,
   STATIC_PRODUCT_API, 
@@ -32,21 +30,15 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data: IndexPageData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  const data = await axios.all([
     axios.get(INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + FEATURED_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, header, info, featured) => { 
-    if(desktop.status === 200 && mobile.status === 200 && header.status === 200 && info.status === 200 && featured.status === 200)
+  .then(axios.spread((header, info, featured) => { 
+    if(header.status === 200 && info.status === 200 && featured.status === 200)
     {
-      const dataToken: IndexPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data,
-        },
+      const dataToken = {
         header: header.data,
         section: info.data,
         featured: featured.data.payload
@@ -80,8 +72,6 @@ function Index({ config }: InferGetServerSidePropsType<typeof getServerSideProps
       title={`Astoria | Home`}
       classes={`relative`}
       styles={styles}
-      desktop={config.nav.desktop}
-      mobile={config.nav.mobile}
       header={
         <React.Fragment>
           {/* context.introModal && <IntroModal btnClickHandler={ introModalToggle }/> NOTE: change classes check(below) to 'none' @ true*/}

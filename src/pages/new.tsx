@@ -4,23 +4,20 @@ import axios, { AxiosResponse } from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { page } from '../utils/keys';
 import { Header, MainProductPageData, Product, ProductCard } from '../utils/types';
-import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/new/WhatsNew.module.scss';
 import headerStyles from '../containers/pages/new/header/Header.module.scss';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
 import NewInPromo from '../containers/pages/new/sections/new-in';
 import MainHeader from '../containers/pages/new/header';
 import PromoBanner from '../components/promo/banner';
-import { rand } from '../helpers/functions/functions';
-import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   WHATS_NEW_PAGE_DATA_API,
   STATIC_PRODUCT_API,
   NEW_PRODUCTS
@@ -28,14 +25,12 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data: MainProductPageData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  const data = await axios.all([
     axios.get(WHATS_NEW_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + NEW_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, page: AxiosResponse<any>, products: AxiosResponse<any>) => {
-    if(desktop.status === 200 && mobile.status === 200 && page.status === 200 && products.status === 200)
+  .then(axios.spread((page: AxiosResponse<any>, products: AxiosResponse<any>) => {
+    if(page.status === 200 && products.status === 200)
     {
       const cards: Array<ProductCard> = products.data.payload.map((p: Product): ProductCard => ({
         img: {
@@ -52,11 +47,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
       }));
 
-      const dataToken: MainProductPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data
-        },
+      const dataToken = {
         page: page.data,
         card: cards
       };
@@ -70,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data as MainProductPageData
+      data
     }
   };
 };
@@ -87,8 +78,6 @@ function WhatsNewPage({ data }: InferGetServerSidePropsType<typeof getServerSide
     <Layout
       parent={ page.WHATS_NEW }
       title={'Astoria | What\'s New'}
-      desktop={ data.nav.desktop }
-      mobile={ data.nav.mobile }
       classes={'relative'}
       styles={ styles }
       header={

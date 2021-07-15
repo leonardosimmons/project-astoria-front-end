@@ -5,8 +5,6 @@ import { NextRouter, useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { 
   Data, 
-  NavbarDesktopData, 
-  NavbarMobileData, 
   Product, 
   ProductCartToken, 
   ProductPageData, 
@@ -28,8 +26,6 @@ import ProductDetails from '../../containers/pages/product/Details';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   STATIC_PRODUCT_API,
 } = process.env;
 
@@ -52,23 +48,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug: string = context.params!.slug as string;
 
-  const data: ProductPageData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  const data = await axios.all([
     axios.get((STATIC_PRODUCT_API + `/?loc=slug&val=${slug}`) as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, products: AxiosResponse<any>) => { 
-    if(desktop.status === 200 && mobile.status === 200 && products.status === 200)
+  .then(axios.spread((products: AxiosResponse<any>) => { 
+    if(products.status === 200)
     {
       let buffer: Product | undefined;
 
       products.data.payload.map((product: Product) => { buffer = product; });
 
-      const dataToken: ProductPageData = {
-        nav: {
-          desktop: desktop.data as NavbarDesktopData,
-          mobile: mobile.data as NavbarMobileData,
-        },
+      const dataToken = {
         product: buffer as Product
       };
 
@@ -81,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      data: data as ProductPageData
+      data: data
     }
   };
 };
@@ -134,8 +124,6 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
       styles={styles}
       title={`ASTORIA | ${data.product.details.name}`}
       classes={'relative'}
-      desktop={data.nav.desktop}
-      mobile={data.nav.mobile}
       footer={<Copyright styles={styles}/>}
     >
       <Container wrapper styles={styles}>

@@ -1,10 +1,6 @@
 
 import React from 'react';
-import axios from 'axios';
-import { AppActions } from '../redux-store/action-types';
 import { useDispatch} from 'react-redux';
-import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/register/Register.module.scss';
@@ -29,38 +25,7 @@ import RegistrationForm from '../containers/pages/register/form';
 import { RegistrationFormActions } from '../containers/pages/register/state/action-types';
 
 
-const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API
-} = process.env;
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop, mobile) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      };
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      config: data as NavbarData
-    }
-  };
-};
-
-
-function registerPage({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function registerPage(): JSX.Element {
   const dispatch: React.Dispatch<RegistrationFormActions> = useDispatch();
   const validate: ValidationController = new ValidationController();
 
@@ -96,8 +61,6 @@ function registerPage({ config }: InferGetServerSidePropsType<typeof getServerSi
       parent={ page.SIGN_IN }
       title={'ASTORIA | Sign-in'}
       classes={'relative'}
-      desktop={ config.desktop }
-      mobile={ config.mobile }
       styles={ styles }
       footer={ <Copyright /> }
     >

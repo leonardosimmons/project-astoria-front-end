@@ -19,8 +19,6 @@ import PromoBanner from '../components/promo/banner';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   MENS_PAGE_DATA_API,
   STATIC_PRODUCT_API,
   MENS_PRODUCTS,
@@ -28,14 +26,12 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data: MainProductPageData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  const data = await axios.all([
     axios.get(MENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + MENS_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>, staticData: AxiosResponse<any>, products: AxiosResponse<any>) => {
-    if(desktop.status === 200 && mobile.status === 200 && staticData.status === 200 && products.status === 200) 
+  .then(axios.spread((staticData: AxiosResponse<any>, products: AxiosResponse<any>) => {
+    if(staticData.status === 200 && products.status === 200) 
     {
       const cards: Array<ProductCard> = products.data.payload.map((p: Product): ProductCard => ({
         img: {
@@ -51,11 +47,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
       }));
 
-      const dataToken: MainProductPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data
-        },
+      const dataToken = {
         page: staticData.data,
         card: cards
       }
@@ -69,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data as MainProductPageData
+      data: data
     }
   }
 };
@@ -85,8 +77,6 @@ function MensPage({ data }: InferGetServerSidePropsType<typeof getServerSideProp
     <Layout
       parent={ page.MENS }
       title={'ASTORIA | Men\'s Fashion'}
-      desktop={ data.nav.desktop }
-      mobile={ data.nav.mobile }
       classes={'relative'}
       styles={ styles }
       header={

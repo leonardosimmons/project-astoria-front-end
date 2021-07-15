@@ -1,15 +1,22 @@
+
+import { link } from '../../../../utils/keys';
 import { BaseOptions, Direction, NavbarMenuTab } from '../../../../utils/types';
 import Icon from '../../../../components/icon';
 
-type Props = {
-  tabs: NavbarMenuTab[];
-} & BaseOptions & Direction;
+type Props = & BaseOptions & Direction;
+
+const tabs: Array<NavbarMenuTab> = [
+  { name: 'what\'s new', link: link.WHATS_NEW, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+  { name: 'men', link: link.MEN, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+  { name: 'women', link: link.WOMEN, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+  { name: 'handbags', link: link.HANDBAGS, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+  { name: 'gifts', link: link.GIFTS, src: '/icons/svg/small/triangle.svg', alt: 'icon', width: 10, height: 10 },
+];
 
 const DesktopMenuTab: React.FunctionComponent<Props> = (
   { 
     styles,
     classes, 
-    tabs, 
     uppercase, 
     column,
     right,
@@ -19,7 +26,7 @@ const DesktopMenuTab: React.FunctionComponent<Props> = (
   return (
     <div className={ styles && styles.tabs || '' }>
     {
-      tabs?.map((tab: NavbarMenuTab, index: number) => {
+      tabs.map((tab: NavbarMenuTab, index: number) => {
         const key = index + 1;
         return (
           <Icon

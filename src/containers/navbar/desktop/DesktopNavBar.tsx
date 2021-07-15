@@ -19,18 +19,10 @@ import BaseIcon from '../../../components/icon/Icon';
 
 
 type Props = {
-  config: {
-    info: NavbarMenuTabToken[];
-    menu: {
-      logo: PageLink;
-      tabs: NavbarMenuTabToken[];
-    };
-    profile:  NavbarMenuTab[];
-  };
   solid?: boolean;
 };
 
-const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.Element => {
+const DesktopNavBar: React.FunctionComponent<Props> = ({ solid }): JSX.Element => {
   const user = useUser();
   const cart = useCart();
   const [ session ] = useSession();
@@ -40,10 +32,19 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
       <Container main styles={ navbarStyles }>
         <div className={`${ infoStyles.wrapper || '' }`}>
           <Container styles={ infoStyles }>
-            <MenuTab 
+            <BaseIcon
               left
-              styles={ infoStyles }
-              tabs={ config.info as NavbarMenuTabToken[] } />
+              styles={infoStyles}
+              link={'/'}
+              src={'/icons/svg/small/phone.svg'}
+              alt={'phone number'}
+              width={10}
+              height={10}
+              >
+              <a className={infoStyles.tabText}>
+                {'+1.877.546.9043'}
+              </a>
+            </BaseIcon>
           </Container>
         </div>
         <div className={ menuStyles.wrapper || '' }>
@@ -52,15 +53,15 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               <Logo 
                 classes={'logoFont'}
                 styles={ menuStyles } 
-                text={ config.menu.logo.name as string }
-                link={ config.menu.logo.link as string } />
+                text={'ASTORIA'}
+                link={'/'} />
             </div>
             <MenuTab
               right
               column 
               uppercase
               styles={ menuStyles } 
-              tabs={ config.menu.tabs as NavbarMenuTabToken[] } />
+            />
           </Container>
         </div>
         <div className={ profileStyles.wrapper || '' }>
@@ -77,15 +78,15 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
               <BaseIcon 
                 left
                 styles={profileStyles}
-                link={config.profile[0].link}
-                src={config.profile[0].src}
-                alt={config.profile[0].alt}
-                width={config.profile[0].width}
-                height={config.profile[0].height}
+                link={'/cart'}
+                src={'/icons/svg/small/shopping-bag.svg'}
+                alt={'shopping cart'}
+                width={10}
+                height={10}
               >
               {cart.items.length > 0
               ? <a className={profileStyles.cartCount}>{cart.getCount()}</a>
-              : <a className={ profileStyles.tabText }>{ config.profile[0].name }</a>
+              : <a className={ profileStyles.tabText }>{'Cart'}</a>
               }
               </BaseIcon>
               {
@@ -94,14 +95,14 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ config, solid }): JSX.E
                   <BaseIcon 
                     left
                     styles={profileStyles}
-                    link={config.profile[1].link}
-                    src={config.profile[1].src}
-                    alt={config.profile[1].alt}
-                    width={config.profile[1].width}
-                    height={config.profile[1].height}
+                    link={'/sign-in'}
+                    src={'/icons/svg/user.svg'}
+                    alt={'icon'}
+                    width={10}
+                    height={10}
                   >
                   <a className={ profileStyles.tabText } >
-                    { config.profile[1].name }
+                    {'Sign In'}
                   </a>
                   </BaseIcon>
                 </> 

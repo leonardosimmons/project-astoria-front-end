@@ -4,7 +4,6 @@ import NavigationMenu from './MobileMenu';
 
 type Props = {
   title: string;
-  menu: NavbarMobileMenu;
   tabStyle: any;
   menuStyle: any;
   carouselStyle: any;
@@ -15,7 +14,6 @@ const NavigationMenuTab: React.FunctionComponent<Props> = (
   { 
     parent, 
     title, 
-    menu, 
     tabStyle, 
     menuStyle, 
     carouselStyle, 
@@ -34,7 +32,7 @@ const NavigationMenuTab: React.FunctionComponent<Props> = (
           parent={ parent as string }
           styles={ menuStyle }
           carouselStyles={ carouselStyle }
-          menu={ menu } />
+        />
       </div> 
       <p className={ tabStyle.tabText }>{ title }</p>
     </div>

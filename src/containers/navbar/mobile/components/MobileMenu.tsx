@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { link } from '../../../../utils/keys';
 import { BaseOptions, NamedLink, NavbarMobileMenu } from '../../../../utils/types';
@@ -8,14 +9,26 @@ import MenuCarousel from './MobileMenuCarousel';
 
 type Props = {
   parent: string;
-  menu: NavbarMobileMenu;
   carouselStyles: any;
 } & BaseOptions;
 
+
+const menu: NavbarMobileMenu = {
+  tabs: 
+  [
+    { name: 'what\'s new', link: link.WHATS_NEW },
+    { name: 'men', link: link.MEN },
+    { name: 'women', link: link.WOMEN },
+    { name: 'handbags', link: link.HANDBAGS },
+    { name: 'gifts', link: link.GIFTS },
+  ],
+  scrollText: ['Save your favorite items', 'Browse a personailized list created just for you', 'View your recent orders, track shipping and manage returns']
+};
+
+
 const NavigationMenu: React.FunctionComponent<Props> = (
   { 
-    parent, 
-    menu, 
+    parent,
     carouselStyles,
     styles 
   }

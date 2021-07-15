@@ -18,8 +18,6 @@ import Copyright from '../components/copyright';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   HANDBAG_PAGE_DATA_API,
   HANDBAG_PRODUCTS,
   STATIC_PRODUCT_API,
@@ -28,13 +26,11 @@ const {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(HANDBAG_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + HANDBAG_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, page, products) => {
-    if(desktop.status === 200 && mobile.status === 200 && page.status === 200 && products.status === 200)
+  .then(axios.spread((page, products) => {
+    if(page.status === 200 && products.status === 200)
     {
       const cards: Array<ProductCard> = products.data.payload.map((p: Product): ProductCard => ({
         img: {
@@ -51,11 +47,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }));
 
 
-      const dataToken: MainProductPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data
-        },
+      const dataToken = {
         page: page.data,
         card: cards
       };
@@ -67,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data as MainProductPageData 
+      data
     }
   };
 };
@@ -81,8 +73,6 @@ function Handbags({ data }: InferGetServerSidePropsType<typeof getServerSideProp
     <Layout
       parent={ page.HANDBAGS }
       title={'ASTORIA | Handbags'}
-      desktop={ data.nav.desktop }
-      mobile={ data.nav.mobile }
       classes={'relative'}
       styles={ styles }
       header={

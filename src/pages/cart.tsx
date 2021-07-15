@@ -1,9 +1,7 @@
 
 import React from 'react';
-import axios, { AxiosResponse } from 'axios';
 import { NextRouter, useRouter } from 'next/router';
-import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType } from 'next';
-import { CartContext, NavbarData, ProductCartToken } from '../utils/types';
+import { CartContext, ProductCartToken } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
@@ -18,37 +16,7 @@ import OrderPreview from '../containers/pages/cart/preview';
 import OrderSummary from '../containers/pages/cart/summary';
 
 
-const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API
-} = process.env;
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      }
-      
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-  
-  return {
-    props: {
-      config: data as NavbarData
-    }
-  };
-};
-
-function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function UserCart(): JSX.Element {
   const cart = useCart();
   const qRef = React.useRef<string>('');
   const router: NextRouter = useRouter();
@@ -74,8 +42,6 @@ function UserCart({ config }: InferGetServerSidePropsType<typeof getServerSidePr
       parent={ page.SIGN_IN }
       title={'ASTORIA | Cart'}
       classes={'relative'}
-      desktop={ config.desktop }
-      mobile={ config.mobile }
       styles={ styles }
       footer={ <Copyright /> }
     >

@@ -1,10 +1,8 @@
 
 import React from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { page } from '../utils/keys';
-import { NavbarData, OrderShippingInfo } from '../utils/types';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { OrderShippingInfo } from '../utils/types';
 import { handleInputRef, preventDefault } from '../helpers/functions';
 
 import styles from '../containers/pages/shipping/Shipping.module.scss';
@@ -17,40 +15,7 @@ import Copyright from '../components/copyright';
 import Input from '../components/input';
 
 
-const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API
-} = process.env;
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data: NavbarData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
-  ])
-  .then(axios.spread((desktop, mobile) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      };
-
-      return dataToken
-    }
-  }))
-  .catch(err => {
-    throw new Error(err.message);
-  });
-
-  return {
-    props: {
-      data: data as NavbarData
-    }
-  };
-};
-
-
-function ShippingPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function ShippingPage(): JSX.Element {
   const cart = useCart();
   const order = useOrder();
   const router = useRouter();
@@ -105,8 +70,6 @@ function ShippingPage({ data }: InferGetServerSidePropsType<typeof getServerSide
       parent={page.SHIPPING}
       title={'ASTORIA | Shipping'}
       styles={styles}
-      desktop={data.desktop}
-      mobile={data.mobile}
       footer={<Copyright />}
     >
       <Container wrapper styles={styles} classes={'noselect'}>

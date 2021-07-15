@@ -1,13 +1,11 @@
 
 import React from 'react';
-import axios, { AxiosResponse } from 'axios';
 import { NextRouter, useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { NavbarData } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/sign-in/SignIn.module.scss';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 import { useUser } from '../helpers/hooks/useUser';
 
 import Layout from '../containers/layout';
@@ -15,41 +13,9 @@ import Container from '../components/container';
 import ContentBox from '../components/box';
 import TextBox from '../components/text';
 import Copyright from '../components/copyright';
-import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
-const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API
-} = process.env;
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } })
-  ])
-  .then(axios.spread((desktop: AxiosResponse<any>, mobile: AxiosResponse<any>) => {
-    if(desktop.status === 200 && mobile.status === 200) {
-      const dataToken: NavbarData = {
-        desktop: desktop.data,
-        mobile: mobile.data
-      }
-
-      return dataToken;
-    }
-  }))
-  .catch(err => { throw new Error(`Error: ${ err.message }`)});
-
-  return {
-    props: {
-      data: data as NavbarData
-    }
-  }
-};
-
-
-function signInPage({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function signInPage(): JSX.Element {
   const [ session ] = useSession();
   const router: NextRouter = useRouter();
   const user = useUser();
@@ -77,8 +43,6 @@ function signInPage({ data }: InferGetServerSidePropsType<typeof getServerSidePr
       parent={ page.SIGN_IN }
       title={'ASTORIA | Sign-in'}
       classes={'relative'}
-      desktop={data.desktop}
-      mobile={data.mobile}
       styles={ styles }
       footer={ <Copyright /> }
     >

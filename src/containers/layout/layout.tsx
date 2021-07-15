@@ -8,13 +8,9 @@ import MobileNavbar from '../navbar/mobile';
 type Props = {
   parent: string;
   title: string;
-  desktop: any;
-  mobile: any;
   styles: any;
   solid?: boolean;
   classes?: string;
-  desktopNav?: JSX.Element | HTMLElement;
-  mobileNav?: JSX.Element | HTMLElement;
   header?: JSX.Element | HTMLElement;
   footer?: JSX.Element | HTMLElement;
 };
@@ -23,10 +19,6 @@ const Layout: React.FunctionComponent<Props> = (
   { 
     parent,
     title,
-    desktopNav,
-    desktop, 
-    mobileNav, 
-    mobile,
     header,
     footer,
     styles,
@@ -46,8 +38,8 @@ const Layout: React.FunctionComponent<Props> = (
       <div id="modal-root" />
       <div id="app" className={`${ styles.page || '' } ${ classes }`}>
         <nav className={`${ styles.nav || '' } ${ parent ? parent + '__nav' : ''} ${ parent === page.UNDER_CONSTRUCTION ? 'none': ''}`}>
-          <DesktopNavBar solid={ solid } config={ desktop }/>
-          <MobileNavbar config={ mobile }/>
+          <DesktopNavBar solid={ solid }/>
+          <MobileNavbar/>
         </nav>
         { header && <header className={`${ styles.header || '' } ${ parent ? parent + '__header' : ''}`}>{ header }</header> }
         { children && <main className={`${ styles.main || '' } ${ parent ? parent + '__main' : ''}`}>{ children }</main> }

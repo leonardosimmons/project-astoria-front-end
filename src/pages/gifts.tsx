@@ -17,8 +17,6 @@ import PreviewCard from '../components/promo/card';
 
 
 const {
-  NAVBAR_DESKTOP_API,
-  NAVBAR_MOBILE_API,
   GIFTS_PAGE_DATA_API,
   GIFT_PRODUCTS,
   STATIC_PRODUCT_API
@@ -26,14 +24,12 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data: MainProductPageData | undefined = await axios.all([
-    axios.get(NAVBAR_DESKTOP_API as string, { headers: { 'Content-Type': 'application/json' } }),
-    axios.get(NAVBAR_MOBILE_API as string, { headers: { 'Content-Type': 'application/json' } }),
+  const data = await axios.all([
     axios.get(GIFTS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + GIFT_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
-  .then(axios.spread((desktop, mobile, page, products) => {
-    if(desktop.status === 200 && mobile.status === 200 && page.status === 200 && products.status === 200) {
+  .then(axios.spread((page, products) => {
+    if(page.status === 200 && products.status === 200) {
       const cards: Array<ProductCard> = products.data.payload.map((p: Product): ProductCard => ({
         img: {
           src: p.preview.image.src,
@@ -48,11 +44,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
       }));
 
-      const dataToken: MainProductPageData = {
-        nav: {
-          desktop: desktop.data,
-          mobile: mobile.data
-        },
+      const dataToken = {
         page: page.data,
         card: cards
       }
@@ -64,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data as MainProductPageData
+      data: data
     }
   }
 };
@@ -79,8 +71,6 @@ function giftsPage({ data }: InferGetServerSidePropsType<typeof getServerSidePro
       parent={ page.GIFTS }
       title={'ASTORIA | Gifts'}
       classes={'relative'}
-      desktop={ data.nav.desktop }
-      mobile={ data.nav.mobile }
       styles={ styles }
       header={
         <MainHeader config={ data.page.header } />
