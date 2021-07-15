@@ -37,7 +37,7 @@ const {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const data: Data<Array<Product>> = await axios.get(STATIC_PRODUCT_API as string + '/data', { headers: { 'Content-Type': 'application/json' } }).then(res => res.data);
-    const paths: Array<StaticPath> = data.payload.map((product: Product) => ({ params: {slug: product.meta.slug} }));
+    const paths: Array<StaticPath> = data.payload.map((product: Product) => ({ params: {slug: product.meta.slug || "404"} }));
 
     return {
       paths,
