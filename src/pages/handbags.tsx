@@ -93,12 +93,12 @@ function Handbags({ data }: InferGetServerSidePropsType<typeof getServerSideProp
       <Container main styles={ styles } classes={`relative`}>
         <section id={'promo-grid'}>
           <ProductGrid even grid={ styles.even }>
-            <PreviewCard priority fill config={data.card[0]} styles={promoStyles} />
-            <PreviewCard priority fill config={data.card[1]} styles={promoStyles} />
+            <PreviewCard priority fill config={data.card[2]} styles={promoStyles} />
+            <PreviewCard priority fill config={data.card[4]} styles={promoStyles} />
           </ProductGrid>
           <ProductGrid even grid={ styles.even }>
-          <PreviewCard priority fill config={data.card[2]} styles={promoStyles} />
-            <PreviewCard priority fill config={data.card[3]} styles={promoStyles} />
+          <PreviewCard priority fill config={data.card[0]} styles={promoStyles} />
+            <PreviewCard priority fill config={data.card[6]} styles={promoStyles} />
           </ProductGrid>
         </section>
         <section id={'promo-banner'} className={'relative'}>
@@ -111,9 +111,9 @@ function Handbags({ data }: InferGetServerSidePropsType<typeof getServerSideProp
             oneXtwo
             grid={ styles.oneXtwo }
             styles={ styles }
-            blockOne={<PreviewCard fill config={data.card[4]} styles={promoStyles} />}
-            blockTwo={<PreviewCard fill config={data.card[5]} styles={promoStyles} />}
-            blockThree={<PreviewCard fill config={data.card[6]} styles={promoStyles} />}
+            blockOne={<PreviewCard fill config={data.card[5]} styles={promoStyles} />}
+            blockTwo={<PreviewCard fill config={data.card[1]} styles={promoStyles} />}
+            blockThree={<PreviewCard fill config={data.card[3]} styles={promoStyles} />}
           />
         </section>
       </Container>

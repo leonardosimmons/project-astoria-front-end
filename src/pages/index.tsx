@@ -90,9 +90,9 @@ function Index({ config }: InferGetServerSidePropsType<typeof getServerSideProps
       }
     >
       <Container main parent={page.HOME} classes={`relative`}>
-        <SectionOne config={config.featured[1]}/>
+        <SectionOne config={config.featured[0]}/>
         <SectionTwo config={config.section.two}/>
-        <SectionThree config={config.featured[0]}/>
+        <SectionThree config={config.featured[1]}/>
         <SectionFour config={config.section.four}/>
         <AppointmentSection config={config.section.appt} />
       </Container>

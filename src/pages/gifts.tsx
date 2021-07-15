@@ -93,8 +93,8 @@ function giftsPage({ data }: InferGetServerSidePropsType<typeof getServerSidePro
             <PreviewCard priority fill config={data.card[3]} styles={promoStyles} />
           </ProductGrid>
           <ProductGrid even grid={ styles.even }>
-            <PreviewCard priority fill config={data.card[2]} styles={promoStyles} />
             <PreviewCard priority fill config={data.card[4]} styles={promoStyles} />
+            <PreviewCard priority fill config={data.card[2]} styles={promoStyles} />
           </ProductGrid>
         </section>
         <section id={'promo-banner'}>
