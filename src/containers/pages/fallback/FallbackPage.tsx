@@ -10,7 +10,7 @@ const FallbackPage: React.FunctionComponent = (): JSX.Element => {
   return (
     <Container wrapper styles={styles}>
       <LoadSpinner />
-      <p>{'One moment...'}</p>
+      <p>{'PAGE DOES NOT EXIST'}</p>
     </Container>
   );
 };

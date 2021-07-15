@@ -23,6 +23,7 @@ import Grid from '../../components/grid';
 import Copyright from '../../components/copyright';
 import ProductSummary from '../../containers/pages/product/Summary';
 import ProductDetails from '../../containers/pages/product/Details';
+import FallbackPage from '../../containers/pages/fallback/FallbackPage';
 
 
 const {
@@ -37,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false
+      fallback: true
     };
   }
   catch(err) {
@@ -83,6 +84,10 @@ function ProductPreview({ data }: InferGetStaticPropsType<typeof getStaticProps>
   const cart = useCart();
   const router: NextRouter = useRouter();
   const chosenSizeRef = React.useRef<string>();
+
+  if (router.isFallback) {
+    return <FallbackPage />
+  }
 
   /* --------------------  FUNCTIONS  --------------------- */
   function handleChosenSize(e: React.ChangeEvent<HTMLSelectElement>): void {
