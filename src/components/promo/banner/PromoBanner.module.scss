@@ -38,16 +38,22 @@
 }
 
 .btn {
-  width: 13rem;
+  width: 18ch;
   padding: .5rem 1rem;
+  letter-spacing: 2px;
 
+  color: var(--white);
   background-color: var(--dark-grey-700);
 
   &:hover {
     background-color: var(--dark-grey-500);
   }
 
-  @media only screen and (min-width: 64em) {
+}
+
+@media only screen and (min-width: 64em) {
+  .btn {
+    width: 20ch;
     padding: 1rem 2rem; 
   }
 }

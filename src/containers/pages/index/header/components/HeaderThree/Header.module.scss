@@ -17,10 +17,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  @media only screen and (min-width: 64em) {
-    justify-content: flex-start;
-  }
 }
 
 .contentBox {
@@ -36,11 +32,6 @@
   margin-top: 30rem;
 
   color: var(--white);
-
-  @media only screen and (min-width: 64em) {
-    margin-left: 4rem;
-    margin-top: 0;
-  }
 }
 
 .mainHeading {
@@ -51,8 +42,6 @@
 
   & span:nth-child(1) {
     font-size: 3.45rem;
-
-    @media only screen and (min-width: 64em) { font-size: 4.6rem; }
   }
 
   & span:nth-child(2) {    
@@ -61,22 +50,43 @@
     font-family: 'Oswald', sans-serif;
     font-size: 5.45rem;
     font-weight: 500;
-
-    @media only screen and (min-width: 64em) { font-size: 8rem; }
   }
 }
 
 .btn {
-  width: 13rem;
+  width: 18ch;
   padding: .75rem 1rem;
-
-  border: .5px solid var(--black);
-  background-color: var(--dark-grey-500);
-
+  font-weight: 500;
   font-size: 1.4rem;
 
-  @media only screen and (min-width: 64em) { 
-    width: 17rem;
+  border: .5px solid var(--black);
+  color: var(--white);
+  background-color: var(--dark-grey-500);
+}
+
+
+@media only screen and (min-width: 64em) {
+  .mainContainer {
+    justify-content: flex-start;
+  }
+
+  .contentBox {
+    margin-left: 4rem;
+    margin-top: 0;
+  }
+
+  .mainHeading {
+    & span:nth-child(1) {
+      font-size: 4.6rem;
+    }
+
+    & span:nth-child(1) {
+      font-size: 8rem;
+    }
+  }
+
+  .btn {
+    width: 20ch;
     padding: 1rem 2rem; 
     font-size: 1.6rem;
   }

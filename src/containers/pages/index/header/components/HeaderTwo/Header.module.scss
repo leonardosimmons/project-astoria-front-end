@@ -38,23 +38,26 @@
 }
 
 .btn {
-  width: 13rem;
+  width: 18ch;
   padding: .75rem 1rem;
   
   font-size: 1.4rem;
+  font-weight: 500;
   letter-spacing: 2px;
 
+  color: var(--white);
   background-color: var(--primary-900);
-
-
-  @media only screen and (min-width: 64em) { 
-    width: 17rem;
-    padding: 1rem 2rem; 
-    font-size: 1.6rem;
-  }
 }
 
 .mainHeading, 
 .btn {
   z-index: 1;
+}
+
+@media only screen and (min-width: 64em) { 
+  .btn {
+    width: 20ch;
+    padding: 1rem 2rem; 
+    font-size: 1.6rem;
+  }
 }

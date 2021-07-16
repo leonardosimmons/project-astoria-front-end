@@ -109,6 +109,19 @@
 
 
 //* -------------------- BUTTON -------------------- *//
+.btn-default {
+  padding: .75rem 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 64em) {
+  .btn-default {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+  }
+}
+
 .btn-hoverConfig {
   &::after {
     content: "";

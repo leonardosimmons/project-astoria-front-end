@@ -17,6 +17,8 @@
   padding: 1rem;
 
   & > button {
+    font-size: 1.6rem;
+
     &:hover {
       color: var(--secondary-darkest);
     }
@@ -43,6 +45,10 @@
     &:focus {
       border: 1px solid var(--primary-darker);
     }
+  }
+
+  & > button:last-of-type {
+    background-color: transparent;
   }
 }
 

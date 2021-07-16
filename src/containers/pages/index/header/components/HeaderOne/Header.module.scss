@@ -30,25 +30,33 @@
 .mainHeading {
   font-size: 5.45rem;
   letter-spacing: 2px;
-
-  @media only screen and (min-width: 64em) { 
-    font-size: 6.6rem;
-    letter-spacing: 4px; 
-  }
 }
 
 .btn {
-  width: 13rem;
-  padding: .5rem 1rem;
+  width: 17ch;
+  padding: .75rem 1rem;
 
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+
+  color: var(--white);
   background-color: var(--dark-grey-300);
-
-  @media only screen and (min-width: 64em) {
-    padding: 1rem 2rem; 
-  }
 }
 
 .mainHeading, 
 .btn {
   z-index: 1;
+}
+
+@media only screen and (min-width: 64em) {
+  .mainHeading {
+    font-size: 6.6rem;
+    letter-spacing: 4px; 
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    padding: 1rem 2rem; 
+  }
 }

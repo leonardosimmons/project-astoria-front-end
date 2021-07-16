@@ -112,10 +112,13 @@
 }
 
 .btn {
+  width: 30ch;
   padding: 1rem 2rem;
   transition: all .5s;
 
   font-size: 1.4rem;
+
+  color: var(--white);
   background-color: var(--dark-grey-700);
 
   letter-spacing: 1px;
@@ -131,6 +134,7 @@
   }
 
   @media only screen and (min-width: 40em) {
+    width: 80ch;
     
     &:nth-child(1) {
       margin-top: 0;

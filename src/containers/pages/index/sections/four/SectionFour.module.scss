@@ -47,6 +47,8 @@
   transition: all .5s;
   letter-spacing: 2px;
 
+  background-color: transparent;
+
   &:hover {
     color: var(--grey-500);
     transform: translateY(-0.1rem);
