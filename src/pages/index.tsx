@@ -7,7 +7,8 @@ import { page } from '../utils/keys';
 
 import styles from '../containers/pages/index/Index.module.scss';
 
-import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';;
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
+import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -18,7 +19,6 @@ import SectionTwo from '../containers/pages/index/sections/two';
 import SectionThree from '../containers/pages/index/sections/three';
 import SectionFour from '../containers/pages/index/sections/four';
 import AppointmentSection from '../containers/pages/index/sections/appointment';
-import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 
 const {
@@ -30,7 +30,7 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
+  const data: IndexPageData | undefined = await axios.all([
     axios.get(INDEX_HEADER_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(INDEX_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + FEATURED_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   .then(axios.spread((header, info, featured) => { 
     if(header.status === 200 && info.status === 200 && featured.status === 200)
     {
-      const dataToken = {
+      const dataToken: IndexPageData = {
         header: header.data,
         section: info.data,
         featured: featured.data.payload

@@ -3,10 +3,11 @@ import axios, { AxiosResponse } from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { page } from '../utils/keys';
 import { MainProductPageData, Product, ProductCard } from '../utils/types';
-import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import styles from '../containers/pages/men/MensPage.module.scss';
 import promoStyles from '../containers/pages/men/MensPromoCardLrg.module.scss';
+
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 
 import Layout from '../containers/layout';
@@ -26,7 +27,7 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
+  const data: MainProductPageData | undefined = await axios.all([
     axios.get(MENS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + MENS_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
@@ -47,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
       }));
 
-      const dataToken = {
+      const dataToken: MainProductPageData = {
         page: staticData.data,
         card: cards
       }
@@ -61,7 +62,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data
+      data: data as MainProductPageData
     }
   }
 };

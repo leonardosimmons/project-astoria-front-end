@@ -6,6 +6,7 @@ import { page } from '../utils/keys';
 
 import styles from '../containers/pages/handbags/Handbags.module.scss';
 import promoStyles from '../containers/pages/handbags/PromoCard.module.scss';
+
 import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
@@ -25,7 +26,7 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
+  const data: MainProductPageData | undefined = await axios.all([
     axios.get(HANDBAG_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + HANDBAG_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
@@ -47,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }));
 
 
-      const dataToken = {
+      const dataToken: MainProductPageData = {
         page: page.data,
         card: cards
       };
@@ -59,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data
+      data: data as MainProductPageData
     }
   };
 };

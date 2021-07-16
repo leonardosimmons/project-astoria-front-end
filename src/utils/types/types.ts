@@ -280,7 +280,6 @@ export type IndexStaticSectionData = {
 export type IndexHeaderData = Header[];
 
 export type IndexPageData = {
-  nav: NavbarData;
   header: IndexHeaderData;
   section: IndexStaticSectionData;
   featured: Array<Product>;
@@ -309,7 +308,6 @@ export type MainProductPageStaticData = {
 };
 
 export type MainProductPageData = {
-  nav: NavbarData;
   page: MainProductPageStaticData;
   card: ProductCard[];
 };

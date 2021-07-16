@@ -1,12 +1,13 @@
 
 import axios from 'axios';
-import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType } from 'next';
-import { page } from '../utils/keys';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { MainProductPageData, Product, ProductCard } from '../utils/types';
-import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
+import { page } from '../utils/keys';
 
 import styles from '../containers/pages/gifts/Gifts.module.scss';
 import promoStyles from '../containers/pages/gifts/PromoCard.module.scss';
+
+import { useNavScrollConfig } from '../helpers/hooks/useNavScrollConfig';
 
 import Layout from '../containers/layout';
 import Container from '../components/container';
@@ -24,7 +25,7 @@ const {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await axios.all([
+  const data: MainProductPageData | undefined = await axios.all([
     axios.get(GIFTS_PAGE_DATA_API as string, { headers: { 'Content-Type': 'application/json' } }),
     axios.get(STATIC_PRODUCT_API as string + GIFT_PRODUCTS as string, { headers: { 'Content-Type': 'application/json' } })
   ])
@@ -44,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
       }));
 
-      const dataToken = {
+      const dataToken: MainProductPageData = {
         page: page.data,
         card: cards
       }
@@ -56,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: data
+      data: data as MainProductPageData
     }
   }
 };
