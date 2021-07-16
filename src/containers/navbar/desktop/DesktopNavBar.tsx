@@ -68,9 +68,9 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ solid }): JSX.Element =
           <Container styles={ profileStyles }>
             <div className={profileStyles.tabs}>
               {
-                session &&
+                session || user.info.name &&
                 <div className={profileStyles.signedInBox}>
-                  <span>{session.loading ? 'loading...' : 'Hello'}</span>
+                  <span>{'Hello'}</span>
                   <span>{strShortener(user.info.name, 12, '...')}</span>
                   <span>{user.info.name}</span>
                 </div>
@@ -90,7 +90,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ solid }): JSX.Element =
               }
               </BaseIcon>
               {
-                !session ?
+                !session && !user.info.name ?
                 <>
                   <BaseIcon 
                     left
