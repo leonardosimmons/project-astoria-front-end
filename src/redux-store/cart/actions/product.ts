@@ -90,6 +90,7 @@ export function updateProductQuantity(id: number, quantity: number): AppThunk {
   
     try {
       await http.put(process.env.NEXT_PUBLIC_UPDATE_PRODUCT_QUANTITY as string, update);
+      location.reload();
     }
     catch(err) {
       console.log(err);
