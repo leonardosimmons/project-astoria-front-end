@@ -33,7 +33,7 @@ function UserCart(): JSX.Element {
   const handleQuantity = React.useCallback((p: ProductCartToken) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     qRef.current = e.target.value;
     cart.updateQuantity(p.order.id, parseInt(qRef.current));
-    router.reload();
+    location.reload();
   }, []);
 
   return (
