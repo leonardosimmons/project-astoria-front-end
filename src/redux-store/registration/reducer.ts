@@ -1,5 +1,5 @@
 
-import { RegistrationFormContext } from '../../../../utils/types';
+import { RegistrationFormContext } from '../../utils/types';
 import 
 { 
   RegistrationFormActions, 

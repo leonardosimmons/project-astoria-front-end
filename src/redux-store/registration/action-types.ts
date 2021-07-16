@@ -1,4 +1,4 @@
-import { Combinable } from '../../../../utils/types';
+import { Combinable } from '../../utils/types';
 
 //** ---------------------  TYPES  --------------------- **//
 export const SET_USERNAME = 'set_username';

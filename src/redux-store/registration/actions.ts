@@ -1,5 +1,5 @@
-import { AppActions } from '../../../../redux-store/action-types';
-import { Combinable } from '../../../../utils/types';
+import { AppActions } from '../../redux-store/action-types';
+import { Combinable } from '../../utils/types';
 import 
 { 
   SET_AGE, 
