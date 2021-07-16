@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { NextRouter, useRouter } from 'next/router';
 import { CartContext, ProductCartToken } from '../utils/types';
 import { page } from '../utils/keys';
 
 import styles from '../containers/pages/cart/Cart.module.scss';
+
 import { useWatchUserSignIn } from '../helpers/hooks/useWatchUserSignIn';
 import { useAppSelector } from '../helpers/hooks/redux';
 import { useCart } from '../helpers/hooks/useCart';
@@ -19,7 +19,6 @@ import OrderSummary from '../containers/pages/cart/summary';
 function UserCart(): JSX.Element {
   const cart = useCart();
   const qRef = React.useRef<string>('');
-  const router: NextRouter = useRouter();
   const context: CartContext = useAppSelector((state) => state.cart);
 
   // Checks for existsing session/ guest login
