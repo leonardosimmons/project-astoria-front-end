@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { useDispatch} from 'react-redux';
 import { page } from '../utils/keys';
+import { UserInfo } from '../utils/types/types';
+import { useAppDispatch, useAppSelector } from '../helpers/hooks/redux';
 
 import styles from '../containers/pages/register/Register.module.scss';
-import { handleInputRef, preventDefault } from '../helpers/functions';
 
 import 
 { 
@@ -13,8 +13,10 @@ import
   setUsername, 
   setPassword, 
   setPwCheck
-} from '../containers/pages/register/state/actions';
+} from '../redux-store/registration/actions';
+import { createAndSignInNewUser } from '../redux-store/user/actions';
 import { ValidationController } from '../helpers/ValidationController';
+import { handleInputRef, preventDefault } from '../helpers/functions';
 
 import Layout from '../containers/layout';
 import Copyright from '../components/copyright';
@@ -22,12 +24,15 @@ import Container from '../components/container';
 import ContentBox from '../components/box/ContentBox';
 import TextBox from '../components/text';
 import RegistrationForm from '../containers/pages/register/form';
-import { RegistrationFormActions } from '../containers/pages/register/state/action-types';
+import { NextRouter, useRouter } from 'next/router';
 
 
 function registerPage(): JSX.Element {
-  const dispatch: React.Dispatch<RegistrationFormActions> = useDispatch();
+  const dispatch = useAppDispatch();
+  const router: NextRouter = useRouter();
+  const context = useAppSelector((state) => state.registration);
   const validate: ValidationController = new ValidationController();
+  const [ complete, setComplete ] = React.useState<boolean>(false);
 
   const usernameRef = React.useRef<string>();
   const ageRef = React.useRef<number>();
@@ -50,16 +55,32 @@ function registerPage(): JSX.Element {
       dispatch(setEmail(emailRef.current as string));
       dispatch(setPassword(passwordRef.current as string));
       dispatch(setPwCheck(pwCheckRef.current as string));
+      setComplete(true);
     } else {
         alert(validate.error);
     }
   }), []);
 
+  // creates and signs in new user once form is submitted
+  React.useEffect(() => {
+    if (complete) {
+      const userToken: UserInfo = {
+        name: context.username,
+        email: context.email,
+        image: '',
+        password: context.password
+      };
+
+      dispatch(createAndSignInNewUser(userToken));
+      router.push('/');
+    }
+  }, [complete]);
+
   return (
     <Layout
       solid
       parent={ page.SIGN_IN }
-      title={'ASTORIA | Sign-in'}
+      title={'ASTORIA | Register'}
       classes={'relative'}
       styles={ styles }
       footer={ <Copyright /> }

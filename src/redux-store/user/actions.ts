@@ -36,9 +36,9 @@ export const createAndSignInNewUser = (user: UserInfo): AppThunk => async(dispat
     const http: HttpController = new HttpController();
 
     // creates new user in database
-    const data = await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, user).then((res) => { 
-      if(res) return res.data; 
-    });
+    const data = user.password 
+    ? await http.post(process.env.NEXT_PUBLIC_SIGN_UP_USER_API as string, user).then((res) => { if(res) return res.data; }) 
+    : await http.post(process.env.NEXT_PUBLIC_ADD_USER_API as string, user).then((res) => { if(res) return res.data; });
 
     // signs in user to database
     const status = await http.signInUser(data.payload.id);

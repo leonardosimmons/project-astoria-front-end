@@ -53,6 +53,9 @@ function signInPage(): JSX.Element {
             <button className={'btn-activeFocus'} onClick={() => userSignIn('github', '/')}>
               {'Sign in with GitHub'}
             </button>
+            <button onClick={() => router.push('/register')}>
+              {'Register as New User'}
+            </button>
             <button onClick={() => guestSignIn()}>
               {'Continue as Guest'}
             </button>
