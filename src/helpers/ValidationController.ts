@@ -107,10 +107,10 @@ class ValidationController implements ValidationControls
     if (field === '' || field === 0) return 'No Age was entered\n';
     else if (typeof field === 'string') {
       if (parseInt(field) < 21) {
-        return 'You must be at least 21 years of age to enter\n';
+        return 'You must be at least 18 years of age to create an account\n';
       }
     }
-    else if (field < 21) return 'You must be at least 21 years of age to enter\n';
+    else if (field < 21) return 'You must be at least 18 years of age to create an account\n';
 
     return '';
   };

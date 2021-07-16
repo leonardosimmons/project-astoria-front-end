@@ -30,7 +30,7 @@
     }
   }
 
-  & > button:not(:last-of-type) {
+  & > button:nth-child(2) {
     margin-bottom: 3rem;
     padding: 1rem 3rem;
   
@@ -47,7 +47,8 @@
     }
   }
 
-  & > button:last-of-type {
+  & > button:not(:nth-child(2)) {
+    margin-bottom: 2rem;
     background-color: transparent;
   }
 }

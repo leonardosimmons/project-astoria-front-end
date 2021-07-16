@@ -507,6 +507,7 @@ export type UserInfo = {
   name: string;
   email: string;
   image: string;
+  password?: string;
 };
 
 export type UserCheck = {
