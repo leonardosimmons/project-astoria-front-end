@@ -209,12 +209,6 @@ export type NamedLink = {
   link: string;
 };
 
-export type SignInForm = {
-  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submit: (e: React.FormEvent) => void;
-};
-
 export type StaticPath = {
   params: {
     id?: string;
@@ -482,7 +476,7 @@ export type PromoCard = Heading & Omit<Image, "width"|"height"> & {
 };
 
 
-//** -------------  REGISTRATION FORM -------------- *//
+//** -------------  REGISTRATION FORM  -------------- *//
 export type RegistrationFormContext = {
   username: string;
   email: string;
@@ -502,7 +496,21 @@ export type RegistrationForm = {
 };
 
 
-//** -------------------  USER -------------------- *//
+//** -------------------  SIGN IN  -------------------- *//
+export type SignInForm = {
+  email: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  password: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submit: (e: React.FormEvent) => void;
+};
+
+export type SignInToken = {
+  email: string;
+  password: string;
+  isVerified: boolean;
+};
+
+
+//** -------------------  USER  -------------------- *//
 export type UserInfo = {
   name: string;
   email: string;
