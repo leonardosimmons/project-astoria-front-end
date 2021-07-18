@@ -1,0 +1,32 @@
+
+.input {
+  width: 100%;
+  padding: .25rem;
+  margin-top: .25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--black);
+}
+
+
+.btnContainer {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+
+  margin-bottom: 5rem;
+
+  & > input {
+    width: 10ch;
+    margin-top: 1.25rem;
+    border-radius: .5rem;
+    border: 1px solid var(--black);
+  }
+}
+
+
+@media only screen and (min-width: 64em) {
+  .input {
+    padding: .65rem
+  }
+}
