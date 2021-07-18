@@ -83,6 +83,29 @@ export const relogUser = (): AppThunk => async (dispatch: React.Dispatch<AppThun
   }
 };
 
+export const signIn = (u_id: number, user: UserInfo): AppThunk => async (dispatch: React.Dispatch<AppThunk>) => {
+  const http: HttpController = new HttpController();
+
+  try {
+    const status = await http.signInUser(u_id);
+
+    console.log('test email')
+    if (status.signedIn) {
+      const u: UserData = {
+        id: u_id,
+        info: user
+      };
+
+      localStorage.setItem('auth-token', JSON.stringify(status.token));
+
+      dispatch(userSignIn(u));
+    }
+  }
+  catch(err) {
+    throw new Error(err);
+  }
+};
+
 export const userSignIn = (token: UserData): AppThunk => async (dispatch: React.Dispatch<AppActions>) => {
   dispatch(setUser(token));
   dispatch(setCartUser(token));
