@@ -27,9 +27,11 @@
 }
 
 .input {
-  width: 23ch;
-  padding: .5rem;
-  margin-bottom: .85rem;
+  height: 50px;
+  width: 100%;
+  max-width: 650px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 
   background-color: var(--grey-lightest);
 }
@@ -41,10 +43,8 @@
 }
 
 .btnContainer {
-  margin-top: 1rem;
-
   & > * {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     width: 10rem;
     padding: .5rem 1rem;
   
@@ -84,6 +84,10 @@
   }
 }
 
+.form {
+  width: 95%;
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -101,10 +105,6 @@
   .mainHeading {
     margin-bottom: 1.5rem;
   }
-
-  .input {
-    width: 27ch;
-  }
 }
 
 @media only screen and (min-width: 48em) {
@@ -112,13 +112,18 @@
     margin-bottom: 5rem;
   }
 
+  .form {
+    width: 85%;
+  }
+
   .input {
-    width: 30ch;
     margin-top: .75rem;
   }
 
   .btnContainer {
+    justify-content: space-evenly;
     & > * {
+      margin: 2.5rem;
       width: 12rem; 
     }
   }

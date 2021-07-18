@@ -12,7 +12,7 @@ type Props = SignInForm;
 
 const signInForm: React.FunctionComponent<Props> = ({ email, password, submit }): JSX.Element => {
   return (
-    <form id={'sign-in-form'} onSubmit={submit}>
+    <form id={'sign-in-form'} className={styles.form} onSubmit={submit}>
       <Input col type={'email'} labelFront={'Email Address'} styles={styles} changed={ email }/>
       <Input col type={'password'} labelFront={'Password'} styles={styles} changed={ password }/>
       <div className={`${ styles.btnContainer } relative center`}>
