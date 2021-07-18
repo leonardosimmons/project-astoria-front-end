@@ -107,7 +107,7 @@ const DesktopNavBar: React.FunctionComponent<Props> = ({ solid }): JSX.Element =
                   </BaseIcon>
                 </> 
                 :
-                <button onClick={() => user.signOut(user.id as number)}>{'Sign Out'}</button>
+                <button className={'signOut'} onClick={() => user.signOut(user.id as number)}>{'Sign Out'}</button>
               }
             </div>
           </Container>
