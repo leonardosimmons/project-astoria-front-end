@@ -56,9 +56,9 @@ class ValidationController implements ValidationControls
     return false;
   }; 
 
-  public signInForm(un: string, pw: string): boolean {
+  public signInForm(e: string, pw: string): boolean {
     let fail = '';
-    fail = this.username(un);
+    fail = this.email(e);
     fail = this.password(pw);
 
     this._error = '';
