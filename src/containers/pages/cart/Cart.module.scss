@@ -2,9 +2,14 @@
   height: 100%;
 }
 
+.topSpacer {
+  width: 100%;
+  height: 50px;
+}
+
 .wrapper {
   height: 100%; 
-  min-height: 92.5vh;
+  min-height: 85vh;
   width: 96.5%;
 
   display: flex;
@@ -15,7 +20,7 @@
   
   & > *:nth-child(1) {
     flex: 1 1;
-    margin-top: 7rem;
+    margin-top: 2rem;
   }
   & > *:nth-child(2) {
     flex: 0 1 40%;
@@ -36,9 +41,11 @@
 //* 768px
 @media only screen and (min-width: 48em) {
   .wrapper {
-    height: 92.5vh;
-
+    height: 100%;
     flex-direction: row;
+    align-items: flex-start;
+    margin-top: 3rem;
+
 
     & > *:nth-child(1) {
       margin-top: 0;
@@ -48,6 +55,12 @@
       flex: 0 1 35%;
       margin-top: 0;
     }
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .wrapper {
+    padding-top: 6rem;
   }
 }
 

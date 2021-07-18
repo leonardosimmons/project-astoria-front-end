@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   .then(axios.spread((page: AxiosResponse<any>, products: AxiosResponse<any>) => {
     if(page.status === 200 && products.status === 200)
     {
-      const cards: Array<ProductCard> = products.data.payload.map((p: Product): ProductCard => ({
+      const cards: Array<ProductCard> = products.data.payload.map((p: Product, index: number): ProductCard => ({
         img: {
           src: p.preview.image.src,
           alt: p.preview.image.alt,
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         },
         text: p.details.name.toUpperCase(),
         btn: {
-          text: 'DISCOVER MORE',
+          text: index === 0 ? 'SHOP WOMEN' : 'SHOP MEN',
           link: p.preview.link,
           classes: 'btn-activeFocus'
         }

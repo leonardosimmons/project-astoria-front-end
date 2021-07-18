@@ -37,7 +37,7 @@
 
 .container {
   height: 100%; //100%;
-  min-height: 20rem;
+  min-height: 30rem;
   width: 98%;
 
   display: flex;
@@ -68,6 +68,7 @@
 @media only screen and (min-width: 48em) {
   .wrapper {
     height: 85%;
+    min-height: 400px;
     width: 100%;
 
     margin-bottom: 0;

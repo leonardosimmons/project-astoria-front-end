@@ -35,7 +35,7 @@ const NavigationMenuCarousel: React.FunctionComponent<Props> = ({ parent, scroll
     </Carousel>
     <Button
       text={`CREATE MY ASTORIA ACCOUNT`}
-      link={'/under-construction'}
+      link={'/register'}
       styles={ styles && styles }
     />
   </div>

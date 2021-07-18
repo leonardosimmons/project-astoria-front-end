@@ -43,6 +43,7 @@ function UserCart(): JSX.Element {
       styles={ styles }
       footer={ <Copyright /> }
     >
+      <div className={styles.topSpacer} />
       <Container wrapper styles={ styles } classes={'relative center noselect'}>
         <OrderPreview cart={context} remove={removeProduct} quantity={handleQuantity}/>
         <OrderSummary cart={context}/>

@@ -37,8 +37,8 @@ export default function sectionData(_: NextApiRequest, res: NextApiResponse<Inde
           link: '/under-construction'
         },
         btnTwo: {
-          text: 'discover our exclusive services',
-          link: '/under-construction'
+          text: 'Our current line up',
+          link: '/new'
         }
       }
     }
