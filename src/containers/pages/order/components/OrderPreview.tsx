@@ -20,14 +20,6 @@ const OrderPreview: React.FunctionComponent<Props> = ({ order }): JSX.Element =>
   return (
     <Container wrapper styles={styles}>
       <ContentBox styles={styles}>
-        <div className={styles.shippingBox}>
-          <h2>{'SHIPPING'}</h2>
-          <p>{`Address: ${order.shipping.info.address} ${order.shipping.info.city}, ${order.shipping.info.state} ${order.shipping.info.postal}`}</p>
-        </div>
-        <div className={styles.paymentBox}>
-          <h2>{'PAYMENT METHOD'}</h2>
-          <p>{`Method: PayPal`}</p>
-        </div>
         <div className={styles.itemsBox}>
           <h2>{'ORDER ITEMS'}</h2>
           <div className={styles.items}>
@@ -36,6 +28,14 @@ const OrderPreview: React.FunctionComponent<Props> = ({ order }): JSX.Element =>
           ))}
           </div>
         </div>
+        <div className={styles.shippingBox}>
+          <h2>{'SHIPPING'}</h2>
+          <p>{`Address: ${order.shipping.info.address} ${order.shipping.info.city}, ${order.shipping.info.state} ${order.shipping.info.postal}`}</p>
+        </div>
+        {/* <div className={styles.paymentBox}>
+          <h2>{'PAYMENT METHOD'}</h2>
+          <p>{`Method: PayPal`}</p>
+        </div> */}
       </ContentBox>
     </Container>
   );
