@@ -46,6 +46,12 @@ export type CartContext = {
 
 
 //** -----------------------  GENERAL  ----------------------- **//
+export type AmountToken = {
+  amount: number;
+  quantity: number;
+  currency: string;
+};
+
 export type Arrow = {
   container: {
     right: string;
