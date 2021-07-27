@@ -94,9 +94,9 @@ function signInPage(): JSX.Element {
               password={handlePassword}
               submit={handleSubmit}
             />
-            <button className={'btn-activeFocus'} onClick={() => userSignIn('github', '/')}>
+            {/* <button className={'btn-activeFocus'} onClick={() => userSignIn('github', '/')}>
               {'Sign in with GitHub'}
-            </button>
+            </button> */}
             <button onClick={() => router.push('/register')}>
               {'Register as New User'}
             </button>
