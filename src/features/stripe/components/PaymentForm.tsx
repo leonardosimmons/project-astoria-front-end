@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CardElement } from '@stripe/react-stripe-js';
-import { AmountToken, CartContext, ProductCartToken } from '../../../utils/types';
+import { CartContext } from '../../../utils/types';
 
 import styles from '../PaymentForm.module.scss';
 
@@ -9,12 +9,6 @@ import { useStripeController } from '../hooks/useStripeController';
 import { formatAmount } from '../../../helpers/functions';
 import { useAppSelector } from '../../../helpers/hooks/redux';
 
-
-const testToken: AmountToken = {
-  amount: 450.45,
-  quantity: 1,
-  currency: 'usd'
-};
 
 const StripeCheckout: React.FunctionComponent = (): JSX.Element => { 
   const cart: CartContext = useAppSelector((state) => state.cart);
@@ -79,7 +73,7 @@ const StripeCheckout: React.FunctionComponent = (): JSX.Element => {
         <div className={`${styles.result} hidden`} ref={form.styles.result}>
           <p style={{textAlign: 'center', fontWeight: 'bold'}}>{'Payment completed'}<br /></p>
           <pre ref={form.styles.pre}>
-            {/* <iframe src="https://giphy.com/embed/l41lS0IgRIFkAuA5G" width="280" height="280" frameBorder="0" className="giphy-embed" style={{margin: '0 auto'}} allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dancing-friday-weekend-l41lS0IgRIFkAuA5G"></a></p> */}
+  
           </pre>
         </div>
       </div>
