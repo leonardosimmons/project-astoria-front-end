@@ -75,7 +75,7 @@ const StripeCheckout: React.FunctionComponent = (): JSX.Element => {
             }
           </button>
         </form>
-        <div  ref={form.styles.result}>
+        <div ref={form.styles.result}>
           <p style={{textAlign: 'center', fontWeight: 'bold'}}>{'Payment completed'}<br /></p>
           <pre ref={form.styles.pre}>
             <iframe src="https://giphy.com/embed/l41lS0IgRIFkAuA5G" width="280" height="280" frameBorder="0" className="giphy-embed" style={{margin: '0 auto'}} allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dancing-friday-weekend-l41lS0IgRIFkAuA5G"></a></p>
