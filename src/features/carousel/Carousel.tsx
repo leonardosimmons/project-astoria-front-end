@@ -49,8 +49,8 @@ const Carousel: React.FunctionComponent<Props> = (
     const getWidth = () => {
       const current = window.innerWidth;
 
-      if (window.innerWidth > 2160) 
-        return 2160;
+      // if (window.innerWidth > 2160) 
+      //   return 2160;
 
       return current;  
     };

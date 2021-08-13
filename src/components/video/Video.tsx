@@ -1,9 +1,10 @@
 
 type Props = {
-  src: string; 
+  src: string;
+  maxWidth?: string; 
 };
 
-const Video: React.FunctionComponent<Props> = ({ src }): JSX.Element => {
+const Video: React.FunctionComponent<Props> = ({ src, maxWidth }): JSX.Element => {
   return (
     <video
       autoPlay
@@ -12,7 +13,7 @@ const Video: React.FunctionComponent<Props> = ({ src }): JSX.Element => {
       style={{
         height: '100%',
         width: '100%',
-        maxWidth: '216rem',
+        // maxWidth: '216rem',
         position: 'absolute',
         top: 0,
         left: 0,
